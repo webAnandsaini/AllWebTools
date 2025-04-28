@@ -51,6 +51,11 @@ import PunctuationCheckerDetailed from "@/pages/tools/PunctuationCheckerDetailed
 import EssayCheckerDetailed from "@/pages/tools/EssayCheckerDetailed";
 import PaperCheckerDetailed from "@/pages/tools/PaperCheckerDetailed";
 import OnlineProofreaderDetailed from "@/pages/tools/OnlineProofreaderDetailed";
+import ParagraphRewriterDetailed from "@/pages/tools/ParagraphRewriterDetailed";
+import WordChangerDetailed from "@/pages/tools/WordChangerDetailed";
+import SentenceRewriterDetailed from "@/pages/tools/SentenceRewriterDetailed";
+import EssayRewriterDetailed from "@/pages/tools/EssayRewriterDetailed";
+import ParaphraseGeneratorDetailed from "@/pages/tools/ParaphraseGeneratorDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -110,6 +115,11 @@ function Router() {
       <Route path="/tools/essay-checker-detailed" component={EssayCheckerDetailed} />
       <Route path="/tools/paper-checker-detailed" component={PaperCheckerDetailed} />
       <Route path="/tools/online-proofreader-detailed" component={OnlineProofreaderDetailed} />
+      <Route path="/tools/paragraph-rewriter-detailed" component={ParagraphRewriterDetailed} />
+      <Route path="/tools/word-changer-detailed" component={WordChangerDetailed} />
+      <Route path="/tools/sentence-rewriter-detailed" component={SentenceRewriterDetailed} />
+      <Route path="/tools/essay-rewriter-detailed" component={EssayRewriterDetailed} />
+      <Route path="/tools/paraphrase-generator-detailed" component={ParaphraseGeneratorDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
