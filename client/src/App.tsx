@@ -25,6 +25,10 @@ import PlagiarismCheckerDetailed from "@/pages/tools/PlagiarismCheckerDetailed";
 import WordCounterDetailed from "@/pages/tools/WordCounterDetailed";
 import ArticleRewriterDetailed from "@/pages/tools/ArticleRewriterDetailed";
 import GrammarCheckerDetailed from "@/pages/tools/GrammarCheckerDetailed";
+import SpellCheckerDetailed from "@/pages/tools/SpellCheckerDetailed";
+import ParaphrasingToolDetailed from "@/pages/tools/ParaphrasingToolDetailed";
+import TextToSpeechDetailed from "@/pages/tools/TextToSpeechDetailed";
+import SpeechToTextDetailed from "@/pages/tools/SpeechToTextDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -58,6 +62,10 @@ function Router() {
       <Route path="/tools/word-counter-detailed" component={WordCounterDetailed} />
       <Route path="/tools/article-rewriter-detailed" component={ArticleRewriterDetailed} />
       <Route path="/tools/grammar-checker-detailed" component={GrammarCheckerDetailed} />
+      <Route path="/tools/spell-checker-detailed" component={SpellCheckerDetailed} />
+      <Route path="/tools/paraphrasing-tool-detailed" component={ParaphrasingToolDetailed} />
+      <Route path="/tools/text-to-speech-detailed" component={TextToSpeechDetailed} />
+      <Route path="/tools/speech-to-text-detailed" component={SpeechToTextDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
