@@ -132,8 +132,7 @@ const EssayCheckerDetailed = () => {
     const getRandomScore = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
     
     const grammarScore = getRandomScore(70, 95);
-    const styleScore = getRandomScore(60, 90);
-    const overallScore = Math.floor((grammarScore + styleScore) / 2);
+    let styleScore = getRandomScore(60, 90); // Changed to let instead of const
     
     // Determine readability
     let readabilityScore = getRandomScore(30, 70);
@@ -148,17 +147,14 @@ const EssayCheckerDetailed = () => {
     }
     
     // Adjust for academic vs creative writing
-    let adjustedReadabilityScore = readabilityScore;
-    let adjustedStyleScore = styleScore;
-    
     if (type === "academic") {
-      adjustedReadabilityScore = Math.max(30, readabilityScore - 10); // Academic writing is often more complex
+      readabilityScore = Math.max(30, readabilityScore - 10); // Academic writing is often more complex
     } else if (type === "creative") {
-      adjustedStyleScore = Math.min(95, styleScore + 5); // Creative writing allows for more style variations
+      styleScore = Math.min(95, styleScore + 5); // Creative writing allows for more style variations
     }
     
-    readabilityScore = adjustedReadabilityScore;
-    styleScore = adjustedStyleScore;
+    // Calculate overall score after adjustments
+    const overallScore = Math.floor((grammarScore + styleScore) / 2);
     
     // Generate mock issues
     const issues: EssayIssue[] = [];

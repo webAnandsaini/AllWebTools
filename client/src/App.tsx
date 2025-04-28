@@ -48,6 +48,9 @@ import SentenceRephraserDetailed from "@/pages/tools/SentenceRephraserDetailed";
 import SentenceCheckerDetailed from "@/pages/tools/SentenceCheckerDetailed";
 import RewordingToolDetailed from "@/pages/tools/RewordingToolDetailed";
 import PunctuationCheckerDetailed from "@/pages/tools/PunctuationCheckerDetailed";
+import EssayCheckerDetailed from "@/pages/tools/EssayCheckerDetailed";
+import PaperCheckerDetailed from "@/pages/tools/PaperCheckerDetailed";
+import OnlineProofreaderDetailed from "@/pages/tools/OnlineProofreaderDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -104,6 +107,9 @@ function Router() {
       <Route path="/tools/sentence-checker-detailed" component={SentenceCheckerDetailed} />
       <Route path="/tools/rewording-tool-detailed" component={RewordingToolDetailed} />
       <Route path="/tools/punctuation-checker-detailed" component={PunctuationCheckerDetailed} />
+      <Route path="/tools/essay-checker-detailed" component={EssayCheckerDetailed} />
+      <Route path="/tools/paper-checker-detailed" component={PaperCheckerDetailed} />
+      <Route path="/tools/online-proofreader-detailed" component={OnlineProofreaderDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
