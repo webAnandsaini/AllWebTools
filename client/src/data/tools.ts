@@ -532,7 +532,7 @@ export const designStudioTools: Tool[] = [
   {
     id: 100,
     name: "Logo Maker",
-    slug: "logo-maker",
+    slug: "logo-maker-detailed",
     description: "Create professional logos for your business or brand.",
     category: "Design Studio",
     icon: "fas fa-copyright",
@@ -3461,6 +3461,16 @@ export const popularTools: Tool[] = [
 
 // Recently added tools
 export const recentTools: Tool[] = [
+  {
+    id: 1001,
+    name: "Logo Maker",
+    slug: "logo-maker-detailed",
+    description: "Create professional, custom logos in minutes with our intuitive AI-powered logo design tool.",
+    category: "Design Studio",
+    icon: "fas fa-copyright",
+    iconColor: "text-pink-600",
+    iconBg: "bg-pink-100",
+  },
   {
     id: 901,
     name: "AI Essay Writer",
