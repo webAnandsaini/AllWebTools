@@ -12,7 +12,11 @@ const ToolCard = ({ tool }: ToolCardProps) => {
       "article-rewriter": "article-rewriter-detailed",
       "plagiarism-checker": "plagiarism-checker-detailed",
       "word-counter": "word-counter-detailed",
-      "grammar-checker": "grammar-checker-detailed"
+      "grammar-checker": "grammar-checker-detailed",
+      "spell-checker": "spell-checker-detailed",
+      "paraphrasing-tool": "paraphrasing-tool-detailed",
+      "text-to-speech": "text-to-speech-detailed",
+      "speech-to-text": "speech-to-text-detailed"
     };
     
     return `/tools/${detailedToolsMap[slug] || slug}`;
