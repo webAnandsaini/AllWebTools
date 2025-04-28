@@ -6,6 +6,7 @@ import { storage } from "./storage";
 import { setupTextToolsRoutes } from "./api/textTools";
 import { setupPasswordToolsRoutes } from "./api/passwordTools";
 import { setupQRCodeToolsRoutes } from "./api/qrcodeTools";
+import { setupAIToolsRoutes } from "./api/aiTools";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Set up API routes
@@ -17,6 +18,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   setupTextToolsRoutes(app);
   setupPasswordToolsRoutes(app);
   setupQRCodeToolsRoutes(app);
+  setupAIToolsRoutes(app);
 
   const httpServer = createServer(app);
 
