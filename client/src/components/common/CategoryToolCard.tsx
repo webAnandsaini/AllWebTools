@@ -16,7 +16,15 @@ const CategoryToolCard = ({ tool }: CategoryToolCardProps) => {
       "spell-checker": "spell-checker-detailed",
       "paraphrasing-tool": "paraphrasing-tool-detailed",
       "text-to-speech": "text-to-speech-detailed",
-      "speech-to-text": "speech-to-text-detailed"
+      "speech-to-text": "speech-to-text-detailed",
+      "text-summarizer": "text-summarizer-detailed",
+      "ai-content-detector": "ai-content-detector-detailed",
+      "ocr": "ocr-detailed",
+      "md5-generator": "md5-generator-detailed",
+      "uppercase-to-lowercase": "uppercase-to-lowercase-detailed",
+      "word-combiner": "word-combiner-detailed",
+      "image-to-text": "image-to-text-detailed",
+      "translate-english-to-hindi": "translate-english-to-hindi-detailed"
     };
     
     return `/tools/${detailedToolsMap[slug] || slug}`;

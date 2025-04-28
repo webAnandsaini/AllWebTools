@@ -137,7 +137,7 @@ const MD5GeneratorDetailed = () => {
     }, 1500);
   };
 
-  const verifyHash = () => {
+  const checkHashMatch = () => {
     if (!verifyInput.trim() || !verifyHash.trim()) {
       toast({
         title: "Incomplete information",
@@ -413,7 +413,7 @@ const MD5GeneratorDetailed = () => {
                   
                   <div className="flex flex-wrap gap-3">
                     <Button
-                      onClick={verifyHash}
+                      onClick={checkHashMatch}
                       className="bg-primary hover:bg-blue-700 transition"
                     >
                       <i className="fas fa-check-circle mr-2"></i>

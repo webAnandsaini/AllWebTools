@@ -3453,6 +3453,10 @@ export const popularTools: Tool[] = [
   allTools.find(tool => tool.slug === "paraphrasing-tool")!,
   allTools.find(tool => tool.slug === "text-to-speech")!,
   allTools.find(tool => tool.slug === "speech-to-text")!,
+  allTools.find(tool => tool.slug === "md5-generator")!,
+  allTools.find(tool => tool.slug === "uppercase-to-lowercase")!, 
+  allTools.find(tool => tool.slug === "reverse-text")!,
+  allTools.find(tool => tool.slug === "qr-code-generator")!,
 ];
 
 // Recently added tools

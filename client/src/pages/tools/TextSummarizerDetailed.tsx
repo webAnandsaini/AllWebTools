@@ -111,7 +111,9 @@ const TextSummarizerDetailed = () => {
     let selectedSentences: string[] = [];
     
     // Always include the first sentence as it often contains key information
-    selectedSentences.push(sentences[0]);
+    if (sentences.length > 0) {
+      selectedSentences.push(sentences[0]);
+    }
     
     // Select some sentences from the middle
     if (sentences.length > 2 && sentencesToKeep > 1) {

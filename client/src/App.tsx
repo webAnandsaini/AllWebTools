@@ -29,6 +29,14 @@ import SpellCheckerDetailed from "@/pages/tools/SpellCheckerDetailed";
 import ParaphrasingToolDetailed from "@/pages/tools/ParaphrasingToolDetailed";
 import TextToSpeechDetailed from "@/pages/tools/TextToSpeechDetailed";
 import SpeechToTextDetailed from "@/pages/tools/SpeechToTextDetailed";
+import TextSummarizerDetailed from "@/pages/tools/TextSummarizerDetailed";
+import AIContentDetectorDetailed from "@/pages/tools/AIContentDetectorDetailed";
+import OCRDetailed from "@/pages/tools/OCRDetailed";
+import MD5GeneratorDetailed from "@/pages/tools/MD5GeneratorDetailed";
+import UppercaseToLowercaseDetailed from "@/pages/tools/UppercaseToLowercaseDetailed";
+import WordCombinerDetailed from "@/pages/tools/WordCombinerDetailed";
+import ImageToTextDetailed from "@/pages/tools/ImageToTextDetailed";
+import TranslateEnglishToHindiDetailed from "@/pages/tools/TranslateEnglishToHindiDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -66,6 +74,14 @@ function Router() {
       <Route path="/tools/paraphrasing-tool-detailed" component={ParaphrasingToolDetailed} />
       <Route path="/tools/text-to-speech-detailed" component={TextToSpeechDetailed} />
       <Route path="/tools/speech-to-text-detailed" component={SpeechToTextDetailed} />
+      <Route path="/tools/text-summarizer-detailed" component={TextSummarizerDetailed} />
+      <Route path="/tools/ai-content-detector-detailed" component={AIContentDetectorDetailed} />
+      <Route path="/tools/ocr-detailed" component={OCRDetailed} />
+      <Route path="/tools/md5-generator-detailed" component={MD5GeneratorDetailed} />
+      <Route path="/tools/uppercase-to-lowercase-detailed" component={UppercaseToLowercaseDetailed} />
+      <Route path="/tools/word-combiner-detailed" component={WordCombinerDetailed} />
+      <Route path="/tools/image-to-text-detailed" component={ImageToTextDetailed} />
+      <Route path="/tools/translate-english-to-hindi-detailed" component={TranslateEnglishToHindiDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
