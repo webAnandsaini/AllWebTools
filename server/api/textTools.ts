@@ -209,4 +209,78 @@ export function setupTextToolsRoutes(app: Express) {
   });
 
   // Text to Speech API - We don't need an actual API endpoint because we're using the browser's SpeechSynthesis API
+  
+  // Article Rewriter API
+  app.post("/api/text/rewrite", async (req, res) => {
+    try {
+      const { text } = req.body;
+
+      if (!text || typeof text !== "string") {
+        return res.status(400).json({ error: "Text content is required" });
+      }
+
+      if (text.trim().length < 50) {
+        return res.status(400).json({ error: "Please enter at least 50 characters to rewrite." });
+      }
+
+      // In a real implementation, we would use NLP or AI to rewrite the text
+      // For this implementation, we'll create a simulated response with simple word replacements
+      
+      // Common word replacements for variety
+      const commonReplacements = {
+        good: ["excellent", "great", "exceptional", "superb"],
+        bad: ["poor", "subpar", "inadequate", "disappointing"],
+        important: ["crucial", "essential", "vital", "significant"],
+        said: ["stated", "mentioned", "expressed", "noted"],
+        think: ["believe", "consider", "feel", "reckon"],
+        big: ["large", "substantial", "sizable", "enormous"],
+        small: ["tiny", "slight", "minor", "compact"],
+        use: ["utilize", "employ", "apply", "implement"],
+        very: ["extremely", "exceedingly", "incredibly", "tremendously"],
+        also: ["additionally", "furthermore", "moreover", "likewise"],
+        but: ["however", "nevertheless", "yet", "although"],
+        if: ["provided that", "assuming that", "in case", "on condition that"],
+        like: ["such as", "similar to", "comparable to", "akin to"]
+      };
+      
+      let rewrittenText = text;
+      
+      // Apply replacements with some randomness
+      Object.entries(commonReplacements).forEach(([word, replacements]) => {
+        const regex = new RegExp(`\\b${word}\\b`, 'gi');
+        rewrittenText = rewrittenText.replace(regex, () => {
+          const randomIndex = Math.floor(Math.random() * replacements.length);
+          return replacements[randomIndex];
+        });
+      });
+      
+      // Restructure some sentences to further increase uniqueness
+      const sentences = rewrittenText.split(/(?<=[.!?])\s+/);
+      const rewrittenSentences = sentences.map(sentence => {
+        // Randomly restructure about 30% of sentences
+        if (Math.random() < 0.3 && sentence.includes(',')) {
+          const parts = sentence.split(',');
+          if (parts.length >= 2) {
+            // Move the last part to the beginning
+            const lastPart = parts.pop() || '';
+            return lastPart.trim() + ', ' + parts.join(',');
+          }
+        }
+        return sentence;
+      });
+
+      // Simulate a delay to mimic a real API call
+      setTimeout(() => {
+        res.json({
+          rewrittenText: rewrittenSentences.join(' '),
+          originalLength: text.length,
+          rewrittenLength: rewrittenSentences.join(' ').length,
+        });
+      }, 2000);
+
+    } catch (error) {
+      console.error("Error in article rewriting:", error);
+      res.status(500).json({ error: "Failed to rewrite text" });
+    }
+  });
 }

@@ -23,6 +23,7 @@ import TitleGenerator from "@/pages/tools/TitleGenerator";
 // Detailed Tool Pages
 import PlagiarismCheckerDetailed from "@/pages/tools/PlagiarismCheckerDetailed";
 import WordCounterDetailed from "@/pages/tools/WordCounterDetailed";
+import ArticleRewriterDetailed from "@/pages/tools/ArticleRewriterDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -54,6 +55,7 @@ function Router() {
       {/* Detailed Tool Pages */}
       <Route path="/tools/plagiarism-checker-detailed" component={PlagiarismCheckerDetailed} />
       <Route path="/tools/word-counter-detailed" component={WordCounterDetailed} />
+      <Route path="/tools/article-rewriter-detailed" component={ArticleRewriterDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
