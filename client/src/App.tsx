@@ -58,6 +58,9 @@ import EssayRewriterDetailed from "@/pages/tools/EssayRewriterDetailed";
 import ParaphraseGeneratorDetailed from "@/pages/tools/ParaphraseGeneratorDetailed";
 import SentenceChangerDetailed from "@/pages/tools/SentenceChangerDetailed";
 import ImageTranslatorDetailed from "@/pages/tools/ImageTranslatorDetailed";
+import ChatGPTDetectorDetailed from "@/pages/tools/ChatGPTDetectorDetailed";
+import CitationGeneratorDetailed from "@/pages/tools/CitationGeneratorDetailed";
+import OnlineNotepadDetailed from "@/pages/tools/OnlineNotepadDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -124,6 +127,9 @@ function Router() {
       <Route path="/tools/paraphrase-generator-detailed" component={ParaphraseGeneratorDetailed} />
       <Route path="/tools/sentence-changer-detailed" component={SentenceChangerDetailed} />
       <Route path="/tools/image-translator-detailed" component={ImageTranslatorDetailed} />
+      <Route path="/tools/chatgpt-detector-detailed" component={ChatGPTDetectorDetailed} />
+      <Route path="/tools/citation-generator-detailed" component={CitationGeneratorDetailed} />
+      <Route path="/tools/online-notepad-detailed" component={OnlineNotepadDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
