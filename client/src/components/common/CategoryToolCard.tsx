@@ -30,7 +30,23 @@ const CategoryToolCard = ({ tool }: CategoryToolCardProps) => {
       "small-text-generator": "small-text-generator-detailed",
       "online-text-editor": "online-text-editor-detailed",
       "reverse-text-generator": "reverse-text-generator-detailed",
-      "sentence-rephraser": "sentence-rephraser-detailed"
+      "sentence-rephraser": "sentence-rephraser-detailed",
+      "sentence-checker": "sentence-checker-detailed",
+      "rewording-tool": "rewording-tool-detailed",
+      "punctuation-checker": "punctuation-checker-detailed",
+      "essay-checker": "essay-checker-detailed",
+      "paper-checker": "paper-checker-detailed",
+      "online-proofreader": "online-proofreader-detailed",
+      "word-changer": "word-changer-detailed",
+      "sentence-rewriter": "sentence-rewriter-detailed",
+      "essay-rewriter": "essay-rewriter-detailed",
+      "paraphrase-generator": "paraphrase-generator-detailed",
+      "sentence-changer": "sentence-changer-detailed",
+      "image-translator": "image-translator-detailed",
+      "chatgpt-detector": "chatgpt-detector-detailed",
+      "citation-generator": "citation-generator-detailed",
+      "online-notepad": "online-notepad-detailed",
+      "invisible-character": "invisible-character-detailed"
     };
     
     return `/tools/${detailedToolsMap[slug] || slug}`;

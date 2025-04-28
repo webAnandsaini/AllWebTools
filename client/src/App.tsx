@@ -45,6 +45,9 @@ import SmallTextGeneratorDetailed from "@/pages/tools/SmallTextGeneratorDetailed
 import OnlineTextEditorDetailed from "@/pages/tools/OnlineTextEditorDetailed";
 import ReverseTextGeneratorDetailed from "@/pages/tools/ReverseTextGeneratorDetailed";
 import SentenceRephraserDetailed from "@/pages/tools/SentenceRephraserDetailed";
+import SentenceCheckerDetailed from "@/pages/tools/SentenceCheckerDetailed";
+import RewordingToolDetailed from "@/pages/tools/RewordingToolDetailed";
+import PunctuationCheckerDetailed from "@/pages/tools/PunctuationCheckerDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -98,6 +101,9 @@ function Router() {
       <Route path="/tools/online-text-editor-detailed" component={OnlineTextEditorDetailed} />
       <Route path="/tools/reverse-text-generator-detailed" component={ReverseTextGeneratorDetailed} />
       <Route path="/tools/sentence-rephraser-detailed" component={SentenceRephraserDetailed} />
+      <Route path="/tools/sentence-checker-detailed" component={SentenceCheckerDetailed} />
+      <Route path="/tools/rewording-tool-detailed" component={RewordingToolDetailed} />
+      <Route path="/tools/punctuation-checker-detailed" component={PunctuationCheckerDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
