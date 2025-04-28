@@ -20,6 +20,10 @@ import AIEssayWriter from "@/pages/tools/AIEssayWriter";
 import AIHumanizer from "@/pages/tools/AIHumanizer";
 import TitleGenerator from "@/pages/tools/TitleGenerator";
 
+// Detailed Tool Pages
+import PlagiarismCheckerDetailed from "@/pages/tools/PlagiarismCheckerDetailed";
+import WordCounterDetailed from "@/pages/tools/WordCounterDetailed";
+
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -46,6 +50,10 @@ function Router() {
       {/* Other Tools */}
       <Route path="/tools/password-generator" component={PasswordGenerator} />
       <Route path="/tools/qr-code-generator" component={QrCodeGenerator} />
+      
+      {/* Detailed Tool Pages */}
+      <Route path="/tools/plagiarism-checker-detailed" component={PlagiarismCheckerDetailed} />
+      <Route path="/tools/word-counter-detailed" component={WordCounterDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
