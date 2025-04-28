@@ -63,6 +63,8 @@ import CitationGeneratorDetailed from "@/pages/tools/CitationGeneratorDetailed";
 import OnlineNotepadDetailed from "@/pages/tools/OnlineNotepadDetailed";
 import InvisibleCharacterDetailed from "@/pages/tools/InvisibleCharacterDetailed";
 import AIEssayWriterDetailed from "@/pages/tools/AIEssayWriterDetailed";
+import AIWriterDetailed from "@/pages/tools/AIWriterDetailed";
+import AITextGeneratorDetailed from "@/pages/tools/AITextGeneratorDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -134,6 +136,8 @@ function Router() {
       <Route path="/tools/online-notepad-detailed" component={OnlineNotepadDetailed} />
       <Route path="/tools/invisible-character-detailed" component={InvisibleCharacterDetailed} />
       <Route path="/tools/ai-essay-writer-detailed" component={AIEssayWriterDetailed} />
+      <Route path="/tools/ai-writer-detailed" component={AIWriterDetailed} />
+      <Route path="/tools/ai-text-generator-detailed" component={AITextGeneratorDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
