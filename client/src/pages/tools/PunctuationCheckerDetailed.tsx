@@ -133,17 +133,18 @@ const PunctuationCheckerDetailed = () => {
     if (checkCommas) {
       // Missing comma after introductory phrase
       const introPhrasesPattern = /(However|Nevertheless|Moreover|Furthermore|In addition|For example|On the other hand)(\s+)(\w+)/g;
+      let commaMatch;
       
-      while ((match = introPhrasesPattern.exec(text)) !== null) {
-        const startPos = match.index;
-        const endPos = startPos + match[1].length;
+      while ((commaMatch = introPhrasesPattern.exec(text)) !== null) {
+        const startPos = commaMatch.index;
+        const endPos = startPos + commaMatch[1].length;
         
-        if (match[0].indexOf(",") === -1) {
+        if (commaMatch[0].indexOf(",") === -1) {
           issues.push({
             type: "comma",
-            text: match[1],
+            text: commaMatch[1],
             issue: "Missing comma after introductory phrase",
-            suggestion: match[1] + ",",
+            suggestion: commaMatch[1] + ",",
             explanation: "Introductory phrases should be followed by a comma to separate them from the main clause.",
             startPos,
             endPos
@@ -153,17 +154,18 @@ const PunctuationCheckerDetailed = () => {
       
       // Missing commas in a list of three or more items
       const listPattern = /(\w+)( and | or )(\w+)( and | or )(\w+)/g;
+      let listMatch;
       
-      while ((match = listPattern.exec(text)) !== null) {
-        if (match[0].indexOf(",") === -1) {
-          const startPos = match.index;
-          const endPos = startPos + match[1].length + match[2].length + match[3].length;
+      while ((listMatch = listPattern.exec(text)) !== null) {
+        if (listMatch[0].indexOf(",") === -1) {
+          const startPos = listMatch.index;
+          const endPos = startPos + listMatch[1].length + listMatch[2].length + listMatch[3].length;
           
           issues.push({
             type: "comma",
-            text: match[1] + match[2] + match[3],
+            text: listMatch[1] + listMatch[2] + listMatch[3],
             issue: "Missing comma in a list",
-            suggestion: match[1] + "," + match[2] + match[3],
+            suggestion: listMatch[1] + "," + listMatch[2] + listMatch[3],
             explanation: "In a list of three or more items, use commas to separate the items (Oxford/serial comma).",
             startPos,
             endPos
@@ -198,16 +200,17 @@ const PunctuationCheckerDetailed = () => {
       // Check for period/comma placement with quotation marks (American style)
       if (punctuationStyle === "american") {
         const outsidePunctPattern = /"([^"]+)"([.,])/g;
+        let americanMatch;
         
-        while ((match = outsidePunctPattern.exec(text)) !== null) {
-          const startPos = match.index;
-          const endPos = startPos + match[0].length;
+        while ((americanMatch = outsidePunctPattern.exec(text)) !== null) {
+          const startPos = americanMatch.index;
+          const endPos = startPos + americanMatch[0].length;
           
           issues.push({
             type: "quotation",
-            text: match[0],
+            text: americanMatch[0],
             issue: "Punctuation outside quotation marks",
-            suggestion: match[0].replace("\"" + match[2], match[2] + "\""),
+            suggestion: americanMatch[0].replace("\"" + americanMatch[2], americanMatch[2] + "\""),
             explanation: "In American English, periods and commas go inside quotation marks.",
             startPos,
             endPos
@@ -218,16 +221,17 @@ const PunctuationCheckerDetailed = () => {
       // Check for period/comma placement with quotation marks (British style)
       if (punctuationStyle === "british") {
         const insidePunctPattern = /"([^"]+[.,])"/g;
+        let britishMatch;
         
-        while ((match = insidePunctPattern.exec(text)) !== null) {
-          const startPos = match.index;
-          const endPos = startPos + match[0].length;
+        while ((britishMatch = insidePunctPattern.exec(text)) !== null) {
+          const startPos = britishMatch.index;
+          const endPos = startPos + britishMatch[0].length;
           
           issues.push({
             type: "quotation",
-            text: match[0],
+            text: britishMatch[0],
             issue: "Punctuation inside quotation marks",
-            suggestion: match[0].replace(match[1], match[1].substring(0, match[1].length - 1)) + match[1].substring(match[1].length - 1) + "\"",
+            suggestion: britishMatch[0].replace(britishMatch[1], britishMatch[1].substring(0, britishMatch[1].length - 1)) + britishMatch[1].substring(britishMatch[1].length - 1) + "\"",
             explanation: "In British English, periods and commas go outside quotation marks unless part of the quoted material.",
             startPos,
             endPos
@@ -240,19 +244,20 @@ const PunctuationCheckerDetailed = () => {
     if (checkApostrophes) {
       // Incorrect possessive apostrophes for plural nouns
       const pluralPossessivePattern = /(\w+)s'(\s+)/g;
+      let apostropheMatch;
       
-      while ((match = pluralPossessivePattern.exec(text)) !== null) {
+      while ((apostropheMatch = pluralPossessivePattern.exec(text)) !== null) {
         // Check if it's a common plural possessive exception
         const exceptions = ["kids", "boys", "girls", "parents"];
-        if (!exceptions.includes(match[1].toLowerCase() + "s")) {
-          const startPos = match.index;
-          const endPos = startPos + match[1].length + 2;
+        if (!exceptions.includes(apostropheMatch[1].toLowerCase() + "s")) {
+          const startPos = apostropheMatch.index;
+          const endPos = startPos + apostropheMatch[1].length + 2;
           
           issues.push({
             type: "apostrophe",
-            text: match[1] + "s'",
+            text: apostropheMatch[1] + "s'",
             issue: "Potential incorrect apostrophe usage",
-            suggestion: match[1] + "'s",
+            suggestion: apostropheMatch[1] + "'s",
             explanation: "Use 's for singular possession and s' for plural possession. Verify if this noun is singular or plural.",
             startPos,
             endPos
@@ -289,18 +294,19 @@ const PunctuationCheckerDetailed = () => {
     
     // Double punctuation
     const doublePunctPattern = /([.,:;!?])(\s*)([.,:;!?])/g;
+    let doublePunctMatch;
     
-    while ((match = doublePunctPattern.exec(text)) !== null) {
-      const startPos = match.index;
-      const endPos = startPos + match[0].length;
+    while ((doublePunctMatch = doublePunctPattern.exec(text)) !== null) {
+      const startPos = doublePunctMatch.index;
+      const endPos = startPos + doublePunctMatch[0].length;
       
       // Exclude legitimate cases like ellipsis (...)
-      if (!(match[1] === "." && match[3] === "." && text.substring(startPos, startPos + 3) === "...")) {
+      if (!(doublePunctMatch[1] === "." && doublePunctMatch[3] === "." && text.substring(startPos, startPos + 3) === "...")) {
         issues.push({
           type: "double",
-          text: match[0],
+          text: doublePunctMatch[0],
           issue: "Double punctuation",
-          suggestion: match[1],
+          suggestion: doublePunctMatch[1],
           explanation: "Avoid using multiple punctuation marks in succession unless using ellipsis (...).",
           startPos,
           endPos
@@ -310,16 +316,17 @@ const PunctuationCheckerDetailed = () => {
     
     // Extra spaces before punctuation
     const spaceBeforePunctPattern = /(\s+)([.,:;!?])/g;
+    let spaceMatch;
     
-    while ((match = spaceBeforePunctPattern.exec(text)) !== null) {
-      const startPos = match.index;
-      const endPos = startPos + match[0].length;
+    while ((spaceMatch = spaceBeforePunctPattern.exec(text)) !== null) {
+      const startPos = spaceMatch.index;
+      const endPos = startPos + spaceMatch[0].length;
       
       issues.push({
         type: "spacing",
-        text: match[0],
+        text: spaceMatch[0],
         issue: "Space before punctuation mark",
-        suggestion: match[2],
+        suggestion: spaceMatch[2],
         explanation: "Punctuation marks should not have spaces before them.",
         startPos,
         endPos
