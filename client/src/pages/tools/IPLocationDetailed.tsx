@@ -486,13 +486,13 @@ const IPLocationDetailed = () => {
   ];
 
   const features = [
-    "Accurate geolocation data showing city, region, country, and continent for any IPv4 address",
-    "Precise latitude and longitude coordinates with Google Maps integration for visual reference",
-    "Comprehensive network information including ISP, organization, and ASN details",
-    "Fast lookup process delivering results in seconds with a clean, easy-to-understand interface",
-    "Local search history tracking that preserves your previous searches for quick reference",
-    "Privacy-focused implementation that processes IP data without storing it on our servers",
-    "Compatible with all modern browsers and devices without requiring any installations or plugins"
+    "✅ Accurate geolocation data showing city, region, country, and continent for any IPv4 address",
+    "✅ Precise latitude and longitude coordinates with Google Maps integration for visual reference",
+    "✅ Comprehensive network information including ISP, organization, and ASN details",
+    "✅ Fast lookup process delivering results in seconds with a clean, easy-to-understand interface",
+    "✅ Local search history tracking that preserves your previous searches for quick reference",
+    "✅ Privacy-focused implementation that processes IP data without storing it on our servers",
+    "✅ Compatible with all modern browsers and devices without requiring any installations or plugins"
   ];
 
   const faqs = [

@@ -705,13 +705,13 @@ const FreeDailyProxyListDetailed = () => {
   ];
 
   const features = [
-    "Daily updated database of verified working proxy servers from around the world",
-    "Detailed information for each proxy including speed, uptime percentage, and anonymity level",
-    "Advanced filtering system to find proxies by country, anonymity level, and protocol support",
-    "Personal saved proxy list feature to store and organize your preferred servers",
-    "One-click copy functionality for easy implementation in browsers and applications",
-    "Transparency on proxy performance with real-time speed and reliability metrics",
-    "Compatible with all modern browsers and devices without requiring any installations or plugins"
+    "✅ Daily updated database of verified working proxy servers from around the world",
+    "✅ Detailed information for each proxy including speed, uptime percentage, and anonymity level",
+    "✅ Advanced filtering system to find proxies by country, anonymity level, and protocol support",
+    "✅ Personal saved proxy list feature to store and organize your preferred servers",
+    "✅ One-click copy functionality for easy implementation in browsers and applications",
+    "✅ Transparency on proxy performance with real-time speed and reliability metrics",
+    "✅ Compatible with all modern browsers and devices without requiring any installations or plugins"
   ];
 
   const faqs = [

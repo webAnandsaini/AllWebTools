@@ -392,13 +392,13 @@ const WhatIsMyIPDetailed = () => {
   ];
 
   const features = [
-    "Instant detection and display of your current public IPv4 or IPv6 address",
-    "Detailed technical information including IP version, hostname, ASN, and Internet Service Provider",
-    "Local IP address history tracking to monitor changes in your IP address over time",
-    "One-click copy to clipboard functionality for easy sharing and usage",
-    "Privacy-focused implementation that processes your IP data without storing it on our servers",
-    "Works with both standard connections and when using VPNs or proxy servers",
-    "Compatible with all modern browsers and devices without requiring any installations or plugins"
+    "✅ Instant detection and display of your current public IPv4 or IPv6 address",
+    "✅ Detailed technical information including IP version, hostname, ASN, and Internet Service Provider",
+    "✅ Local IP address history tracking to monitor changes in your IP address over time",
+    "✅ One-click copy to clipboard functionality for easy sharing and usage",
+    "✅ Privacy-focused implementation that processes your IP data without storing it on our servers",
+    "✅ Works with both standard connections and when using VPNs or proxy servers",
+    "✅ Compatible with all modern browsers and devices without requiring any installations or plugins"
   ];
 
   const faqs = [
