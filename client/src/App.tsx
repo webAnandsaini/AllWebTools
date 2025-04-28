@@ -38,6 +38,12 @@ import WordCombinerDetailed from "@/pages/tools/WordCombinerDetailed";
 import ImageToTextDetailed from "@/pages/tools/ImageToTextDetailed";
 import TranslateEnglishToHindiDetailed from "@/pages/tools/TranslateEnglishToHindiDetailed";
 
+// Newly added tool pages
+import TextToImageDetailed from "@/pages/tools/TextToImageDetailed";
+import JPGToWordDetailed from "@/pages/tools/JPGToWordDetailed";
+import SmallTextGeneratorDetailed from "@/pages/tools/SmallTextGeneratorDetailed";
+import OnlineTextEditorDetailed from "@/pages/tools/OnlineTextEditorDetailed";
+
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -82,6 +88,12 @@ function Router() {
       <Route path="/tools/word-combiner-detailed" component={WordCombinerDetailed} />
       <Route path="/tools/image-to-text-detailed" component={ImageToTextDetailed} />
       <Route path="/tools/translate-english-to-hindi-detailed" component={TranslateEnglishToHindiDetailed} />
+      
+      {/* Newly added detailed tool pages */}
+      <Route path="/tools/text-to-image-detailed" component={TextToImageDetailed} />
+      <Route path="/tools/jpg-to-word-detailed" component={JPGToWordDetailed} />
+      <Route path="/tools/small-text-generator-detailed" component={SmallTextGeneratorDetailed} />
+      <Route path="/tools/online-text-editor-detailed" component={OnlineTextEditorDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
