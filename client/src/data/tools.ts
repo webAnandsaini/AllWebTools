@@ -3446,13 +3446,13 @@ export const allTools: Tool[] = [
 // Popular tools shown on homepage
 export const popularTools: Tool[] = [
   allTools.find(tool => tool.slug === "plagiarism-checker")!,
+  allTools.find(tool => tool.slug === "article-rewriter")!,
   allTools.find(tool => tool.slug === "image-compressor")!,
   allTools.find(tool => tool.slug === "text-to-speech")!,
   allTools.find(tool => tool.slug === "pdf-to-word")!,
   allTools.find(tool => tool.slug === "keyword-research-tool")!,
   allTools.find(tool => tool.slug === "word-counter")!,
   allTools.find(tool => tool.slug === "qr-code-generator")!,
-  allTools.find(tool => tool.slug === "password-generator")!,
 ];
 
 // Recently added tools

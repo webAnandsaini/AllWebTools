@@ -6,9 +6,20 @@ interface CategoryToolCardProps {
 }
 
 const CategoryToolCard = ({ tool }: CategoryToolCardProps) => {
+  // Map specific tools to their detailed page versions
+  const getToolUrl = (slug: string) => {
+    const detailedToolsMap: Record<string, string> = {
+      "article-rewriter": "article-rewriter-detailed",
+      "plagiarism-checker": "plagiarism-checker-detailed",
+      "word-counter": "word-counter-detailed"
+    };
+    
+    return `/tools/${detailedToolsMap[slug] || slug}`;
+  };
+
   return (
     <Link
-      href={`/tools/${tool.slug}`}
+      href={getToolUrl(tool.slug)}
       className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition flex items-center"
     >
       <div className={`w-10 h-10 rounded-lg ${tool.iconBg} flex items-center justify-center mr-3 flex-shrink-0`}>

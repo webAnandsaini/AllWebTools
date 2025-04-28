@@ -6,8 +6,19 @@ interface ToolCardProps {
 }
 
 const ToolCard = ({ tool }: ToolCardProps) => {
+  // Map specific tools to their detailed page versions
+  const getToolUrl = (slug: string) => {
+    const detailedToolsMap: Record<string, string> = {
+      "article-rewriter": "article-rewriter-detailed",
+      "plagiarism-checker": "plagiarism-checker-detailed",
+      "word-counter": "word-counter-detailed"
+    };
+    
+    return `/tools/${detailedToolsMap[slug] || slug}`;
+  };
+
   return (
-    <Link href={`/tools/${tool.slug}`} className="bg-white rounded-xl shadow-sm hover:shadow-md transition p-5 flex flex-col">
+    <Link href={getToolUrl(tool.slug)} className="bg-white rounded-xl shadow-sm hover:shadow-md transition p-5 flex flex-col">
       <div className={`w-12 h-12 rounded-lg ${tool.iconBg} flex items-center justify-center mb-4`}>
         <i className={`${tool.icon} ${tool.iconColor} text-xl`}></i>
       </div>
