@@ -11,7 +11,8 @@ const ToolCard = ({ tool }: ToolCardProps) => {
     const detailedToolsMap: Record<string, string> = {
       "article-rewriter": "article-rewriter-detailed",
       "plagiarism-checker": "plagiarism-checker-detailed",
-      "word-counter": "word-counter-detailed"
+      "word-counter": "word-counter-detailed",
+      "grammar-checker": "grammar-checker-detailed"
     };
     
     return `/tools/${detailedToolsMap[slug] || slug}`;

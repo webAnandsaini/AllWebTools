@@ -210,6 +210,151 @@ export function setupTextToolsRoutes(app: Express) {
 
   // Text to Speech API - We don't need an actual API endpoint because we're using the browser's SpeechSynthesis API
   
+  // Grammar Checker API
+  app.post("/api/text/grammar-check", async (req, res) => {
+    try {
+      const { text } = req.body;
+
+      if (!text || typeof text !== "string") {
+        return res.status(400).json({ error: "Text content is required" });
+      }
+
+      if (text.trim().length < 20) {
+        return res.status(400).json({ error: "Please enter at least 20 characters for grammar checking." });
+      }
+
+      // In a real implementation, we would use NLP or a grammar checking API
+      // For this implementation, we'll create a simulated response
+      
+      // Generate random errors based on text length
+      const errorCount = Math.min(Math.floor(text.length / 100) + 1, 5);
+      const errors: Array<{
+        type: string;
+        message: string;
+        position: { start: number; end: number };
+        suggestions: string[];
+      }> = [];
+      
+      const errorTypes = ["grammar", "spelling", "punctuation", "style"];
+      const grammarErrorMessages = [
+        "Subject-verb agreement error",
+        "Incorrect verb tense",
+        "Misused article",
+        "Pronoun agreement error"
+      ];
+      const spellingErrorMessages = [
+        "Possible spelling mistake",
+        "Commonly misspelled word",
+        "Typographical error"
+      ];
+      const punctuationErrorMessages = [
+        "Missing comma",
+        "Incorrect use of semicolon",
+        "Misused quotation marks",
+        "Missing period"
+      ];
+      const styleErrorMessages = [
+        "Passive voice used",
+        "Wordy sentence",
+        "Redundant wording",
+        "Consider a more concise alternative"
+      ];
+      
+      // Helper to get random words from the text
+      const getRandomWordPosition = () => {
+        const words = text.split(/\\s+/);
+        if (words.length <= 1) return { start: 0, end: text.length };
+        
+        let wordIndex = Math.floor(Math.random() * words.length);
+        let wordStart = 0;
+        let currentWordIndex = 0;
+        
+        // Find the start position of the selected word
+        for (let i = 0; i < text.length; i++) {
+          if (text[i].match(/\\s/) && text[i+1] && !text[i+1].match(/\\s/)) {
+            currentWordIndex++;
+            if (currentWordIndex === wordIndex) {
+              wordStart = i + 1;
+              break;
+            }
+          }
+        }
+        
+        // If we couldn't find the word, just use a random position
+        if (wordStart === 0 && wordIndex > 0) {
+          wordStart = Math.floor(Math.random() * Math.max(1, text.length - 10));
+        }
+        
+        const wordEnd = Math.min(text.length, wordStart + Math.max(2, words[wordIndex]?.length || 5));
+        
+        return { start: wordStart, end: wordEnd };
+      };
+      
+      // Generate random errors
+      for (let i = 0; i < errorCount; i++) {
+        const errorTypeIndex = Math.floor(Math.random() * errorTypes.length);
+        const errorType = errorTypes[errorTypeIndex];
+        
+        let message;
+        let suggestions;
+        
+        switch (errorType) {
+          case "grammar":
+            message = grammarErrorMessages[Math.floor(Math.random() * grammarErrorMessages.length)];
+            suggestions = ["is", "are", "was", "were"];
+            break;
+          case "spelling":
+            message = spellingErrorMessages[Math.floor(Math.random() * spellingErrorMessages.length)];
+            suggestions = ["their", "there", "they're", "your", "you're"];
+            break;
+          case "punctuation":
+            message = punctuationErrorMessages[Math.floor(Math.random() * punctuationErrorMessages.length)];
+            suggestions = [",", ";", ".", "!"];
+            break;
+          case "style":
+            message = styleErrorMessages[Math.floor(Math.random() * styleErrorMessages.length)];
+            suggestions = ["consider revising", "rewrite this", "simplify"];
+            break;
+          default:
+            message = "Grammar issue detected";
+            suggestions = ["correction"];
+        }
+        
+        const position = getRandomWordPosition();
+        
+        errors.push({
+          type: errorType,
+          message: message,
+          position: position,
+          suggestions: suggestions
+        });
+      }
+      
+      // Calculate a score based on text length and error count
+      const baseScore = 100;
+      const errorPenalty = Math.min(50, errors.length * 10);
+      const score = Math.max(50, baseScore - errorPenalty);
+
+      // Simulate a delay to mimic a real API call
+      setTimeout(() => {
+        res.json({
+          correctedText: text,
+          errors: errors as Array<{
+            type: string;
+            message: string;
+            position: { start: number; end: number };
+            suggestions: string[];
+          }>,
+          score: score
+        });
+      }, 2000);
+
+    } catch (error) {
+      console.error("Error in grammar checking:", error);
+      res.status(500).json({ error: "Failed to check grammar" });
+    }
+  });
+  
   // Article Rewriter API
   app.post("/api/text/rewrite", async (req, res) => {
     try {
