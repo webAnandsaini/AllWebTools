@@ -62,6 +62,7 @@ import ChatGPTDetectorDetailed from "@/pages/tools/ChatGPTDetectorDetailed";
 import CitationGeneratorDetailed from "@/pages/tools/CitationGeneratorDetailed";
 import OnlineNotepadDetailed from "@/pages/tools/OnlineNotepadDetailed";
 import InvisibleCharacterDetailed from "@/pages/tools/InvisibleCharacterDetailed";
+import AIEssayWriterDetailed from "@/pages/tools/AIEssayWriterDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -132,6 +133,7 @@ function Router() {
       <Route path="/tools/citation-generator-detailed" component={CitationGeneratorDetailed} />
       <Route path="/tools/online-notepad-detailed" component={OnlineNotepadDetailed} />
       <Route path="/tools/invisible-character-detailed" component={InvisibleCharacterDetailed} />
+      <Route path="/tools/ai-essay-writer-detailed" component={AIEssayWriterDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
