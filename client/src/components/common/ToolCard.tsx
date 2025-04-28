@@ -24,7 +24,13 @@ const ToolCard = ({ tool }: ToolCardProps) => {
       "uppercase-to-lowercase": "uppercase-to-lowercase-detailed",
       "word-combiner": "word-combiner-detailed",
       "image-to-text": "image-to-text-detailed",
-      "translate-english-to-hindi": "translate-english-to-hindi-detailed"
+      "translate-english-to-hindi": "translate-english-to-hindi-detailed",
+      "text-to-image": "text-to-image-detailed",
+      "jpg-to-word": "jpg-to-word-detailed",
+      "small-text-generator": "small-text-generator-detailed",
+      "online-text-editor": "online-text-editor-detailed",
+      "reverse-text-generator": "reverse-text-generator-detailed",
+      "sentence-rephraser": "sentence-rephraser-detailed"
     };
     
     return `/tools/${detailedToolsMap[slug] || slug}`;

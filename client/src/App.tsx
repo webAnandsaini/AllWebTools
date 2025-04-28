@@ -43,6 +43,8 @@ import TextToImageDetailed from "@/pages/tools/TextToImageDetailed";
 import JPGToWordDetailed from "@/pages/tools/JPGToWordDetailed";
 import SmallTextGeneratorDetailed from "@/pages/tools/SmallTextGeneratorDetailed";
 import OnlineTextEditorDetailed from "@/pages/tools/OnlineTextEditorDetailed";
+import ReverseTextGeneratorDetailed from "@/pages/tools/ReverseTextGeneratorDetailed";
+import SentenceRephraserDetailed from "@/pages/tools/SentenceRephraserDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -94,6 +96,8 @@ function Router() {
       <Route path="/tools/jpg-to-word-detailed" component={JPGToWordDetailed} />
       <Route path="/tools/small-text-generator-detailed" component={SmallTextGeneratorDetailed} />
       <Route path="/tools/online-text-editor-detailed" component={OnlineTextEditorDetailed} />
+      <Route path="/tools/reverse-text-generator-detailed" component={ReverseTextGeneratorDetailed} />
+      <Route path="/tools/sentence-rephraser-detailed" component={SentenceRephraserDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
