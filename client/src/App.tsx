@@ -65,6 +65,8 @@ import InvisibleCharacterDetailed from "@/pages/tools/InvisibleCharacterDetailed
 import AIEssayWriterDetailed from "@/pages/tools/AIEssayWriterDetailed";
 import AIWriterDetailed from "@/pages/tools/AIWriterDetailed";
 import AITextGeneratorDetailed from "@/pages/tools/AITextGeneratorDetailed";
+import ParagraphGeneratorDetailed from "@/pages/tools/ParagraphGeneratorDetailed";
+import PlotGeneratorDetailed from "@/pages/tools/PlotGeneratorDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -138,6 +140,8 @@ function Router() {
       <Route path="/tools/ai-essay-writer-detailed" component={AIEssayWriterDetailed} />
       <Route path="/tools/ai-writer-detailed" component={AIWriterDetailed} />
       <Route path="/tools/ai-text-generator-detailed" component={AITextGeneratorDetailed} />
+      <Route path="/tools/paragraph-generator-detailed" component={ParagraphGeneratorDetailed} />
+      <Route path="/tools/plot-generator-detailed" component={PlotGeneratorDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
