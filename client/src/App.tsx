@@ -61,6 +61,7 @@ import ImageTranslatorDetailed from "@/pages/tools/ImageTranslatorDetailed";
 import ChatGPTDetectorDetailed from "@/pages/tools/ChatGPTDetectorDetailed";
 import CitationGeneratorDetailed from "@/pages/tools/CitationGeneratorDetailed";
 import OnlineNotepadDetailed from "@/pages/tools/OnlineNotepadDetailed";
+import InvisibleCharacterDetailed from "@/pages/tools/InvisibleCharacterDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -130,6 +131,7 @@ function Router() {
       <Route path="/tools/chatgpt-detector-detailed" component={ChatGPTDetectorDetailed} />
       <Route path="/tools/citation-generator-detailed" component={CitationGeneratorDetailed} />
       <Route path="/tools/online-notepad-detailed" component={OnlineNotepadDetailed} />
+      <Route path="/tools/invisible-character-detailed" component={InvisibleCharacterDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
