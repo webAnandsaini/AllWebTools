@@ -1,5 +1,6 @@
 import { Express } from "express";
 import { storage } from "../storage";
+import crypto from "crypto";
 
 export function setupTextToolsRoutes(app: Express) {
   // Plagiarism Checker API
@@ -24,7 +25,12 @@ export function setupTextToolsRoutes(app: Express) {
       const plagiarizedContent = 100 - uniqueContent;
 
       // Create some sample sources if the content is not 100% unique
-      const sources = [];
+      interface Source {
+        url: string;
+        matchPercentage: number;
+      }
+      
+      const sources: Source[] = [];
       if (plagiarizedContent > 0) {
         const numSources = Math.floor(Math.random() * 3) + 1; // 1-3 sources
         for (let i = 0; i < numSources; i++) {
@@ -50,8 +56,157 @@ export function setupTextToolsRoutes(app: Express) {
     }
   });
 
-  // Text to Speech API - We don't need an actual API endpoint because we're using the browser's SpeechSynthesis API
+  // MD5 Generator API
+  app.post("/api/text/md5-generate", async (req, res) => {
+    try {
+      const { text } = req.body;
 
-  // Future API endpoints can be added here
-  // Example: Text Summarizer, Grammar Checker, etc.
+      if (!text || typeof text !== "string") {
+        return res.status(400).json({ error: "Text content is required" });
+      }
+
+      // Generate MD5 hash
+      const hash = crypto.createHash('md5').update(text).digest('hex');
+
+      res.json({ hash });
+    } catch (error) {
+      console.error("Error generating MD5 hash:", error);
+      res.status(500).json({ error: "Failed to generate MD5 hash" });
+    }
+  });
+
+  // Text to Image API endpoint (simulation since we'd need external services)
+  app.post("/api/text/text-to-image", async (req, res) => {
+    try {
+      const { text, style, size } = req.body;
+
+      if (!text || typeof text !== "string") {
+        return res.status(400).json({ error: "Text content is required" });
+      }
+
+      // In a real implementation, we would use an external API like DALL-E or Stable Diffusion
+      // For this simulation, we'll return a placeholder image
+      setTimeout(() => {
+        res.json({
+          imageUrl: `https://placehold.co/600x400/3b82f6/ffffff?text=${encodeURIComponent(text.substring(0, 20))}`,
+          generationTime: Math.floor(Math.random() * 3) + 2, // Simulate generation time between 2-5 seconds
+        });
+      }, 2000);
+
+    } catch (error) {
+      console.error("Error in text to image generation:", error);
+      res.status(500).json({ error: "Failed to generate image from text" });
+    }
+  });
+
+  // Text Summarizer API (simulation)
+  app.post("/api/text/summarize", async (req, res) => {
+    try {
+      const { text, length = "medium" } = req.body;
+
+      if (!text || typeof text !== "string") {
+        return res.status(400).json({ error: "Text content is required" });
+      }
+
+      if (text.trim().length < 100) {
+        return res.status(400).json({ error: "Please enter at least 100 characters to summarize." });
+      }
+
+      // In a real implementation, we would use NLP to summarize the text
+      // For this simulation, we'll just extract a portion of the original text
+      
+      let summarizedText;
+      const words = text.split(' ');
+      
+      switch (length) {
+        case "short":
+          // Extract about 20% of the original text
+          summarizedText = words.slice(0, Math.max(Math.floor(words.length * 0.2), 10)).join(' ');
+          break;
+        case "medium":
+          // Extract about 40% of the original text
+          summarizedText = words.slice(0, Math.max(Math.floor(words.length * 0.4), 20)).join(' ');
+          break;
+        case "long":
+          // Extract about 60% of the original text
+          summarizedText = words.slice(0, Math.max(Math.floor(words.length * 0.6), 30)).join(' ');
+          break;
+        default:
+          summarizedText = words.slice(0, Math.max(Math.floor(words.length * 0.4), 20)).join(' ');
+      }
+      
+      // Add ellipsis at the end if the summary is shorter than the original
+      if (summarizedText.length < text.length) {
+        summarizedText += '...';
+      }
+
+      // Simulate a delay to mimic a real API call
+      setTimeout(() => {
+        res.json({
+          originalLength: text.length,
+          originalWords: words.length,
+          summarizedLength: summarizedText.length,
+          summarizedWords: summarizedText.split(' ').length,
+          summary: summarizedText,
+        });
+      }, 1500);
+
+    } catch (error) {
+      console.error("Error in text summarization:", error);
+      res.status(500).json({ error: "Failed to summarize text" });
+    }
+  });
+
+  // AI Content Detector API (simulation)
+  app.post("/api/text/ai-detector", async (req, res) => {
+    try {
+      const { text } = req.body;
+
+      if (!text || typeof text !== "string") {
+        return res.status(400).json({ error: "Text content is required" });
+      }
+
+      if (text.trim().length < 50) {
+        return res.status(400).json({ error: "Please enter at least 50 characters for AI detection." });
+      }
+
+      // In a real implementation, we would use ML models to detect AI-generated content
+      // For this simulation, we'll generate random results
+      
+      const aiProbability = Math.random(); // 0-1 probability
+      const humanProbability = 1 - aiProbability;
+      
+      const aiPercentage = Math.round(aiProbability * 100);
+      const humanPercentage = Math.round(humanProbability * 100);
+      
+      let verdict;
+      if (aiPercentage > 80) {
+        verdict = "Very likely AI-generated";
+      } else if (aiPercentage > 60) {
+        verdict = "Likely AI-generated";
+      } else if (aiPercentage > 40) {
+        verdict = "Possibly AI-generated";
+      } else if (aiPercentage > 20) {
+        verdict = "Likely human-written";
+      } else {
+        verdict = "Very likely human-written";
+      }
+
+      // Simulate a delay to mimic a real API call
+      setTimeout(() => {
+        res.json({
+          aiProbability: aiPercentage,
+          humanProbability: humanPercentage,
+          verdict,
+          confidence: Math.round(Math.max(aiProbability, humanProbability) * 100),
+        });
+      }, 2000);
+
+    } catch (error) {
+      console.error("Error in AI content detection:", error);
+      res.status(500).json({ error: "Failed to analyze text for AI detection" });
+    }
+  });
+
+  // Text to Speech API - We don't need an actual API endpoint because we're using the browser's SpeechSynthesis API
 }
