@@ -1,325 +1,473 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import ToolPageTemplate from "@/components/tools/ToolPageTemplate";
 import ToolContentTemplate from "@/components/tools/ToolContentTemplate";
-import { 
-  Card,
-  CardContent
-} from "@/components/ui/card";
-import {
-  Button
-} from "@/components/ui/button";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger
-} from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const JSONViewerDetailed = () => {
-  const [jsonInput, setJsonInput] = useState<string>('');
-  const [parsedJSON, setParsedJSON] = useState<any>(null);
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const [jsonInput, setJsonInput] = useState<string>("");
+  const [jsonResult, setJsonResult] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<string>("input");
-
+  const [displayMode, setDisplayMode] = useState<"tree" | "raw">("tree");
+  const [expandLevel, setExpandLevel] = useState<number>(1);
+  const [showLineNumbers, setShowLineNumbers] = useState<boolean>(true);
+  const [showDataTypes, setShowDataTypes] = useState<boolean>(true);
+  const [filter, setFilter] = useState<string>("");
   const { toast } = useToast();
 
-  useEffect(() => {
-    if (jsonInput.trim()) {
-      try {
-        const parsed = JSON.parse(jsonInput);
-        setParsedJSON(parsed);
-        setError(null);
-      } catch (err) {
-        setError("Invalid JSON format");
-        setParsedJSON(null);
-      }
-    } else {
-      setParsedJSON(null);
-      setError(null);
-    }
-  }, [jsonInput]);
+  // Extract the actual tool slug without the "-detailed" suffix
+  const pathSegments = window.location.pathname.split('/');
+  let toolSlug = pathSegments[pathSegments.length - 1].replace('-detailed', '');
+  
+  // Handle direct routes without /tools/ prefix
+  if (pathSegments.length === 2) {
+    toolSlug = pathSegments[1].replace('-detailed', '');
+  }
 
-  const handleTabChange = (value: string) => {
-    setActiveTab(value);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setJsonInput(e.target.value);
-  };
-
-  const clearInput = () => {
-    setJsonInput('');
-    setParsedJSON(null);
+  const handleProcessJSON = () => {
     setError(null);
-  };
+    setJsonResult(null);
 
-  const copyToClipboard = () => {
-    if (!jsonInput) {
+    if (!jsonInput.trim()) {
       toast({
-        title: "Nothing to copy",
-        description: "Please enter some JSON first",
-        variant: "destructive"
+        title: "Error",
+        description: "Please enter some JSON to process",
+        variant: "destructive",
       });
       return;
     }
-    
-    navigator.clipboard.writeText(jsonInput).then(() => {
-      toast({
-        title: "Copied!",
-        description: "JSON copied to clipboard"
-      });
-    }).catch(() => {
-      toast({
-        title: "Failed to copy",
-        description: "Could not copy to clipboard",
-        variant: "destructive"
-      });
-    });
-  };
 
-  const loadSampleJSON = () => {
-    const sampleJSON = JSON.stringify({
-      "name": "John Doe",
-      "age": 30,
-      "isActive": true,
-      "address": {
-        "street": "123 Main St",
-        "city": "Anytown",
-        "state": "CA",
-        "zip": "12345"
-      },
-      "phoneNumbers": [
-        {
-          "type": "home",
-          "number": "555-1234"
-        },
-        {
-          "type": "work",
-          "number": "555-5678"
-        }
-      ],
-      "skills": ["JavaScript", "React", "Node.js"]
-    }, null, 2);
-    
-    setJsonInput(sampleJSON);
-  };
+    setLoading(true);
 
-  const toggleSection = (path: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [path]: !prev[path]
-    }));
-  };
-
-  // Helper function to render JSON tree view
-  const renderJSONTree = (data: any, path = 'root', level = 0) => {
-    if (data === null) return <span className="text-gray-400 italic">null</span>;
-    
-    if (typeof data !== 'object') {
-      // Render primitive values
-      if (typeof data === 'string') return <span className="text-green-600">"{data}"</span>;
-      if (typeof data === 'number') return <span className="text-blue-600">{data}</span>;
-      if (typeof data === 'boolean') return <span className="text-purple-600">{data.toString()}</span>;
-      return <span>{String(data)}</span>;
-    }
-
-    if (Array.isArray(data)) {
-      // Render arrays
-      const isExpanded = expandedSections[path] !== false; // Default to expanded
+    try {
+      const parsedJSON = JSON.parse(jsonInput);
+      setJsonResult(parsedJSON);
+      setError(null);
       
-      return (
-        <div className="ml-4">
-          <div className="flex items-center">
-            <span 
-              className="cursor-pointer mr-1 text-gray-600 inline-block w-4"
-              onClick={() => toggleSection(path)}
-            >
-              {isExpanded ? '▼' : '►'}
-            </span>
-            <span className="text-gray-700">[</span>
-            {!isExpanded && <span className="text-gray-400 ml-1">Array({data.length})</span>}
-          </div>
-          
-          {isExpanded && data.map((item, index) => (
-            <div key={`${path}-${index}`} className="ml-4 flex">
-              <span className="text-gray-500 mr-2">{index}:</span>
-              <div className="flex-1">{renderJSONTree(item, `${path}-${index}`, level + 1)}</div>
-              {index < data.length - 1 && <span className="text-gray-700">,</span>}
-            </div>
-          ))}
-          
-          <div className={isExpanded ? "ml-4" : ""}>
-            <span className="text-gray-700">]</span>
-          </div>
-        </div>
-      );
-    } else {
-      // Render objects
-      const keys = Object.keys(data);
-      const isExpanded = expandedSections[path] !== false; // Default to expanded
-      
-      return (
-        <div className="ml-4">
-          <div className="flex items-center">
-            <span 
-              className="cursor-pointer mr-1 text-gray-600 inline-block w-4"
-              onClick={() => toggleSection(path)}
-            >
-              {isExpanded ? '▼' : '►'}
-            </span>
-            <span className="text-gray-700">{"{"}</span>
-            {!isExpanded && <span className="text-gray-400 ml-1">Object({keys.length})</span>}
-          </div>
-          
-          {isExpanded && keys.map((key, index) => (
-            <div key={`${path}-${key}`} className="ml-4 flex">
-              <span className="text-red-500 mr-2">"{key}":</span>
-              <div className="flex-1">{renderJSONTree(data[key], `${path}-${key}`, level + 1)}</div>
-              {index < keys.length - 1 && <span className="text-gray-700">,</span>}
-            </div>
-          ))}
-          
-          <div className={isExpanded ? "ml-4" : ""}>
-            <span className="text-gray-700">{"}"}</span>
-          </div>
-        </div>
-      );
+      toast({
+        title: "Success",
+        description: "JSON parsed successfully",
+      });
+    } catch (err: any) {
+      setError(err.message);
+      toast({
+        title: "Invalid JSON",
+        description: err.message,
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
-  const toolInterface = (
-    <div className="space-y-6">
-      <Card>
-        <CardContent className="pt-6">
-          <Tabs value={activeTab} onValueChange={handleTabChange}>
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="input">JSON Input</TabsTrigger>
-              <TabsTrigger value="viewer" disabled={!parsedJSON && !error}>Viewer</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="input" className="pt-4 space-y-4">
-              <div className="flex justify-between mb-2">
-                <div className="space-x-2">
-                  <Button variant="outline" size="sm" onClick={loadSampleJSON}>
-                    Load Sample
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={clearInput}>
-                    Clear
-                  </Button>
-                </div>
-                <Button variant="outline" size="sm" onClick={copyToClipboard}>
-                  Copy
-                </Button>
+  const handleClearJSON = () => {
+    setJsonInput("");
+    setJsonResult(null);
+    setError(null);
+  };
+
+  const handlePrettify = () => {
+    if (!jsonInput.trim()) {
+      toast({
+        title: "Error",
+        description: "Please enter some JSON to prettify",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      const parsedJSON = JSON.parse(jsonInput);
+      const prettified = JSON.stringify(parsedJSON, null, 2);
+      setJsonInput(prettified);
+      setJsonResult(parsedJSON);
+    } catch (err: any) {
+      setError(err.message);
+      toast({
+        title: "Invalid JSON",
+        description: err.message,
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleMinify = () => {
+    if (!jsonInput.trim()) {
+      toast({
+        title: "Error",
+        description: "Please enter some JSON to minify",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      const parsedJSON = JSON.parse(jsonInput);
+      const minified = JSON.stringify(parsedJSON);
+      setJsonInput(minified);
+      setJsonResult(parsedJSON);
+    } catch (err: any) {
+      setError(err.message);
+      toast({
+        title: "Invalid JSON",
+        description: err.message,
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleCopyJSON = () => {
+    if (jsonInput) {
+      navigator.clipboard.writeText(jsonInput);
+      toast({
+        title: "Copied",
+        description: "JSON copied to clipboard",
+      });
+    }
+  };
+
+  const renderJSONTree = (obj: any, level = 0) => {
+    if (level > expandLevel && expandLevel > 0) {
+      return (
+        <div className="ml-4 cursor-pointer text-blue-500 hover:underline" onClick={() => setExpandLevel(expandLevel + 2)}>
+          ... (click to expand more)
+        </div>
+      );
+    }
+
+    if (obj === null) {
+      return <span className="text-gray-500">null</span>;
+    }
+
+    if (typeof obj === "undefined") {
+      return <span className="text-gray-500">undefined</span>;
+    }
+
+    if (typeof obj === "string") {
+      return <span className="text-green-600">"{obj}"</span>;
+    }
+
+    if (typeof obj === "number") {
+      return <span className="text-blue-600">{obj}</span>;
+    }
+
+    if (typeof obj === "boolean") {
+      return <span className="text-purple-600">{obj.toString()}</span>;
+    }
+
+    if (Array.isArray(obj)) {
+      if (obj.length === 0) {
+        return <span className="text-gray-700">[ ]</span>;
+      }
+
+      return (
+        <div>
+          <span className="text-gray-700">[</span>
+          <div className="ml-4">
+            {obj.map((item, index) => (
+              <div key={index} className="mb-1">
+                {showLineNumbers && <span className="text-xs text-gray-400 mr-2">{index + 1}</span>}
+                {renderJSONTree(item, level + 1)}
+                {index < obj.length - 1 && <span className="text-gray-700">,</span>}
               </div>
-              
-              <textarea
-                className="w-full h-80 p-4 font-mono text-sm rounded-md border border-gray-300 focus:border-primary focus:ring-1 focus:ring-primary"
-                value={jsonInput}
-                onChange={handleInputChange}
-                placeholder='Enter your JSON here...'
-              />
-              
-              {error && (
-                <div className="text-red-500 text-sm p-2 bg-red-50 rounded-md">
-                  {error}
-                </div>
-              )}
-              
-              {parsedJSON && !error && (
-                <div className="flex justify-end">
-                  <Button onClick={() => setActiveTab("viewer")}>
-                    View as Tree
-                  </Button>
-                </div>
-              )}
-            </TabsContent>
-            
-            <TabsContent value="viewer" className="pt-4">
-              {parsedJSON && (
-                <div className="bg-gray-50 p-4 rounded-md overflow-auto max-h-[500px] font-mono text-sm">
-                  {renderJSONTree(parsedJSON)}
-                </div>
-              )}
-            </TabsContent>
-          </Tabs>
-        </CardContent>
-      </Card>
-      
-      <Card>
-        <CardContent className="pt-6">
-          <h3 className="text-lg font-medium mb-4">About JSON Viewer</h3>
-          <div className="space-y-3 text-sm">
-            <p>
-              JSON (JavaScript Object Notation) is a lightweight data interchange format that's easy for humans to read and write, and easy for machines to parse and generate. Our JSON Viewer tool helps you visualize and navigate complex JSON structures with ease.
-            </p>
-            <h4 className="font-medium mt-4">Key Features:</h4>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Collapsible tree view for easy navigation</li>
-              <li>Syntax highlighting to distinguish different data types</li>
-              <li>Error detection to identify invalid JSON</li>
-              <li>Simple interface for copying and clearing JSON data</li>
-            </ul>
-            <div className="bg-blue-50 p-3 rounded-md mt-4">
-              <p className="text-blue-800">
-                <span className="font-medium">Tip:</span> Use the JSON Viewer to inspect API responses, debug configurations, or analyze data structures. The collapsible tree view makes it especially useful for navigating large, nested JSON objects.
-              </p>
-            </div>
+            ))}
           </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
+          <span className="text-gray-700">]</span>
+        </div>
+      );
+    }
 
-  return (
-    <ToolPageTemplate
-      toolSlug="json-viewer-detailed"
-      toolContent={
-        <ToolContentTemplate
-          introduction="Visualize and navigate complex JSON structures with our interactive JSON Viewer tool."
-          description="Our JSON Viewer transforms raw JSON data into an interactive, collapsible tree view, making it easy to explore and understand complex data structures. With color-coded syntax highlighting for different data types, expandable/collapsible sections for nested objects and arrays, and instant error detection for invalid JSON, you can quickly make sense of even the most complex JSON files. Perfect for developers working with APIs, configuration files, or any JSON-formatted data."
-          howToUse={[
-            "Paste your JSON data into the text area or click 'Load Sample' for an example",
-            "Your JSON will be automatically validated as you type",
-            "Click 'View as Tree' to see the interactive tree view representation",
-            "Expand or collapse nested objects and arrays by clicking the arrow icons",
-            "Navigate through even deeply nested structures with ease",
-            "Copy your JSON to clipboard with one click",
-            "Clear the input when you're done to start fresh"
-          ]}
-          features={[
-            "Interactive tree view visualization with expandable/collapsible sections",
-            "Color-coded syntax highlighting for different data types",
-            "Real-time JSON validation with error messages",
-            "Ability to navigate complex nested structures",
-            "One-click copy to clipboard functionality",
-            "Sample JSON loader for quick testing",
-            "Clean, intuitive interface designed for developers"
-          ]}
-          faqs={[
+    if (typeof obj === "object") {
+      const keys = Object.keys(obj);
+      
+      if (keys.length === 0) {
+        return <span className="text-gray-700">{ }</span>;
+      }
+
+      // Apply filter if provided
+      const filteredKeys = filter 
+        ? keys.filter(key => key.toLowerCase().includes(filter.toLowerCase()) || 
+                             JSON.stringify(obj[key]).toLowerCase().includes(filter.toLowerCase()))
+        : keys;
+
+      return (
+        <div>
+          <span className="text-gray-700">{'{'}</span>
+          <div className="ml-4">
+            {filteredKeys.map((key, index) => (
+              <div key={key} className="mb-1">
+                {showLineNumbers && <span className="text-xs text-gray-400 mr-2">{index + 1}</span>}
+                <span className="text-red-500">"{key}"</span>
+                <span className="text-gray-700">: </span>
+                {renderJSONTree(obj[key], level + 1)}
+                {showDataTypes && (
+                  <span className="text-xs text-gray-400 ml-2">
+                    ({Array.isArray(obj[key]) ? "array" : typeof obj[key]})
+                  </span>
+                )}
+                {index < filteredKeys.length - 1 && <span className="text-gray-700">,</span>}
+              </div>
+            ))}
+          </div>
+          <span className="text-gray-700">{'}'}</span>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  const getToolContent = () => {
+    switch (toolSlug) {
+      case "json-viewer":
+        return {
+          title: "JSON Viewer",
+          introduction: "View and explore JSON data with syntax highlighting and tree view.",
+          description: "Our JSON Viewer provides a clean, interactive interface for exploring and analyzing JSON data. Easily navigate through complex JSON structures, expand/collapse nested objects, search for specific keys or values, and visualize your data in a structured tree format. Perfect for developers, data analysts, or anyone working with JSON data who needs to quickly understand and explore JSON structure.",
+          howToUse: [
+            "Enter or paste your JSON data in the input field",
+            "Click 'Process JSON' to validate and view it",
+            "Use the tree view to explore nested objects and arrays",
+            "Adjust display settings to customize the view",
+            "Search for specific keys or values using the filter"
+          ],
+          features: [
+            "Interactive tree view for exploring complex JSON structures",
+            "Syntax highlighting for improved readability",
+            "Expand/collapse controls for nested objects",
+            "Search/filter functionality to find specific data",
+            "Line numbers and data type indicators",
+            "Raw and tree view modes",
+            "Error detection and validation",
+            "Copy formatted JSON to clipboard",
+            "Prettify and minify options"
+          ],
+          faqs: [
             {
-              question: "What is JSON and why would I need a JSON viewer?",
-              answer: "JSON (JavaScript Object Notation) is a lightweight data interchange format widely used for API responses, configuration files, and data storage. A JSON viewer helps you visualize and navigate complex JSON structures that would be difficult to read in their raw text form, especially when dealing with deeply nested objects or large arrays."
-            },
-            {
-              question: "How do I know if my JSON is valid?",
-              answer: "Our JSON Viewer automatically validates your JSON as you type. If there's an error in your JSON syntax, you'll see an error message below the input area, helping you identify and fix formatting issues quickly."
-            },
-            {
-              question: "Can I edit JSON in the viewer?",
-              answer: "This tool is primarily for viewing and navigating JSON. For editing functionality, check out our JSON Editor tool, which provides a more comprehensive environment for modifying JSON data with syntax highlighting and validation."
+              question: "What is the maximum size of JSON that can be processed?",
+              answer: "Our JSON Viewer is optimized for files up to 1MB in size. Larger files may experience performance issues, especially with deeply nested structures."
             },
             {
               question: "Is my JSON data secure when using this tool?",
-              answer: "Yes. All processing happens entirely in your browser - your JSON data never leaves your device or gets transmitted to any server. We don't store or log any information you enter into the tool."
+              answer: "Yes, all processing is done locally in your browser. Your JSON data never leaves your device and is not stored on any servers."
             },
             {
-              question: "How does the tree view help with large JSON files?",
-              answer: "The tree view transforms nested JSON structures into collapsible sections, allowing you to focus on specific parts of your data without getting overwhelmed. You can expand only the sections you need to examine, making it much easier to navigate large or complex JSON objects."
+              question: "Can I use this tool to validate my JSON?",
+              answer: "Yes, the tool automatically validates your JSON when you process it and provides detailed error messages if the JSON is invalid."
+            },
+            {
+              question: "How can I navigate large JSON structures?",
+              answer: "You can use the expand/collapse controls to focus on specific parts of your JSON, adjust the expansion level, and use the search filter to find specific keys or values."
             }
-          ]}
-          toolInterface={toolInterface}
+          ]
+        };
+      default:
+        return {
+          title: "JSON Tools",
+          introduction: "Free online tools for working with JSON data",
+          description: "Our suite of JSON tools help developers and data analysts work with JSON data more efficiently. Whether you need to view, format, validate, edit, or convert JSON, our web-based tools provide a simple and powerful interface for all your JSON tasks.",
+          howToUse: [
+            "Enter or paste your JSON data into the text field",
+            "Select the desired operation",
+            "Click the appropriate button to process your JSON",
+            "View the results and download or copy as needed"
+          ],
+          features: [
+            "Multiple JSON tools in one convenient interface",
+            "Syntax highlighting for improved readability",
+            "Error detection and validation",
+            "Copy and download options",
+            "Browser-based processing (your data stays private)",
+            "Support for large JSON files",
+            "Interactive tree view for complex structures",
+            "Search and filter functionality"
+          ],
+          faqs: [
+            {
+              question: "What is JSON?",
+              answer: "JSON (JavaScript Object Notation) is a lightweight data interchange format that is easy for humans to read and write and easy for machines to parse and generate. It's based on JavaScript object syntax but is language-independent and widely used for storing and exchanging data."
+            },
+            {
+              question: "Is there a limit to how much JSON I can process?",
+              answer: "Our tools are optimized for files up to 1MB in size. Larger files may experience performance issues depending on your browser and device capabilities."
+            },
+            {
+              question: "Is my data secure when using these tools?",
+              answer: "Yes, all processing is done locally in your browser. Your JSON data never leaves your device and is not stored on our servers."
+            },
+            {
+              question: "Can I use these tools offline?",
+              answer: "Currently, these tools require an internet connection to load. However, once loaded, the actual JSON processing happens locally in your browser."
+            }
+          ]
+        };
+    }
+  };
+
+  const toolContent = getToolContent();
+
+  const renderToolInterface = () => {
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardContent className="pt-6">
+            <Tabs defaultValue="input" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="input">Input</TabsTrigger>
+                <TabsTrigger value="output" disabled={!jsonResult && !error}>Output</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="input" className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="jsonInput">Enter JSON</Label>
+                  <Textarea
+                    id="jsonInput"
+                    value={jsonInput}
+                    onChange={(e) => setJsonInput(e.target.value)}
+                    rows={12}
+                    placeholder='{\n  "example": "Paste your JSON here",\n  "items": [1, 2, 3]\n}'
+                    className="font-mono"
+                  />
+                </div>
+                
+                <div className="flex flex-wrap gap-2">
+                  <Button onClick={handleProcessJSON} disabled={loading}>
+                    {loading ? "Processing..." : "Process JSON"}
+                  </Button>
+                  <Button variant="outline" onClick={handlePrettify}>
+                    Prettify
+                  </Button>
+                  <Button variant="outline" onClick={handleMinify}>
+                    Minify
+                  </Button>
+                  <Button variant="outline" onClick={handleCopyJSON}>
+                    Copy
+                  </Button>
+                  <Button variant="outline" onClick={handleClearJSON}>
+                    Clear
+                  </Button>
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="output" className="space-y-4">
+                {error ? (
+                  <Alert variant="destructive">
+                    <AlertDescription>
+                      <code className="text-sm font-mono">{error}</code>
+                    </AlertDescription>
+                  </Alert>
+                ) : (
+                  jsonResult && (
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <div className="space-y-1">
+                          <Label htmlFor="displayMode">Display Mode</Label>
+                          <div className="flex items-center space-x-2">
+                            <Button 
+                              variant={displayMode === "tree" ? "default" : "outline"} 
+                              size="sm"
+                              onClick={() => setDisplayMode("tree")}
+                            >
+                              Tree View
+                            </Button>
+                            <Button 
+                              variant={displayMode === "raw" ? "default" : "outline"} 
+                              size="sm"
+                              onClick={() => setDisplayMode("raw")}
+                            >
+                              Raw View
+                            </Button>
+                          </div>
+                        </div>
+                        
+                        <div className="space-x-3 flex items-center">
+                          <div className="flex items-center space-x-2">
+                            <Checkbox
+                              id="showLineNumbers"
+                              checked={showLineNumbers}
+                              onCheckedChange={(checked) => setShowLineNumbers(checked as boolean)}
+                            />
+                            <Label htmlFor="showLineNumbers" className="text-sm">Line Numbers</Label>
+                          </div>
+                          
+                          <div className="flex items-center space-x-2">
+                            <Checkbox
+                              id="showDataTypes"
+                              checked={showDataTypes}
+                              onCheckedChange={(checked) => setShowDataTypes(checked as boolean)}
+                            />
+                            <Label htmlFor="showDataTypes" className="text-sm">Data Types</Label>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="jsonFilter">Filter</Label>
+                        <Input
+                          id="jsonFilter"
+                          placeholder="Filter by key or value..."
+                          value={filter}
+                          onChange={(e) => setFilter(e.target.value)}
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="expandLevel">Expansion Level: {expandLevel === 0 ? 'All' : expandLevel}</Label>
+                        <div className="flex items-center space-x-2">
+                          <Input
+                            id="expandLevel"
+                            type="range"
+                            min="0"
+                            max="10"
+                            value={expandLevel}
+                            onChange={(e) => setExpandLevel(parseInt(e.target.value))}
+                            className="w-full"
+                          />
+                          <span className="text-xs text-gray-500 w-16">{expandLevel === 0 ? 'All' : expandLevel}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="border rounded-md p-4 font-mono text-sm overflow-x-auto bg-gray-50">
+                        {displayMode === "tree" ? (
+                          <div className="json-tree">{renderJSONTree(jsonResult)}</div>
+                        ) : (
+                          <pre>{JSON.stringify(jsonResult, null, 2)}</pre>
+                        )}
+                      </div>
+                    </div>
+                  )
+                )}
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
+        
+        <div className="text-sm text-gray-500 px-1">
+          <p>Enter valid JSON to visualize its structure. The tool supports tree view with collapsible nodes and syntax highlighting.</p>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <ToolPageTemplate
+      toolSlug={toolSlug}
+      toolContent={
+        <ToolContentTemplate
+          introduction={toolContent.introduction}
+          description={toolContent.description}
+          howToUse={toolContent.howToUse}
+          features={toolContent.features}
+          faqs={toolContent.faqs}
+          toolInterface={renderToolInterface()}
         />
       }
     />
