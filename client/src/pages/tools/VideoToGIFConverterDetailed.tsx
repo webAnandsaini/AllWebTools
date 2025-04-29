@@ -5,140 +5,122 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
+import { Input } from "@/components/ui/input";
 import { imageEditingTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
 import { 
   FaUpload, 
   FaDownload, 
-  FaPlay, 
-  FaPause,
-  FaVideo,
-  FaImage,
-  FaCut,
-  FaStopwatch
+  FaPlay,
+  FaStop,
+  FaCheck,
+  FaRedo
 } from "react-icons/fa";
 import { Progress } from "@/components/ui/progress";
-import { Switch } from "@/components/ui/switch";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Input } from "@/components/ui/input";
 
 const VideoToGIFConverterDetailed = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [resultUrl, setResultUrl] = useState<string | null>(null);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [isConverting, setIsConverting] = useState(false);
   const [convertProgress, setConvertProgress] = useState(0);
+  const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  
-  // GIF settings
   const [quality, setQuality] = useState(80);
-  const [width, setWidth] = useState(480);
   const [fps, setFps] = useState(15);
-  const [loop, setLoop] = useState(true);
-  const [speedOption, setSpeedOption] = useState("normal");
   const [startTime, setStartTime] = useState(0);
-  const [endTime, setEndTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(5);
+  const [videoDuration, setVideoDuration] = useState(0);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
+      const fileType = selectedFile.type;
       
       // Check if file is a video
-      if (!selectedFile.type.match('video.*')) {
+      if (!fileType.startsWith('video/')) {
         toast({
           title: "Invalid file type",
-          description: "Please select a video file (MP4, WebM, MOV, etc.)",
+          description: "Please upload a video file (MP4, WebM, etc.)",
           variant: "destructive",
         });
         return;
       }
       
       setFile(selectedFile);
+      const objectUrl = URL.createObjectURL(selectedFile);
+      setVideoUrl(objectUrl);
+      setGifUrl(null);
       
-      // Create preview URL
-      const url = URL.createObjectURL(selectedFile);
-      setPreviewUrl(url);
-      
-      // Reset result
-      setResultUrl(null);
-      setCurrentTime(0);
+      // Reset values
       setStartTime(0);
-      setEndTime(0);
+      setDuration(5);
+      setConvertProgress(0);
       
-      // Reset video playback
-      if (videoRef.current) {
-        videoRef.current.currentTime = 0;
-        setIsPlaying(false);
-      }
+      return () => {
+        if (videoUrl) {
+          URL.revokeObjectURL(videoUrl);
+        }
+        if (gifUrl) {
+          URL.revokeObjectURL(gifUrl);
+        }
+      };
     }
   };
 
   const handleVideoLoaded = () => {
     if (videoRef.current) {
-      const videoDuration = videoRef.current.duration;
-      setDuration(videoDuration);
-      setEndTime(videoDuration);
+      const videoDur = videoRef.current.duration;
+      setVideoDuration(videoDur);
+      
+      // If the video is shorter than 5 seconds, adjust the default duration
+      if (videoDur < 5) {
+        setDuration(videoDur);
+      }
     }
   };
 
-  const togglePlayPause = () => {
+  const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
       } else {
+        // Set the current time to the start time
+        videoRef.current.currentTime = startTime;
         videoRef.current.play();
+        
+        // If we're set to play past the end, stop at the end
+        if (startTime + duration > videoDuration) {
+          setTimeout(() => {
+            if (videoRef.current) {
+              videoRef.current.pause();
+              setIsPlaying(false);
+            }
+          }, (videoDuration - startTime) * 1000);
+        }
       }
       setIsPlaying(!isPlaying);
     }
   };
 
-  const handleTimeUpdate = () => {
+  const handleVideoTimeUpdate = () => {
     if (videoRef.current) {
-      setCurrentTime(videoRef.current.currentTime);
+      const currentTime = videoRef.current.currentTime;
       
-      // If we reach the end time, seek back to start time
-      if (videoRef.current.currentTime >= endTime) {
+      // If we've played past our GIF duration, stop
+      if (currentTime > startTime + duration) {
+        videoRef.current.pause();
         videoRef.current.currentTime = startTime;
+        setIsPlaying(false);
       }
     }
   };
 
-  const updateStartTime = (value: number) => {
-    setStartTime(value);
-    if (value > endTime) {
-      setEndTime(value);
-    }
-    
-    // Update video current time
-    if (videoRef.current) {
-      videoRef.current.currentTime = value;
-    }
-  };
-
-  const updateEndTime = (value: number) => {
-    setEndTime(value);
-    if (value < startTime) {
-      setStartTime(value);
-    }
-  };
-
   const handleConvert = () => {
-    if (!file) {
+    if (!file || !videoUrl) {
       toast({
         title: "No video selected",
-        description: "Please upload a video file to convert to GIF.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (endTime <= startTime) {
-      toast({
-        title: "Invalid time range",
-        description: "End time must be greater than start time.",
+        description: "Please upload a video to convert to GIF.",
         variant: "destructive",
       });
       return;
@@ -146,6 +128,7 @@ const VideoToGIFConverterDetailed = () => {
 
     setIsConverting(true);
     setConvertProgress(0);
+    setGifUrl(null);
     
     // Simulate conversion process
     let progress = 0;
@@ -155,143 +138,94 @@ const VideoToGIFConverterDetailed = () => {
         progress = 100;
         clearInterval(interval);
         
-        // Use the preview URL as the result in this mock implementation
-        setResultUrl(previewUrl);
+        // In a real implementation, this would be the actual GIF conversion
+        // Here we'll just use the video thumbnail as a placeholder for the GIF
+        setGifUrl(videoUrl);
         setIsConverting(false);
         
         toast({
           title: "Conversion complete",
-          description: "Your video has been successfully converted to GIF.",
+          description: `Your video has been converted to GIF.`,
         });
       }
       setConvertProgress(progress);
-    }, 300);
+    }, 200);
   };
 
   const handleDownload = () => {
-    if (!resultUrl) return;
+    if (!gifUrl) return;
+    
+    // Create a download link
+    const a = document.createElement('a');
+    a.href = gifUrl;
+    const filename = file?.name?.replace(/\.[^/.]+$/, '') || 'video';
+    a.download = `${filename}.gif`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
     
     toast({
-      title: "Preparing download",
-      description: "Your GIF is being prepared for download.",
+      title: "Download started",
+      description: "Your GIF is being downloaded.",
     });
-    
-    setTimeout(() => {
-      // In a real implementation, this would download the actual GIF
-      const a = document.createElement('a');
-      a.href = resultUrl;
-      const originalName = file?.name || 'video.mp4';
-      const gifName = originalName.replace(/\.[^/.]+$/, '') + '.gif';
-      a.download = gifName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      
-      toast({
-        title: "Download started",
-        description: "Your GIF is being downloaded.",
-      });
-    }, 1000);
   };
 
-  const clearAll = () => {
-    // Revoke object URLs to avoid memory leaks
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl);
+  const clearVideo = () => {
+    if (videoUrl) {
+      URL.revokeObjectURL(videoUrl);
     }
-    if (resultUrl && resultUrl !== previewUrl) {
-      URL.revokeObjectURL(resultUrl);
+    if (gifUrl) {
+      URL.revokeObjectURL(gifUrl);
     }
-    
     setFile(null);
-    setPreviewUrl(null);
-    setResultUrl(null);
-    setCurrentTime(0);
-    setStartTime(0);
-    setEndTime(0);
-    setDuration(0);
+    setVideoUrl(null);
+    setGifUrl(null);
     setIsPlaying(false);
-    setConvertProgress(0);
+    setStartTime(0);
+    setDuration(5);
   };
 
-  const formatTime = (timeInSeconds: number): string => {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = Math.floor(timeInSeconds % 60);
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  };
-  
-  const formatFileSize = (bytes: number): string => {
-    if (bytes === 0) return '0 Bytes';
-    
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const getResizedWidthHeight = (): { width: number, height: number } => {
-    if (!videoRef.current) return { width: 0, height: 0 };
-    
-    const videoWidth = videoRef.current.videoWidth;
-    const videoHeight = videoRef.current.videoHeight;
-    
-    if (videoWidth === 0 || videoHeight === 0) return { width: 0, height: 0 };
-    
-    const aspectRatio = videoWidth / videoHeight;
-    const height = Math.round(width / aspectRatio);
-    
-    return { width, height };
-  };
+  const introduction = "Convert videos to GIF animations with our fast and easy Video to GIF Converter.";
 
-  const getEstimatedFileSize = (): string => {
-    if (!videoRef.current) return '0 MB';
-    
-    const { width, height } = getResizedWidthHeight();
-    const duration = endTime - startTime;
-    const bitsPerPixel = quality / 10; // Rough estimate
-    
-    // Approximate formula for GIF size based on dimensions, duration, and quality
-    const sizeInBytes = width * height * fps * duration * bitsPerPixel / 8;
-    
-    return formatFileSize(sizeInBytes);
-  };
-
-  const introduction = "Convert videos to GIFs with our easy-to-use tool, perfect for creating shareable animated content.";
-
-  const description = "Our Video to GIF Converter is a specialized tool that transforms video clips into animated GIF images, making them perfect for sharing on social media, messaging apps, forums, and websites. GIFs have become an essential visual communication format, allowing you to express emotions, demonstrate processes, or showcase short video moments in a universally compatible format that plays automatically without requiring special media players. Our converter gives you precise control over your GIF output with options for quality, dimensions, frame rate, and playback speed. You can also trim your video to select only the exact moment you want to convert, optimizing both the visual impact and the file size of your GIF. Whether you're creating reaction GIFs, illustrating a tutorial, highlighting a key moment from a longer video, or developing visual content for marketing purposes, our Video to GIF Converter provides professional-quality results with an intuitive interface that makes the process accessible to users of all technical levels.";
+  const description = "Our Video to GIF Converter tool transforms your video clips into high-quality GIF animations that you can share on social media, messaging apps, forums, or websites. GIFs have become a universal way to express reactions, showcase snippets of content, or create engaging animations that autoplay across platforms. This tool gives you complete control over the conversion process—select specific segments of your video, adjust the frame rate for smoother or more compact animations, modify the output quality, and preview your GIF before downloading. Whether you're creating memes, showcasing product demos, highlighting key moments from longer videos, or making animated reactions, our converter handles popular video formats like MP4, WebM, AVI, and MOV, and produces optimized GIFs that maintain good quality while keeping file sizes reasonable.";
 
   const howToUse = [
-    "Upload a video file by clicking the 'Upload Video' button or dragging and dropping a file.",
-    "Use the video player to preview your content and identify the section you want to convert.",
-    "Set the start and end times to trim your video to the desired segment.",
-    "Adjust the output settings including width, frame rate, quality, and playback speed.",
-    "Click 'Convert to GIF' and wait for the conversion to complete.",
-    "Preview the resulting GIF and download it to your device."
+    "Upload a video file by clicking the upload button or dragging and dropping.",
+    "Use the playback controls to preview your video and select the segment you want to convert.",
+    "Set the start time and duration for your GIF.",
+    "Adjust the frames per second (FPS) and quality settings as needed.",
+    "Click 'Convert to GIF' and wait for the process to complete.",
+    "Preview your GIF and download it if you're happy with the result."
   ];
 
   const features = [
-    "✅ Convert MP4, WebM, MOV, and other video formats to GIF",
-    "✅ Precise trimming controls to select specific video segments",
-    "✅ Adjustable frame rate for smoother or lighter GIFs",
-    "✅ Customizable dimensions to fit your sharing needs",
-    "✅ Quality settings to balance file size and visual appearance",
-    "✅ Speed adjustment (normal, slow motion, or accelerated)",
-    "✅ Toggle looping on/off for the final GIF"
+    "✅ Convert videos to GIF format while maintaining quality",
+    "✅ Select specific segments of your video to convert",
+    "✅ Adjust frame rate (FPS) for smoother animations or smaller file sizes",
+    "✅ Control output quality to balance file size and appearance",
+    "✅ Preview your GIF before downloading",
+    "✅ Support for popular video formats (MP4, WebM, AVI, MOV, etc.)",
+    "✅ No watermarks on converted GIFs"
   ];
 
   const faqs = [
     {
-      question: "Why are GIFs sometimes better than videos for sharing?",
-      answer: "GIFs offer several advantages over videos for many sharing scenarios: 1) Universal compatibility—GIFs play automatically in almost any environment without requiring media players or browser plugins; 2) Immediate playback—they start instantly without buffering or loading delays; 3) Simplified sharing—no need to host on video platforms or worry about embedding codes; 4) Loop automatically—perfect for repeating short actions or reactions; 5) Smaller file size than videos of equivalent length (though larger than static images); 6) No sound—making them appropriate for environments where audio would be disruptive. These benefits make GIFs ideal for social media posts, messaging, email signatures, how-to demonstrations, and showcasing product features where a static image isn't enough but a full video would be excessive."
-    },
-    {
-      question: "How do I create the best quality GIFs?",
-      answer: "Creating high-quality GIFs involves balancing several factors: 1) Start with high-quality source video—the output GIF can't be better than your original video; 2) Keep dimensions reasonable—480-600px width is often a good balance between quality and file size; 3) Limit your GIF to 2-5 seconds when possible—shorter GIFs load faster and maintain better quality for the same file size; 4) Choose an appropriate frame rate—12-15fps works well for most content (higher for fast action, lower for slower movements); 5) Use our quality slider judiciously—higher quality means larger files; 6) Consider the background—videos with simple or static backgrounds convert better than busy scenes; 7) Avoid rapid transitions or complex movement patterns which can appear choppy in GIF format; 8) For text, use larger font sizes as small text often becomes illegible in GIFs."
+      question: "What's the difference between a GIF and a video file?",
+      answer: "GIF (Graphics Interchange Format) and video files differ in several important ways: 1) GIFs are animated image files that play automatically and loop indefinitely without needing a video player, making them ideal for websites and messaging platforms; 2) Videos typically offer higher quality, better compression, sound capabilities, and playback controls, but require specific players or support; 3) GIFs are generally limited in color palette (maximum 256 colors) which results in lower quality but smaller file sizes for short clips; 4) GIFs automatically loop by default, while videos typically play once unless set to repeat; 5) Videos support audio, while GIFs are completely silent. GIFs are best suited for short, silent animations (usually under 10 seconds) where universal compatibility and auto-play are more important than quality or file size efficiency."
     },
     {
       question: "Why is my GIF file so large?",
-      answer: "GIF file size is affected by several factors: 1) Dimensions—width and height directly impact size (doubling both quadruples the file size); 2) Duration—longer GIFs contain more frames; 3) Frame rate—higher FPS means more frames per second of video; 4) Color complexity—GIFs use a limited color palette, so scenes with many colors or gradients require more data; 5) Movement—scenes with lots of motion require more information between frames. To reduce file size, try: decreasing dimensions, shortening duration, reducing frame rate, simplifying the scene (crop out unnecessary areas), or using our quality setting to apply optimization algorithms. For web use, aim to keep GIFs under 2MB when possible. If you need to maintain high quality for a longer animation, consider using video formats with HTML5 video instead, as they provide better compression."
+      answer: "GIF files can be surprisingly large due to several factors: 1) GIF uses lossless compression for frames, which preserves quality but results in larger files compared to modern video formats; 2) Higher frame rates (more frames per second) dramatically increase file size; 3) Larger dimensions (width and height) exponentially increase file size; 4) Longer duration means more frames and thus larger files; 5) Complex scenes with lots of movement and color changes compress poorly in GIF format. To reduce GIF file size, you can: decrease the frame rate (10-15 fps is often sufficient), reduce the dimensions, shorten the duration, reduce the color palette, or consider using a lower quality setting in our converter. For very long animations or high-quality needs, you might want to consider alternatives like MP4 videos or WebP animations, which offer better compression but may have more limited compatibility."
+    },
+    {
+      question: "How do I share my GIF on social media platforms?",
+      answer: "Sharing GIFs on social media platforms varies slightly depending on the platform, but is generally straightforward: 1) For Twitter, you can directly upload your GIF file when composing a tweet, and Twitter will automatically handle the animation; 2) Instagram doesn't support traditional GIF uploads, but you can convert your GIF to a short video (MP4) first, which our tool can also help with; 3) Facebook supports direct GIF uploads in posts and comments; 4) Reddit allows direct GIF uploads or you can use image hosting sites like Imgur and share the link; 5) For messaging platforms like WhatsApp, Telegram, or Discord, you can typically upload GIFs directly to conversations. If a platform doesn't seem to animate your GIF, check if there's a file size limit or try uploading to a dedicated GIF hosting service like Giphy or Tenor, then share the link. Some platforms may compress your GIF, so keeping the original dimensions reasonable (under 800px width) and file size modest (under 8MB) generally helps with compatibility."
     }
   ];
 
@@ -299,227 +233,150 @@ const VideoToGIFConverterDetailed = () => {
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Video to GIF Converter</h3>
       
-      {!file ? (
-        <div className="border-2 border-dashed rounded-lg p-4 text-center">
-          <Label htmlFor="video-to-gif-upload" className="cursor-pointer block">
-            <div className="py-10 flex flex-col items-center">
-              <FaUpload className="text-3xl text-gray-400 mb-2" />
-              <p className="text-sm text-gray-500 mb-1">
-                Upload a video to convert to GIF
-              </p>
-              <p className="text-xs text-gray-400">
-                Supports MP4, WebM, MOV (up to 100MB)
-              </p>
-            </div>
-            <input
-              id="video-to-gif-upload"
-              type="file"
-              accept="video/*"
-              className="hidden"
-              onChange={handleFileChange}
-            />
-          </Label>
-        </div>
-      ) : (
-        <div className="space-y-6">
-          <div className="relative border rounded-lg overflow-hidden bg-black aspect-video">
-            <video 
-              ref={videoRef}
-              src={previewUrl || undefined}
-              className="w-full h-full"
-              onLoadedMetadata={handleVideoLoaded}
-              onTimeUpdate={handleTimeUpdate}
-              onEnded={() => setIsPlaying(false)}
-            />
-            
-            <div className="absolute inset-0 flex items-center justify-center">
-              {!isPlaying && (
-                <button 
-                  onClick={togglePlayPause}
-                  className="w-16 h-16 bg-white bg-opacity-75 rounded-full flex items-center justify-center"
-                >
-                  <FaPlay className="text-primary ml-1" size={24} />
-                </button>
-              )}
-            </div>
-            
-            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 flex justify-between items-center text-sm">
-              <div className="flex items-center">
-                <button 
-                  onClick={togglePlayPause}
-                  className="mr-2"
-                >
-                  {isPlaying ? <FaPause size={12} /> : <FaPlay size={12} />}
-                </button>
-                <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
+      <div className="space-y-6">
+        {!videoUrl ? (
+          <div className="border-2 border-dashed rounded-lg p-4 text-center">
+            <Label htmlFor="video-gif-upload" className="cursor-pointer block">
+              <div className="py-8 flex flex-col items-center">
+                <FaUpload className="text-3xl text-gray-400 mb-2" />
+                <p className="text-sm text-gray-500 mb-1">
+                  Upload a video to convert to GIF
+                </p>
+                <p className="text-xs text-gray-400">
+                  Supports MP4, WebM, AVI, MOV and more
+                </p>
               </div>
-              <div>
-                <span className="text-xs">Selected: {formatTime(endTime - startTime)}</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="space-y-4">
-            <div>
-              <div className="flex justify-between items-center mb-1">
-                <Label htmlFor="trim-slider" className="font-medium text-sm">Trim Video</Label>
-                <span className="text-xs">
-                  {formatTime(startTime)} - {formatTime(endTime)} ({formatTime(endTime - startTime)})
-                </span>
-              </div>
-              
-              <div className="relative mt-5 mb-8">
-                <Slider 
-                  value={[startTime, endTime]}
-                  min={0}
-                  max={duration}
-                  step={0.1}
-                  onValueChange={(values) => {
-                    updateStartTime(values[0]);
-                    updateEndTime(values[1]);
-                  }}
-                  className="z-10"
-                />
-                
-                {/* Current time indicator */}
-                <div 
-                  className="absolute top-0 w-1 h-5 bg-red-500 z-20 -mt-2 rounded-full"
-                  style={{
-                    left: `${(currentTime / duration) * 100}%`,
-                    transform: 'translateX(-50%)'
-                  }}
-                />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="width-input" className="font-medium text-sm block mb-1">Width</Label>
-                <div className="flex items-center">
-                  <Input 
-                    id="width-input"
-                    type="number"
-                    value={width}
-                    onChange={(e) => setWidth(Number(e.target.value))}
-                    className="w-24"
-                    min={120}
-                    max={1200}
-                  />
-                  <span className="text-sm text-gray-500 ml-2">px</span>
-                  
-                  {videoRef.current && videoRef.current.videoHeight > 0 && (
-                    <span className="text-xs text-gray-500 ml-4">
-                      Output: {width} × {getResizedWidthHeight().height}px
-                    </span>
-                  )}
-                </div>
-              </div>
-              
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <Label htmlFor="fps-slider" className="font-medium text-sm">Frame Rate</Label>
-                  <span className="text-xs">{fps} FPS</span>
-                </div>
-                <Slider 
-                  id="fps-slider"
-                  min={5}
-                  max={30}
-                  step={1}
-                  value={[fps]}
-                  onValueChange={(values) => setFps(values[0])}
-                />
-              </div>
-              
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <Label htmlFor="quality-slider" className="font-medium text-sm">Quality</Label>
-                  <span className="text-xs">{quality}%</span>
-                </div>
-                <Slider 
-                  id="quality-slider"
-                  min={50}
-                  max={100}
-                  step={5}
-                  value={[quality]}
-                  onValueChange={(values) => setQuality(values[0])}
-                />
-              </div>
-              
-              <div>
-                <Label className="font-medium text-sm block mb-1">Speed</Label>
-                <RadioGroup 
-                  value={speedOption} 
-                  onValueChange={setSpeedOption}
-                  className="flex space-x-4"
-                >
-                  <div className="flex items-center space-x-1">
-                    <RadioGroupItem value="slow" id="slow" />
-                    <Label htmlFor="slow" className="font-normal text-xs">Slow</Label>
-                  </div>
-                  
-                  <div className="flex items-center space-x-1">
-                    <RadioGroupItem value="normal" id="normal" />
-                    <Label htmlFor="normal" className="font-normal text-xs">Normal</Label>
-                  </div>
-                  
-                  <div className="flex items-center space-x-1">
-                    <RadioGroupItem value="fast" id="fast" />
-                    <Label htmlFor="fast" className="font-normal text-xs">Fast</Label>
-                  </div>
-                </RadioGroup>
-              </div>
-            </div>
-            
-            <div className="flex items-center justify-between pt-2">
-              <div>
-                <Label htmlFor="loop-toggle" className="font-medium text-sm">Loop GIF</Label>
-              </div>
-              <Switch 
-                id="loop-toggle" 
-                checked={loop}
-                onCheckedChange={setLoop}
+              <input
+                id="video-gif-upload"
+                type="file"
+                accept="video/*"
+                className="hidden"
+                onChange={handleFileChange}
               />
+            </Label>
+          </div>
+        ) : (
+          <div className="space-y-6">
+            <div className="relative rounded-lg overflow-hidden bg-black">
+              <video 
+                ref={videoRef}
+                src={videoUrl} 
+                className="w-full aspect-video object-contain" 
+                onLoadedMetadata={handleVideoLoaded}
+                onTimeUpdate={handleVideoTimeUpdate}
+                muted
+              />
+              
+              <div className="absolute bottom-0 left-0 right-0 bg-black/50 p-3 flex justify-center">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="text-white hover:bg-white/20"
+                  onClick={togglePlay}
+                >
+                  {isPlaying ? (
+                    <FaStop className="mr-1" />
+                  ) : (
+                    <FaPlay className="mr-1" />
+                  )}
+                  {isPlaying ? 'Stop' : 'Preview Segment'}
+                </Button>
+              </div>
+              
+              <Button
+                variant="outline"
+                size="sm"
+                className="absolute top-2 right-2 bg-white/80 hover:bg-white"
+                onClick={clearVideo}
+              >
+                ×
+              </Button>
             </div>
             
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800">
-              <div className="flex items-start">
-                <FaStopwatch className="mr-2 mt-1 flex-shrink-0" />
+            <div className="space-y-4 border rounded-lg p-4 bg-gray-50">
+              <div>
+                <div className="flex justify-between items-center mb-1">
+                  <Label htmlFor="start-time" className="text-sm">Start Time</Label>
+                  <span className="text-sm">{formatTime(startTime)}</span>
+                </div>
+                <Slider 
+                  id="start-time"
+                  min={0}
+                  max={Math.max(0, videoDuration - 1)}
+                  step={0.1}
+                  value={[startTime]}
+                  onValueChange={(values) => setStartTime(values[0])}
+                />
+              </div>
+              
+              <div>
+                <div className="flex justify-between items-center mb-1">
+                  <Label htmlFor="duration" className="text-sm">Duration</Label>
+                  <span className="text-sm">{duration.toFixed(1)}s</span>
+                </div>
+                <Slider 
+                  id="duration"
+                  min={1}
+                  max={Math.min(10, videoDuration - startTime)}
+                  step={0.1}
+                  value={[duration]}
+                  onValueChange={(values) => setDuration(values[0])}
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  GIFs work best for short clips (1-10 seconds)
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <p className="mb-1">Estimated GIF Info:</p>
-                  <ul className="text-xs space-y-1">
-                    <li>Duration: {formatTime(endTime - startTime)}</li>
-                    <li>Dimensions: {width} × {getResizedWidthHeight().height}px</li>
-                    <li>Frames: {Math.round(fps * (endTime - startTime))}</li>
-                    <li>Estimated size: ~{getEstimatedFileSize()}</li>
-                  </ul>
+                  <div className="flex justify-between items-center mb-1">
+                    <Label htmlFor="fps" className="text-sm">Frames Per Second</Label>
+                    <span className="text-sm">{fps} fps</span>
+                  </div>
+                  <Slider 
+                    id="fps"
+                    min={5}
+                    max={30}
+                    step={1}
+                    value={[fps]}
+                    onValueChange={(values) => setFps(values[0])}
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Higher FPS = smoother but larger file
+                  </p>
+                </div>
+                
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <Label htmlFor="quality" className="text-sm">Quality</Label>
+                    <span className="text-sm">{quality}%</span>
+                  </div>
+                  <Slider 
+                    id="quality"
+                    min={50}
+                    max={100}
+                    step={5}
+                    value={[quality]}
+                    onValueChange={(values) => setQuality(values[0])}
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Higher quality = larger file size
+                  </p>
                 </div>
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button 
-                onClick={handleConvert}
-                className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
-                disabled={isConverting || !file}
-              >
-                {isConverting ? (
-                  <>Converting...</>
-                ) : (
-                  <>
-                    <FaVideo className="mr-2" /> 
-                    Convert to GIF
-                  </>
-                )}
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                className="flex-1"
-                onClick={clearAll}
-              >
-                Start Over
-              </Button>
-            </div>
+            <Button 
+              onClick={handleConvert}
+              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+              disabled={isConverting}
+            >
+              {isConverting ? (
+                <>Converting to GIF...</>
+              ) : (
+                <>Convert to GIF</>
+              )}
+            </Button>
             
             {isConverting && (
               <div className="space-y-2">
@@ -531,29 +388,48 @@ const VideoToGIFConverterDetailed = () => {
               </div>
             )}
             
-            {resultUrl && (
-              <div className="border rounded-lg p-4 bg-gray-50 space-y-3">
-                <h4 className="font-medium">GIF Preview</h4>
-                <div className="flex justify-center border rounded bg-white p-2">
+            {gifUrl && (
+              <div className="space-y-4 pt-2">
+                <h4 className="font-medium">Your GIF Preview</h4>
+                
+                <div className="rounded-lg overflow-hidden border bg-slate-100">
                   <img 
-                    src={resultUrl} 
-                    alt="Generated GIF" 
-                    className="max-w-full max-h-60 object-contain"
+                    src={gifUrl} 
+                    alt="GIF Preview" 
+                    className="w-full object-contain"
                   />
                 </div>
                 
-                <Button 
-                  onClick={handleDownload}
-                  className="w-full bg-green-600 hover:bg-green-700"
-                >
-                  <FaDownload className="mr-2" /> 
-                  Download GIF
-                </Button>
+                <div className="flex gap-3">
+                  <Button 
+                    onClick={handleDownload}
+                    className="flex-1"
+                  >
+                    <FaDownload className="mr-2" /> 
+                    Download GIF
+                  </Button>
+                  
+                  <Button 
+                    onClick={handleConvert}
+                    variant="outline"
+                    className="flex-shrink-0"
+                  >
+                    <FaRedo className="mr-2" /> 
+                    Regenerate
+                  </Button>
+                </div>
+                
+                <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-800 flex items-center">
+                  <FaCheck className="mr-2 flex-shrink-0" />
+                  <span>
+                    GIF successfully created! {duration.toFixed(1)} seconds at {fps} fps.
+                  </span>
+                </div>
               </div>
             )}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </Card>
   );
 
