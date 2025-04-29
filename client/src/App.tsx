@@ -88,6 +88,7 @@ import EmojisDetailed from "@/pages/tools/EmojisDetailed";
 
 // All keyword tools now use the unified KeywordToolsDetailed component
 import KeywordToolsDetailed from "@/pages/tools/KeywordToolsDetailed";
+import BacklinkToolsDetailed from "@/pages/tools/BacklinkToolsDetailed";
 
 // Meta Tags Tools
 import MetaTagsAnalyzerDetailed from "@/pages/tools/MetaTagsAnalyzerDetailed";
