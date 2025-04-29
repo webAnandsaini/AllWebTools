@@ -9,6 +9,7 @@ const ToolCard = ({ tool }: ToolCardProps) => {
   // Map specific tools to their detailed page versions
   const getToolUrl = (slug: string) => {
     const detailedToolsMap: Record<string, string> = {
+      // Text Analysis Tools
       "article-rewriter": "article-rewriter-detailed",
       "plagiarism-checker": "plagiarism-checker-detailed",
       "word-counter": "word-counter-detailed",
@@ -46,7 +47,22 @@ const ToolCard = ({ tool }: ToolCardProps) => {
       "chatgpt-detector": "chatgpt-detector-detailed",
       "citation-generator": "citation-generator-detailed",
       "online-notepad": "online-notepad-detailed",
-      "invisible-character": "invisible-character-detailed"
+      "invisible-character": "invisible-character-detailed",
+      
+      // Design Studio Tools
+      "logo-maker": "logo-maker-detailed",
+      "resume-builder": "resume-builder-detailed",
+      "flyer-maker": "flyer-maker-detailed",
+      "poster-maker": "poster-maker-detailed",
+      "invitation-maker": "invitation-maker-detailed", 
+      "business-card-maker": "business-card-maker-detailed",
+      "meme-generator": "meme-generator-detailed",
+      "emojis": "emojis-detailed",
+      
+      // IP Tools
+      "what-is-my-ip": "what-is-my-ip-detailed",
+      "ip-location": "ip-location-detailed",
+      "free-daily-proxy-list": "free-daily-proxy-list-detailed"
     };
     
     return `/tools/${detailedToolsMap[slug] || slug}`;

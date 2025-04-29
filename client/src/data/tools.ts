@@ -562,7 +562,7 @@ export const designStudioTools: Tool[] = [
   {
     id: 103,
     name: "Poster Maker",
-    slug: "poster-maker",
+    slug: "poster-maker-detailed",
     description: "Design stunning posters for your events, promotions, or presentations.",
     category: "Design Studio",
     icon: "fas fa-image",
