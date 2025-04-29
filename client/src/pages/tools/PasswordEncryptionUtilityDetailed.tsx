@@ -96,7 +96,11 @@ const PasswordEncryptionUtilityDetailed = () => {
     setIsLoading(true);
     try {
       // Decode from base64
-      const encryptedData = Uint8Array.from(atob(result), (c) => c.charCodeAt(0));
+      const encryptedBytes = atob(result);
+      const encryptedData = new Uint8Array(encryptedBytes.length);
+      for (let i = 0; i < encryptedBytes.length; i++) {
+        encryptedData[i] = encryptedBytes.charCodeAt(i);
+      }
 
       // Extract IV (first 12 bytes) and encrypted content
       const iv = encryptedData.slice(0, 12);

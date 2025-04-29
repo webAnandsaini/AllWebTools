@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Link } from "wouter";
-import { textAnalysisTools } from "@/data/tools";
+import { allTools, passwordManagementTools } from "@/data/tools";
 
 interface ToolPageProps {
   toolSlug: string;
@@ -8,16 +8,24 @@ interface ToolPageProps {
 }
 
 const ToolPageTemplate = ({ toolSlug, toolContent }: ToolPageProps) => {
-  // Find the current tool
-  const currentTool = textAnalysisTools.find(tool => tool.slug === toolSlug);
+  // Find the current tool from all available tools
+  const currentTool = allTools.find(tool => tool.slug === toolSlug);
   
   if (!currentTool) {
     return <div>Tool not found</div>;
   }
   
+  // Determine what tools to show as related tools
+  let relatedToolsArray = allTools;
+  
+  // For password management tools, only show other password management tools
+  if (currentTool.category === "Password Management Tools") {
+    relatedToolsArray = passwordManagementTools;
+  }
+  
   // Find related tools (up to 4 from the same category)
-  const relatedTools = textAnalysisTools
-    .filter(tool => tool.slug !== toolSlug)
+  const relatedTools = relatedToolsArray
+    .filter(tool => tool.slug !== toolSlug && tool.category === currentTool.category)
     .slice(0, 4);
 
   return (
