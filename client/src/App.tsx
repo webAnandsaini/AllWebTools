@@ -84,20 +84,7 @@ import MemeGeneratorDetailed from "@/pages/tools/MemeGeneratorDetailed";
 import EmojisDetailed from "@/pages/tools/EmojisDetailed";
 */
 
-// Image Editing Tools - newly created components
-import ReverseImageSearchDetailed from "@/pages/tools/ReverseImageSearchDetailed";
-import FaceSearchDetailed from "@/pages/tools/FaceSearchDetailed";
-import ImageCompressorDetailed from "@/pages/tools/ImageCompressorDetailed";
-import FaviconGeneratorDetailed from "@/pages/tools/FaviconGeneratorDetailed";
-import VideoToGIFConverterDetailed from "@/pages/tools/VideoToGIFConverterDetailed";
-import ImageResizerDetailed from "@/pages/tools/ImageResizerDetailed";
-
-/* We'll comment out these imports since the actual files don't exist yet
-import PhotoResizerInKBDetailed from "@/pages/tools/PhotoResizerInKBDetailed";
-import CropImageDetailed from "@/pages/tools/CropImageDetailed";
-import ConvertToJPGDetailed from "@/pages/tools/ConvertToJPGDetailed";
-import RGBToHexDetailed from "@/pages/tools/RGBToHexDetailed";
-*/
+// All image tools now use the unified ImageToolsDetailed component
 
 // Keyword Tools
 import KeywordPositionDetailed from "@/pages/tools/KeywordPositionDetailed";
@@ -109,9 +96,7 @@ import KeywordResearchToolDetailed from "@/pages/tools/KeywordResearchToolDetail
 import MetaTagsAnalyzerDetailed from "@/pages/tools/MetaTagsAnalyzerDetailed";
 import MetaTagGeneratorDetailed from "@/pages/tools/MetaTagGeneratorDetailed";
 
-// Image format converters
-import PNGToJPGDetailed from "@/pages/tools/PNGToJPGDetailed";
-import JPGToPNGDetailed from "@/pages/tools/JPGToPNGDetailed";
+// All image format converters use the unified ImageToolsDetailed component
 
 // JSON Tools
 import JSONViewerDetailed from "@/pages/tools/JSONViewerDetailed";
@@ -138,6 +123,7 @@ import FakeAddressGeneratorDetailed from "@/pages/tools/FakeAddressGeneratorDeta
 import NameGeneratorDetailed from "@/pages/tools/NameGeneratorDetailed";
 import AIContentGeneratorDetailed from "@/pages/tools/AIContentGeneratorDetailed";
 import DesignStudioDetailed from "@/pages/tools/DesignStudioDetailed";
+import ImageToolsDetailed from "@/pages/tools/ImageToolsDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -242,17 +228,87 @@ function Router() {
       <Route path="/tools/password-strength-checker-detailed" component={PasswordStrengthCheckerDetailed} />
       <Route path="/tools/password-encryption-utility-detailed" component={PasswordEncryptionUtilityDetailed} />
       
-      {/* Image Editing Tools */}
-      <Route path="/tools/reverse-image-search-detailed" component={ReverseImageSearchDetailed} />
-      <Route path="/tools/face-search-detailed" component={FaceSearchDetailed} />
-      <Route path="/tools/image-compressor-detailed" component={ImageCompressorDetailed} />
-      <Route path="/tools/favicon-generator-detailed" component={FaviconGeneratorDetailed} />
-      <Route path="/tools/video-to-gif-converter-detailed" component={VideoToGIFConverterDetailed} />
-      <Route path="/tools/image-resizer-detailed" component={ImageResizerDetailed} />
+      {/* Image Editing Tools - All using ImageToolsDetailed component */}
+      <Route path="/tools/reverse-image-search-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/face-search-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/image-compressor-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/favicon-generator-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/video-to-gif-converter-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/image-resizer-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/photo-resizer-in-kb-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/crop-image-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/convert-to-jpg-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/rgb-to-hex-detailed" component={ImageToolsDetailed} />
       
       {/* Image format converters */}
-      <Route path="/tools/png-to-jpg-detailed" component={PNGToJPGDetailed} />
-      <Route path="/tools/jpg-to-png-detailed" component={JPGToPNGDetailed} />
+      <Route path="/tools/png-to-jpg-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/jpg-to-png-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/compress-image-to-50kb-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/compress-image-to-20kb-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/compress-jpeg-to-100kb-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/compress-jpeg-to-200kb-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/compress-jpg-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/resize-image-to-50kb-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/resize-image-to-100kb-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/resize-image-to-20kb-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/reduce-image-size-in-kb-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/compress-image-to-10kb-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/compress-jpeg-to-30kb-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/compress-image-to-1mb-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/mb-to-kb-converter-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/mp4-to-gif-converter-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/heic-to-jpg-converter-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/heic-to-png-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/svg-converter-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/png-to-svg-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/jpg-to-svg-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/jpeg-to-svg-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/webp-to-png-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/svg-to-png-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/png-to-ico-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/avif-to-jpg-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/jpeg-optimizer-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/compress-png-detailed" component={ImageToolsDetailed} />
+      
+      {/* Direct routes for Image Tools */}
+      <Route path="/reverse-image-search" component={ImageToolsDetailed} />
+      <Route path="/face-search" component={ImageToolsDetailed} />
+      <Route path="/image-compressor" component={ImageToolsDetailed} />
+      <Route path="/favicon-generator" component={ImageToolsDetailed} />
+      <Route path="/video-to-gif-converter" component={ImageToolsDetailed} />
+      <Route path="/image-resizer" component={ImageToolsDetailed} />
+      <Route path="/photo-resizer-in-kb" component={ImageToolsDetailed} />
+      <Route path="/crop-image" component={ImageToolsDetailed} />
+      <Route path="/convert-to-jpg" component={ImageToolsDetailed} />
+      <Route path="/rgb-to-hex" component={ImageToolsDetailed} />
+      <Route path="/png-to-jpg" component={ImageToolsDetailed} />
+      <Route path="/jpg-to-png" component={ImageToolsDetailed} />
+      <Route path="/compress-image-to-50kb" component={ImageToolsDetailed} />
+      <Route path="/compress-image-to-20kb" component={ImageToolsDetailed} />
+      <Route path="/compress-jpeg-to-100kb" component={ImageToolsDetailed} />
+      <Route path="/compress-jpeg-to-200kb" component={ImageToolsDetailed} />
+      <Route path="/compress-jpg" component={ImageToolsDetailed} />
+      <Route path="/resize-image-to-50kb" component={ImageToolsDetailed} />
+      <Route path="/resize-image-to-100kb" component={ImageToolsDetailed} />
+      <Route path="/resize-image-to-20kb" component={ImageToolsDetailed} />
+      <Route path="/reduce-image-size-in-kb" component={ImageToolsDetailed} />
+      <Route path="/compress-image-to-10kb" component={ImageToolsDetailed} />
+      <Route path="/compress-jpeg-to-30kb" component={ImageToolsDetailed} />
+      <Route path="/compress-image-to-1mb" component={ImageToolsDetailed} />
+      <Route path="/mb-to-kb-converter" component={ImageToolsDetailed} />
+      <Route path="/mp4-to-gif-converter" component={ImageToolsDetailed} />
+      <Route path="/heic-to-jpg-converter" component={ImageToolsDetailed} />
+      <Route path="/heic-to-png" component={ImageToolsDetailed} />
+      <Route path="/svg-converter" component={ImageToolsDetailed} />
+      <Route path="/png-to-svg" component={ImageToolsDetailed} />
+      <Route path="/jpg-to-svg" component={ImageToolsDetailed} />
+      <Route path="/jpeg-to-svg" component={ImageToolsDetailed} />
+      <Route path="/webp-to-png" component={ImageToolsDetailed} />
+      <Route path="/svg-to-png" component={ImageToolsDetailed} />
+      <Route path="/png-to-ico" component={ImageToolsDetailed} />
+      <Route path="/avif-to-jpg" component={ImageToolsDetailed} />
+      <Route path="/jpeg-optimizer" component={ImageToolsDetailed} />
+      <Route path="/compress-png" component={ImageToolsDetailed} />
       
       {/* Keyword Tools */}
       <Route path="/tools/keyword-position-detailed" component={KeywordPositionDetailed} />
