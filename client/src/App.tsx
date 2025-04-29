@@ -90,6 +90,7 @@ import EmojisDetailed from "@/pages/tools/EmojisDetailed";
 import KeywordToolsDetailed from "@/pages/tools/KeywordToolsDetailed";
 import BacklinkToolsDetailed from "@/pages/tools/BacklinkToolsDetailed";
 import WebsiteToolsDetailed from "@/pages/tools/WebsiteToolsDetailed";
+import PDFToolsDetailed from "@/pages/tools/PDFToolsDetailed";
 
 // Meta Tags Tools
 import MetaTagsAnalyzerDetailed from "@/pages/tools/MetaTagsAnalyzerDetailed";
@@ -467,6 +468,43 @@ function Router() {
       <Route path="/tools/what-is-my-browser-detailed" component={WebsiteToolsDetailed} />
       <Route path="/tools/check-social-status-detailed" component={WebsiteToolsDetailed} />
       
+      {/* PDF Tools - All using PDFToolsDetailed component */}
+      <Route path="/tools/pdf-to-word-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/word-to-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/pdf-to-jpg-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/jpg-to-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/merge-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/compress-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/rotate-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/unlock-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/lock-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/watermark-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/powerpoint-to-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/excel-to-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/split-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/compress-pdf-to-50kb-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/compress-pdf-to-100kb-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/compress-pdf-to-150kb-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/compress-pdf-to-200kb-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/resize-pdf-to-200kb-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/compress-pdf-to-300kb-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/compress-pdf-to-500kb-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/compress-pdf-to-1mb-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/compress-pdf-to-2mb-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/pdf-to-zip-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/delete-pages-from-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/pdf-to-bmp-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/gif-to-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/pdf-to-tiff-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/tiff-to-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/png-to-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/svg-to-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/pdf-to-svg-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/pdf-to-png-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/bmp-to-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/remove-password-from-pdf-detailed" component={PDFToolsDetailed} />
+      <Route path="/tools/pdf-page-remover-detailed" component={PDFToolsDetailed} />
+      
       {/* Direct routes for Keyword Tools */}
       <Route path="/keyword-position" component={KeywordToolsDetailed} />
       <Route path="/keywords-density-checker" component={KeywordToolsDetailed} />
@@ -582,6 +620,43 @@ function Router() {
       <Route path="/apps-rank-tracking-tool" component={WebsiteToolsDetailed} />
       <Route path="/what-is-my-browser" component={WebsiteToolsDetailed} />
       <Route path="/check-social-status" component={WebsiteToolsDetailed} />
+      
+      {/* Direct routes for PDF Tools */}
+      <Route path="/pdf-to-word" component={PDFToolsDetailed} />
+      <Route path="/word-to-pdf" component={PDFToolsDetailed} />
+      <Route path="/pdf-to-jpg" component={PDFToolsDetailed} />
+      <Route path="/jpg-to-pdf" component={PDFToolsDetailed} />
+      <Route path="/merge-pdf" component={PDFToolsDetailed} />
+      <Route path="/compress-pdf" component={PDFToolsDetailed} />
+      <Route path="/rotate-pdf" component={PDFToolsDetailed} />
+      <Route path="/unlock-pdf" component={PDFToolsDetailed} />
+      <Route path="/lock-pdf" component={PDFToolsDetailed} />
+      <Route path="/watermark" component={PDFToolsDetailed} />
+      <Route path="/powerpoint-to-pdf" component={PDFToolsDetailed} />
+      <Route path="/excel-to-pdf" component={PDFToolsDetailed} />
+      <Route path="/split-pdf" component={PDFToolsDetailed} />
+      <Route path="/compress-pdf-to-50kb" component={PDFToolsDetailed} />
+      <Route path="/compress-pdf-to-100kb" component={PDFToolsDetailed} />
+      <Route path="/compress-pdf-to-150kb" component={PDFToolsDetailed} />
+      <Route path="/compress-pdf-to-200kb" component={PDFToolsDetailed} />
+      <Route path="/resize-pdf-to-200kb" component={PDFToolsDetailed} />
+      <Route path="/compress-pdf-to-300kb" component={PDFToolsDetailed} />
+      <Route path="/compress-pdf-to-500kb" component={PDFToolsDetailed} />
+      <Route path="/compress-pdf-to-1mb" component={PDFToolsDetailed} />
+      <Route path="/compress-pdf-to-2mb" component={PDFToolsDetailed} />
+      <Route path="/pdf-to-zip" component={PDFToolsDetailed} />
+      <Route path="/delete-pages-from-pdf" component={PDFToolsDetailed} />
+      <Route path="/pdf-to-bmp" component={PDFToolsDetailed} />
+      <Route path="/gif-to-pdf" component={PDFToolsDetailed} />
+      <Route path="/pdf-to-tiff" component={PDFToolsDetailed} />
+      <Route path="/tiff-to-pdf" component={PDFToolsDetailed} />
+      <Route path="/png-to-pdf" component={PDFToolsDetailed} />
+      <Route path="/svg-to-pdf" component={PDFToolsDetailed} />
+      <Route path="/pdf-to-svg" component={PDFToolsDetailed} />
+      <Route path="/pdf-to-png" component={PDFToolsDetailed} />
+      <Route path="/bmp-to-pdf" component={PDFToolsDetailed} />
+      <Route path="/remove-password-from-pdf" component={PDFToolsDetailed} />
+      <Route path="/pdf-page-remover" component={PDFToolsDetailed} />
       
       {/* Meta Tags Tools */}
       <Route path="/tools/meta-tags-analyzer-detailed" component={MetaTagsAnalyzerDetailed} />
