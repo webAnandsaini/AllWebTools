@@ -6,8 +6,14 @@ interface ToolCardProps {
 }
 
 const ToolCard = ({ tool }: ToolCardProps) => {
-  // Map specific tools to their detailed page versions
+  // Check if the slug already has a "-detailed" suffix
   const getToolUrl = (slug: string) => {
+    // If the slug already ends with "-detailed", use it directly
+    if (slug.endsWith("-detailed")) {
+      return `/tools/${slug}`;
+    }
+    
+    // Otherwise, map it to the detailed version
     const detailedToolsMap: Record<string, string> = {
       // Text Analysis Tools
       "article-rewriter": "article-rewriter-detailed",
@@ -62,7 +68,12 @@ const ToolCard = ({ tool }: ToolCardProps) => {
       // IP Tools
       "what-is-my-ip": "what-is-my-ip-detailed",
       "ip-location": "ip-location-detailed",
-      "free-daily-proxy-list": "free-daily-proxy-list-detailed"
+      "free-daily-proxy-list": "free-daily-proxy-list-detailed",
+      
+      // Password Management Tools
+      "password-generator": "password-generator-detailed",
+      "password-strength-checker": "password-strength-checker-detailed",
+      "password-encryption-utility": "password-encryption-utility-detailed"
     };
     
     return `/tools/${detailedToolsMap[slug] || slug}`;
