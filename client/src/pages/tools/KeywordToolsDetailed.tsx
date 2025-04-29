@@ -16,6 +16,29 @@ import {
   SelectValue,
 } from "../../components/ui/select";
 
+// Define types for our keyword data
+interface KeywordItem {
+  keyword: string;
+  google: number;
+  bing: number;
+  yahoo: number;
+  change?: number;
+  position?: number;
+  volume?: number;
+  difficulty?: number;
+  competition?: number;
+  searchVolume?: number;
+  density?: number;
+  density_percent?: number;
+  count?: number;
+}
+
+interface CompetitorItem {
+  name: string;
+  score: number;
+  rank: number;
+}
+
 interface KeywordToolConfig {
   title: string;
   slug: string;

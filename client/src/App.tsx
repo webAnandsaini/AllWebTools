@@ -86,11 +86,8 @@ import EmojisDetailed from "@/pages/tools/EmojisDetailed";
 
 // All image tools now use the unified ImageToolsDetailed component
 
-// Keyword Tools
-import KeywordPositionDetailed from "@/pages/tools/KeywordPositionDetailed";
-import KeywordsDensityCheckerDetailed from "@/pages/tools/KeywordsDensityCheckerDetailed";
-import KeywordsSuggestionsToolDetailed from "@/pages/tools/KeywordsSuggestionsToolDetailed";
-import KeywordResearchToolDetailed from "@/pages/tools/KeywordResearchToolDetailed";
+// All keyword tools now use the unified KeywordToolsDetailed component
+import KeywordToolsDetailed from "@/pages/tools/KeywordToolsDetailed";
 
 // Meta Tags Tools
 import MetaTagsAnalyzerDetailed from "@/pages/tools/MetaTagsAnalyzerDetailed";
@@ -352,11 +349,35 @@ function Router() {
       <Route path="/tools/compress-png" component={ImageToolsDetailed} />
       <Route path="/tools/compress-png-detailed" component={ImageToolsDetailed} />
       
-      {/* Keyword Tools */}
-      <Route path="/tools/keyword-position-detailed" component={KeywordPositionDetailed} />
-      <Route path="/tools/keywords-density-checker-detailed" component={KeywordsDensityCheckerDetailed} />
-      <Route path="/tools/keywords-suggestions-tool-detailed" component={KeywordsSuggestionsToolDetailed} />
-      <Route path="/tools/keyword-research-tool-detailed" component={KeywordResearchToolDetailed} />
+      {/* Keyword Tools - All using KeywordToolsDetailed component */}
+      <Route path="/tools/keyword-position-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/keywords-density-checker-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/keywords-suggestions-tool-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/keyword-research-tool-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/keyword-competition-tool-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/related-keywords-finder-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/long-tail-keyword-suggestion-tool-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/keywords-rich-domains-suggestions-tool-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/seo-keyword-competition-analysis-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/live-keyword-analyzer-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/keyword-overview-tool-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/keyword-difficulty-checker-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/paid-keyword-finder-detailed" component={KeywordToolsDetailed} />
+      
+      {/* Direct routes for Keyword Tools */}
+      <Route path="/keyword-position" component={KeywordToolsDetailed} />
+      <Route path="/keywords-density-checker" component={KeywordToolsDetailed} />
+      <Route path="/keywords-suggestions-tool" component={KeywordToolsDetailed} />
+      <Route path="/keyword-research-tool" component={KeywordToolsDetailed} />
+      <Route path="/keyword-competition-tool" component={KeywordToolsDetailed} />
+      <Route path="/related-keywords-finder" component={KeywordToolsDetailed} />
+      <Route path="/long-tail-keyword-suggestion-tool" component={KeywordToolsDetailed} />
+      <Route path="/keywords-rich-domains-suggestions-tool" component={KeywordToolsDetailed} />
+      <Route path="/seo-keyword-competition-analysis" component={KeywordToolsDetailed} />
+      <Route path="/live-keyword-analyzer" component={KeywordToolsDetailed} />
+      <Route path="/keyword-overview-tool" component={KeywordToolsDetailed} />
+      <Route path="/keyword-difficulty-checker" component={KeywordToolsDetailed} />
+      <Route path="/paid-keyword-finder" component={KeywordToolsDetailed} />
       
       {/* Meta Tags Tools */}
       <Route path="/tools/meta-tags-analyzer-detailed" component={MetaTagsAnalyzerDetailed} />
