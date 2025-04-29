@@ -74,6 +74,8 @@ import PosterMakerDetailed from "@/pages/tools/PosterMakerDetailed";
 import WhatIsMyIPDetailed from "@/pages/tools/WhatIsMyIPDetailed";
 import IPLocationDetailed from "@/pages/tools/IPLocationDetailed";
 import FreeDailyProxyListDetailed from "@/pages/tools/FreeDailyProxyListDetailed";
+
+/* We'll comment out these imports since the actual files don't exist yet
 import PasswordGeneratorDetailed from "@/pages/tools/PasswordGeneratorDetailed";
 import PasswordStrengthCheckerDetailed from "@/pages/tools/PasswordStrengthCheckerDetailed";
 import PasswordEncryptionUtilityDetailed from "@/pages/tools/PasswordEncryptionUtilityDetailed";
@@ -81,16 +83,24 @@ import InvitationMakerDetailed from "@/pages/tools/InvitationMakerDetailed";
 import BusinessCardMakerDetailed from "@/pages/tools/BusinessCardMakerDetailed";
 import MemeGeneratorDetailed from "@/pages/tools/MemeGeneratorDetailed";
 import EmojisDetailed from "@/pages/tools/EmojisDetailed";
+*/
+
+// Image Editing Tools - newly created components
 import ReverseImageSearchDetailed from "@/pages/tools/ReverseImageSearchDetailed";
 import FaceSearchDetailed from "@/pages/tools/FaceSearchDetailed";
 import ImageCompressorDetailed from "@/pages/tools/ImageCompressorDetailed";
 import FaviconGeneratorDetailed from "@/pages/tools/FaviconGeneratorDetailed";
 import VideoToGIFConverterDetailed from "@/pages/tools/VideoToGIFConverterDetailed";
 import ImageResizerDetailed from "@/pages/tools/ImageResizerDetailed";
+
+/* We'll comment out these imports since the actual files don't exist yet
 import PhotoResizerInKBDetailed from "@/pages/tools/PhotoResizerInKBDetailed";
 import CropImageDetailed from "@/pages/tools/CropImageDetailed";
 import ConvertToJPGDetailed from "@/pages/tools/ConvertToJPGDetailed";
 import RGBToHexDetailed from "@/pages/tools/RGBToHexDetailed";
+*/
+
+// Image format converters
 import PNGToJPGDetailed from "@/pages/tools/PNGToJPGDetailed";
 import JPGToPNGDetailed from "@/pages/tools/JPGToPNGDetailed";
 
@@ -175,13 +185,6 @@ function Router() {
       <Route path="/tools/what-is-my-ip-detailed" component={WhatIsMyIPDetailed} />
       <Route path="/tools/ip-location-detailed" component={IPLocationDetailed} />
       <Route path="/tools/free-daily-proxy-list-detailed" component={FreeDailyProxyListDetailed} />
-      <Route path="/tools/password-generator-detailed" component={PasswordGeneratorDetailed} />
-      <Route path="/tools/password-strength-checker-detailed" component={PasswordStrengthCheckerDetailed} />
-      <Route path="/tools/password-encryption-utility-detailed" component={PasswordEncryptionUtilityDetailed} />
-      <Route path="/tools/invitation-maker-detailed" component={InvitationMakerDetailed} />
-      <Route path="/tools/business-card-maker-detailed" component={BusinessCardMakerDetailed} />
-      <Route path="/tools/meme-generator-detailed" component={MemeGeneratorDetailed} />
-      <Route path="/tools/emojis-detailed" component={EmojisDetailed} />
       
       {/* Image Editing Tools */}
       <Route path="/tools/reverse-image-search-detailed" component={ReverseImageSearchDetailed} />
@@ -190,10 +193,8 @@ function Router() {
       <Route path="/tools/favicon-generator-detailed" component={FaviconGeneratorDetailed} />
       <Route path="/tools/video-to-gif-converter-detailed" component={VideoToGIFConverterDetailed} />
       <Route path="/tools/image-resizer-detailed" component={ImageResizerDetailed} />
-      <Route path="/tools/photo-resizer-in-kb-detailed" component={PhotoResizerInKBDetailed} />
-      <Route path="/tools/crop-image-detailed" component={CropImageDetailed} />
-      <Route path="/tools/convert-to-jpg-detailed" component={ConvertToJPGDetailed} />
-      <Route path="/tools/rgb-to-hex-detailed" component={RGBToHexDetailed} />
+      
+      {/* Image format converters */}
       <Route path="/tools/png-to-jpg-detailed" component={PNGToJPGDetailed} />
       <Route path="/tools/jpg-to-png-detailed" component={JPGToPNGDetailed} />
       

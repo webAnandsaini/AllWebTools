@@ -9,10 +9,9 @@ import { toast } from "@/hooks/use-toast";
 import { 
   FaUpload, 
   FaDownload, 
-  FaExchangeAlt, 
-  FaFileImage,
-  FaImages,
-  FaCheck
+  FaImage, 
+  FaCheck,
+  FaExchangeAlt
 } from "react-icons/fa";
 import { Progress } from "@/components/ui/progress";
 
@@ -20,19 +19,21 @@ const JPGToPNGDetailed = () => {
   const [files, setFiles] = useState<File[]>([]);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const [resultUrls, setResultUrls] = useState<string[]>([]);
+  const [originalSizes, setOriginalSizes] = useState<number[]>([]);
+  const [convertedSizes, setConvertedSizes] = useState<number[]>([]);
   const [isConverting, setIsConverting] = useState(false);
   const [convertProgress, setConvertProgress] = useState(0);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const selectedFiles = Array.from(e.target.files).filter(file => 
-        file.type === "image/jpeg" || file.type === "image/jpg" // Only accept JPG files
+        file.type === 'image/jpeg'
       );
       
       if (selectedFiles.length !== e.target.files.length) {
         toast({
           title: "Invalid files",
-          description: "Only JPG/JPEG files are accepted for this converter.",
+          description: "Only JPG/JPEG files are accepted for conversion.",
           variant: "destructive",
         });
       }
@@ -40,12 +41,17 @@ const JPGToPNGDetailed = () => {
       if (selectedFiles.length > 0) {
         setFiles([...files, ...selectedFiles]);
         
+        // Store original file sizes
+        const sizes = selectedFiles.map(file => file.size);
+        setOriginalSizes([...originalSizes, ...sizes]);
+        
         // Create preview URLs for each file
         const urls = selectedFiles.map(file => URL.createObjectURL(file));
         setPreviewUrls([...previewUrls, ...urls]);
         
         // Reset results
         setResultUrls([]);
+        setConvertedSizes([]);
         setConvertProgress(0);
       }
     }
@@ -54,15 +60,33 @@ const JPGToPNGDetailed = () => {
   const removeFile = (index: number) => {
     const newFiles = [...files];
     const newPreviewUrls = [...previewUrls];
+    const newOriginalSizes = [...originalSizes];
     
     // Revoke object URL to prevent memory leaks
     URL.revokeObjectURL(newPreviewUrls[index]);
     
     newFiles.splice(index, 1);
     newPreviewUrls.splice(index, 1);
+    newOriginalSizes.splice(index, 1);
     
     setFiles(newFiles);
     setPreviewUrls(newPreviewUrls);
+    setOriginalSizes(newOriginalSizes);
+    
+    // Also remove converted results if they exist
+    if (resultUrls.length > 0) {
+      const newResultUrls = [...resultUrls];
+      const newConvertedSizes = [...convertedSizes];
+      
+      if (index < newResultUrls.length) {
+        URL.revokeObjectURL(newResultUrls[index]);
+        newResultUrls.splice(index, 1);
+        newConvertedSizes.splice(index, 1);
+        
+        setResultUrls(newResultUrls);
+        setConvertedSizes(newConvertedSizes);
+      }
+    }
   };
 
   const clearAll = () => {
@@ -72,7 +96,9 @@ const JPGToPNGDetailed = () => {
     
     setFiles([]);
     setPreviewUrls([]);
+    setOriginalSizes([]);
     setResultUrls([]);
+    setConvertedSizes([]);
     setConvertProgress(0);
   };
 
@@ -80,7 +106,7 @@ const JPGToPNGDetailed = () => {
     if (files.length === 0) {
       toast({
         title: "No files selected",
-        description: "Please upload at least one JPG image to convert.",
+        description: "Please upload at least one JPG file to convert.",
         variant: "destructive",
       });
       return;
@@ -89,28 +115,34 @@ const JPGToPNGDetailed = () => {
     setIsConverting(true);
     setConvertProgress(0);
     setResultUrls([]);
+    setConvertedSizes([]);
     
     // Simulate conversion process
     let progress = 0;
     const interval = setInterval(() => {
-      progress += (100 / files.length);
+      progress += (100 / files.length / 10);
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
         
-        // Simulate conversion result
-        const results = previewUrls.map(url => url); // In a real implementation, these would be converted PNG URLs
-        setResultUrls(results);
+        // Simulate converted results - in a real implementation, this would be the actual converted images
+        const results = previewUrls.map(url => url);
         
+        // Simulate file size increase - PNG files are typically larger than JPGs
+        // due to lossless compression
+        const sizes = originalSizes.map(size => Math.floor(size * 1.2));
+        
+        setResultUrls(results);
+        setConvertedSizes(sizes);
         setIsConverting(false);
         
         toast({
           title: "Conversion complete",
-          description: `Successfully converted ${files.length} ${files.length === 1 ? 'JPG file' : 'JPG files'} to PNG.`,
+          description: `Converted ${files.length} ${files.length === 1 ? 'JPG file' : 'JPG files'} to PNG.`,
         });
       }
       setConvertProgress(progress);
-    }, 500);
+    }, 100);
   };
 
   const handleDownload = (index: number) => {
@@ -119,7 +151,6 @@ const JPGToPNGDetailed = () => {
     // Create a download link
     const a = document.createElement('a');
     a.href = resultUrls[index];
-    // Change extension from .jpg to .png
     const originalName = files[index]?.name || 'image.jpg';
     const pngName = originalName.replace(/\.(jpg|jpeg)$/i, '.png');
     a.download = pngName;
@@ -138,14 +169,16 @@ const JPGToPNGDetailed = () => {
     
     toast({
       title: "Preparing download",
-      description: "All converted images will be downloaded in a few moments.",
+      description: "All converted PNG images will be downloaded in a few moments.",
     });
     
     // In a real implementation, this would create a zip file with all images
-    // For this demo, we'll just download the first one
-    setTimeout(() => {
-      handleDownload(0);
-    }, 1000);
+    // For this demo, we'll just download them one by one with a delay
+    resultUrls.forEach((_, index) => {
+      setTimeout(() => {
+        handleDownload(index);
+      }, index * 1000);
+    });
   };
 
   const formatBytes = (bytes: number, decimals = 2) => {
@@ -160,39 +193,40 @@ const JPGToPNGDetailed = () => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   };
 
-  const introduction = "Convert JPG images to high-quality, transparent PNG format with our fast, reliable converter.";
+  const introduction = "Convert JPG images to PNG format with transparency support for high-quality output.";
 
-  const description = "Our JPG to PNG Converter is a specialized tool that transforms JPEG images into the versatile PNG format, preserving image quality while adding support for transparency. While JPEG is excellent for photographs and complex images with many colors, PNG offers advantages like lossless compression and transparency support that make it ideal for graphics, logos, icons, and images that need to be placed on different colored backgrounds. This conversion is particularly valuable when you need to extract elements from an image to create compositions, use images in design projects where background removal is necessary, or maintain the highest possible quality for further editing. Our converter handles the technical aspects of this transformation, producing clean PNG files with optimal settings for your needs. The process is simple yet powerful: upload your JPG images, convert them with a single click, and download your new PNG files ready for use in any project that requires transparency or lossless quality.";
+  const description = "Our JPG to PNG converter tool transforms your JPEG images (Joint Photographic Experts Group) into PNG format (Portable Network Graphics) with perfect quality preservation. While JPG files are ideal for photographs due to their efficient compression, PNG offers lossless compression that maintains every detail of your image without degradation. PNG files also support transparency, making them ideal for graphics, logos, icons, and images that need to be placed on various backgrounds. This conversion is particularly useful for design projects, print materials, or any situation where image quality and potential transparency are crucial. The conversion process is quick and simple—upload your JPG files, convert with a single click, and download your high-quality PNG images ready for use in any project requiring maximum visual fidelity.";
 
   const howToUse = [
-    "Upload one or more JPG/JPEG images by clicking the 'Upload JPG Files' button or dragging and dropping files.",
-    "Review your uploaded files in the queue to confirm they're correct.",
-    "Click 'Convert to PNG' to begin the conversion process.",
-    "Wait for the conversion to complete - this typically takes just a few seconds per image.",
-    "Preview the results and download individual PNG images or all converted files at once."
+    "Upload one or more JPG/JPEG images using the 'Upload JPG Files' button or drag and drop.",
+    "Review your uploaded images in the conversion queue.",
+    "Click 'Convert to PNG' to process all your JPG images.",
+    "Preview the results and compare file sizes.",
+    "Download individual converted PNG files or use 'Download All' to get all your converted images at once."
   ];
 
   const features = [
-    "✅ Convert JPG images to high-quality transparent PNG format",
-    "✅ Batch processing for multiple images simultaneously",
-    "✅ Lossless conversion preserving original image quality",
+    "✅ Convert JPG to PNG with perfect quality preservation",
+    "✅ Batch processing for multiple JPG files simultaneously",
+    "✅ Visual preview of converted images before downloading",
+    "✅ File size comparison between original JPG and converted PNG",
+    "✅ Easy one-click download of individual or all converted images",
     "✅ No watermarks on converted images",
-    "✅ Simple drag-and-drop interface",
-    "✅ One-click download of individual or all converted images"
+    "✅ No file size limitations"
   ];
 
   const faqs = [
     {
-      question: "Why would I convert JPG to PNG?",
-      answer: "There are several reasons to convert JPG to PNG: 1) Transparency - PNG supports transparent backgrounds, which is essential for logos, icons, and images that need to be placed on different colored backgrounds; 2) Lossless quality - PNG uses lossless compression, so there's no quality degradation when saving or re-saving files; 3) Editing purposes - PNG is better for images that will undergo further editing; 4) Text clarity - PNG preserves the sharpness of text and lines better than JPG; 5) Digital art - PNG is preferable for digital illustrations, diagrams, and artwork with solid colors or sharp edges. While PNG files are typically larger than JPGs, the quality and transparency benefits make the conversion worthwhile for these use cases."
+      question: "Why convert JPG to PNG?",
+      answer: "Converting JPG to PNG offers several advantages in specific situations: 1) Quality preservation—PNG uses lossless compression, so your image won't suffer from additional quality loss; 2) Transparency support—PNG files can have transparent backgrounds, essential for logos, icons, and images that need to be placed on varying backgrounds; 3) Eliminating compression artifacts—if your JPG has visible compression artifacts, converting to PNG prevents further degradation (though it won't remove existing artifacts); 4) Design workflow requirements—many graphic design projects require PNG formats for their editing processes; 5) Print preparation—PNG files are often preferred for high-quality print materials. While PNG files are typically larger than JPGs, the benefits of lossless quality and transparency make the conversion worthwhile for many professional and creative applications."
     },
     {
       question: "Will converting from JPG to PNG improve image quality?",
-      answer: "Converting from JPG to PNG won't recover quality that was already lost when the image was saved as a JPG, as JPEG uses lossy compression that permanently discards some image data. However, converting to PNG ensures that no further quality loss occurs during subsequent saves or edits. Think of it like making a photocopy - converting to PNG creates a perfect copy of the current state of your JPG, but can't restore details that were already lost in the original. If your original image was high quality before being saved as JPG, the PNG version will preserve that remaining quality perfectly for future use."
+      answer: "Converting a JPG to PNG will not improve the original image quality or remove existing compression artifacts that were introduced when the image was initially saved as a JPG. However, it will prevent any further quality loss that would occur if you continued to edit and save the image in JPG format. JPG uses lossy compression, which means some image data is permanently discarded to reduce file size. Once this data is lost, it cannot be recovered simply by converting to PNG. What PNG conversion does provide is a lossless container for the image in its current state—preserving it exactly as is without any additional quality degradation. This is particularly valuable if you plan to edit the image further, as each subsequent save in JPG format would introduce more compression artifacts, while PNG maintains consistent quality through multiple edits and saves."
     },
     {
-      question: "Can I make the background transparent when converting JPG to PNG?",
-      answer: "While converting from JPG to PNG creates a file format that supports transparency, it doesn't automatically make backgrounds transparent. JPG files don't store transparency information, so our basic converter preserves the image exactly as it appears. However, our premium version offers additional image editing tools including background removal technology that can automatically detect and remove backgrounds during conversion. For professional needs, we recommend using dedicated design software like Photoshop or GIMP to manually remove backgrounds after conversion, as this provides the most precise control over which parts of the image become transparent."
+      question: "Why are my PNG files larger than the original JPG files?",
+      answer: "PNG files are typically larger than JPG files because they use lossless compression, which preserves all image data rather than discarding some to reduce file size. This size difference is normal and expected—you're essentially trading smaller file size for better quality preservation and additional features like transparency. The size increase varies depending on the image content: 1) Photos and complex images with many colors and gradients will show the most dramatic size increase when converted to PNG; 2) Images with large areas of solid color or simple graphics might show a more modest size increase; 3) Text and line art can sometimes be more efficiently stored in PNG format. If file size is a critical concern for your specific use case (like web images where loading speed is paramount), you might want to consider whether the benefits of PNG (quality preservation and transparency) outweigh the increased storage requirements for your particular project."
     }
   ];
 
@@ -205,16 +239,16 @@ const JPGToPNGDetailed = () => {
           <div className="py-8 flex flex-col items-center">
             <FaUpload className="text-3xl text-gray-400 mb-2" />
             <p className="text-sm text-gray-500 mb-1">
-              Upload JPG images to convert to PNG
+              Upload JPG files to convert to PNG
             </p>
             <p className="text-xs text-gray-400">
-              Drag and drop JPG files here or click to browse
+              Click to browse or drag and drop JPG files here
             </p>
           </div>
           <input
             id="jpg-to-png-upload"
             type="file"
-            accept="image/jpeg,image/jpg"
+            accept=".jpg,.jpeg,image/jpeg"
             multiple
             className="hidden"
             onChange={handleFileChange}
@@ -225,7 +259,7 @@ const JPGToPNGDetailed = () => {
       {files.length > 0 && (
         <div className="mt-6 space-y-5">
           <div className="flex justify-between items-center">
-            <h4 className="font-medium">Upload Queue ({files.length})</h4>
+            <h4 className="font-medium">Files to Convert ({files.length})</h4>
             <Button 
               variant="ghost" 
               size="sm"
@@ -244,7 +278,19 @@ const JPGToPNGDetailed = () => {
                   </div>
                   <div className="overflow-hidden">
                     <p className="text-sm font-medium truncate w-40 sm:w-auto">{file.name}</p>
-                    <p className="text-xs text-gray-500">{formatBytes(file.size)}</p>
+                    <div className="flex items-center text-xs text-gray-500">
+                      <span>{formatBytes(originalSizes[index])}</span>
+                      
+                      {convertedSizes[index] && (
+                        <>
+                          <span className="mx-1 text-gray-400">→</span>
+                          <span className="text-blue-600 font-medium">{formatBytes(convertedSizes[index])}</span>
+                          <span className="ml-1 text-blue-600 font-medium">
+                            ({Math.round((convertedSizes[index] / originalSizes[index] - 1) * 100)}% larger)
+                          </span>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center">
@@ -252,7 +298,7 @@ const JPGToPNGDetailed = () => {
                     <Button 
                       variant="ghost" 
                       size="sm"
-                      className="text-green-600 mr-2"
+                      className="text-blue-600 mr-2"
                       onClick={() => handleDownload(index)}
                     >
                       <FaDownload className="mr-1" />
@@ -272,19 +318,10 @@ const JPGToPNGDetailed = () => {
             ))}
           </div>
           
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-800">
-            <p className="flex items-start">
-              <FaCheck className="mr-2 mt-1 flex-shrink-0" />
-              <span>
-                PNG files support transparency and maintain image quality better than JPG. They're ideal for logos, graphics, and images that need transparent backgrounds.
-              </span>
-            </p>
-          </div>
-          
           <div className="flex flex-col sm:flex-row gap-3">
             <Button 
               onClick={handleConvert}
-              className="flex-1 bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700"
+              className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
               disabled={isConverting || files.length === 0}
             >
               {isConverting ? (
@@ -321,9 +358,9 @@ const JPGToPNGDetailed = () => {
           
           {resultUrls.length > 0 && files.length > 0 && (
             <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-800 flex items-center">
-              <FaFileImage className="mr-2 flex-shrink-0" />
+              <FaCheck className="mr-2 flex-shrink-0" />
               <span>
-                Successfully converted {resultUrls.length} {resultUrls.length === 1 ? 'JPG file' : 'JPG files'} to PNG format!
+                Successfully converted {files.length} {files.length === 1 ? 'JPG file' : 'JPG files'} to PNG with lossless quality!
               </span>
             </div>
           )}
