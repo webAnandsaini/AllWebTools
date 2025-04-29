@@ -438,6 +438,34 @@ function Router() {
       <Route path="/tools/reddit-video-downloader-detailed" component={WebsiteToolsDetailed} />
       <Route path="/tools/mp4-downloader-detailed" component={WebsiteToolsDetailed} />
       <Route path="/tools/ptcl-speed-test-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/link-tracker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/reverse-ip-lookup-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/check-server-status-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/class-c-ip-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/code-to-text-ratio-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/alexa-rank-comparison-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/page-comparison-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/spider-simulator-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/comparison-search-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/google-cache-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/whois-lookup-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/mozrank-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/page-authority-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/google-index-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/alexa-rank-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/redirect-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/similar-site-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/cloaking-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/google-malware-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/find-facebook-id-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/check-gzip-compression-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/ssl-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/pokemon-go-server-status-finder-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/find-blog-sites-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/geo-ip-locator-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/apps-rank-tracking-tool-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/what-is-my-browser-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/check-social-status-detailed" component={WebsiteToolsDetailed} />
       
       {/* Direct routes for Keyword Tools */}
       <Route path="/keyword-position" component={KeywordToolsDetailed} />
@@ -526,6 +554,34 @@ function Router() {
       <Route path="/reddit-video-downloader" component={WebsiteToolsDetailed} />
       <Route path="/mp4-downloader" component={WebsiteToolsDetailed} />
       <Route path="/ptcl-speed-test" component={WebsiteToolsDetailed} />
+      <Route path="/link-tracker" component={WebsiteToolsDetailed} />
+      <Route path="/reverse-ip-lookup" component={WebsiteToolsDetailed} />
+      <Route path="/check-server-status" component={WebsiteToolsDetailed} />
+      <Route path="/class-c-ip-checker" component={WebsiteToolsDetailed} />
+      <Route path="/code-to-text-ratio-checker" component={WebsiteToolsDetailed} />
+      <Route path="/alexa-rank-comparison" component={WebsiteToolsDetailed} />
+      <Route path="/page-comparison" component={WebsiteToolsDetailed} />
+      <Route path="/spider-simulator" component={WebsiteToolsDetailed} />
+      <Route path="/comparison-search" component={WebsiteToolsDetailed} />
+      <Route path="/google-cache-checker" component={WebsiteToolsDetailed} />
+      <Route path="/whois-lookup" component={WebsiteToolsDetailed} />
+      <Route path="/mozrank-checker" component={WebsiteToolsDetailed} />
+      <Route path="/page-authority-checker" component={WebsiteToolsDetailed} />
+      <Route path="/google-index-checker" component={WebsiteToolsDetailed} />
+      <Route path="/alexa-rank-checker" component={WebsiteToolsDetailed} />
+      <Route path="/redirect-checker" component={WebsiteToolsDetailed} />
+      <Route path="/similar-site-checker" component={WebsiteToolsDetailed} />
+      <Route path="/cloaking-checker" component={WebsiteToolsDetailed} />
+      <Route path="/google-malware-checker" component={WebsiteToolsDetailed} />
+      <Route path="/find-facebook-id" component={WebsiteToolsDetailed} />
+      <Route path="/check-gzip-compression" component={WebsiteToolsDetailed} />
+      <Route path="/ssl-checker" component={WebsiteToolsDetailed} />
+      <Route path="/pokemon-go-server-status-finder" component={WebsiteToolsDetailed} />
+      <Route path="/find-blog-sites" component={WebsiteToolsDetailed} />
+      <Route path="/geo-ip-locator" component={WebsiteToolsDetailed} />
+      <Route path="/apps-rank-tracking-tool" component={WebsiteToolsDetailed} />
+      <Route path="/what-is-my-browser" component={WebsiteToolsDetailed} />
+      <Route path="/check-social-status" component={WebsiteToolsDetailed} />
       
       {/* Meta Tags Tools */}
       <Route path="/tools/meta-tags-analyzer-detailed" component={MetaTagsAnalyzerDetailed} />
