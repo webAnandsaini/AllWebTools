@@ -352,6 +352,7 @@ function Router() {
       {/* Keyword Tools - All using KeywordToolsDetailed component */}
       <Route path="/tools/keyword-position-detailed" component={KeywordToolsDetailed} />
       <Route path="/tools/keywords-density-checker-detailed" component={KeywordToolsDetailed} />
+      <Route path="/tools/keyword-density-checker-detailed" component={KeywordToolsDetailed} />
       <Route path="/tools/keywords-suggestions-tool-detailed" component={KeywordToolsDetailed} />
       <Route path="/tools/keyword-research-tool-detailed" component={KeywordToolsDetailed} />
       <Route path="/tools/keyword-competition-tool-detailed" component={KeywordToolsDetailed} />
@@ -367,6 +368,7 @@ function Router() {
       {/* Direct routes for Keyword Tools */}
       <Route path="/keyword-position" component={KeywordToolsDetailed} />
       <Route path="/keywords-density-checker" component={KeywordToolsDetailed} />
+      <Route path="/keyword-density-checker" component={KeywordToolsDetailed} />
       <Route path="/keywords-suggestions-tool" component={KeywordToolsDetailed} />
       <Route path="/keyword-research-tool" component={KeywordToolsDetailed} />
       <Route path="/keyword-competition-tool" component={KeywordToolsDetailed} />
