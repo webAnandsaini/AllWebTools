@@ -68,10 +68,6 @@ import AIWriterDetailed from "@/pages/tools/AIWriterDetailed";
 import AITextGeneratorDetailed from "@/pages/tools/AITextGeneratorDetailed";
 import ParagraphGeneratorDetailed from "@/pages/tools/ParagraphGeneratorDetailed";
 import PlotGeneratorDetailed from "@/pages/tools/PlotGeneratorDetailed";
-import LogoMakerDetailed from "@/pages/tools/LogoMakerDetailed";
-import ResumeBuilderDetailed from "@/pages/tools/ResumeBuilderDetailed";
-import FlyerMakerDetailed from "@/pages/tools/FlyerMakerDetailed";
-import PosterMakerDetailed from "@/pages/tools/PosterMakerDetailed";
 import WhatIsMyIPDetailed from "@/pages/tools/WhatIsMyIPDetailed";
 import IPLocationDetailed from "@/pages/tools/IPLocationDetailed";
 import FreeDailyProxyListDetailed from "@/pages/tools/FreeDailyProxyListDetailed";
@@ -233,10 +229,10 @@ function Router() {
       <Route path="/tools/ai-text-generator-detailed" component={AITextGeneratorDetailed} />
       <Route path="/tools/paragraph-generator-detailed" component={ParagraphGeneratorDetailed} />
       <Route path="/tools/plot-generator-detailed" component={PlotGeneratorDetailed} />
-      <Route path="/tools/logo-maker-detailed" component={LogoMakerDetailed} />
-      <Route path="/tools/resume-builder-detailed" component={ResumeBuilderDetailed} />
-      <Route path="/tools/flyer-maker-detailed" component={FlyerMakerDetailed} />
-      <Route path="/tools/poster-maker-detailed" component={PosterMakerDetailed} />
+      <Route path="/tools/logo-maker-detailed" component={DesignStudioDetailed} />
+      <Route path="/tools/resume-builder-detailed" component={DesignStudioDetailed} />
+      <Route path="/tools/flyer-maker-detailed" component={DesignStudioDetailed} />
+      <Route path="/tools/poster-maker-detailed" component={DesignStudioDetailed} />
       <Route path="/tools/what-is-my-ip-detailed" component={WhatIsMyIPDetailed} />
       <Route path="/tools/ip-location-detailed" component={IPLocationDetailed} />
       <Route path="/tools/free-daily-proxy-list-detailed" component={FreeDailyProxyListDetailed} />

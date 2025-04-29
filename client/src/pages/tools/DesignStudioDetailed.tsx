@@ -34,6 +34,7 @@ interface DesignConfig {
     website?: string;
     email?: string;
     phone?: string;
+    address?: string;
   };
   colorSchemes: Array<{
     name: string;
