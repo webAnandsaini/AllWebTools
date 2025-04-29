@@ -7,13 +7,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const CalculatorDetailed = () => {
   const [location] = useLocation();
   const currentPath = location.split("/").pop() || "";
 
-  // Common state
-  const [calculatorType, setCalculatorType] = useState<string>("age-calculator");
+  // State for calculator type and results
+  const [calculatorType, setCalculatorType] = useState<string>("");
   const [result, setResult] = useState<string>("");
   const [error, setError] = useState<string>("");
 
@@ -25,52 +26,9 @@ const CalculatorDetailed = () => {
   const [percentValue, setPercentValue] = useState<string>("");
   const [ofValue, setOfValue] = useState<string>("");
 
-  // Average Calculator state
-  const [numbersToAverage, setNumbersToAverage] = useState<string>("");
-
-  // Confidence Interval Calculator state
-  const [mean, setMean] = useState<string>("");
-  const [standardDeviation, setStandardDeviation] = useState<string>("");
-  const [sampleSize, setSampleSize] = useState<string>("");
-  const [confidenceLevel, setConfidenceLevel] = useState<string>("95");
-
-  // Sales Tax Calculator state
-  const [amount, setAmount] = useState<string>("");
-  const [taxRate, setTaxRate] = useState<string>("");
-  
   // Margin Calculator state
   const [cost, setCost] = useState<string>("");
   const [revenue, setRevenue] = useState<string>("");
-  
-  // Probability Calculator state
-  const [favorableOutcomes, setFavorableOutcomes] = useState<string>("");
-  const [totalOutcomes, setTotalOutcomes] = useState<string>("");
-  
-  // PayPal Fee Calculator state
-  const [transactionAmount, setTransactionAmount] = useState<string>("");
-  const [feeType, setFeeType] = useState<string>("standard");
-  
-  // Discount Calculator state
-  const [originalPrice, setOriginalPrice] = useState<string>("");
-  const [discountPercentage, setDiscountPercentage] = useState<string>("");
-  
-  // EPS Calculator state
-  const [netIncome, setNetIncome] = useState<string>("");
-  const [preferredDividends, setPreferredDividends] = useState<string>("");
-  const [outstandingShares, setOutstandingShares] = useState<string>("");
-  
-  // CPM Calculator state
-  const [adCost, setAdCost] = useState<string>("");
-  const [impressions, setImpressions] = useState<string>("");
-  
-  // Loan to Value Calculator state
-  const [loanAmount, setLoanAmount] = useState<string>("");
-  const [propertyValue, setPropertyValue] = useState<string>("");
-  
-  // GST Calculator state
-  const [priceBeforeGST, setPriceBeforeGST] = useState<string>("");
-  const [gstRate, setGstRate] = useState<string>("10");
-  const [gstInclusive, setGstInclusive] = useState<boolean>(false);
   
   // BMI Calculator state
   const [weight, setWeight] = useState<string>("");
@@ -83,1242 +41,732 @@ const CalculatorDetailed = () => {
   const [interestRate, setInterestRate] = useState<string>("");
   const [loanTerm, setLoanTerm] = useState<string>("");
   const [paymentFrequency, setPaymentFrequency] = useState<string>("monthly");
-  
-  // Hours Calculator state
-  const [startTime, setStartTime] = useState<string>("");
-  const [endTime, setEndTime] = useState<string>("");
-  const [breakTime, setBreakTime] = useState<string>("0");
-  
-  // Grade Calculator state
-  const [assignments, setAssignments] = useState<string>("");
-  const [assignmentWeights, setAssignmentWeights] = useState<string>("");
-  
-  // GPA Calculator state
-  const [grades, setGrades] = useState<string>("");
-  const [credits, setCredits] = useState<string>("");
-  
-  // Percentage Increase/Decrease/Change/Difference Calculator state
-  const [oldValue, setOldValue] = useState<string>("");
-  const [newValue, setNewValue] = useState<string>("");
-  
-  // Calorie Calculator state
-  const [age, setAge] = useState<string>("");
-  const [gender, setGender] = useState<string>("male");
-  const [activityLevel, setActivityLevel] = useState<string>("sedentary");
-  
-  // Time Calculator state
-  const [hours1, setHours1] = useState<string>("");
-  const [minutes1, setMinutes1] = useState<string>("");
-  const [seconds1, setSeconds1] = useState<string>("");
-  const [hours2, setHours2] = useState<string>("");
-  const [minutes2, setMinutes2] = useState<string>("");
-  const [seconds2, setSeconds2] = useState<string>("");
-  const [operation, setOperation] = useState<string>("add");
-  
-  // Salary Calculator state
-  const [annualSalary, setAnnualSalary] = useState<string>("");
-  const [payPeriod, setPayPeriod] = useState<string>("monthly");
-  const [workingHours, setWorkingHours] = useState<string>("40");
-  
-  // Investment Calculator state
-  const [initialInvestment, setInitialInvestment] = useState<string>("");
-  const [monthlyContribution, setMonthlyContribution] = useState<string>("");
-  const [annualReturn, setAnnualReturn] = useState<string>("");
-  const [investmentYears, setInvestmentYears] = useState<string>("");
-  
-  // TDEE Calculator state
-  const [tdeeWeight, setTdeeWeight] = useState<string>("");
-  const [tdeeHeight, setTdeeHeight] = useState<string>("");
-  const [tdeeAge, setTdeeAge] = useState<string>("");
-  const [tdeeGender, setTdeeGender] = useState<string>("male");
-  const [tdeeActivity, setTdeeActivity] = useState<string>("sedentary");
-  
-  // Mean Median Mode Calculator state
-  const [dataSet, setDataSet] = useState<string>("");
 
-  // Calculator functions
-  const calculators: { [key: string]: { calculate: () => void; title: string; } } = {
-    "age-calculator": {
-      calculate: () => {
-        try {
-          if (!birthDate) {
-            setError("Please enter a birth date");
-            return;
-          }
-          
-          const birth = new Date(birthDate);
-          const current = currentDate ? new Date(currentDate) : new Date();
-          
-          if (isNaN(birth.getTime())) {
-            setError("Invalid birth date");
-            return;
-          }
-          
-          if (birth > current) {
-            setError("Birth date cannot be in the future");
-            return;
-          }
-          
-          let years = current.getFullYear() - birth.getFullYear();
-          let months = current.getMonth() - birth.getMonth();
-          let days = current.getDate() - birth.getDate();
-          
-          if (days < 0) {
-            months -= 1;
-            // Get the last day of the previous month
-            const lastDayOfLastMonth = new Date(current.getFullYear(), current.getMonth(), 0).getDate();
-            days += lastDayOfLastMonth;
-          }
-          
-          if (months < 0) {
-            years -= 1;
-            months += 12;
-          }
-          
-          setResult(`Age: ${years} years, ${months} months, ${days} days`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating age: " + error);
-        }
-      },
-      title: "Age Calculator"
-    },
-    "percentage-calculator": {
-      calculate: () => {
-        try {
-          if (!percentValue || !ofValue) {
-            setError("Please fill in all fields");
-            return;
-          }
-          
-          const percent = parseFloat(percentValue);
-          const value = parseFloat(ofValue);
-          
-          if (isNaN(percent) || isNaN(value)) {
-            setError("Please enter valid numbers");
-            return;
-          }
-          
-          const result = (percent / 100) * value;
-          setResult(`${percent}% of ${value} = ${result.toFixed(2)}`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating percentage: " + error);
-        }
-      },
-      title: "Percentage Calculator"
-    },
-    "average-calculator": {
-      calculate: () => {
-        try {
-          if (!numbersToAverage) {
-            setError("Please enter numbers to average");
-            return;
-          }
-          
-          const numbers = numbersToAverage.split(",").map(num => parseFloat(num.trim()));
-          
-          if (numbers.some(isNaN)) {
-            setError("Please enter valid numbers separated by commas");
-            return;
-          }
-          
-          const sum = numbers.reduce((acc, curr) => acc + curr, 0);
-          const avg = sum / numbers.length;
-          
-          setResult(`Average: ${avg.toFixed(2)}`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating average: " + error);
-        }
-      },
-      title: "Average Calculator"
-    },
-    "confidence-interval-calculator": {
-      calculate: () => {
-        try {
-          if (!mean || !standardDeviation || !sampleSize) {
-            setError("Please fill in all fields");
-            return;
-          }
-          
-          const meanValue = parseFloat(mean);
-          const sdValue = parseFloat(standardDeviation);
-          const n = parseFloat(sampleSize);
-          const confLevel = parseFloat(confidenceLevel) / 100;
-          
-          if (isNaN(meanValue) || isNaN(sdValue) || isNaN(n)) {
-            setError("Please enter valid numbers");
-            return;
-          }
-          
-          if (n <= 0) {
-            setError("Sample size must be positive");
-            return;
-          }
-          
-          // Z-scores for common confidence levels
-          const zScores: { [key: string]: number } = {
-            "90": 1.645,
-            "95": 1.96,
-            "99": 2.576
-          };
-          
-          const zScore = zScores[confidenceLevel] || 1.96; // Default to 95% if not found
-          const marginOfError = zScore * (sdValue / Math.sqrt(n));
-          
-          const lowerBound = meanValue - marginOfError;
-          const upperBound = meanValue + marginOfError;
-          
-          setResult(`${confLevel * 100}% Confidence Interval: ${lowerBound.toFixed(2)} to ${upperBound.toFixed(2)}`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating confidence interval: " + error);
-        }
-      },
-      title: "Confidence Interval Calculator"
-    },
-    "sales-tax-calculator": {
-      calculate: () => {
-        try {
-          if (!amount || !taxRate) {
-            setError("Please fill in all fields");
-            return;
-          }
-          
-          const amountValue = parseFloat(amount);
-          const rateValue = parseFloat(taxRate);
-          
-          if (isNaN(amountValue) || isNaN(rateValue)) {
-            setError("Please enter valid numbers");
-            return;
-          }
-          
-          const taxAmount = amountValue * (rateValue / 100);
-          const totalAmount = amountValue + taxAmount;
-          
-          setResult(`Tax Amount: $${taxAmount.toFixed(2)}\nTotal Amount: $${totalAmount.toFixed(2)}`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating sales tax: " + error);
-        }
-      },
-      title: "Sales Tax Calculator"
-    },
-    "margin-calculator": {
-      calculate: () => {
-        try {
-          if (!cost || !revenue) {
-            setError("Please fill in all fields");
-            return;
-          }
-          
-          const costValue = parseFloat(cost);
-          const revenueValue = parseFloat(revenue);
-          
-          if (isNaN(costValue) || isNaN(revenueValue)) {
-            setError("Please enter valid numbers");
-            return;
-          }
-          
-          const grossProfit = revenueValue - costValue;
-          const margin = (grossProfit / revenueValue) * 100;
-          
-          setResult(`Gross Profit: $${grossProfit.toFixed(2)}\nProfit Margin: ${margin.toFixed(2)}%`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating margin: " + error);
-        }
-      },
-      title: "Margin Calculator"
-    },
-    "probability-calculator": {
-      calculate: () => {
-        try {
-          if (!favorableOutcomes || !totalOutcomes) {
-            setError("Please fill in all fields");
-            return;
-          }
-          
-          const favorable = parseFloat(favorableOutcomes);
-          const total = parseFloat(totalOutcomes);
-          
-          if (isNaN(favorable) || isNaN(total)) {
-            setError("Please enter valid numbers");
-            return;
-          }
-          
-          if (favorable > total) {
-            setError("Favorable outcomes cannot exceed total outcomes");
-            return;
-          }
-          
-          if (total <= 0) {
-            setError("Total outcomes must be positive");
-            return;
-          }
-          
-          const probability = favorable / total;
-          
-          setResult(`Probability: ${(probability * 100).toFixed(2)}% or ${probability.toFixed(4)} or ${favorable}/${total}`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating probability: " + error);
-        }
-      },
-      title: "Probability Calculator"
-    },
-    "paypal-fee-calculator": {
-      calculate: () => {
-        try {
-          if (!transactionAmount) {
-            setError("Please enter a transaction amount");
-            return;
-          }
-          
-          const amount = parseFloat(transactionAmount);
-          
-          if (isNaN(amount)) {
-            setError("Please enter a valid amount");
-            return;
-          }
-          
-          let fee = 0;
-          let receiveAmount = 0;
-          
-          // PayPal fee structures (as of 2023)
-          if (feeType === "standard") {
-            // Standard rate for most transactions: 2.9% + $0.30
-            fee = amount * 0.029 + 0.30;
-            receiveAmount = amount - fee;
-          } else if (feeType === "micropayment") {
-            // For transactions under $10: 5% + $0.05
-            fee = amount * 0.05 + 0.05;
-            receiveAmount = amount - fee;
-          } else if (feeType === "international") {
-            // International transactions: 4.4% + $0.30
-            fee = amount * 0.044 + 0.30;
-            receiveAmount = amount - fee;
-          }
-          
-          setResult(`Fee: $${fee.toFixed(2)}\nYou Receive: $${receiveAmount.toFixed(2)}`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating PayPal fee: " + error);
-        }
-      },
-      title: "PayPal Fee Calculator"
-    },
-    "discount-calculator": {
-      calculate: () => {
-        try {
-          if (!originalPrice || !discountPercentage) {
-            setError("Please fill in all fields");
-            return;
-          }
-          
-          const price = parseFloat(originalPrice);
-          const discount = parseFloat(discountPercentage);
-          
-          if (isNaN(price) || isNaN(discount)) {
-            setError("Please enter valid numbers");
-            return;
-          }
-          
-          if (price < 0 || discount < 0) {
-            setError("Values cannot be negative");
-            return;
-          }
-          
-          const discountAmount = price * (discount / 100);
-          const finalPrice = price - discountAmount;
-          
-          setResult(`Discount Amount: $${discountAmount.toFixed(2)}\nFinal Price: $${finalPrice.toFixed(2)}`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating discount: " + error);
-        }
-      },
-      title: "Discount Calculator"
-    },
-    "eps-calculator": {
-      calculate: () => {
-        try {
-          if (!netIncome || !outstandingShares) {
-            setError("Please fill in required fields");
-            return;
-          }
-          
-          const income = parseFloat(netIncome);
-          const shares = parseFloat(outstandingShares);
-          const preferred = preferredDividends ? parseFloat(preferredDividends) : 0;
-          
-          if (isNaN(income) || isNaN(shares) || isNaN(preferred)) {
-            setError("Please enter valid numbers");
-            return;
-          }
-          
-          if (shares <= 0) {
-            setError("Outstanding shares must be positive");
-            return;
-          }
-          
-          const availableToCommon = income - preferred;
-          const eps = availableToCommon / shares;
-          
-          setResult(`Earnings Per Share (EPS): $${eps.toFixed(2)}`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating EPS: " + error);
-        }
-      },
-      title: "EPS Calculator"
-    },
-    "cpm-calculator": {
-      calculate: () => {
-        try {
-          if (!adCost || !impressions) {
-            setError("Please fill in all fields");
-            return;
-          }
-          
-          const cost = parseFloat(adCost);
-          const imps = parseFloat(impressions);
-          
-          if (isNaN(cost) || isNaN(imps)) {
-            setError("Please enter valid numbers");
-            return;
-          }
-          
-          if (imps <= 0) {
-            setError("Impressions must be positive");
-            return;
-          }
-          
-          const cpm = (cost / imps) * 1000;
-          
-          setResult(`Cost Per Mille (CPM): $${cpm.toFixed(2)}`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating CPM: " + error);
-        }
-      },
-      title: "CPM Calculator"
-    },
-    "loan-to-value-calculator": {
-      calculate: () => {
-        try {
-          if (!loanAmount || !propertyValue) {
-            setError("Please fill in all fields");
-            return;
-          }
-          
-          const loan = parseFloat(loanAmount);
-          const value = parseFloat(propertyValue);
-          
-          if (isNaN(loan) || isNaN(value)) {
-            setError("Please enter valid numbers");
-            return;
-          }
-          
-          if (loan < 0 || value <= 0) {
-            setError("Values must be positive");
-            return;
-          }
-          
-          const ltv = (loan / value) * 100;
-          
-          setResult(`Loan-to-Value Ratio: ${ltv.toFixed(2)}%`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating LTV: " + error);
-        }
-      },
-      title: "Loan to Value Calculator"
-    },
-    "gst-calculator": {
-      calculate: () => {
-        try {
-          if (!priceBeforeGST) {
-            setError("Please enter a price");
-            return;
-          }
-          
-          const price = parseFloat(priceBeforeGST);
-          const rate = parseFloat(gstRate);
-          
-          if (isNaN(price) || isNaN(rate)) {
-            setError("Please enter valid numbers");
-            return;
-          }
-          
-          if (price < 0 || rate < 0) {
-            setError("Values cannot be negative");
-            return;
-          }
-          
-          let gstAmount = 0;
-          let totalPrice = 0;
-          
-          if (gstInclusive) {
-            // GST is included in the price
-            gstAmount = price - (price / (1 + (rate / 100)));
-            totalPrice = price;
-          } else {
-            // GST is not included in the price
-            gstAmount = price * (rate / 100);
-            totalPrice = price + gstAmount;
-          }
-          
-          setResult(`GST Amount: $${gstAmount.toFixed(2)}\nTotal Price: $${totalPrice.toFixed(2)}`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating GST: " + error);
-        }
-      },
-      title: "GST Calculator"
-    },
-    "bmi-calculator": {
-      calculate: () => {
-        try {
-          if (!weight || !height) {
-            setError("Please fill in all fields");
-            return;
-          }
-          
-          let weightInKg = parseFloat(weight);
-          let heightInM = parseFloat(height);
-          
-          // Convert units if needed
-          if (weightUnit === "lb") {
-            weightInKg = weightInKg * 0.45359237; // Convert lbs to kg
-          }
-          
-          if (heightUnit === "cm") {
-            heightInM = heightInM / 100; // Convert cm to m
-          } else if (heightUnit === "in") {
-            heightInM = heightInM * 0.0254; // Convert inches to m
-          } else if (heightUnit === "ft") {
-            heightInM = heightInM * 0.3048; // Convert feet to m
-          }
-          
-          if (isNaN(weightInKg) || isNaN(heightInM)) {
-            setError("Please enter valid numbers");
-            return;
-          }
-          
-          if (weightInKg <= 0 || heightInM <= 0) {
-            setError("Values must be positive");
-            return;
-          }
-          
-          const bmi = weightInKg / (heightInM * heightInM);
-          let category = "";
-          
-          if (bmi < 18.5) {
-            category = "Underweight";
-          } else if (bmi < 25) {
-            category = "Normal Weight";
-          } else if (bmi < 30) {
-            category = "Overweight";
-          } else {
-            category = "Obese";
-          }
-          
-          setResult(`BMI: ${bmi.toFixed(2)}\nCategory: ${category}`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating BMI: " + error);
-        }
-      },
-      title: "BMI Calculator"
-    },
-    "chronological-age-calculator": {
-      calculate: () => {
-        try {
-          if (!birthDate) {
-            setError("Please enter a birth date");
-            return;
-          }
-          
-          const birth = new Date(birthDate);
-          const current = currentDate ? new Date(currentDate) : new Date();
-          
-          if (isNaN(birth.getTime())) {
-            setError("Invalid birth date");
-            return;
-          }
-          
-          if (birth > current) {
-            setError("Birth date cannot be in the future");
-            return;
-          }
-          
-          let years = current.getFullYear() - birth.getFullYear();
-          let months = current.getMonth() - birth.getMonth();
-          let days = current.getDate() - birth.getDate();
-          
-          if (days < 0) {
-            months -= 1;
-            // Get the last day of the previous month
-            const lastDayOfLastMonth = new Date(current.getFullYear(), current.getMonth(), 0).getDate();
-            days += lastDayOfLastMonth;
-          }
-          
-          if (months < 0) {
-            years -= 1;
-            months += 12;
-          }
-          
-          setResult(`Age: ${years} years, ${months} months, ${days} days`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating age: " + error);
-        }
-      },
-      title: "Chronological Age Calculator"
-    },
-    "loan-calculator": {
-      calculate: () => {
-        try {
-          if (!loanPrincipal || !interestRate || !loanTerm) {
-            setError("Please fill in all required fields");
-            return;
-          }
-          
-          const principal = parseFloat(loanPrincipal);
-          const annualRate = parseFloat(interestRate) / 100;
-          const years = parseFloat(loanTerm);
-          
-          if (isNaN(principal) || isNaN(annualRate) || isNaN(years)) {
-            setError("Please enter valid numbers");
-            return;
-          }
-          
-          if (principal <= 0 || annualRate <= 0 || years <= 0) {
-            setError("Values must be positive");
-            return;
-          }
-          
-          let periodsPerYear = 12; // Default for monthly
-          if (paymentFrequency === "biweekly") {
-            periodsPerYear = 26;
-          } else if (paymentFrequency === "weekly") {
-            periodsPerYear = 52;
-          }
-          
-          const totalPeriods = years * periodsPerYear;
-          const periodicRate = annualRate / periodsPerYear;
-          
-          // Calculate payment using the formula: P = (r * PV) / (1 - (1 + r)^-n)
-          const payment = (periodicRate * principal) / (1 - Math.pow(1 + periodicRate, -totalPeriods));
-          const totalPayment = payment * totalPeriods;
-          const totalInterest = totalPayment - principal;
-          
-          setResult(`${paymentFrequency.charAt(0).toUpperCase() + paymentFrequency.slice(1)} Payment: $${payment.toFixed(2)}\nTotal Payments: $${totalPayment.toFixed(2)}\nTotal Interest: $${totalInterest.toFixed(2)}`);
-          setError("");
-        } catch (error) {
-          setError("Error calculating loan payment: " + error);
-        }
-      },
-      title: "Loan Calculator"
-    },
-    // Add more calculator functions as needed...
-  };
-
-  // Initialize with the correct calculator type from URL
+  // Initialize calculator type from URL
   useEffect(() => {
     const path = currentPath.replace("-detailed", "");
-    if (path && calculators[path]) {
-      setCalculatorType(path);
-      
-      // Reset any error/result when changing calculator type
-      setError("");
-      setResult("");
-      
-      // Add default values for specific calculators if needed
-      if (path === "age-calculator" || path === "chronological-age-calculator") {
-        setBirthDate("");
-        setCurrentDate(new Date().toISOString().split("T")[0]);
-      } else if (path === "margin-calculator") {
-        setCost("");
-        setRevenue("");
-      }
+    setCalculatorType(path);
+    
+    // Set default values based on calculator type
+    if (path === "age-calculator" || path === "chronological-age-calculator") {
+      setBirthDate("");
+      setCurrentDate(new Date().toISOString().split("T")[0]);
+    } else if (path === "margin-calculator") {
+      setCost("");
+      setRevenue("");
+    } else if (path === "bmi-calculator") {
+      setWeight("");
+      setHeight("");
+    } else if (path === "loan-calculator") {
+      setLoanPrincipal("");
+      setInterestRate("");
+      setLoanTerm("");
     }
   }, [currentPath]);
-  
+
+  // Calculate Age
+  const calculateAge = () => {
+    try {
+      if (!birthDate) {
+        setError("Please enter a birth date");
+        return;
+      }
+      
+      const birth = new Date(birthDate);
+      const current = currentDate ? new Date(currentDate) : new Date();
+      
+      if (isNaN(birth.getTime())) {
+        setError("Invalid birth date");
+        return;
+      }
+      
+      if (birth > current) {
+        setError("Birth date cannot be in the future");
+        return;
+      }
+      
+      let years = current.getFullYear() - birth.getFullYear();
+      let months = current.getMonth() - birth.getMonth();
+      let days = current.getDate() - birth.getDate();
+      
+      if (days < 0) {
+        months -= 1;
+        // Get the last day of the previous month
+        const lastDayOfLastMonth = new Date(current.getFullYear(), current.getMonth(), 0).getDate();
+        days += lastDayOfLastMonth;
+      }
+      
+      if (months < 0) {
+        years -= 1;
+        months += 12;
+      }
+      
+      setResult(`Age: ${years} years, ${months} months, ${days} days`);
+      setError("");
+    } catch (error) {
+      setError("Error calculating age: " + error);
+    }
+  };
+
+  // Calculate Percentage
+  const calculatePercentage = () => {
+    try {
+      if (!percentValue || !ofValue) {
+        setError("Please fill in all fields");
+        return;
+      }
+      
+      const percent = parseFloat(percentValue);
+      const value = parseFloat(ofValue);
+      
+      if (isNaN(percent) || isNaN(value)) {
+        setError("Please enter valid numbers");
+        return;
+      }
+      
+      const result = (percent / 100) * value;
+      setResult(`${percent}% of ${value} = ${result.toFixed(2)}`);
+      setError("");
+    } catch (error) {
+      setError("Error calculating percentage: " + error);
+    }
+  };
+
+  // Calculate Margin
+  const calculateMargin = () => {
+    try {
+      if (!cost || !revenue) {
+        setError("Please fill in all fields");
+        return;
+      }
+      
+      const costValue = parseFloat(cost);
+      const revenueValue = parseFloat(revenue);
+      
+      if (isNaN(costValue) || isNaN(revenueValue)) {
+        setError("Please enter valid numbers");
+        return;
+      }
+      
+      const grossProfit = revenueValue - costValue;
+      const margin = (grossProfit / revenueValue) * 100;
+      const markup = (grossProfit / costValue) * 100;
+      
+      setResult(
+        `Gross Profit: $${grossProfit.toFixed(2)}\n` +
+        `Profit Margin: ${margin.toFixed(2)}%\n` +
+        `Markup Percentage: ${markup.toFixed(2)}%`
+      );
+      setError("");
+    } catch (error) {
+      setError("Error calculating margin: " + error);
+    }
+  };
+
+  // Calculate BMI
+  const calculateBMI = () => {
+    try {
+      if (!weight || !height) {
+        setError("Please fill in all fields");
+        return;
+      }
+      
+      let weightInKg = parseFloat(weight);
+      let heightInM = parseFloat(height);
+      
+      // Convert units if needed
+      if (weightUnit === "lb") {
+        weightInKg = weightInKg * 0.45359237; // Convert lbs to kg
+      }
+      
+      if (heightUnit === "cm") {
+        heightInM = heightInM / 100; // Convert cm to m
+      } else if (heightUnit === "in") {
+        heightInM = heightInM * 0.0254; // Convert inches to m
+      } else if (heightUnit === "ft") {
+        heightInM = heightInM * 0.3048; // Convert feet to m
+      }
+      
+      if (isNaN(weightInKg) || isNaN(heightInM)) {
+        setError("Please enter valid numbers");
+        return;
+      }
+      
+      if (weightInKg <= 0 || heightInM <= 0) {
+        setError("Values must be positive");
+        return;
+      }
+      
+      const bmi = weightInKg / (heightInM * heightInM);
+      let category = "";
+      
+      if (bmi < 18.5) {
+        category = "Underweight";
+      } else if (bmi < 25) {
+        category = "Normal Weight";
+      } else if (bmi < 30) {
+        category = "Overweight";
+      } else {
+        category = "Obese";
+      }
+      
+      setResult(`BMI: ${bmi.toFixed(2)}\nCategory: ${category}`);
+      setError("");
+    } catch (error) {
+      setError("Error calculating BMI: " + error);
+    }
+  };
+
+  // Calculate Loan Payment
+  const calculateLoanPayment = () => {
+    try {
+      if (!loanPrincipal || !interestRate || !loanTerm) {
+        setError("Please fill in all required fields");
+        return;
+      }
+      
+      const principal = parseFloat(loanPrincipal);
+      const annualRate = parseFloat(interestRate) / 100;
+      const years = parseFloat(loanTerm);
+      
+      if (isNaN(principal) || isNaN(annualRate) || isNaN(years)) {
+        setError("Please enter valid numbers");
+        return;
+      }
+      
+      if (principal <= 0 || annualRate <= 0 || years <= 0) {
+        setError("Values must be positive");
+        return;
+      }
+      
+      let periodsPerYear = 12; // Default for monthly
+      if (paymentFrequency === "biweekly") {
+        periodsPerYear = 26;
+      } else if (paymentFrequency === "weekly") {
+        periodsPerYear = 52;
+      }
+      
+      const totalPeriods = years * periodsPerYear;
+      const periodicRate = annualRate / periodsPerYear;
+      
+      // Calculate payment using the formula: P = (r * PV) / (1 - (1 + r)^-n)
+      const payment = (periodicRate * principal) / (1 - Math.pow(1 + periodicRate, -totalPeriods));
+      const totalPayment = payment * totalPeriods;
+      const totalInterest = totalPayment - principal;
+      
+      setResult(
+        `${paymentFrequency.charAt(0).toUpperCase() + paymentFrequency.slice(1)} Payment: $${payment.toFixed(2)}\n` +
+        `Total Payments: $${totalPayment.toFixed(2)}\n` +
+        `Total Interest: $${totalInterest.toFixed(2)}`
+      );
+      setError("");
+    } catch (error) {
+      setError("Error calculating loan payment: " + error);
+    }
+  };
+
   // Auto-calculate when input fields change
   useEffect(() => {
-    // Age Calculator auto-calculate
     if (calculatorType === "age-calculator" || calculatorType === "chronological-age-calculator") {
       if (birthDate && currentDate) {
-        calculators[calculatorType]?.calculate();
+        calculateAge();
       }
-    }
-    
-    // Percentage Calculator auto-calculate
-    if (calculatorType === "percentage-calculator") {
+    } else if (calculatorType === "percentage-calculator") {
       if (percentValue && ofValue) {
-        calculators[calculatorType]?.calculate();
+        calculatePercentage();
       }
-    }
-    
-    // Margin Calculator auto-calculate
-    if (calculatorType === "margin-calculator") {
+    } else if (calculatorType === "margin-calculator") {
       if (cost && revenue) {
-        calculators[calculatorType]?.calculate();
+        calculateMargin();
       }
-    }
-    
-    // BMI Calculator auto-calculate
-    if (calculatorType === "bmi-calculator") {
+    } else if (calculatorType === "bmi-calculator") {
       if (weight && height) {
-        calculators[calculatorType]?.calculate();
+        calculateBMI();
       }
-    }
-    
-    // Loan Calculator auto-calculate
-    if (calculatorType === "loan-calculator") {
+    } else if (calculatorType === "loan-calculator") {
       if (loanPrincipal && interestRate && loanTerm) {
-        calculators[calculatorType]?.calculate();
+        calculateLoanPayment();
       }
     }
-    
   }, [
-    // Age Calculator dependencies
-    birthDate, currentDate, 
-    // Percentage Calculator dependencies
+    calculatorType,
+    birthDate, currentDate,
     percentValue, ofValue,
-    // Margin Calculator dependencies
     cost, revenue,
-    // BMI Calculator dependencies
     weight, height, weightUnit, heightUnit,
-    // Loan Calculator dependencies
-    loanPrincipal, interestRate, loanTerm, paymentFrequency,
-    // Current calculator type
-    calculatorType
+    loanPrincipal, interestRate, loanTerm, paymentFrequency
   ]);
-  
-  // Helper function to get title based on calculator type
+
+  // Handle calculate button click
+  const handleCalculate = () => {
+    if (calculatorType === "age-calculator" || calculatorType === "chronological-age-calculator") {
+      calculateAge();
+    } else if (calculatorType === "percentage-calculator") {
+      calculatePercentage();
+    } else if (calculatorType === "margin-calculator") {
+      calculateMargin();
+    } else if (calculatorType === "bmi-calculator") {
+      calculateBMI();
+    } else if (calculatorType === "loan-calculator") {
+      calculateLoanPayment();
+    } else {
+      setError("This calculator type is not yet implemented");
+    }
+  };
+
+  // Get title, description, and other metadata based on calculator type
   const getTitle = (): string => {
-    return calculators[calculatorType]?.title || "Calculator";
+    if (calculatorType === "age-calculator") return "Age Calculator";
+    if (calculatorType === "percentage-calculator") return "Percentage Calculator";
+    if (calculatorType === "margin-calculator") return "Margin Calculator";
+    if (calculatorType === "bmi-calculator") return "BMI Calculator";
+    if (calculatorType === "loan-calculator") return "Loan Calculator";
+    if (calculatorType === "chronological-age-calculator") return "Chronological Age Calculator";
+    return "Calculator";
   };
   
-  // Helper function to get description based on calculator type
   const getDescription = (): string => {
-    switch (calculatorType) {
-      case "age-calculator":
-        return "Calculate exact age from birth date to current date or between any two dates. Our Age Calculator provides precise results in years, months, and days, making it perfect for determining eligibility for age-restricted services, retirement planning, or simply satisfying curiosity about your exact age.";
-      case "percentage-calculator":
-        return "Find percentages quickly and accurately with our Percentage Calculator. Calculate what percent one number is of another, find the percentage increase or decrease between two numbers, or compute a value after applying a percentage discount or increase.";
-      case "margin-calculator":
-        return "Optimize your pricing strategy with our comprehensive Margin Calculator. This business-essential tool calculates profit margins, markup percentages, and selling prices based on costs, helping retailers, wholesalers, and service providers determine profitable pricing structures while maintaining competitive market positions.";
-      case "bmi-calculator":
-        return "Calculate your Body Mass Index (BMI) to assess your weight relative to your height. Our BMI Calculator helps you determine if you're underweight, normal weight, overweight, or obese according to standard health guidelines, providing a simple way to monitor your weight status.";
-      case "loan-calculator":
-        return "Plan your finances with our Loan Calculator. Calculate monthly payments, total interest paid, and the full cost of loans based on principal amount, interest rate, and loan term. Perfect for mortgages, auto loans, personal loans, or any fixed-term borrowing.";
-      default:
-        return "Use our easy-to-use online calculator for quick and accurate calculations. Perfect for students, professionals, and anyone needing fast math solutions. Enter your values and get instant results.";
+    if (calculatorType === "age-calculator") {
+      return "Calculate exact age from birth date to current date or between any two dates. Our Age Calculator provides precise results in years, months, and days, making it perfect for determining eligibility for age-restricted services, retirement planning, or simply satisfying curiosity about your exact age.";
+    } else if (calculatorType === "percentage-calculator") {
+      return "Find percentages quickly and accurately with our Percentage Calculator. Calculate what percent one number is of another, find the percentage increase or decrease between two numbers, or compute a value after applying a percentage discount or increase.";
+    } else if (calculatorType === "margin-calculator") {
+      return "Optimize your pricing strategy with our comprehensive Margin Calculator. This business-essential tool calculates profit margins, markup percentages, and selling prices based on costs, helping retailers, wholesalers, and service providers determine profitable pricing structures while maintaining competitive market positions.";
+    } else if (calculatorType === "bmi-calculator") {
+      return "Calculate your Body Mass Index (BMI) to assess your weight relative to your height. Our BMI Calculator helps you determine if you're underweight, normal weight, overweight, or obese according to standard health guidelines, providing a simple way to monitor your weight status.";
+    } else if (calculatorType === "loan-calculator") {
+      return "Plan your finances with our Loan Calculator. Calculate monthly payments, total interest paid, and the full cost of loans based on principal amount, interest rate, and loan term. Perfect for mortgages, auto loans, personal loans, or any fixed-term borrowing.";
+    } else if (calculatorType === "chronological-age-calculator") {
+      return "Calculate exact chronological age from birth date to current date or between any two dates. Our Chronological Age Calculator provides precise results in years, months, and days, making it perfect for determining exact age for medical or developmental assessments.";
     }
+    return "Use our easy-to-use online calculator for quick and accurate calculations. Perfect for students, professionals, and anyone needing fast math solutions. Enter your values and get instant results.";
   };
 
-  // Helper function to get how-to-use steps based on calculator type
   const getHowToUse = (): string[] => {
-    switch (calculatorType) {
-      case "age-calculator":
-      case "chronological-age-calculator":
-        return [
-          "Enter your birth date or start date in the first field",
-          "If needed, modify the current date (default is today)",
-          "The calculator will instantly show your exact age in years, months, and days"
-        ];
-      case "percentage-calculator":
-        return [
-          "Enter the percentage value (e.g., 25 for 25%)",
-          "Enter the base value you want to calculate the percentage of",
-          "The calculator will immediately show what that percentage equals"
-        ];
-      case "margin-calculator":
-        return [
-          "Enter your cost amount in the first field",
-          "Enter your revenue or selling price in the second field",
-          "The calculator will display your gross profit and profit margin percentage"
-        ];
-      case "bmi-calculator":
-        return [
-          "Enter your weight and select your weight unit (kg or lb)",
-          "Enter your height and select your height unit (cm, inches, or feet)",
-          "View your BMI result and weight category instantly"
-        ];
-      case "loan-calculator":
-        return [
-          "Enter the loan amount you're borrowing",
-          "Input the annual interest rate (as a percentage)",
-          "Specify the loan term in years",
-          "Select your preferred payment frequency (monthly, bi-weekly, or weekly)",
-          "The calculator will show your regular payment amount, total payments, and total interest"
-        ];
-      default:
-        return [
-          "Select the calculator type from the dropdown menu",
-          "Enter the required values in the input fields",
-          "Click the Calculate button to see your results",
-          "Use the results for your personal or professional needs"
-        ];
+    if (calculatorType === "age-calculator" || calculatorType === "chronological-age-calculator") {
+      return [
+        "Enter your birth date or start date in the first field",
+        "If needed, modify the current date (default is today)",
+        "The calculator will instantly show your exact age in years, months, and days"
+      ];
+    } else if (calculatorType === "percentage-calculator") {
+      return [
+        "Enter the percentage value (e.g., 25 for 25%)",
+        "Enter the base value you want to calculate the percentage of",
+        "The calculator will immediately show what that percentage equals"
+      ];
+    } else if (calculatorType === "margin-calculator") {
+      return [
+        "Enter your cost amount in the first field",
+        "Enter your revenue or selling price in the second field",
+        "The calculator will display your gross profit, profit margin, and markup percentage"
+      ];
+    } else if (calculatorType === "bmi-calculator") {
+      return [
+        "Enter your weight and select your weight unit (kg or lb)",
+        "Enter your height and select your height unit (cm, inches, or feet)",
+        "View your BMI result and weight category instantly"
+      ];
+    } else if (calculatorType === "loan-calculator") {
+      return [
+        "Enter the loan amount you're borrowing",
+        "Input the annual interest rate (as a percentage)",
+        "Specify the loan term in years",
+        "Select your preferred payment frequency (monthly, bi-weekly, or weekly)",
+        "The calculator will show your regular payment amount, total payments, and total interest"
+      ];
     }
+    return [
+      "Select the calculator type",
+      "Enter the required values in the input fields",
+      "Click the Calculate button to see your results",
+      "Use the results for your personal or professional needs"
+    ];
   };
 
-  // Helper function to get features based on calculator type
   const getFeatures = (): string[] => {
-    switch (calculatorType) {
-      case "age-calculator":
-      case "chronological-age-calculator":
-        return [
-          "✅ Precise calculation of years, months, and days",
-          "✅ Ability to calculate age between any two dates",
-          "✅ Automatic handling of leap years and varying month lengths",
-          "✅ Real-time results that update as you type",
-          "✅ Mobile-friendly design for on-the-go calculations"
-        ];
-      case "percentage-calculator":
-        return [
-          "✅ Quick percentage of value calculations",
-          "✅ Decimal precision for accurate results",
-          "✅ Real-time calculation as you type",
-          "✅ Simple, user-friendly interface",
-          "✅ Works on all devices and screen sizes"
-        ];
-      case "margin-calculator":
-        return [
-          "✅ Quick profit margin calculations for business decisions",
-          "✅ Accurate gross profit amount display",
-          "✅ Percentage margin calculated with precision",
-          "✅ Real-time results that update instantly",
-          "✅ Clear, easy-to-understand display of results"
-        ];
-      case "bmi-calculator":
-        return [
-          "✅ Support for multiple weight units (kg, lb)",
-          "✅ Support for multiple height units (cm, inches, feet)",
-          "✅ Instant calculation with weight category classification",
-          "✅ Clear indication of your BMI health status",
-          "✅ Mobile-friendly for on-the-go health tracking"
-        ];
-      case "loan-calculator":
-        return [
-          "✅ Calculate monthly, bi-weekly, or weekly payments",
-          "✅ View total interest paid over loan term",
-          "✅ See total cost of loan (principal + interest)",
-          "✅ Real-time calculation as you adjust values",
-          "✅ Support for various loan types (mortgage, auto, personal)"
-        ];
-      default:
-        return [
-          "✅ Fast and accurate calculations",
-          "✅ User-friendly interface",
-          "✅ Works on all devices",
-          "✅ No account or sign-up required",
-          "✅ Free to use with no limitations"
-        ];
+    if (calculatorType === "age-calculator" || calculatorType === "chronological-age-calculator") {
+      return [
+        "✅ Precise calculation of years, months, and days",
+        "✅ Ability to calculate age between any two dates",
+        "✅ Automatic handling of leap years and varying month lengths",
+        "✅ Real-time results that update as you type",
+        "✅ Mobile-friendly design for on-the-go calculations"
+      ];
+    } else if (calculatorType === "percentage-calculator") {
+      return [
+        "✅ Quick percentage of value calculations",
+        "✅ Decimal precision for accurate results",
+        "✅ Real-time calculation as you type",
+        "✅ Simple, user-friendly interface",
+        "✅ Works on all devices and screen sizes"
+      ];
+    } else if (calculatorType === "margin-calculator") {
+      return [
+        "✅ Quick profit margin calculations for business decisions",
+        "✅ Accurate gross profit amount display",
+        "✅ Percentage margin calculated with precision",
+        "✅ Markup percentage calculations",
+        "✅ Real-time results that update instantly"
+      ];
+    } else if (calculatorType === "bmi-calculator") {
+      return [
+        "✅ Support for multiple weight units (kg, lb)",
+        "✅ Support for multiple height units (cm, inches, feet)",
+        "✅ Instant calculation with weight category classification",
+        "✅ Clear indication of your BMI health status",
+        "✅ Mobile-friendly for on-the-go health tracking"
+      ];
+    } else if (calculatorType === "loan-calculator") {
+      return [
+        "✅ Calculate monthly, bi-weekly, or weekly payments",
+        "✅ View total interest paid over loan term",
+        "✅ See total cost of loan (principal + interest)",
+        "✅ Real-time calculation as you adjust values",
+        "✅ Support for various loan types (mortgage, auto, personal)"
+      ];
     }
+    return [
+      "✅ Fast and accurate calculations",
+      "✅ User-friendly interface",
+      "✅ Works on all devices",
+      "✅ No account or sign-up required",
+      "✅ Free to use with no limitations"
+    ];
   };
 
-  // Helper function to get FAQs based on calculator type
   const getFaqs = (): Array<{ question: string; answer: string }> => {
-    switch (calculatorType) {
-      case "age-calculator":
-      case "chronological-age-calculator":
-        return [
-          {
-            question: "How does the Age Calculator work?",
-            answer: "Our Age Calculator computes the exact time span between a birth date (or start date) and the current date (or any specified end date). It accounts for varying month lengths, leap years, and provides results in years, months, and days."
-          },
-          {
-            question: "Why might my age calculation differ from simply subtracting years?",
-            answer: "Simply subtracting birth year from current year doesn't account for whether your birthday has occurred this year. Our calculator provides a precise measurement by considering the exact months and days."
-          },
-          {
-            question: "Can I calculate age between two specific dates?",
-            answer: "Yes! Instead of using today's date as the end point, you can specify any end date to calculate the exact time span between two dates."
-          },
-          {
-            question: "Is the Age Calculator accurate for legal purposes?",
-            answer: "While our calculator provides mathematically accurate results, for legal or official purposes, we recommend consulting with the relevant authorities as different jurisdictions may have specific rules for age calculation."
-          }
-        ];
-      case "percentage-calculator":
-        return [
-          {
-            question: "How do I calculate what percentage one number is of another?",
-            answer: "To find what percentage A is of B, divide A by B and then multiply by 100. For example, to find what percentage 25 is of 200, calculate (25 ÷ 200) × 100 = 12.5%."
-          },
-          {
-            question: "How do I calculate a percentage increase or decrease?",
-            answer: "To find the percentage change, subtract the original value from the new value, divide by the original value, and multiply by 100. For example, if a price increases from $80 to $100, the percentage increase is ((100 - 80) ÷ 80) × 100 = 25%."
-          },
-          {
-            question: "How do I find a value after applying a percentage discount?",
-            answer: "To calculate a discounted price, multiply the original price by (1 - discount percentage/100). For example, a 20% discount on a $50 item would be $50 × (1 - 20/100) = $50 × 0.8 = $40."
-          },
-          {
-            question: "Can I use the percentage calculator for tax calculations?",
-            answer: "Yes, you can use this calculator to determine sales tax amounts. Enter the tax rate as the percentage and the pre-tax amount as the value to find the tax amount."
-          }
-        ];
-      case "margin-calculator":
-        return [
-          {
-            question: "What is the difference between margin and markup?",
-            answer: "Margin is the percentage of the selling price that is profit, calculated as (Revenue - Cost) ÷ Revenue × 100. Markup is the percentage of the cost that represents profit, calculated as (Revenue - Cost) ÷ Cost × 100. They represent the same profit from different perspectives."
-          },
-          {
-            question: "How do I calculate the selling price to achieve a specific margin?",
-            answer: "To find the selling price for a desired margin percentage, use the formula: Selling Price = Cost ÷ (1 - (Margin ÷ 100)). For example, to achieve a 30% margin on a product that costs $70, calculate $70 ÷ (1 - (30 ÷ 100)) = $70 ÷ 0.7 = $100."
-          },
-          {
-            question: "Is a higher margin always better for business?",
-            answer: "Not necessarily. While higher margins mean more profit per sale, they may reduce sales volume if prices become uncompetitive. The optimal margin depends on your market, competition, product uniqueness, and business strategy."
-          },
-          {
-            question: "How can I improve my profit margin?",
-            answer: "You can improve your profit margin by reducing costs (finding cheaper suppliers, optimizing operations), increasing prices (if the market allows), focusing on higher-margin products or services, or increasing value perception to justify premium pricing."
-          }
-        ];
-      case "bmi-calculator":
-        return [
-          {
-            question: "What is BMI and what does it measure?",
-            answer: "Body Mass Index (BMI) is a numerical value calculated from your weight and height. It provides a simple indicator of whether you're at a healthy weight for your height. While it doesn't measure body fat directly, it's used as a screening tool to categorize weight status."
-          },
-          {
-            question: "What are the BMI categories?",
-            answer: "The standard BMI categories are: Underweight (BMI below 18.5), Normal weight (BMI 18.5-24.9), Overweight (BMI 25-29.9), and Obese (BMI 30 or above). These categories apply to adults 20 years and older."
-          },
-          {
-            question: "Is BMI an accurate measure of health?",
-            answer: "BMI is a useful screening tool but has limitations. It doesn't distinguish between muscle and fat, so very muscular individuals may have a high BMI without excess fat. It also doesn't account for factors like age, gender, ethnicity, or fat distribution. For a comprehensive health assessment, BMI should be considered alongside other measures."
-          },
-          {
-            question: "Should children use this BMI calculator?",
-            answer: "No, this calculator is designed for adults. For children and teens, age and gender-specific BMI calculators (called BMI-for-age) should be used, as growth patterns affect the relationship between weight and height."
-          }
-        ];
-      case "loan-calculator":
-        return [
-          {
-            question: "How is the monthly loan payment calculated?",
-            answer: "The monthly payment is calculated using the formula: P = (r * PV) / (1 - (1 + r)^-n), where P is the payment, r is the monthly interest rate (annual rate divided by 12), PV is the loan amount, and n is the total number of payments (loan term in years multiplied by 12)."
-          },
-          {
-            question: "What factors affect my loan payment the most?",
-            answer: "The three main factors are: loan amount (principal), interest rate, and loan term. A higher principal or interest rate increases payments, while a longer term decreases monthly payments but increases total interest paid over the life of the loan."
-          },
-          {
-            question: "Is it better to choose a shorter or longer loan term?",
-            answer: "A shorter loan term typically means higher monthly payments but less total interest paid and building equity faster. A longer term offers lower monthly payments but costs more in total interest over time. The best choice depends on your financial situation, cash flow needs, and financial goals."
-          },
-          {
-            question: "What's the advantage of making bi-weekly rather than monthly payments?",
-            answer: "Bi-weekly payments (every two weeks) result in 26 half-payments per year, equivalent to 13 monthly payments instead of 12. This extra payment each year goes directly to principal, helping you pay off the loan faster and save on interest costs."
-          }
-        ];
-      default:
-        return [
-          {
-            question: "How accurate is this calculator?",
-            answer: "Our calculator provides results with high precision for general purposes. For critical financial, legal, or health decisions, we recommend consulting with a professional in the relevant field."
-          },
-          {
-            question: "Can I use these calculations for my business or professional work?",
-            answer: "Yes, our calculator is designed to provide accurate results for both personal and professional use. However, for critical business decisions, you may want to verify with specialized software or consult a professional."
-          },
-          {
-            question: "Does the calculator save my data?",
-            answer: "No, all calculations are performed locally on your device. We do not store, save, or transmit any of the values you enter."
-          },
-          {
-            question: "Why are some calculator functions limited or simplified?",
-            answer: "We've designed this calculator to be user-friendly while maintaining accuracy. For more complex calculations or specialized functions, you might need to use dedicated software or consult with professionals in that field."
-          }
-        ];
+    if (calculatorType === "age-calculator" || calculatorType === "chronological-age-calculator") {
+      return [
+        {
+          question: "How does the Age Calculator work?",
+          answer: "Our Age Calculator computes the exact time span between a birth date (or start date) and the current date (or any specified end date). It accounts for varying month lengths, leap years, and provides results in years, months, and days."
+        },
+        {
+          question: "Why might my age calculation differ from simply subtracting years?",
+          answer: "Simply subtracting birth year from current year doesn't account for whether your birthday has occurred this year. Our calculator provides a precise measurement by considering the exact months and days."
+        },
+        {
+          question: "Can I calculate age between two specific dates?",
+          answer: "Yes! Instead of using today's date as the end point, you can specify any end date to calculate the exact time span between two dates."
+        },
+        {
+          question: "Is the Age Calculator accurate for legal purposes?",
+          answer: "While our calculator provides mathematically accurate results, for legal or official purposes, we recommend consulting with the relevant authorities as different jurisdictions may have specific rules for age calculation."
+        }
+      ];
+    } else if (calculatorType === "percentage-calculator") {
+      return [
+        {
+          question: "How do I calculate what percentage one number is of another?",
+          answer: "To find what percentage A is of B, divide A by B and then multiply by 100. For example, to find what percentage 25 is of 200, calculate (25 ÷ 200) × 100 = 12.5%."
+        },
+        {
+          question: "How do I calculate a percentage increase or decrease?",
+          answer: "To find the percentage change, subtract the original value from the new value, divide by the original value, and multiply by 100. For example, if a price increases from $80 to $100, the percentage increase is ((100 - 80) ÷ 80) × 100 = 25%."
+        },
+        {
+          question: "How do I find a value after applying a percentage discount?",
+          answer: "To calculate a discounted price, multiply the original price by (1 - discount percentage/100). For example, a 20% discount on a $50 item would be $50 × (1 - 20/100) = $50 × 0.8 = $40."
+        },
+        {
+          question: "Can I use the percentage calculator for tax calculations?",
+          answer: "Yes, you can use this calculator to determine sales tax amounts. Enter the tax rate as the percentage and the pre-tax amount as the value to find the tax amount."
+        }
+      ];
+    } else if (calculatorType === "margin-calculator") {
+      return [
+        {
+          question: "What is the difference between margin and markup?",
+          answer: "Margin is the percentage of the selling price that is profit, calculated as (Revenue - Cost) ÷ Revenue × 100. Markup is the percentage of the cost that represents profit, calculated as (Revenue - Cost) ÷ Cost × 100. They represent the same profit from different perspectives."
+        },
+        {
+          question: "How do I calculate the selling price to achieve a specific margin?",
+          answer: "To find the selling price for a desired margin percentage, use the formula: Selling Price = Cost ÷ (1 - (Margin ÷ 100)). For example, to achieve a 30% margin on a product that costs $70, calculate $70 ÷ (1 - (30 ÷ 100)) = $70 ÷ 0.7 = $100."
+        },
+        {
+          question: "Is a higher margin always better for business?",
+          answer: "Not necessarily. While higher margins mean more profit per sale, they may reduce sales volume if prices become uncompetitive. The optimal margin depends on your market, competition, product uniqueness, and business strategy."
+        },
+        {
+          question: "How can I improve my profit margin?",
+          answer: "You can improve your profit margin by reducing costs (finding cheaper suppliers, optimizing operations), increasing prices (if the market allows), focusing on higher-margin products or services, or increasing value perception to justify premium pricing."
+        }
+      ];
+    } else if (calculatorType === "bmi-calculator") {
+      return [
+        {
+          question: "What is BMI and what does it measure?",
+          answer: "Body Mass Index (BMI) is a numerical value calculated from your weight and height. It provides a simple indicator of whether you're at a healthy weight for your height. While it doesn't measure body fat directly, it's used as a screening tool to categorize weight status."
+        },
+        {
+          question: "What are the BMI categories?",
+          answer: "The standard BMI categories are: Underweight (BMI below 18.5), Normal weight (BMI 18.5-24.9), Overweight (BMI 25-29.9), and Obese (BMI 30 or above). These categories apply to adults 20 years and older."
+        },
+        {
+          question: "Is BMI an accurate measure of health?",
+          answer: "BMI is a useful screening tool but has limitations. It doesn't distinguish between muscle and fat, so very muscular individuals may have a high BMI without excess fat. It also doesn't account for factors like age, gender, ethnicity, or fat distribution. For a comprehensive health assessment, BMI should be considered alongside other measures."
+        },
+        {
+          question: "Should children use this BMI calculator?",
+          answer: "No, this calculator is designed for adults. For children and teens, age and gender-specific BMI calculators (called BMI-for-age) should be used, as growth patterns affect the relationship between weight and height."
+        }
+      ];
+    } else if (calculatorType === "loan-calculator") {
+      return [
+        {
+          question: "How is the monthly loan payment calculated?",
+          answer: "The monthly payment is calculated using the formula: P = (r * PV) / (1 - (1 + r)^-n), where P is the payment, r is the monthly interest rate (annual rate divided by 12), PV is the loan amount, and n is the total number of payments (loan term in years multiplied by 12)."
+        },
+        {
+          question: "What factors affect my loan payment the most?",
+          answer: "The three main factors are: loan amount (principal), interest rate, and loan term. A higher principal or interest rate increases payments, while a longer term decreases monthly payments but increases total interest paid over the life of the loan."
+        },
+        {
+          question: "Is it better to choose a shorter or longer loan term?",
+          answer: "A shorter loan term typically means higher monthly payments but less total interest paid and building equity faster. A longer term offers lower monthly payments but costs more in total interest over time. The best choice depends on your financial situation, cash flow needs, and financial goals."
+        },
+        {
+          question: "What's the advantage of making bi-weekly rather than monthly payments?",
+          answer: "Bi-weekly payments (every two weeks) result in 26 half-payments per year, equivalent to 13 monthly payments instead of 12. This extra payment each year goes directly to principal, helping you pay off the loan faster and save on interest costs."
+        }
+      ];
     }
+    return [
+      {
+        question: "How accurate is this calculator?",
+        answer: "Our calculator provides results with high precision for general purposes. For critical financial, legal, or health decisions, we recommend consulting with a professional in the relevant field."
+      },
+      {
+        question: "Can I use these calculations for my business or professional work?",
+        answer: "Yes, our calculator is designed to provide accurate results for both personal and professional use. However, for critical business decisions, you may want to verify with specialized software or consult a professional."
+      },
+      {
+        question: "Does the calculator save my data?",
+        answer: "No, all calculations are performed locally on your device. We do not store, save, or transmit any of the values you enter."
+      },
+      {
+        question: "Why are some calculator functions limited or simplified?",
+        answer: "We've designed this calculator to be user-friendly while maintaining accuracy. For more complex calculations or specialized functions, you might need to use dedicated software or consult with professionals in that field."
+      }
+    ];
   };
-  
-  // Render the appropriate calculator interface based on the selected calculator type
+
+  // Render appropriate calculator interface based on calculator type
   const renderCalculatorInterface = () => {
-    switch (calculatorType) {
-      case "age-calculator":
-      case "chronological-age-calculator":
-        return (
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="birthDate">Birth Date / Start Date</Label>
-              <Input
-                id="birthDate"
-                type="date"
-                value={birthDate}
-                onChange={(e) => setBirthDate(e.target.value)}
-                className="mt-1.5"
-              />
-            </div>
-            <div>
-              <Label htmlFor="currentDate">Current Date / End Date</Label>
-              <Input
-                id="currentDate"
-                type="date"
-                value={currentDate}
-                onChange={(e) => setCurrentDate(e.target.value)}
-                className="mt-1.5"
-              />
-            </div>
+    if (calculatorType === "age-calculator" || calculatorType === "chronological-age-calculator") {
+      return (
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="birthDate">Birth Date / Start Date</Label>
+            <Input
+              id="birthDate"
+              type="date"
+              value={birthDate}
+              onChange={(e) => setBirthDate(e.target.value)}
+              className="mt-1.5"
+            />
           </div>
-        );
-      
-      case "percentage-calculator":
-        return (
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="percentValue">Percentage (%)</Label>
-              <Input
-                id="percentValue"
-                type="number"
-                placeholder="e.g., 25"
-                value={percentValue}
-                onChange={(e) => setPercentValue(e.target.value)}
-                className="mt-1.5"
-              />
-            </div>
-            <div>
-              <Label htmlFor="ofValue">Of Value</Label>
-              <Input
-                id="ofValue"
-                type="number"
-                placeholder="e.g., 200"
-                value={ofValue}
-                onChange={(e) => setOfValue(e.target.value)}
-                className="mt-1.5"
-              />
-            </div>
+          <div>
+            <Label htmlFor="currentDate">Current Date / End Date</Label>
+            <Input
+              id="currentDate"
+              type="date"
+              value={currentDate}
+              onChange={(e) => setCurrentDate(e.target.value)}
+              className="mt-1.5"
+            />
           </div>
-        );
-      
-      // Margin Calculator
-      case "margin-calculator":
-        return (
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="cost">Cost Amount ($)</Label>
-              <Input
-                id="cost"
-                type="number"
-                placeholder="e.g., 100"
-                value={cost}
-                onChange={(e) => setCost(e.target.value)}
-                className="mt-1.5"
-              />
-            </div>
-            <div>
-              <Label htmlFor="revenue">Revenue / Selling Price ($)</Label>
-              <Input
-                id="revenue"
-                type="number"
-                placeholder="e.g., 150"
-                value={revenue}
-                onChange={(e) => setRevenue(e.target.value)}
-                className="mt-1.5"
-              />
-            </div>
+        </div>
+      );
+    } else if (calculatorType === "percentage-calculator") {
+      return (
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="percentValue">Percentage (%)</Label>
+            <Input
+              id="percentValue"
+              type="number"
+              placeholder="e.g., 25"
+              value={percentValue}
+              onChange={(e) => setPercentValue(e.target.value)}
+              className="mt-1.5"
+            />
           </div>
-        );
-        
-      // BMI Calculator
-      case "bmi-calculator":
-        return (
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="weight">Weight</Label>
-              <div className="flex gap-2 mt-1.5">
-                <Input
-                  id="weight"
-                  type="number"
-                  placeholder="e.g., 70"
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  className="flex-1"
-                />
-                <Select
-                  value={weightUnit}
-                  onValueChange={(value) => setWeightUnit(value)}
-                >
-                  <SelectTrigger className="w-24">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="kg">kg</SelectItem>
-                    <SelectItem value="lb">lb</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-            <div>
-              <Label htmlFor="height">Height</Label>
-              <div className="flex gap-2 mt-1.5">
-                <Input
-                  id="height"
-                  type="number"
-                  placeholder="e.g., 175"
-                  value={height}
-                  onChange={(e) => setHeight(e.target.value)}
-                  className="flex-1"
-                />
-                <Select
-                  value={heightUnit}
-                  onValueChange={(value) => setHeightUnit(value)}
-                >
-                  <SelectTrigger className="w-24">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="cm">cm</SelectItem>
-                    <SelectItem value="in">inches</SelectItem>
-                    <SelectItem value="ft">feet</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
+          <div>
+            <Label htmlFor="ofValue">Of Value</Label>
+            <Input
+              id="ofValue"
+              type="number"
+              placeholder="e.g., 200"
+              value={ofValue}
+              onChange={(e) => setOfValue(e.target.value)}
+              className="mt-1.5"
+            />
           </div>
-        );
-        
-      // Loan Calculator
-      case "loan-calculator":
-        return (
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="loanPrincipal">Loan Amount ($)</Label>
+        </div>
+      );
+    } else if (calculatorType === "margin-calculator") {
+      return (
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="cost">Cost Amount ($)</Label>
+            <Input
+              id="cost"
+              type="number"
+              placeholder="e.g., 100"
+              value={cost}
+              onChange={(e) => setCost(e.target.value)}
+              className="mt-1.5"
+            />
+          </div>
+          <div>
+            <Label htmlFor="revenue">Revenue / Selling Price ($)</Label>
+            <Input
+              id="revenue"
+              type="number"
+              placeholder="e.g., 150"
+              value={revenue}
+              onChange={(e) => setRevenue(e.target.value)}
+              className="mt-1.5"
+            />
+          </div>
+        </div>
+      );
+    } else if (calculatorType === "bmi-calculator") {
+      return (
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="weight">Weight</Label>
+            <div className="flex gap-2 mt-1.5">
               <Input
-                id="loanPrincipal"
+                id="weight"
                 type="number"
-                placeholder="e.g., 200000"
-                value={loanPrincipal}
-                onChange={(e) => setLoanPrincipal(e.target.value)}
-                className="mt-1.5"
+                placeholder="e.g., 70"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+                className="flex-1"
               />
-            </div>
-            <div>
-              <Label htmlFor="interestRate">Annual Interest Rate (%)</Label>
-              <Input
-                id="interestRate"
-                type="number"
-                placeholder="e.g., 5.5"
-                value={interestRate}
-                onChange={(e) => setInterestRate(e.target.value)}
-                className="mt-1.5"
-              />
-            </div>
-            <div>
-              <Label htmlFor="loanTerm">Loan Term (years)</Label>
-              <Input
-                id="loanTerm"
-                type="number"
-                placeholder="e.g., 30"
-                value={loanTerm}
-                onChange={(e) => setLoanTerm(e.target.value)}
-                className="mt-1.5"
-              />
-            </div>
-            <div>
-              <Label htmlFor="paymentFrequency">Payment Frequency</Label>
               <Select
-                value={paymentFrequency}
-                onValueChange={(value) => setPaymentFrequency(value)}
+                value={weightUnit}
+                onValueChange={(value) => setWeightUnit(value)}
               >
-                <SelectTrigger id="paymentFrequency" className="mt-1.5">
+                <SelectTrigger className="w-24">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="monthly">Monthly</SelectItem>
-                  <SelectItem value="biweekly">Bi-weekly</SelectItem>
-                  <SelectItem value="weekly">Weekly</SelectItem>
+                  <SelectItem value="kg">kg</SelectItem>
+                  <SelectItem value="lb">lb</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
-        );
-        
-      // Default display for any other calculator
-      default:
-        // Always show SOMETHING, don't show an empty message
-        return (
-          <div className="space-y-4">
-            <div className="text-center py-2 px-4 bg-blue-50 rounded-md text-blue-700 text-sm">
-              <p>Select a calculator type from the dropdown above to see specific input fields.</p>
-              <p className="mt-2">You can also directly navigate to any calculator tool from the homepage.</p>
-            </div>
-            
-            {/* Add generic input fields that most calculators would need */}
-            <div>
-              <Label htmlFor="value1">Value 1</Label>
+          <div>
+            <Label htmlFor="height">Height</Label>
+            <div className="flex gap-2 mt-1.5">
               <Input
-                id="value1" 
+                id="height"
                 type="number"
-                placeholder="Enter first value"
-                className="mt-1.5"
+                placeholder="e.g., 175"
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+                className="flex-1"
               />
-            </div>
-            <div>
-              <Label htmlFor="value2">Value 2</Label>
-              <Input
-                id="value2"
-                type="number"
-                placeholder="Enter second value"
-                className="mt-1.5"
-              />
+              <Select
+                value={heightUnit}
+                onValueChange={(value) => setHeightUnit(value)}
+              >
+                <SelectTrigger className="w-24">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="cm">cm</SelectItem>
+                  <SelectItem value="in">inches</SelectItem>
+                  <SelectItem value="ft">feet</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
-        );
+        </div>
+      );
+    } else if (calculatorType === "loan-calculator") {
+      return (
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="loanPrincipal">Loan Amount ($)</Label>
+            <Input
+              id="loanPrincipal"
+              type="number"
+              placeholder="e.g., 200000"
+              value={loanPrincipal}
+              onChange={(e) => setLoanPrincipal(e.target.value)}
+              className="mt-1.5"
+            />
+          </div>
+          <div>
+            <Label htmlFor="interestRate">Annual Interest Rate (%)</Label>
+            <Input
+              id="interestRate"
+              type="number"
+              placeholder="e.g., 5.5"
+              value={interestRate}
+              onChange={(e) => setInterestRate(e.target.value)}
+              className="mt-1.5"
+            />
+          </div>
+          <div>
+            <Label htmlFor="loanTerm">Loan Term (years)</Label>
+            <Input
+              id="loanTerm"
+              type="number"
+              placeholder="e.g., 30"
+              value={loanTerm}
+              onChange={(e) => setLoanTerm(e.target.value)}
+              className="mt-1.5"
+            />
+          </div>
+          <div>
+            <Label htmlFor="paymentFrequency">Payment Frequency</Label>
+            <Select
+              value={paymentFrequency}
+              onValueChange={(value) => setPaymentFrequency(value)}
+            >
+              <SelectTrigger id="paymentFrequency" className="mt-1.5">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="monthly">Monthly</SelectItem>
+                <SelectItem value="biweekly">Bi-weekly</SelectItem>
+                <SelectItem value="weekly">Weekly</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      );
+    } else {
+      // Default message for calculator types not yet implemented
+      return (
+        <div className="space-y-4">
+          <div className="text-center py-2 px-4 bg-blue-50 rounded-md text-blue-700 text-sm">
+            <p>Sorry, this calculator type is not yet implemented.</p>
+            <p className="mt-2">Please try one of our other calculators or check back later.</p>
+          </div>
+        </div>
+      );
     }
   };
 
+  // Render tool interface
   const toolInterface = (
     <div className="space-y-6">
       <Card>
         <CardContent className="pt-6">
           <div className="space-y-6">
-            <div>
-              <Label htmlFor="calculatorType">Calculator Type</Label>
-              <Select
-                value={calculatorType}
-                onValueChange={(value) => {
-                  setCalculatorType(value);
-                  setError("");
-                  setResult("");
-                }}
-              >
-                <SelectTrigger id="calculatorType" className="mt-1.5">
-                  <SelectValue placeholder="Select calculator type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {Object.keys(calculators).map((key) => (
-                    <SelectItem key={key} value={key}>
-                      {calculators[key].title}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
             {renderCalculatorInterface()}
 
             <Button 
               variant="default" 
-              onClick={() => {
-                const calculate = calculators[calculatorType]?.calculate;
-                if (calculate) {
-                  calculate();
-                } else {
-                  setError("Calculator type not supported");
-                }
-              }}
+              onClick={handleCalculate}
               className="w-full"
             >
               Calculate
