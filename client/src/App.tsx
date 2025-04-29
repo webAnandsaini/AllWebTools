@@ -106,6 +106,10 @@ import KeywordsDensityCheckerDetailed from "@/pages/tools/KeywordsDensityChecker
 import KeywordsSuggestionsToolDetailed from "@/pages/tools/KeywordsSuggestionsToolDetailed";
 import KeywordResearchToolDetailed from "@/pages/tools/KeywordResearchToolDetailed";
 
+// Meta Tags Tools
+import MetaTagsAnalyzerDetailed from "@/pages/tools/MetaTagsAnalyzerDetailed";
+import MetaTagGeneratorDetailed from "@/pages/tools/MetaTagGeneratorDetailed";
+
 // Image format converters
 import PNGToJPGDetailed from "@/pages/tools/PNGToJPGDetailed";
 import JPGToPNGDetailed from "@/pages/tools/JPGToPNGDetailed";
@@ -209,6 +213,10 @@ function Router() {
       <Route path="/tools/keywords-density-checker-detailed" component={KeywordsDensityCheckerDetailed} />
       <Route path="/tools/keywords-suggestions-tool-detailed" component={KeywordsSuggestionsToolDetailed} />
       <Route path="/tools/keyword-research-tool-detailed" component={KeywordResearchToolDetailed} />
+      
+      {/* Meta Tags Tools */}
+      <Route path="/tools/meta-tags-analyzer-detailed" component={MetaTagsAnalyzerDetailed} />
+      <Route path="/tools/meta-tag-generator-detailed" component={MetaTagGeneratorDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
