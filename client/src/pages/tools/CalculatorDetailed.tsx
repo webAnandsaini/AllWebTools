@@ -41,6 +41,15 @@ const CalculatorDetailed = () => {
   const [interestRate, setInterestRate] = useState<string>("");
   const [loanTerm, setLoanTerm] = useState<string>("");
   const [paymentFrequency, setPaymentFrequency] = useState<string>("monthly");
+  
+  // Currency selection for various calculators
+  const [currency, setCurrency] = useState<string>("USD");
+  
+  // Confidence Interval Calculator state
+  const [sampleMean, setSampleMean] = useState<string>("");
+  const [standardDeviation, setStandardDeviation] = useState<string>("");
+  const [sampleSize, setSampleSize] = useState<string>("");
+  const [confidenceLevel, setConfidenceLevel] = useState<string>("95");
 
   // Initialize calculator type from URL
   useEffect(() => {
@@ -178,8 +187,16 @@ const CalculatorDetailed = () => {
       const margin = (grossProfit / revenueValue) * 100;
       const markup = (grossProfit / costValue) * 100;
       
+      // Format with the selected currency
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: currency !== "none" ? 'currency' : 'decimal',
+        currency: currency !== "none" ? currency : undefined,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      
       setResult(
-        `Gross Profit: $${grossProfit.toFixed(2)}\n` +
+        `Gross Profit: ${formatter.format(grossProfit)}\n` +
         `Profit Margin: ${margin.toFixed(2)}%\n` +
         `Markup Percentage: ${markup.toFixed(2)}%`
       );
@@ -280,10 +297,18 @@ const CalculatorDetailed = () => {
       const totalPayment = payment * totalPeriods;
       const totalInterest = totalPayment - principal;
       
+      // Format with the selected currency
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: currency !== "none" ? 'currency' : 'decimal',
+        currency: currency !== "none" ? currency : undefined,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      
       setResult(
-        `${paymentFrequency.charAt(0).toUpperCase() + paymentFrequency.slice(1)} Payment: $${payment.toFixed(2)}\n` +
-        `Total Payments: $${totalPayment.toFixed(2)}\n` +
-        `Total Interest: $${totalInterest.toFixed(2)}`
+        `${paymentFrequency.charAt(0).toUpperCase() + paymentFrequency.slice(1)} Payment: ${formatter.format(payment)}\n` +
+        `Total Payments: ${formatter.format(totalPayment)}\n` +
+        `Total Interest: ${formatter.format(totalInterest)}`
       );
       setError("");
     } catch (error) {
@@ -297,7 +322,14 @@ const CalculatorDetailed = () => {
       if (birthDate && currentDate) {
         calculateAge();
       }
-    } else if (calculatorType === "percentage-calculator") {
+    } else if (calculatorType === "percentage-calculator" || 
+               calculatorType === "percentage-increase-calculator" || 
+               calculatorType === "percentage-decrease-calculator" || 
+               calculatorType === "percentage-change-calculator" || 
+               calculatorType === "percentage-difference-calculator" ||
+               calculatorType === "sales-tax-calculator" || 
+               calculatorType === "discount-calculator" || 
+               calculatorType === "gst-calculator") {
       if (percentValue && ofValue) {
         calculatePercentage();
       }
@@ -309,19 +341,89 @@ const CalculatorDetailed = () => {
       if (weight && height) {
         calculateBMI();
       }
-    } else if (calculatorType === "loan-calculator") {
+    } else if (calculatorType === "loan-calculator" || calculatorType === "loan-to-value-calculator") {
       if (loanPrincipal && interestRate && loanTerm) {
         calculateLoanPayment();
+      }
+    } else if (calculatorType === "confidence-interval-calculator") {
+      if (sampleMean && standardDeviation && sampleSize && confidenceLevel) {
+        calculateConfidenceInterval();
+      }
+    } else {
+      // Default calculator
+      if (cost && revenue) {
+        calculateMargin();
       }
     }
   }, [
     calculatorType,
     birthDate, currentDate,
     percentValue, ofValue,
-    cost, revenue,
+    cost, revenue, currency,
     weight, height, weightUnit, heightUnit,
-    loanPrincipal, interestRate, loanTerm, paymentFrequency
+    loanPrincipal, interestRate, loanTerm, paymentFrequency,
+    sampleMean, standardDeviation, sampleSize, confidenceLevel
   ]);
+
+  // Calculate Confidence Interval
+  const calculateConfidenceInterval = () => {
+    try {
+      if (!sampleMean || !standardDeviation || !sampleSize || !confidenceLevel) {
+        setError("Please fill in all required fields");
+        return;
+      }
+      
+      const mean = parseFloat(sampleMean);
+      const stdDev = parseFloat(standardDeviation);
+      const n = parseFloat(sampleSize);
+      const level = parseFloat(confidenceLevel);
+      
+      if (isNaN(mean) || isNaN(stdDev) || isNaN(n) || isNaN(level)) {
+        setError("Please enter valid numbers");
+        return;
+      }
+      
+      if (stdDev <= 0 || n <= 0 || level <= 0 || level >= 100) {
+        setError("Invalid input values. Standard deviation and sample size must be positive, and confidence level must be between 0 and 100");
+        return;
+      }
+      
+      // Z-score values for common confidence levels
+      let zScore: number;
+      if (level === 90) zScore = 1.645;
+      else if (level === 95) zScore = 1.96;
+      else if (level === 99) zScore = 2.576;
+      else if (level === 99.9) zScore = 3.291;
+      else {
+        // For other confidence levels, use approximation
+        // This is a simplified approach. For full precision, use a z-table or more complex calculation
+        const alpha = 1 - (level / 100);
+        zScore = Math.abs(alpha < 0.5 ? Math.sqrt(2) * Math.sqrt(-Math.log(2 * alpha)) : 0);
+      }
+      
+      const marginOfError = zScore * (stdDev / Math.sqrt(n));
+      const lowerBound = mean - marginOfError;
+      const upperBound = mean + marginOfError;
+      
+      // Format with the selected currency if applicable
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: currency !== "none" ? 'currency' : 'decimal',
+        currency: currency !== "none" ? currency : undefined,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      
+      setResult(
+        `${level}% Confidence Interval:\n` +
+        `Lower Bound: ${formatter.format(lowerBound)}\n` +
+        `Upper Bound: ${formatter.format(upperBound)}\n` +
+        `Margin of Error: ${formatter.format(marginOfError)}`
+      );
+      setError("");
+    } catch (error) {
+      setError("Error calculating confidence interval: " + error);
+    }
+  };
 
   // Handle calculate button click
   const handleCalculate = () => {
@@ -354,6 +456,10 @@ const CalculatorDetailed = () => {
     // Sales Tax & Discount Calculators
     else if (calculatorType === "sales-tax-calculator" || calculatorType === "discount-calculator" || calculatorType === "gst-calculator") {
       calculatePercentage(); // These use the same calculation logic as percentage calculator
+    }
+    // Confidence Interval Calculator
+    else if (calculatorType === "confidence-interval-calculator") {
+      calculateConfidenceInterval();
     }
     // For other unimplemented calculator types, use margin calculator logic as fallback
     else {
@@ -842,6 +948,85 @@ const CalculatorDetailed = () => {
       );
     }
     
+    // Confidence Interval Calculator Interface
+    else if (calculatorType === "confidence-interval-calculator") {
+      return (
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="sampleMean">Sample Mean</Label>
+            <Input
+              id="sampleMean"
+              type="number"
+              placeholder="e.g., 75.2"
+              value={sampleMean}
+              onChange={(e) => setSampleMean(e.target.value)}
+              className="mt-1.5"
+            />
+          </div>
+          <div>
+            <Label htmlFor="standardDeviation">Standard Deviation</Label>
+            <Input
+              id="standardDeviation"
+              type="number"
+              placeholder="e.g., 12.4"
+              value={standardDeviation}
+              onChange={(e) => setStandardDeviation(e.target.value)}
+              className="mt-1.5"
+            />
+          </div>
+          <div>
+            <Label htmlFor="sampleSize">Sample Size</Label>
+            <Input
+              id="sampleSize"
+              type="number"
+              placeholder="e.g., 30"
+              value={sampleSize}
+              onChange={(e) => setSampleSize(e.target.value)}
+              className="mt-1.5"
+            />
+          </div>
+          <div>
+            <Label htmlFor="confidenceLevel">Confidence Level (%)</Label>
+            <Select
+              value={confidenceLevel}
+              onValueChange={(value) => setConfidenceLevel(value)}
+            >
+              <SelectTrigger id="confidenceLevel" className="mt-1.5">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="90">90%</SelectItem>
+                <SelectItem value="95">95%</SelectItem>
+                <SelectItem value="99">99%</SelectItem>
+                <SelectItem value="99.9">99.9%</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <Label htmlFor="currency">Currency (Optional)</Label>
+            <Select
+              value={currency}
+              onValueChange={(value) => setCurrency(value)}
+            >
+              <SelectTrigger id="currency" className="mt-1.5">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="USD">US Dollar (USD)</SelectItem>
+                <SelectItem value="EUR">Euro (EUR)</SelectItem>
+                <SelectItem value="GBP">British Pound (GBP)</SelectItem>
+                <SelectItem value="JPY">Japanese Yen (JPY)</SelectItem>
+                <SelectItem value="CAD">Canadian Dollar (CAD)</SelectItem>
+                <SelectItem value="AUD">Australian Dollar (AUD)</SelectItem>
+                <SelectItem value="INR">Indian Rupee (INR)</SelectItem>
+                <SelectItem value="CNY">Chinese Yuan (CNY)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      );
+    }
     // Default calculator interface for other types we haven't specifically implemented yet
     else {
       // Rather than showing not implemented message, let's show a simplified version 
@@ -872,6 +1057,30 @@ const CalculatorDetailed = () => {
               onChange={(e) => setRevenue(e.target.value)}
               className="mt-1.5"
             />
+          </div>
+          
+          {/* Currency dropdown for default calculator interface */}
+          <div>
+            <Label htmlFor="currency">Currency Format</Label>
+            <Select
+              value={currency}
+              onValueChange={(value) => setCurrency(value)}
+            >
+              <SelectTrigger id="currency" className="mt-1.5">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="USD">US Dollar (USD)</SelectItem>
+                <SelectItem value="EUR">Euro (EUR)</SelectItem>
+                <SelectItem value="GBP">British Pound (GBP)</SelectItem>
+                <SelectItem value="JPY">Japanese Yen (JPY)</SelectItem>
+                <SelectItem value="CAD">Canadian Dollar (CAD)</SelectItem>
+                <SelectItem value="AUD">Australian Dollar (AUD)</SelectItem>
+                <SelectItem value="INR">Indian Rupee (INR)</SelectItem>
+                <SelectItem value="CNY">Chinese Yuan (CNY)</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
       );
