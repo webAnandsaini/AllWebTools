@@ -54,8 +54,8 @@ const FreeDailyProxyListDetailed = () => {
   const [activeTab, setActiveTab] = useState("proxy-list");
   
   // Filters
-  const [countryFilter, setCountryFilter] = useState<string>("");
-  const [anonymityFilter, setAnonymityFilter] = useState<string>("");
+  const [countryFilter, setCountryFilter] = useState<string>("all");
+  const [anonymityFilter, setAnonymityFilter] = useState<string>("all");
   const [httpsOnlyFilter, setHttpsOnlyFilter] = useState<boolean>(false);
   const [searchFilter, setSearchFilter] = useState<string>("");
   
@@ -115,14 +115,14 @@ const FreeDailyProxyListDetailed = () => {
     let filtered = [...proxyList];
     
     // Apply country filter
-    if (countryFilter) {
+    if (countryFilter && countryFilter !== "all") {
       filtered = filtered.filter(proxy => 
         proxy.country_code === countryFilter
       );
     }
     
     // Apply anonymity filter
-    if (anonymityFilter) {
+    if (anonymityFilter && anonymityFilter !== "all") {
       filtered = filtered.filter(proxy => 
         proxy.anonymity === anonymityFilter
       );
@@ -293,8 +293,8 @@ const FreeDailyProxyListDetailed = () => {
 
   // Reset all filters
   const resetFilters = () => {
-    setCountryFilter("");
-    setAnonymityFilter("");
+    setCountryFilter("all");
+    setAnonymityFilter("all");
     setHttpsOnlyFilter(false);
     setSearchFilter("");
   };
