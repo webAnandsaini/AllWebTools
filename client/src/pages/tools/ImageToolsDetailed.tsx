@@ -761,6 +761,348 @@ const ImageToolsDetailed: React.FC = () => {
           hasTargetSize: false,
           hasConversionOptions: false
         }
+      },
+      "jpeg-optimizer": {
+        title: "JPEG Optimizer",
+        slug: "jpeg-optimizer",
+        description: "Optimize your JPEG images with precision using our advanced JPEG Optimizer tool. This specialized utility intelligently balances image quality and file size, allowing you to compress your JPEG files while preserving visual clarity. Perfect for website optimization, reducing storage usage, and improving page load times. Our intelligent algorithms analyze each image to apply the optimal level of compression based on its unique characteristics, ensuring ideal results every time.",
+        introduction: "Reduce JPEG file sizes while maintaining optimal visual quality with our intelligent optimization tool.",
+        howToUse: [
+          "Upload your JPEG image using the 'Choose File' button",
+          "Adjust the quality slider to your preferred balance of size and quality",
+          "Preview the optimized result to compare with the original",
+          "View file size reduction and quality information",
+          "Download your optimized JPEG ready for web or other uses"
+        ],
+        features: [
+          "✅ Smart compression that maintains important image details",
+          "✅ Adjustable quality settings with real-time file size preview",
+          "✅ Removes unnecessary metadata to further reduce file size",
+          "✅ Specialized algorithms tuned specifically for JPEG format",
+          "✅ Secure processing with all optimization happening in your browser"
+        ],
+        faqs: [
+          {
+            question: "How does JPEG optimization differ from standard compression?",
+            answer: "JPEG optimization uses intelligent algorithms that analyze image content to apply varying compression levels to different parts of the image. This preserves details in important areas while more aggressively compressing less noticeable regions. Standard compression applies the same level throughout, often resulting in visible quality loss or unnecessarily large files."
+          },
+          {
+            question: "Will optimizing my photos affect their quality?",
+            answer: "Our optimizer is designed to preserve visible quality while reducing file size. At high quality settings (70-90%), the difference is typically imperceptible to the human eye. Lower settings will show some quality reduction but still maintain overall image integrity. You can preview and adjust until you find your ideal balance between file size and quality."
+          },
+          {
+            question: "What's the difference between JPEG Optimizer and Image Compressor?",
+            answer: "JPEG Optimizer is specifically designed for JPEG files with algorithms tailored to this format's unique characteristics. It focuses on intelligent quality reduction while preserving visual integrity. Our Image Compressor tool supports multiple formats and includes additional optimization techniques beyond compression, making it more versatile but less specialized for JPEG-specific optimization."
+          },
+          {
+            question: "Why should I optimize my JPEG images?",
+            answer: "Optimizing JPEGs provides multiple benefits: faster website loading times (improving user experience and SEO rankings), reduced storage space usage, lower bandwidth consumption (important for mobile users), quicker email transmission, and improved performance on social media platforms that might otherwise apply their own, less controlled compression."
+          }
+        ],
+        supportedFormats: ["jpg", "jpeg"],
+        maxFileSize: 50, // MB
+        options: {
+          hasQualitySlider: true,
+          hasSizeSlider: false,
+          hasDimensionInputs: false,
+          hasCropOptions: false,
+          hasColorPicker: false,
+          hasTargetSize: false,
+          hasConversionOptions: false
+        }
+      },
+      "avif-to-jpg": {
+        title: "AVIF to JPG Converter",
+        slug: "avif-to-jpg",
+        description: "Convert AVIF images to widely-compatible JPG format with our easy-to-use AVIF to JPG converter. AVIF is a newer, highly efficient image format that offers excellent compression but isn't yet universally supported. Our converter bridges this compatibility gap by transforming your AVIF files into JPG format, ensuring they can be viewed and used across all devices, browsers, and applications. Maintain high image quality while gaining universal compatibility with just a few clicks.",
+        introduction: "Convert modern AVIF images to universally compatible JPG format while preserving quality.",
+        howToUse: [
+          "Upload your AVIF image using the 'Choose File' button",
+          "Adjust the quality setting if desired (higher values maintain more detail)",
+          "Click 'Convert' and wait briefly while processing",
+          "Preview the converted JPG image",
+          "Download your new JPG file ready for universal compatibility"
+        ],
+        features: [
+          "✅ Converts cutting-edge AVIF format to universally supported JPG",
+          "✅ Maintains excellent image quality during conversion",
+          "✅ Adjustable quality settings to balance size and detail",
+          "✅ Simple one-click conversion process",
+          "✅ No software installation required - works entirely in your browser"
+        ],
+        faqs: [
+          {
+            question: "What is AVIF and why would I need to convert it to JPG?",
+            answer: "AVIF (AV1 Image File Format) is a modern image format that offers excellent compression efficiency and quality. However, it's still not universally supported across all devices, browsers, and applications. Converting to JPG ensures your images can be viewed and used anywhere, including older software, social media platforms, and various devices that don't yet support AVIF."
+          },
+          {
+            question: "Will I lose image quality when converting from AVIF to JPG?",
+            answer: "There may be some quality loss during conversion because JPG uses lossy compression while AVIF can support both lossy and lossless compression. However, our converter is optimized to maintain the highest possible quality. At high quality settings (80-100%), the difference is typically minimal. You can adjust the quality setting to find your preferred balance between file size and image quality."
+          },
+          {
+            question: "What advantages does JPG have over AVIF?",
+            answer: "While AVIF offers better compression efficiency, JPG has universal compatibility as its main advantage. JPG files can be opened on virtually any device or software created in the last 25+ years. Other advantages include faster decoding (important for mobile devices), better support in editing software, and broader acceptance on websites and platforms."
+          },
+          {
+            question: "Are there any alternatives to converting AVIF to JPG?",
+            answer: "Yes, depending on your needs, you might consider converting AVIF to PNG (for better quality and transparency support) or WebP (for good compression while maintaining better quality than JPG). However, JPG remains the most universally compatible option. If you need alternatives, check out our other conversion tools like AVIF to PNG or AVIF to WebP."
+          }
+        ],
+        supportedFormats: ["avif"],
+        maxFileSize: 50, // MB
+        options: {
+          hasQualitySlider: true,
+          hasSizeSlider: false,
+          hasDimensionInputs: false,
+          hasCropOptions: false,
+          hasColorPicker: false,
+          hasTargetSize: false,
+          hasConversionOptions: true
+        }
+      },
+      "png-to-ico": {
+        title: "PNG to ICO Converter",
+        slug: "png-to-ico",
+        description: "Transform PNG images into ICO favicon files with our specialized PNG to ICO converter. This essential tool for web developers and designers converts standard PNG images into the ICO format required for website favicons. Our converter creates multiple resolution versions within a single ICO file, ensuring your favicon displays properly across all browsers and devices. The process preserves transparency and detail from your original PNG, resulting in professional-quality favicons that enhance your website's brand identity.",
+        introduction: "Convert PNG images to ICO favicon files for your website with our easy-to-use conversion tool.",
+        howToUse: [
+          "Upload your PNG image using the 'Choose File' button",
+          "Select which sizes to include in your ICO file (16x16, 32x32, 48x48)",
+          "Click 'Convert' to process your image",
+          "Preview the ICO at different resolutions",
+          "Download your multi-resolution ICO file ready for website implementation"
+        ],
+        features: [
+          "✅ Creates standard favicon.ico files from PNG images",
+          "✅ Generates multiple resolutions in a single ICO file",
+          "✅ Preserves transparency from the original PNG",
+          "✅ Optimizes the ICO file for minimum file size",
+          "✅ Provides guidance on implementing the favicon on your website"
+        ],
+        faqs: [
+          {
+            question: "What is an ICO file and why do I need it for my website?",
+            answer: "An ICO file is a special image format primarily used for website favicons - the small icon that appears in browser tabs, bookmarks, and history lists. While modern browsers support other formats like PNG for favicons, the ICO format remains the most universally compatible option, especially for older browsers. ICO files can also contain multiple image sizes in a single file, allowing browsers to select the most appropriate size."
+          },
+          {
+            question: "What makes a good favicon PNG before conversion?",
+            answer: "The best PNG images for favicon conversion are: 1) Square in shape, 2) Simple and recognizable at small sizes, 3) High contrast with few details, 4) Ideally 256x256 pixels or larger (we'll resize it properly), and 5) Include transparency if desired. Logos and simple symbols work best, while photographs or complex images typically don't scale well to favicon sizes."
+          },
+          {
+            question: "How do I add the ICO file to my website?",
+            answer: "After downloading your ICO file, rename it to 'favicon.ico' and upload it to the root directory of your website. Then add this line in the head section of your HTML: \"<link rel='icon' type='image/x-icon' href='/favicon.ico'>\". For more comprehensive favicon support across all devices, you may want to generate additional formats like PNG and use a full favicon code snippet that includes multiple sizes and formats."
+          },
+          {
+            question: "What ICO sizes should I include in my favicon?",
+            answer: "For optimal cross-browser and device compatibility, we recommend including at least three sizes in your ICO file: 16x16 pixels (for browser tabs and address bars), 32x32 pixels (for shortcuts and higher resolution displays), and 48x48 pixels (for Windows taskbar and higher resolution displays). Our tool automatically generates these recommended sizes from your original PNG."
+          }
+        ],
+        supportedFormats: ["png"],
+        maxFileSize: 10, // MB
+        options: {
+          hasQualitySlider: false,
+          hasSizeSlider: false,
+          hasDimensionInputs: false,
+          hasCropOptions: false,
+          hasColorPicker: false,
+          hasTargetSize: false,
+          hasConversionOptions: true
+        }
+      },
+      "svg-to-png": {
+        title: "SVG to PNG Converter",
+        slug: "svg-to-png",
+        description: "Convert scalable vector graphics (SVG) to PNG format with our professional SVG to PNG converter. This powerful tool transforms vector-based SVG files into raster-based PNG images with precise control over dimensions and quality. Perfect for creating compatible images for websites, applications, or design projects that require raster formats. Our converter maintains transparency and renders SVG elements with high fidelity, ensuring your PNG output looks exactly as intended at any resolution you specify.",
+        introduction: "Transform vector-based SVG files into high-quality PNG images at any resolution you need.",
+        howToUse: [
+          "Upload your SVG file using the 'Choose File' button",
+          "Enter your desired output dimensions (width and height in pixels)",
+          "Select the scale factor if needed (for higher resolution/retina display output)",
+          "Click 'Convert' to process your SVG",
+          "Download your PNG file at your specified dimensions"
+        ],
+        features: [
+          "✅ Converts SVG vector graphics to PNG raster format",
+          "✅ Allows custom output dimensions at any resolution",
+          "✅ Preserves transparency from the original SVG",
+          "✅ Renders complex SVG elements with high fidelity",
+          "✅ Supports both simple icons and complex vector illustrations"
+        ],
+        faqs: [
+          {
+            question: "Why would I need to convert SVG to PNG?",
+            answer: "While SVG offers advantages like resolution independence and small file sizes, there are many scenarios where PNG is needed: 1) Compatibility with platforms that don't support SVG, 2) Email signatures and newsletters, 3) Use in applications that require raster inputs, 4) Creating specific size thumbnails or previews, 5) Consistency across browsers (as some may render SVGs slightly differently)."
+          },
+          {
+            question: "What dimensions should I choose for my PNG output?",
+            answer: "The ideal dimensions depend on your use case. For web icons, common sizes include 16x16, 32x32, 64x64, or 128x128 pixels. For logos or images on websites, you might want 200-500 pixels wide. For high-resolution or print usage, you might need 1000+ pixels. One advantage of converting from SVG is that you can generate PNGs at any size without quality loss, so choose dimensions appropriate for your specific needs."
+          },
+          {
+            question: "Will my PNG maintain the transparency from my SVG?",
+            answer: "Yes, our converter fully preserves transparency from your SVG. Any transparent or semi-transparent areas in your original SVG will be correctly rendered in the PNG output with an alpha channel. This ensures your PNG images can be placed over different colored backgrounds while maintaining the same visual appearance as the original SVG."
+          },
+          {
+            question: "Are there any limitations when converting SVG to PNG?",
+            answer: "While our converter handles most SVG features, there are a few limitations: 1) External resources referenced in the SVG (like images or fonts) may not be included, 2) Some advanced SVG filters might not render exactly the same, 3) As a raster format, the PNG will not scale infinitely like the original SVG, and 4) Very complex SVGs with thousands of elements might have slight rendering differences. For best results, use self-contained SVGs without external dependencies."
+          }
+        ],
+        supportedFormats: ["svg"],
+        maxFileSize: 15, // MB
+        options: {
+          hasQualitySlider: false,
+          hasSizeSlider: false,
+          hasDimensionInputs: true,
+          hasCropOptions: false,
+          hasColorPicker: false,
+          hasTargetSize: false,
+          hasConversionOptions: true
+        }
+      },
+      "webp-to-png": {
+        title: "WebP to PNG Converter",
+        slug: "webp-to-png",
+        description: "Convert WebP images to widely-compatible PNG format with our efficient WebP to PNG converter. While WebP offers excellent compression, PNG provides universal compatibility and lossless quality with transparency support. Our tool makes the conversion process simple and maintains the visual quality of your images. Perfect for ensuring your images work across all platforms, browsers, and applications without compatibility issues.",
+        introduction: "Transform WebP images to universally compatible PNG format while preserving quality and transparency.",
+        howToUse: [
+          "Upload your WebP image using the 'Choose File' button",
+          "Click 'Convert' to process your file",
+          "Preview the converted PNG image",
+          "Download your new PNG file ready for use anywhere"
+        ],
+        features: [
+          "✅ Converts WebP images to universally compatible PNG format",
+          "✅ Preserves transparency and image quality during conversion",
+          "✅ Maintains original image dimensions perfectly",
+          "✅ Simple one-click conversion process",
+          "✅ Works with both lossy and lossless WebP types"
+        ],
+        faqs: [
+          {
+            question: "Why would I need to convert WebP to PNG?",
+            answer: "While WebP offers excellent compression, there are several reasons to convert to PNG: 1) Universal compatibility - PNG works on virtually all software and platforms, 2) Some image editors don't support WebP, 3) PNG offers lossless quality with transparency support, 4) Certain websites or applications might require PNG format for uploads, 5) For archiving purposes, as PNG is a more established format with long-term support."
+          },
+          {
+            question: "Will I lose image quality when converting from WebP to PNG?",
+            answer: "Generally, no. PNG is a lossless format, so it preserves all the detail present in your WebP image. However, if your original WebP was created using lossy compression, our converter can't restore details that were already lost in the original WebP. The conversion itself doesn't introduce additional quality loss - it preserves the image exactly as it appears in the WebP."
+          },
+          {
+            question: "Will transparency be preserved in the conversion?",
+            answer: "Yes, our WebP to PNG converter fully preserves transparency. If your WebP image has transparent or semi-transparent areas, these will be correctly maintained in the PNG output. This makes it perfect for converting logos, icons, and other graphics that need to be placed over different backgrounds."
+          },
+          {
+            question: "How does the file size compare between WebP and PNG?",
+            answer: "PNG files are typically larger than their WebP counterparts. WebP was designed specifically for efficient compression, while PNG prioritizes lossless quality. The size difference varies depending on the image content - expect PNG files to be anywhere from 20% to 100% larger than the equivalent WebP. For images where file size is critical, you might want to consider our PNG compression tool after conversion."
+          }
+        ],
+        supportedFormats: ["webp"],
+        maxFileSize: 50, // MB
+        options: {
+          hasQualitySlider: false,
+          hasSizeSlider: false,
+          hasDimensionInputs: false,
+          hasCropOptions: false,
+          hasColorPicker: false,
+          hasTargetSize: false,
+          hasConversionOptions: true
+        }
+      },
+      "jpeg-to-svg": {
+        title: "JPEG to SVG Converter",
+        slug: "jpeg-to-svg",
+        description: "Transform JPEG photographs and images into scalable vector graphics with our JPEG to SVG converter. This specialized tool uses advanced vectorization algorithms to trace and convert raster JPEG images into clean, scalable SVG vector files. Perfect for creating logos, illustrations, or artwork that can be resized infinitely without quality loss. Our converter offers customizable settings to control detail levels, color simplification, and smoothing to achieve the best possible vector results from your JPEG images.",
+        introduction: "Convert JPEG images into infinitely scalable SVG vector graphics with our advanced vectorization tool.",
+        howToUse: [
+          "Upload your JPEG image using the 'Choose File' button",
+          "Adjust vectorization settings (detail level, color simplification, smoothing)",
+          "Click 'Convert' and wait while our algorithm processes your image",
+          "Preview the SVG result and adjust settings if needed",
+          "Download your new SVG file ready for infinite scaling"
+        ],
+        features: [
+          "✅ Converts raster JPEG images to scalable vector SVG format",
+          "✅ Adjustable detail levels for precise control over results",
+          "✅ Color simplification options for clean, professional vectors",
+          "✅ Path smoothing to create elegant curves from pixel data",
+          "✅ Perfect for creating logos, icons, and illustrations from photos"
+        ],
+        faqs: [
+          {
+            question: "What types of JPEG images work best for SVG conversion?",
+            answer: "Images with clear outlines, solid or limited colors, and distinct shapes vectorize best. Logos, cartoons, simple illustrations, silhouettes, and graphics with clean edges produce the highest quality SVG results. Photographs with many details, gradients, or complex textures will convert, but may result in either very complex SVGs (large file size) or simplified representations depending on your settings."
+          },
+          {
+            question: "How accurate will my SVG conversion be?",
+            answer: "The accuracy depends on your source image and settings. For simple, high-contrast images with few colors, the conversion can be very accurate. For complex photos, the result will be a vectorized interpretation rather than an exact replica. Our tool allows you to adjust detail levels - higher settings preserve more details but result in larger files with more complex paths, while lower settings produce cleaner, more simplified vectors."
+          },
+          {
+            question: "What are the advantages of converting JPEG to SVG?",
+            answer: "Converting to SVG provides several benefits: 1) Infinite scalability without quality loss, 2) Smaller file sizes for simple images, 3) Easy editability in vector software like Illustrator or Inkscape, 4) Perfect rendering at any resolution or size, 5) Ability to modify individual elements and colors after conversion, 6) Better accessibility for web use, and 7) Suitability for printing at any size."
+          },
+          {
+            question: "How do I use the SVG file after conversion?",
+            answer: "SVG files can be used in many ways: 1) Insert directly into websites with the img tag or inline SVG code, 2) Import into vector editing software like Adobe Illustrator, Inkscape, or Affinity Designer for further editing, 3) Use in design applications like Photoshop or Figma, 4) Include in documents created with Word, PowerPoint, or publishing software, or 5) Send to printing services for physical reproduction at any size."
+          }
+        ],
+        supportedFormats: ["jpg", "jpeg"],
+        maxFileSize: 20, // MB
+        options: {
+          hasQualitySlider: false,
+          hasSizeSlider: false,
+          hasDimensionInputs: false,
+          hasCropOptions: false,
+          hasColorPicker: false,
+          hasTargetSize: false,
+          hasConversionOptions: true
+        }
+      },
+      "mp4-to-gif-converter": {
+        title: "MP4 to GIF Converter",
+        slug: "mp4-to-gif-converter",
+        description: "Transform video clips into animated GIFs with our efficient MP4 to GIF converter. This versatile tool converts short MP4 video clips into GIF animations that can be easily shared on websites, social media, messaging apps, and emails without requiring video players. Our converter offers customizable frame rate, dimensions, and quality settings to create the perfect GIF for your needs while optimizing for file size. Perfect for creating reaction GIFs, short animations, product demonstrations, or converting video memes into shareable GIF format.",
+        introduction: "Convert MP4 video clips into shareable animated GIFs with our easy-to-use conversion tool.",
+        howToUse: [
+          "Upload your MP4 video using the 'Choose File' button",
+          "Set your desired GIF dimensions (width and height in pixels)",
+          "Adjust frame rate (lower for smaller files, higher for smoother animation)",
+          "Select the portion of the video to convert (start and end times)",
+          "Click 'Convert' and download your animated GIF"
+        ],
+        features: [
+          "✅ Converts MP4 videos to widely-compatible GIF format",
+          "✅ Customizable frame rate for balancing quality and file size",
+          "✅ Adjustable dimensions to fit your specific needs",
+          "✅ Trim functionality to select exact portion of video",
+          "✅ Optional dithering to improve color appearance in GIFs"
+        ],
+        faqs: [
+          {
+            question: "What's the ideal length for converting MP4 to GIF?",
+            answer: "For best results, we recommend limiting your GIFs to 5-15 seconds. Shorter clips work better for several reasons: 1) File size remains manageable (GIFs can become very large), 2) Many platforms have file size limits for GIFs, 3) Brief, focused animations are typically more engaging, and 4) Processing time is reduced. If you need a longer animation, consider using our video compression tool instead."
+          },
+          {
+            question: "Why is my GIF file so large compared to the MP4?",
+            answer: "GIF is an older format that doesn't use modern compression techniques available to video formats like MP4. GIFs store each frame as a separate image with limited compression, while MP4 uses sophisticated temporal compression that only stores changes between frames. To reduce GIF size: 1) Lower the frame rate, 2) Reduce dimensions, 3) Trim to only essential content, or 4) Use our GIF optimizer tool after conversion."
+          },
+          {
+            question: "How can I make my GIF look best while keeping file size reasonable?",
+            answer: "To optimize your GIF's quality-to-size ratio: 1) Choose appropriate dimensions (usually 320-480px wide), 2) Set frame rate to 10-15fps for most content (lower for simpler animations, higher for fast action), 3) Trim to only the essential portion of the video, 4) Consider reducing colors if your content doesn't need full color range, and 5) For text visibility, ensure high contrast and sufficient size in the original video."
+          },
+          {
+            question: "What types of MP4 videos convert best to GIFs?",
+            answer: "Videos with these characteristics convert most successfully: 1) Simple backgrounds or limited scene changes, 2) Clear subject with good contrast, 3) Limited camera movement, 4) Brief duration (under 10 seconds ideal), 5) Not reliant on audio, and 6) Strong visual impact that works without sound. Videos with fast action may require higher frame rates, increasing file size."
+          }
+        ],
+        supportedFormats: ["mp4"],
+        maxFileSize: 100, // MB
+        options: {
+          hasQualitySlider: true,
+          hasSizeSlider: false,
+          hasDimensionInputs: true,
+          hasCropOptions: false,
+          hasColorPicker: false,
+          hasTargetSize: false,
+          hasConversionOptions: true
+        }
       }
     };
 
