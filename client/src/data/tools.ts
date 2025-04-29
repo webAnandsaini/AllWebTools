@@ -542,8 +542,8 @@ export const designStudioTools: Tool[] = [
   {
     id: 101,
     name: "Resume Builder",
-    slug: "resume-builder",
-    description: "Create professional resumes that stand out to employers.",
+    slug: "resume-builder-detailed",
+    description: "Create a professional, customized resume in minutes with our intuitive builder and ATS-friendly templates.",
     category: "Design Studio",
     icon: "fas fa-file-alt",
     iconColor: "text-pink-600",
@@ -3461,6 +3461,16 @@ export const popularTools: Tool[] = [
 
 // Recently added tools
 export const recentTools: Tool[] = [
+  {
+    id: 1056,
+    name: "Resume Builder",
+    slug: "resume-builder-detailed",
+    description: "Create a professional, customized resume in minutes with our intuitive builder and ATS-friendly templates.",
+    category: "Design Studio",
+    icon: "fas fa-file-alt",
+    iconColor: "text-pink-600",
+    iconBg: "bg-pink-100",
+  },
   {
     id: 1053,
     name: "What is My IP",
