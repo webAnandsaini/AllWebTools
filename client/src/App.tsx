@@ -81,6 +81,16 @@ import InvitationMakerDetailed from "@/pages/tools/InvitationMakerDetailed";
 import BusinessCardMakerDetailed from "@/pages/tools/BusinessCardMakerDetailed";
 import MemeGeneratorDetailed from "@/pages/tools/MemeGeneratorDetailed";
 import EmojisDetailed from "@/pages/tools/EmojisDetailed";
+import ReverseImageSearchDetailed from "@/pages/tools/ReverseImageSearchDetailed";
+import FaceSearchDetailed from "@/pages/tools/FaceSearchDetailed";
+import ImageCompressorDetailed from "@/pages/tools/ImageCompressorDetailed";
+import FaviconGeneratorDetailed from "@/pages/tools/FaviconGeneratorDetailed";
+import VideoToGIFConverterDetailed from "@/pages/tools/VideoToGIFConverterDetailed";
+import ImageResizerDetailed from "@/pages/tools/ImageResizerDetailed";
+import PhotoResizerInKBDetailed from "@/pages/tools/PhotoResizerInKBDetailed";
+import CropImageDetailed from "@/pages/tools/CropImageDetailed";
+import ConvertToJPGDetailed from "@/pages/tools/ConvertToJPGDetailed";
+import RGBToHexDetailed from "@/pages/tools/RGBToHexDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -170,6 +180,18 @@ function Router() {
       <Route path="/tools/business-card-maker-detailed" component={BusinessCardMakerDetailed} />
       <Route path="/tools/meme-generator-detailed" component={MemeGeneratorDetailed} />
       <Route path="/tools/emojis-detailed" component={EmojisDetailed} />
+      
+      {/* Image Editing Tools */}
+      <Route path="/tools/reverse-image-search-detailed" component={ReverseImageSearchDetailed} />
+      <Route path="/tools/face-search-detailed" component={FaceSearchDetailed} />
+      <Route path="/tools/image-compressor-detailed" component={ImageCompressorDetailed} />
+      <Route path="/tools/favicon-generator-detailed" component={FaviconGeneratorDetailed} />
+      <Route path="/tools/video-to-gif-converter-detailed" component={VideoToGIFConverterDetailed} />
+      <Route path="/tools/image-resizer-detailed" component={ImageResizerDetailed} />
+      <Route path="/tools/photo-resizer-in-kb-detailed" component={PhotoResizerInKBDetailed} />
+      <Route path="/tools/crop-image-detailed" component={CropImageDetailed} />
+      <Route path="/tools/convert-to-jpg-detailed" component={ConvertToJPGDetailed} />
+      <Route path="/tools/rgb-to-hex-detailed" component={RGBToHexDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
