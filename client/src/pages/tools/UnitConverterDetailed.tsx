@@ -115,13 +115,6 @@ const UnitConverterDetailed = () => {
     }
   }, [inputValue, fromUnit, toUnit]);
 
-  useEffect(() => {
-    // Calculate result whenever input value or units change
-    if (fromUnit && toUnit) {
-      convertUnit();
-    }
-  }, [inputValue, fromUnit, toUnit]);
-
   const convertUnit = () => {
     if (!inputValue || isNaN(Number(inputValue))) {
       setResult("Please enter a valid number");
@@ -170,13 +163,14 @@ const UnitConverterDetailed = () => {
 
   const convertTemperature = (value: number, from: string, to: string) => {
     let result: number;
-    let formula: string;
+    let formula: string = "";
 
     // Convert to Celsius first (as base unit)
     let celsius: number;
     
     if (from === "°C") {
       celsius = value;
+      formula = `${value}°C`;
     } else if (from === "°F") {
       celsius = (value - 32) * (5/9);
       formula = `(${value}°F - 32) × 5/9 = ${celsius.toFixed(4)}°C`;
