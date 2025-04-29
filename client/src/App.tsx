@@ -300,6 +300,9 @@ function Router() {
       <Route path="/compress-image-to-1mb" component={ImageToolsDetailed} />
       <Route path="/mb-to-kb-converter" component={ImageToolsDetailed} />
       <Route path="/mp4-to-gif-converter" component={ImageToolsDetailed} />
+      <Route path="/mp4-to-gif-converter-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/mp4-to-gif-converter" component={ImageToolsDetailed} />
+      <Route path="/tools/mp4-to-gif-converter-detailed" component={ImageToolsDetailed} />
       <Route path="/heic-to-jpg-converter" component={ImageToolsDetailed} />
       <Route path="/heic-to-jpg-converter-detailed" component={ImageToolsDetailed} />
       <Route path="/tools/heic-to-jpg-converter" component={ImageToolsDetailed} />
@@ -322,18 +325,32 @@ function Router() {
       <Route path="/tools/jpg-to-svg-detailed" component={ImageToolsDetailed} />
       <Route path="/jpeg-to-svg" component={ImageToolsDetailed} />
       <Route path="/jpeg-to-svg-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/jpeg-to-svg" component={ImageToolsDetailed} />
+      <Route path="/tools/jpeg-to-svg-detailed" component={ImageToolsDetailed} />
       <Route path="/webp-to-png" component={ImageToolsDetailed} />
       <Route path="/webp-to-png-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/webp-to-png" component={ImageToolsDetailed} />
+      <Route path="/tools/webp-to-png-detailed" component={ImageToolsDetailed} />
       <Route path="/svg-to-png" component={ImageToolsDetailed} />
       <Route path="/svg-to-png-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/svg-to-png" component={ImageToolsDetailed} />
+      <Route path="/tools/svg-to-png-detailed" component={ImageToolsDetailed} />
       <Route path="/png-to-ico" component={ImageToolsDetailed} />
       <Route path="/png-to-ico-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/png-to-ico" component={ImageToolsDetailed} />
+      <Route path="/tools/png-to-ico-detailed" component={ImageToolsDetailed} />
       <Route path="/avif-to-jpg" component={ImageToolsDetailed} />
       <Route path="/avif-to-jpg-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/avif-to-jpg" component={ImageToolsDetailed} />
+      <Route path="/tools/avif-to-jpg-detailed" component={ImageToolsDetailed} />
       <Route path="/jpeg-optimizer" component={ImageToolsDetailed} />
       <Route path="/jpeg-optimizer-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/jpeg-optimizer" component={ImageToolsDetailed} />
+      <Route path="/tools/jpeg-optimizer-detailed" component={ImageToolsDetailed} />
       <Route path="/compress-png" component={ImageToolsDetailed} />
       <Route path="/compress-png-detailed" component={ImageToolsDetailed} />
+      <Route path="/tools/compress-png" component={ImageToolsDetailed} />
+      <Route path="/tools/compress-png-detailed" component={ImageToolsDetailed} />
       
       {/* Keyword Tools */}
       <Route path="/tools/keyword-position-detailed" component={KeywordPositionDetailed} />
