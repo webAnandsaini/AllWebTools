@@ -8,6 +8,18 @@ interface ToolCardProps {
 const ToolCard = ({ tool }: ToolCardProps) => {
   // Check if the slug already has a "-detailed" suffix
   const getToolUrl = (slug: string) => {
+    // Unit converter tools have a special case - they can be accessed directly
+    const unitConverterSlugs = [
+      "unit-converter", "time-converter", "power-converter", "speed-converter",
+      "volume-conversion", "length-converter", "voltage-converter", "area-converter",
+      "weight-converter", "byte-converter", "temperature-conversion", "torque-converter",
+      "pressure-conversion"
+    ];
+    
+    if (unitConverterSlugs.includes(slug)) {
+      return `/${slug}`;
+    }
+    
     // If the slug already ends with "-detailed", use it directly
     if (slug.endsWith("-detailed")) {
       return `/tools/${slug}`;

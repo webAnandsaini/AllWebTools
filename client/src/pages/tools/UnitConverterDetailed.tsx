@@ -394,7 +394,7 @@ const UnitConverterDetailed = () => {
 
   return (
     <ToolPageTemplate
-      toolSlug="unit-converter-detailed"
+      toolSlug="unit-converter"
       toolContent={
         <ToolContentTemplate
           introduction="Convert between different units of measurement instantly with our comprehensive Unit Converter tool."
