@@ -100,6 +100,12 @@ import ConvertToJPGDetailed from "@/pages/tools/ConvertToJPGDetailed";
 import RGBToHexDetailed from "@/pages/tools/RGBToHexDetailed";
 */
 
+// Keyword Tools
+import KeywordPositionDetailed from "@/pages/tools/KeywordPositionDetailed";
+import KeywordsDensityCheckerDetailed from "@/pages/tools/KeywordsDensityCheckerDetailed";
+import KeywordsSuggestionsToolDetailed from "@/pages/tools/KeywordsSuggestionsToolDetailed";
+import KeywordResearchToolDetailed from "@/pages/tools/KeywordResearchToolDetailed";
+
 // Image format converters
 import PNGToJPGDetailed from "@/pages/tools/PNGToJPGDetailed";
 import JPGToPNGDetailed from "@/pages/tools/JPGToPNGDetailed";
@@ -197,6 +203,12 @@ function Router() {
       {/* Image format converters */}
       <Route path="/tools/png-to-jpg-detailed" component={PNGToJPGDetailed} />
       <Route path="/tools/jpg-to-png-detailed" component={JPGToPNGDetailed} />
+      
+      {/* Keyword Tools */}
+      <Route path="/tools/keyword-position-detailed" component={KeywordPositionDetailed} />
+      <Route path="/tools/keywords-density-checker-detailed" component={KeywordsDensityCheckerDetailed} />
+      <Route path="/tools/keywords-suggestions-tool-detailed" component={KeywordsSuggestionsToolDetailed} />
+      <Route path="/tools/keyword-research-tool-detailed" component={KeywordResearchToolDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
