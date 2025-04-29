@@ -86,8 +86,20 @@
   @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600;
 }
 
+.text-gradient-bright {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400;
+}
+
+.text-gradient-vibrant {
+  @apply bg-clip-text text-transparent bg-gradient-to-br from-pink-500 via-indigo-500 to-purple-600;
+}
+
 /* Buttons */
 .btn-primary {
+  @apply bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-medium py-3 px-6 rounded-full hover:from-indigo-700 hover:to-violet-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+}
+
+.btn-primary-solid {
   @apply bg-indigo-600 text-white font-medium py-3 px-6 rounded-full hover:bg-indigo-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
 }
 
@@ -97,6 +109,14 @@
 
 .btn-outline {
   @apply bg-transparent border-2 border-indigo-600 text-indigo-600 font-medium py-3 px-6 rounded-full hover:bg-indigo-50 transition-all;
+}
+
+.btn-gradient-blue {
+  @apply bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium py-3 px-6 rounded-full hover:from-blue-600 hover:to-indigo-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+}
+
+.btn-gradient-pink {
+  @apply bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium py-3 px-6 rounded-full hover:from-pink-600 hover:to-purple-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
 }
 
 /* Cards */
@@ -168,6 +188,49 @@
   }
 }
 
+@keyframes rotate-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slide-up-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* Animation classes */
 .animate-float {
   animation: float 3s ease-in-out infinite;
@@ -179,6 +242,44 @@
 
 .animate-pulse-shadow {
   animation: pulse-shadow 2s infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 20s linear infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up-fade 0.5s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 5s ease infinite;
+}
+
+/* Delayed animations */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+.delay-700 {
+  animation-delay: 700ms;
 }
 
 /* Tabs styling (like Renderforest) */
