@@ -140,6 +140,7 @@ import CreditCardGeneratorDetailed from "@/pages/tools/CreditCardGeneratorDetail
 import FakeNameGeneratorDetailed from "@/pages/tools/FakeNameGeneratorDetailed";
 import FakeAddressGeneratorDetailed from "@/pages/tools/FakeAddressGeneratorDetailed";
 import NameGeneratorDetailed from "@/pages/tools/NameGeneratorDetailed";
+import AIContentGeneratorDetailed from "@/pages/tools/AIContentGeneratorDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -330,6 +331,26 @@ function Router() {
       <Route path="/korean-name-generator" component={NameGeneratorDetailed} />
       <Route path="/tools/spanish-name-generator" component={NameGeneratorDetailed} />
       <Route path="/spanish-name-generator" component={NameGeneratorDetailed} />
+      
+      {/* AI Writing Tools - Both tool and direct routes */}
+      <Route path="/tools/ai-writer" component={AIContentGeneratorDetailed} />
+      <Route path="/ai-writer" component={AIContentGeneratorDetailed} />
+      <Route path="/tools/ai-text-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/ai-text-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/tools/paragraph-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/paragraph-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/tools/essay-title-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/essay-title-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/tools/plot-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/plot-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/tools/thesis-statement-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/thesis-statement-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/tools/ai-story-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/ai-story-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/tools/conclusion-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/conclusion-generator" component={AIContentGeneratorDetailed} />
+      <Route path="/tools/ai-email-writer" component={AIContentGeneratorDetailed} />
+      <Route path="/ai-email-writer" component={AIContentGeneratorDetailed} />
       <Route path="/tools/binary-translator" component={BinaryConverterDetailed} />
       <Route path="/tools/english-to-binary" component={BinaryConverterDetailed} />
       <Route path="/tools/binary-to-english" component={BinaryConverterDetailed} />
