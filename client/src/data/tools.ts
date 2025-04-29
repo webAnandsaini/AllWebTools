@@ -2254,7 +2254,7 @@ export const metaTagsTools: Tool[] = [
   {
     id: 500,
     name: "Meta Tags Analyzer",
-    slug: "meta-tags-analyzer",
+    slug: "meta-tags-analyzer-detailed",
     description: "Analyze the meta tags of any website for SEO optimization.",
     category: "Meta Tags Tools",
     icon: "fas fa-tags",
@@ -2264,7 +2264,7 @@ export const metaTagsTools: Tool[] = [
   {
     id: 501,
     name: "Meta Tag Generator",
-    slug: "meta-tag-generator",
+    slug: "meta-tag-generator-detailed",
     description: "Generate meta tags for your website to improve SEO.",
     category: "Meta Tags Tools",
     icon: "fas fa-code",
@@ -3462,6 +3462,26 @@ export const popularTools: Tool[] = [
 // Recently added tools
 export const recentTools: Tool[] = [
   {
+    id: 500,
+    name: "Meta Tags Analyzer",
+    slug: "meta-tags-analyzer-detailed",
+    description: "Analyze the meta tags of any website for SEO optimization and get detailed improvement recommendations.",
+    category: "Meta Tags Tools",
+    icon: "fas fa-tags",
+    iconColor: "text-green-600",
+    iconBg: "bg-green-100",
+  },
+  {
+    id: 501,
+    name: "Meta Tag Generator",
+    slug: "meta-tag-generator-detailed",
+    description: "Generate optimized meta tags for your website to improve SEO and social media sharing.",
+    category: "Meta Tags Tools",
+    icon: "fas fa-code",
+    iconColor: "text-green-600",
+    iconBg: "bg-green-100",
+  },
+  {
     id: 550,
     name: "Password Generator",
     slug: "password-generator-detailed",
@@ -3478,16 +3498,6 @@ export const recentTools: Tool[] = [
     description: "Check how strong your passwords are against common attacks and get personalized security recommendations.",
     category: "Password Management Tools",
     icon: "fas fa-shield-alt",
-    iconColor: "text-red-600",
-    iconBg: "bg-red-100",
-  },
-  {
-    id: 552,
-    name: "Password Encryption Utility",
-    slug: "password-encryption-utility-detailed",
-    description: "Encrypt your passwords for secure storage and management with our powerful encryption tool.",
-    category: "Password Management Tools",
-    icon: "fas fa-lock",
     iconColor: "text-red-600",
     iconBg: "bg-red-100",
   },
