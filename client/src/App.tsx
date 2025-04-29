@@ -116,6 +116,14 @@ import MetaTagGeneratorDetailed from "@/pages/tools/MetaTagGeneratorDetailed";
 import PNGToJPGDetailed from "@/pages/tools/PNGToJPGDetailed";
 import JPGToPNGDetailed from "@/pages/tools/JPGToPNGDetailed";
 
+// JSON Tools
+import JSONViewerDetailed from "@/pages/tools/JSONViewerDetailed";
+import JSONFormatterDetailed from "@/pages/tools/JSONFormatterDetailed";
+import JSONValidatorDetailed from "@/pages/tools/JSONValidatorDetailed";
+import JSONToXMLDetailed from "@/pages/tools/JSONToXMLDetailed";
+import JSONEditorDetailed from "@/pages/tools/JSONEditorDetailed";
+import JSONBeautifierDetailed from "@/pages/tools/JSONBeautifierDetailed";
+
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -224,6 +232,14 @@ function Router() {
       {/* Meta Tags Tools */}
       <Route path="/tools/meta-tags-analyzer-detailed" component={MetaTagsAnalyzerDetailed} />
       <Route path="/tools/meta-tag-generator-detailed" component={MetaTagGeneratorDetailed} />
+      
+      {/* JSON Tools */}
+      <Route path="/tools/json-viewer-detailed" component={JSONViewerDetailed} />
+      <Route path="/tools/json-formatter-detailed" component={JSONFormatterDetailed} />
+      <Route path="/tools/json-validator-detailed" component={JSONValidatorDetailed} />
+      <Route path="/tools/json-to-xml-detailed" component={JSONToXMLDetailed} />
+      <Route path="/tools/json-editor-detailed" component={JSONEditorDetailed} />
+      <Route path="/tools/json-beautifier-detailed" component={JSONBeautifierDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
