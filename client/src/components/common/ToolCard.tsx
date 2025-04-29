@@ -87,7 +87,15 @@ const ToolCard = ({ tool }: ToolCardProps) => {
       "convert-to-jpg": "convert-to-jpg-detailed",
       "rgb-to-hex": "rgb-to-hex-detailed",
       "png-to-jpg": "png-to-jpg-detailed",
-      "jpg-to-png": "jpg-to-png-detailed"
+      "jpg-to-png": "jpg-to-png-detailed",
+      
+      // JSON Tools
+      "json-viewer": "json-viewer-detailed",
+      "json-formatter": "json-formatter-detailed",
+      "json-validator": "json-validator-detailed",
+      "json-to-xml": "json-to-xml-detailed",
+      "json-editor": "json-editor-detailed",
+      "json-beautifier": "json-beautifier-detailed"
     };
     
     return `/tools/${detailedToolsMap[slug] || slug}`;
