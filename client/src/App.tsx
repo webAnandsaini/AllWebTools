@@ -141,6 +141,7 @@ import FakeNameGeneratorDetailed from "@/pages/tools/FakeNameGeneratorDetailed";
 import FakeAddressGeneratorDetailed from "@/pages/tools/FakeAddressGeneratorDetailed";
 import NameGeneratorDetailed from "@/pages/tools/NameGeneratorDetailed";
 import AIContentGeneratorDetailed from "@/pages/tools/AIContentGeneratorDetailed";
+import DesignStudioDetailed from "@/pages/tools/DesignStudioDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -351,6 +352,24 @@ function Router() {
       <Route path="/conclusion-generator" component={AIContentGeneratorDetailed} />
       <Route path="/tools/ai-email-writer" component={AIContentGeneratorDetailed} />
       <Route path="/ai-email-writer" component={AIContentGeneratorDetailed} />
+      
+      {/* Design Studio Tools - Both tool and direct routes */}
+      <Route path="/tools/logo-maker" component={DesignStudioDetailed} />
+      <Route path="/logo-maker" component={DesignStudioDetailed} />
+      <Route path="/tools/resume-builder" component={DesignStudioDetailed} />
+      <Route path="/resume-builder" component={DesignStudioDetailed} />
+      <Route path="/tools/flyer-maker" component={DesignStudioDetailed} />
+      <Route path="/flyer-maker" component={DesignStudioDetailed} />
+      <Route path="/tools/poster-maker" component={DesignStudioDetailed} />
+      <Route path="/poster-maker" component={DesignStudioDetailed} />
+      <Route path="/tools/invitation-maker" component={DesignStudioDetailed} />
+      <Route path="/invitation-maker" component={DesignStudioDetailed} />
+      <Route path="/tools/business-card-maker" component={DesignStudioDetailed} />
+      <Route path="/business-card-maker" component={DesignStudioDetailed} />
+      <Route path="/tools/meme-generator" component={DesignStudioDetailed} />
+      <Route path="/meme-generator" component={DesignStudioDetailed} />
+      <Route path="/tools/emojis" component={DesignStudioDetailed} />
+      <Route path="/emojis" component={DesignStudioDetailed} />
       <Route path="/tools/binary-translator" component={BinaryConverterDetailed} />
       <Route path="/tools/english-to-binary" component={BinaryConverterDetailed} />
       <Route path="/tools/binary-to-english" component={BinaryConverterDetailed} />
