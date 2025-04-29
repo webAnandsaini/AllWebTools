@@ -255,6 +255,23 @@ function Router() {
       <Route path="/tools/power-converter-detailed" component={PowerConverterDetailed} />
       <Route path="/tools/speed-converter-detailed" component={SpeedConverterDetailed} />
       
+      {/* Non-detailed versions of Unit Converter Tools */}
+      <Route path="/tools/unit-converter" component={UnitConverterDetailed} />
+      <Route path="/tools/time-converter" component={TimeConverterDetailed} />
+      <Route path="/tools/power-converter" component={PowerConverterDetailed} />
+      <Route path="/tools/speed-converter" component={SpeedConverterDetailed} />
+      
+      {/* Additional Unit Converter Tools from the image */}
+      <Route path="/tools/volume-conversion" component={UnitConverterDetailed} />
+      <Route path="/tools/length-converter" component={UnitConverterDetailed} />
+      <Route path="/tools/voltage-converter" component={UnitConverterDetailed} />
+      <Route path="/tools/area-converter" component={UnitConverterDetailed} />
+      <Route path="/tools/weight-converter" component={UnitConverterDetailed} />
+      <Route path="/tools/byte-converter" component={UnitConverterDetailed} />
+      <Route path="/tools/temperature-conversion" component={UnitConverterDetailed} />
+      <Route path="/tools/torque-converter" component={UnitConverterDetailed} />
+      <Route path="/tools/pressure-conversion" component={UnitConverterDetailed} />
+      
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
     </Switch>
