@@ -12,12 +12,13 @@ import {
   FaSearch, 
   FaChartBar,
   FaArrowRight,
-  FaRankingStar,
+  FaAward,
   FaDownload,
   FaCopy,
   FaGlobe,
   FaInfoCircle,
-  FaChartLine
+  FaChartLine,
+  FaListUl
 } from "react-icons/fa";
 import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -613,7 +614,7 @@ const KeywordResearchToolDetailed = () => {
               <TabsContent value="questions" className="mt-4 space-y-4">
                 <div className="flex justify-between items-center">
                   <h4 className="font-medium text-lg flex items-center">
-                    <FaIconQuestion className="mr-2 text-purple-600" />
+                    <FaSearch className="mr-2 text-purple-600" />
                     Question Keywords
                     <span className="ml-2 bg-purple-100 text-purple-700 text-xs py-0.5 px-2 rounded-full">
                       {results.questions.length}
@@ -769,7 +770,7 @@ const KeywordResearchToolDetailed = () => {
               <TabsContent value="competitors" className="mt-4 space-y-4">
                 <div className="flex justify-between items-center">
                   <h4 className="font-medium text-lg flex items-center">
-                    <FaRankingStar className="mr-2 text-amber-600" />
+                    <FaAward className="mr-2 text-amber-600" />
                     Competitors Analysis
                     <span className="ml-2 bg-amber-100 text-amber-700 text-xs py-0.5 px-2 rounded-full">
                       Top 5 Competitors
