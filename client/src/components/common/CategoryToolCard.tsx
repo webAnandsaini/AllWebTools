@@ -276,16 +276,20 @@ const CategoryToolCard = ({ tool }: CategoryToolCardProps) => {
   return (
     <Link
       href={getToolUrl(tool.slug)}
-      className="rf-card p-4 flex items-center group hover:-translate-y-1"
+      className="rf-card p-4 flex items-center group hover:-translate-y-1 transition-all duration-300"
     >
-      <div className={`w-12 h-12 rounded-xl ${tool.iconBg} flex items-center justify-center mr-4 flex-shrink-0 shadow-sm group-hover:scale-110 transition-all duration-300`}>
+      <div className={`w-12 h-12 rounded-2xl ${tool.iconBg} flex items-center justify-center mr-5 flex-shrink-0 shadow-sm group-hover:scale-110 transition-all duration-300`}>
         <i className={`${tool.icon} ${tool.iconColor} text-lg`}></i>
       </div>
-      <div className="flex-grow">
-        <span className="font-medium text-gray-800 group-hover:text-primary transition-colors">{tool.name}</span>
+      <div className="flex-grow pr-6 relative">
+        <h3 className="font-semibold text-gray-800 group-hover:text-indigo-600 transition-colors">{tool.name}</h3>
         <div className="mt-1 flex items-center text-xs text-gray-500">
-          <i className="fas fa-chevron-right text-xs mr-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-          <span>Use tool</span>
+          <span className="opacity-80">Use this tool</span>
+        </div>
+        
+        {/* Arrow indicator on hover */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1">
+          <i className="fas fa-arrow-right text-indigo-500 text-xs"></i>
         </div>
       </div>
     </Link>
