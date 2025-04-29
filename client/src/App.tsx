@@ -125,6 +125,12 @@ import JSONToXMLDetailed from "@/pages/tools/JSONToXMLDetailed";
 import JSONEditorDetailed from "@/pages/tools/JSONEditorDetailed";
 import JSONBeautifierDetailed from "@/pages/tools/JSONBeautifierDetailed";
 
+// Unit Converter Tools
+import UnitConverterDetailed from "@/pages/tools/UnitConverterDetailed";
+import TimeConverterDetailed from "@/pages/tools/TimeConverterDetailed";
+import PowerConverterDetailed from "@/pages/tools/PowerConverterDetailed";
+import SpeedConverterDetailed from "@/pages/tools/SpeedConverterDetailed";
+
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -242,6 +248,12 @@ function Router() {
       <Route path="/tools/json-to-xml-detailed" component={JSONToXMLDetailed} />
       <Route path="/tools/json-editor-detailed" component={JSONEditorDetailed} />
       <Route path="/tools/json-beautifier-detailed" component={JSONBeautifierDetailed} />
+      
+      {/* Unit Converter Tools */}
+      <Route path="/tools/unit-converter-detailed" component={UnitConverterDetailed} />
+      <Route path="/tools/time-converter-detailed" component={TimeConverterDetailed} />
+      <Route path="/tools/power-converter-detailed" component={PowerConverterDetailed} />
+      <Route path="/tools/speed-converter-detailed" component={SpeedConverterDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
