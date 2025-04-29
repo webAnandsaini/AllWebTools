@@ -552,8 +552,8 @@ export const designStudioTools: Tool[] = [
   {
     id: 102,
     name: "Flyer Maker",
-    slug: "flyer-maker",
-    description: "Design eye-catching flyers for your events or promotions.",
+    slug: "flyer-maker-detailed",
+    description: "Design eye-catching, professional flyers for events, promotions, or announcements with our intuitive flyer maker.",
     category: "Design Studio",
     icon: "fas fa-file-image",
     iconColor: "text-pink-600",
@@ -3461,6 +3461,16 @@ export const popularTools: Tool[] = [
 
 // Recently added tools
 export const recentTools: Tool[] = [
+  {
+    id: 1057,
+    name: "Flyer Maker",
+    slug: "flyer-maker-detailed",
+    description: "Design eye-catching, professional flyers for events, promotions, or announcements with our intuitive flyer maker.",
+    category: "Design Studio",
+    icon: "fas fa-file-image",
+    iconColor: "text-pink-600",
+    iconBg: "bg-pink-100",
+  },
   {
     id: 1056,
     name: "Resume Builder",

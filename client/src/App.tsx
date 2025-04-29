@@ -150,6 +150,7 @@ function Router() {
       <Route path="/tools/plot-generator-detailed" component={PlotGeneratorDetailed} />
       <Route path="/tools/logo-maker-detailed" component={LogoMakerDetailed} />
       <Route path="/tools/resume-builder-detailed" component={ResumeBuilderDetailed} />
+      <Route path="/tools/flyer-maker-detailed" component={FlyerMakerDetailed} />
       <Route path="/tools/what-is-my-ip-detailed" component={WhatIsMyIPDetailed} />
       <Route path="/tools/ip-location-detailed" component={IPLocationDetailed} />
       <Route path="/tools/free-daily-proxy-list-detailed" component={FreeDailyProxyListDetailed} />

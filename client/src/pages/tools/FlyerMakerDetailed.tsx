@@ -97,7 +97,7 @@ const FlyerMakerDetailed = () => {
   const clearForm = () => {
     setHeadline("");
     setSubheading("");
-    setDescription("");
+    setFlyerDescription("");
     setContactInfo("");
     setFlyerSize("a4");
     setCustomWidth(210);
@@ -537,9 +537,9 @@ const FlyerMakerDetailed = () => {
                             <h2 className="text-2xl sm:text-3xl font-bold mb-2">{headline}</h2>
                             {subheading && <h3 className="text-lg sm:text-xl mb-4">{subheading}</h3>}
                             
-                            {description && (
+                            {flyerDescription && (
                               <div className="prose max-w-full text-sm mb-4">
-                                <p>{description}</p>
+                                <p>{flyerDescription}</p>
                               </div>
                             )}
                           </div>
