@@ -572,7 +572,7 @@ export const designStudioTools: Tool[] = [
   {
     id: 104,
     name: "Invitation Maker",
-    slug: "invitation-maker",
+    slug: "invitation-maker-detailed",
     description: "Create beautiful invitations for your special events and occasions.",
     category: "Design Studio",
     icon: "fas fa-envelope-open",
@@ -582,7 +582,7 @@ export const designStudioTools: Tool[] = [
   {
     id: 105,
     name: "Business Card Maker",
-    slug: "business-card-maker",
+    slug: "business-card-maker-detailed",
     description: "Create professional business cards to leave a lasting impression.",
     category: "Design Studio",
     icon: "fas fa-id-card",
@@ -592,7 +592,7 @@ export const designStudioTools: Tool[] = [
   {
     id: 106,
     name: "Meme Generator",
-    slug: "meme-generator",
+    slug: "meme-generator-detailed",
     description: "Create funny memes to share on social media.",
     category: "Design Studio",
     icon: "fas fa-laugh",
@@ -602,7 +602,7 @@ export const designStudioTools: Tool[] = [
   {
     id: 107,
     name: "Emojis",
-    slug: "emojis",
+    slug: "emojis-detailed",
     description: "Find and use the perfect emojis for your content and messages.",
     category: "Design Studio",
     icon: "far fa-smile",
