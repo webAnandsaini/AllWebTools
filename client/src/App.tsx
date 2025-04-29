@@ -366,6 +366,19 @@ function Router() {
       <Route path="/tools/keyword-difficulty-checker-detailed" component={KeywordToolsDetailed} />
       <Route path="/tools/paid-keyword-finder-detailed" component={KeywordToolsDetailed} />
       
+      {/* Backlink Tools - All using BacklinkToolsDetailed component */}
+      <Route path="/tools/backlink-checker-detailed" component={BacklinkToolsDetailed} />
+      <Route path="/tools/backlink-maker-detailed" component={BacklinkToolsDetailed} />
+      <Route path="/tools/website-link-count-checker-detailed" component={BacklinkToolsDetailed} />
+      <Route path="/tools/website-broken-link-checker-detailed" component={BacklinkToolsDetailed} />
+      <Route path="/tools/link-price-calculator-detailed" component={BacklinkToolsDetailed} />
+      <Route path="/tools/reciprocal-link-checker-detailed" component={BacklinkToolsDetailed} />
+      <Route path="/tools/website-link-analyzer-detailed" component={BacklinkToolsDetailed} />
+      <Route path="/tools/broken-backlink-checker-detailed" component={BacklinkToolsDetailed} />
+      <Route path="/tools/valuable-backlink-checker-detailed" component={BacklinkToolsDetailed} />
+      <Route path="/tools/backlinks-competitors-detailed" component={BacklinkToolsDetailed} />
+      <Route path="/tools/anchor-text-distribution-detailed" component={BacklinkToolsDetailed} />
+      
       {/* Direct routes for Keyword Tools */}
       <Route path="/keyword-position" component={KeywordToolsDetailed} />
       <Route path="/keywords-density-checker" component={KeywordToolsDetailed} />
@@ -381,6 +394,19 @@ function Router() {
       <Route path="/keyword-overview-tool" component={KeywordToolsDetailed} />
       <Route path="/keyword-difficulty-checker" component={KeywordToolsDetailed} />
       <Route path="/paid-keyword-finder" component={KeywordToolsDetailed} />
+      
+      {/* Direct routes for Backlink Tools */}
+      <Route path="/backlink-checker" component={BacklinkToolsDetailed} />
+      <Route path="/backlink-maker" component={BacklinkToolsDetailed} />
+      <Route path="/website-link-count-checker" component={BacklinkToolsDetailed} />
+      <Route path="/website-broken-link-checker" component={BacklinkToolsDetailed} />
+      <Route path="/link-price-calculator" component={BacklinkToolsDetailed} />
+      <Route path="/reciprocal-link-checker" component={BacklinkToolsDetailed} />
+      <Route path="/website-link-analyzer" component={BacklinkToolsDetailed} />
+      <Route path="/broken-backlink-checker" component={BacklinkToolsDetailed} />
+      <Route path="/valuable-backlink-checker" component={BacklinkToolsDetailed} />
+      <Route path="/backlinks-competitors" component={BacklinkToolsDetailed} />
+      <Route path="/anchor-text-distribution" component={BacklinkToolsDetailed} />
       
       {/* Meta Tags Tools */}
       <Route path="/tools/meta-tags-analyzer-detailed" component={MetaTagsAnalyzerDetailed} />

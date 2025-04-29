@@ -123,7 +123,20 @@ const CategoryToolCard = ({ tool }: CategoryToolCardProps) => {
       "live-keyword-analyzer": "live-keyword-analyzer-detailed",
       "keyword-overview-tool": "keyword-overview-tool-detailed",
       "keyword-difficulty-checker": "keyword-difficulty-checker-detailed",
-      "paid-keyword-finder": "paid-keyword-finder-detailed"
+      "paid-keyword-finder": "paid-keyword-finder-detailed",
+      
+      // Backlink Tools
+      "backlink-checker": "backlink-checker-detailed",
+      "backlink-maker": "backlink-maker-detailed",
+      "website-link-count-checker": "website-link-count-checker-detailed",
+      "website-broken-link-checker": "website-broken-link-checker-detailed",
+      "link-price-calculator": "link-price-calculator-detailed",
+      "reciprocal-link-checker": "reciprocal-link-checker-detailed",
+      "website-link-analyzer": "website-link-analyzer-detailed",
+      "broken-backlink-checker": "broken-backlink-checker-detailed",
+      "valuable-backlink-checker": "valuable-backlink-checker-detailed",
+      "backlinks-competitors": "backlinks-competitors-detailed",
+      "anchor-text-distribution": "anchor-text-distribution-detailed"
     };
     
     return `/tools/${detailedToolsMap[slug] || slug}`;
