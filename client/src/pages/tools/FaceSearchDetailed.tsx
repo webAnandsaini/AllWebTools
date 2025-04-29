@@ -6,36 +6,47 @@ import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { imageEditingTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
-import { FaUpload, FaSearch, FaLink, FaCropAlt, FaUser } from "react-icons/fa";
-import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { 
+  FaUpload, 
+  FaSearch,
+  FaUser,
+  FaCut
+} from "react-icons/fa";
+import { Progress } from "@/components/ui/progress";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { Separator } from "@/components/ui/separator";
 
 const FaceSearchDetailed = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState("");
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isSearching, setIsSearching] = useState(false);
-  const [confidenceThreshold, setConfidenceThreshold] = useState(80);
-  const [enableAgeDetection, setEnableAgeDetection] = useState(true);
-  const [enableGenderDetection, setEnableGenderDetection] = useState(true);
-  const [enableEmotionDetection, setEnableEmotionDetection] = useState(false);
-  const [searchResults, setSearchResults] = useState<
-    Array<{
-      region: { x: number; y: number; width: number; height: number };
-      confidence: number;
-      age?: number;
-      gender?: string;
-      emotion?: string;
-    }>
-  >([]);
+  const [searchProgress, setSearchProgress] = useState(0);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [accuracy, setAccuracy] = useState(85);
+  const [includePartialMatches, setIncludePartialMatches] = useState(true);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
+      
+      // Check if file is an image
+      if (!selectedFile.type.match('image.*')) {
+        toast({
+          title: "Invalid file type",
+          description: "Please select an image file (JPEG, PNG, etc.)",
+          variant: "destructive",
+        });
+        return;
+      }
+      
       setFile(selectedFile);
-      setPreviewUrl(URL.createObjectURL(selectedFile));
+      
+      // Create preview URL
+      const url = URL.createObjectURL(selectedFile);
+      setPreviewUrl(url);
+      
+      // Reset search results
+      setSearchResults([]);
     }
   };
 
@@ -43,97 +54,139 @@ const FaceSearchDetailed = () => {
     if (!file) {
       toast({
         title: "No image selected",
-        description: "Please upload an image first.",
+        description: "Please upload an image containing faces to search for.",
         variant: "destructive",
       });
       return;
     }
 
     setIsSearching(true);
-    setSearchResults([]);
+    setSearchProgress(0);
     
-    // Simulate a face detection process
-    setTimeout(() => {
-      // Mock results for demonstration
-      setSearchResults([
-        {
-          region: { x: 120, y: 80, width: 100, height: 100 },
-          confidence: 98.5,
-          age: enableAgeDetection ? 32 : undefined,
-          gender: enableGenderDetection ? "Male" : undefined,
-          emotion: enableEmotionDetection ? "Happy" : undefined,
-        },
-        {
-          region: { x: 320, y: 120, width: 90, height: 90 },
-          confidence: 94.2,
-          age: enableAgeDetection ? 28 : undefined,
-          gender: enableGenderDetection ? "Female" : undefined,
-          emotion: enableEmotionDetection ? "Neutral" : undefined,
-        },
-      ]);
-      
-      setIsSearching(false);
-      
-      toast({
-        title: "Face detection completed",
-        description: "Found 2 faces in the image.",
-      });
-    }, 2000);
+    // Simulate search progress
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 8;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        
+        // Generate mock search results
+        const mockResults = [
+          {
+            id: 1,
+            faceFound: true,
+            confidence: 96.4,
+            similar: [
+              { url: "https://example.com/similar-1", title: "Similar Face #1", similarity: 98 },
+              { url: "https://example.com/similar-2", title: "Similar Face #2", similarity: 94 },
+              { url: "https://example.com/similar-3", title: "Similar Face #3", similarity: 90 }
+            ],
+            position: { x: 120, y: 85, width: 180, height: 220 }
+          }
+        ];
+        
+        if (includePartialMatches) {
+          mockResults.push({
+            id: 2,
+            faceFound: true,
+            confidence: 82.7,
+            similar: [
+              { url: "https://example.com/partial-1", title: "Partial Match #1", similarity: 76 },
+              { url: "https://example.com/partial-2", title: "Partial Match #2", similarity: 72 }
+            ],
+            position: { x: 340, y: 110, width: 160, height: 190 }
+          });
+        }
+        
+        setSearchResults(mockResults);
+        setIsSearching(false);
+        
+        toast({
+          title: "Face search complete",
+          description: `Found ${mockResults.length} face(s) in the uploaded image.`,
+        });
+      }
+      setSearchProgress(progress);
+    }, 600);
   };
 
-  const introduction = "Find, identify, and analyze faces in images with our advanced face detection and recognition technology.";
+  const clearSearch = () => {
+    // Revoke object URL to avoid memory leaks
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+    }
+    
+    setFile(null);
+    setPreviewUrl(null);
+    setSearchResults([]);
+    setSearchProgress(0);
+  };
 
-  const description = "Our Face Search tool uses advanced facial recognition technology to detect, analyze, and identify faces within images. Upload any photo, and our algorithm will locate all faces present, providing detailed analysis including face positions, age estimation, gender recognition, emotion detection, and identity matching capabilities. This powerful tool is useful for a variety of applications, from organizing photo collections by identifying people across multiple images to enhancing security systems with facial verification. The technology works by mapping facial features into mathematical representations and comparing them with databases of known faces. Our tool emphasizes privacy and ethical use - all processing is done securely, and no facial data is permanently stored without explicit permission. Whether you're a photographer organizing portraits, a security professional implementing verification systems, or simply curious about the technology behind facial recognition, our Face Search tool provides a comprehensive solution with high accuracy and customizable detection parameters.";
+  const formatFileSize = (bytes: number): string => {
+    if (bytes === 0) return '0 Bytes';
+    
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  };
+
+  const introduction = "Find similar faces on the web with our advanced Face Search tool, powered by facial recognition technology.";
+
+  const description = "Our Face Search tool uses cutting-edge facial recognition algorithms to detect and analyze faces within images, allowing you to find similar faces across the web. Unlike traditional reverse image searches that analyze entire images, our Face Search specifically focuses on facial features, proportions, and characteristics to find matches based on facial similarity. This specialized search capability can help you identify celebrities who look like you, find stock photos featuring people with similar appearances, locate different photos of the same person, or detect potential unauthorized use of your portrait. The tool first analyzes your uploaded image to detect all faces present, then performs an online search for each detected face, providing results ranked by similarity percentage. Whether you're curious about celebrity lookalikes, conducting research, or verifying identity, our Face Search tool offers powerful facial recognition capabilities with a simple, user-friendly interface.";
 
   const howToUse = [
-    "Upload an image containing one or more faces by clicking the 'Upload Image' button.",
-    "Adjust the confidence threshold slider to set the minimum detection accuracy (higher values mean fewer but more accurate results).",
-    "Select additional analysis options like age estimation, gender recognition, or emotion detection if needed.",
-    "Click the 'Detect Faces' button to begin the analysis process.",
-    "Review the results showing detected faces with bounding boxes and selected analysis data."
+    "Upload an image containing one or more faces using the upload button.",
+    "Adjust the accuracy slider to control the sensitivity of face matching (higher accuracy means stricter matching criteria).",
+    "Toggle the 'Include partial matches' option to include or exclude lower confidence matches.",
+    "Click 'Search Faces' to begin the facial recognition and search process.",
+    "Wait for the search to complete - our system will detect faces and compare them with millions of faces across the web.",
+    "View the results, which show detected faces in your image and similar faces found online, ranked by similarity percentage."
   ];
 
   const features = [
-    "✅ High-accuracy face detection in photos and images",
+    "✅ Advanced facial recognition technology",
     "✅ Multiple face detection in a single image",
-    "✅ Optional age, gender, and emotion estimation",
-    "✅ Adjustable confidence threshold for precision control",
-    "✅ Privacy-focused with secure processing",
-    "✅ Fast processing even with complex images"
+    "✅ Adjustable accuracy settings for customized results",
+    "✅ Option to include or exclude partial matches",
+    "✅ Similarity rankings to evaluate match quality",
+    "✅ Privacy-focused design that respects data protection"
   ];
 
   const faqs = [
     {
-      question: "How accurate is the face detection technology?",
-      answer: "Our face detection technology achieves over 99% accuracy on frontal faces with good lighting conditions. The accuracy may decrease with profile views, poor lighting, occlusions (like masks or sunglasses), or very small faces in the image. You can adjust the confidence threshold slider to control the balance between detection rate and false positives."
+      question: "How does face search differ from reverse image search?",
+      answer: "Face search uses facial recognition technology to specifically detect and analyze faces within an image, focusing solely on facial features and ignoring backgrounds, clothing, and other elements. Regular reverse image search, by contrast, analyzes the entire image including colors, shapes, and overall composition. Our face search tool is specialized for finding similar faces based on facial structure, proportions, and features, making it much more effective for finding people who look similar or different photos of the same person. If you're looking to match faces rather than entire images, face search provides significantly more accurate and relevant results."
     },
     {
-      question: "Is my data secure when using this tool?",
-      answer: "Yes, we take privacy and security seriously. All image processing is done on secure servers, and images are not permanently stored unless you explicitly choose to save the results. No facial biometric data is retained after processing, and we do not build or maintain a database of facial profiles from user-submitted images."
+      question: "How accurate is the face search technology?",
+      answer: "Our face search technology achieves approximately 95% accuracy in controlled environments with clear, front-facing portraits. However, accuracy can vary based on several factors including image quality, lighting conditions, face angle, facial expressions, and whether the subject is wearing accessories like glasses or hats. The accuracy slider in our tool allows you to adjust the threshold for determining matches—higher settings provide fewer but more accurate matches, while lower settings provide more potential matches at the cost of precision. For optimal results, we recommend using high-resolution images with clear, well-lit, front-facing faces without obstructions."
     },
     {
-      question: "What factors can affect face detection quality?",
-      answer: "Several factors can influence the quality of face detection: image resolution (higher is better), lighting conditions (even lighting is ideal), face orientation (frontal faces are detected more accurately than profile views), occlusions (such as masks, sunglasses, or hands covering parts of the face), and image quality (blurry or pixelated images reduce accuracy). For best results, use clear, well-lit images with faces clearly visible and centered."
+      question: "What privacy measures are in place for face search?",
+      answer: "We take privacy very seriously when dealing with facial recognition technology. Our face search tool implements several privacy measures: 1) Images are processed temporarily and not permanently stored; 2) Face data is converted to encrypted numerical vectors rather than storing actual facial images; 3) We do not create or maintain a database of user-uploaded faces; 4) Search results only include publicly available images; 5) We comply with all relevant privacy regulations including GDPR and CCPA; 6) Users retain full control over their uploaded content. While we provide this tool for legitimate purposes like finding similar stock photos or celebrity lookalikes, we encourage responsible use that respects others' privacy."
     }
   ];
 
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
-      <h3 className="text-xl font-semibold mb-4 text-center">Face Detection & Analysis</h3>
+      <h3 className="text-xl font-semibold mb-4 text-center">Face Search</h3>
       
       <div className="border-2 border-dashed rounded-lg p-4 text-center">
-        <Label htmlFor="face-image-upload" className="cursor-pointer block">
+        <Label htmlFor="face-search-upload" className="cursor-pointer block">
           <div className="py-8 flex flex-col items-center">
             <FaUpload className="text-3xl text-gray-400 mb-2" />
             <p className="text-sm text-gray-500 mb-1">
-              Upload an image with faces to analyze
+              Upload an image with faces to search
             </p>
             <p className="text-xs text-gray-400">
-              Supports JPG, PNG (Max 5MB)
+              Click to browse or drag and drop
             </p>
           </div>
           <input
-            id="face-image-upload"
+            id="face-search-upload"
             type="file"
             accept="image/*"
             className="hidden"
@@ -142,157 +195,145 @@ const FaceSearchDetailed = () => {
         </Label>
       </div>
       
-      {previewUrl && (
-        <div className="mt-6">
-          <h4 className="font-medium mb-2">Image Preview</h4>
-          <div className="border rounded-lg overflow-hidden bg-gray-50 flex justify-center p-2 relative">
-            <img 
-              src={previewUrl} 
-              alt="Preview" 
-              className="max-h-64 object-contain"
-            />
-            
-            {/* Overlay detected faces when results are available */}
-            {searchResults.length > 0 && (
-              <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                {searchResults.map((face, index) => (
-                  <div 
-                    key={index}
-                    className="absolute border-2 border-green-500"
-                    style={{
-                      left: `${face.region.x}px`,
-                      top: `${face.region.y}px`,
-                      width: `${face.region.width}px`,
-                      height: `${face.region.height}px`,
-                    }}
-                  >
-                    <div className="absolute -top-6 left-0 bg-green-500 text-white text-xs py-1 px-2 rounded-t-sm">
-                      Face {index + 1} ({face.confidence.toFixed(1)}%)
-                    </div>
+      {file && previewUrl && (
+        <div className="mt-4 border rounded-lg p-4 bg-gray-50">
+          <div className="flex flex-col sm:flex-row items-center">
+            <div className="w-40 h-40 bg-white border rounded-md flex items-center justify-center overflow-hidden mb-4 sm:mb-0 sm:mr-4 relative">
+              <img 
+                src={previewUrl} 
+                alt="Preview" 
+                className="max-w-full max-h-full object-contain" 
+              />
+              
+              {/* Face markers for detected faces if results exist */}
+              {searchResults.map((result) => (
+                <div 
+                  key={result.id}
+                  className="absolute border-2 border-green-500"
+                  style={{
+                    left: `${(result.position.x / 500) * 100}%`,
+                    top: `${(result.position.y / 500) * 100}%`,
+                    width: `${(result.position.width / 500) * 100}%`,
+                    height: `${(result.position.height / 500) * 100}%`,
+                  }}
+                />
+              ))}
+            </div>
+            <div className="flex-1">
+              <p className="font-medium text-sm truncate">{file.name}</p>
+              <p className="text-xs text-gray-500 mt-1">{formatFileSize(file.size)}</p>
+              
+              <div className="space-y-3 mt-3">
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <Label htmlFor="accuracy-slider" className="text-xs font-medium">Face Match Accuracy</Label>
+                    <span className="text-xs">{accuracy}%</span>
                   </div>
-                ))}
+                  <Slider 
+                    id="accuracy-slider"
+                    min={60}
+                    max={98}
+                    step={1}
+                    value={[accuracy]}
+                    onValueChange={(values) => setAccuracy(values[0])}
+                  />
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="include-partial" className="text-xs font-medium">Include partial matches</Label>
+                  <Switch 
+                    id="include-partial" 
+                    checked={includePartialMatches}
+                    onCheckedChange={setIncludePartialMatches}
+                  />
+                </div>
               </div>
-            )}
+              
+              <div className="flex mt-3">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="text-red-600 mr-2"
+                  onClick={clearSearch}
+                >
+                  Remove
+                </Button>
+                <Button 
+                  size="sm"
+                  className="bg-primary text-white"
+                  onClick={handleSearch}
+                  disabled={isSearching}
+                >
+                  <FaSearch className="mr-2" />
+                  {isSearching ? "Searching..." : "Search Faces"}
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       )}
       
-      <div className="mt-6 space-y-4">
-        <div>
-          <div className="flex justify-between items-center mb-2">
-            <Label htmlFor="confidence" className="font-medium">Confidence Threshold</Label>
-            <span className="text-sm">{confidenceThreshold}%</span>
+      {isSearching && (
+        <div className="space-y-2 mt-6">
+          <div className="flex justify-between text-sm">
+            <span>Analyzing faces...</span>
+            <span>{Math.round(searchProgress)}%</span>
           </div>
-          <Slider 
-            id="confidence"
-            min={50}
-            max={95}
-            step={5}
-            value={[confidenceThreshold]}
-            onValueChange={(values) => setConfidenceThreshold(values[0])}
-          />
-          <p className="text-xs text-gray-500 mt-1">
-            Higher values mean fewer but more accurate face detections
-          </p>
+          <Progress value={searchProgress} />
+          <p className="text-xs text-gray-500 text-center mt-2">Detecting faces and searching for matches</p>
         </div>
-        
-        <Separator />
-        
-        <div className="space-y-3">
-          <h4 className="font-medium">Analysis Options</h4>
-          
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="age-detection" className="font-medium">Age Estimation</Label>
-              <p className="text-xs text-gray-500">Estimate approximate age of detected faces</p>
-            </div>
-            <Switch 
-              id="age-detection" 
-              checked={enableAgeDetection}
-              onCheckedChange={setEnableAgeDetection}
-            />
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="gender-detection" className="font-medium">Gender Recognition</Label>
-              <p className="text-xs text-gray-500">Detect probable gender of faces</p>
-            </div>
-            <Switch 
-              id="gender-detection" 
-              checked={enableGenderDetection}
-              onCheckedChange={setEnableGenderDetection}
-            />
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="emotion-detection" className="font-medium">Emotion Detection</Label>
-              <p className="text-xs text-gray-500">Analyze facial expressions for emotions</p>
-            </div>
-            <Switch 
-              id="emotion-detection" 
-              checked={enableEmotionDetection}
-              onCheckedChange={setEnableEmotionDetection}
-            />
-          </div>
-        </div>
-      </div>
-      
-      <div className="mt-6">
-        <Button 
-          onClick={handleSearch}
-          className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700"
-          disabled={isSearching || !file}
-        >
-          {isSearching ? (
-            <>Analyzing...</>
-          ) : (
-            <>
-              <FaUser className="mr-2" /> 
-              Detect Faces
-            </>
-          )}
-        </Button>
-      </div>
+      )}
       
       {searchResults.length > 0 && (
-        <div className="mt-8">
-          <h4 className="font-medium mb-3">Detection Results</h4>
-          <div className="space-y-3">
-            {searchResults.map((face, index) => (
-              <div key={index} className="border rounded-lg p-4 bg-gray-50">
-                <div className="flex justify-between items-center mb-2">
-                  <h5 className="font-medium">Face {index + 1}</h5>
-                  <div className="text-sm font-medium px-2 py-1 rounded-full bg-green-100 text-green-800">
-                    {face.confidence.toFixed(1)}% confidence
-                  </div>
+        <div className="mt-6 space-y-5">
+          <h4 className="font-medium text-lg">Search Results</h4>
+          
+          {searchResults.map((result) => (
+            <div key={result.id} className="border rounded-lg overflow-hidden bg-white shadow-sm">
+              <div className="p-3 bg-gray-50 border-b flex justify-between items-center">
+                <div className="flex items-center">
+                  <FaUser className="text-primary mr-2" />
+                  <span className="font-medium">Face #{result.id}</span>
                 </div>
-                
-                <div className="grid grid-cols-3 gap-3 mt-2">
-                  {face.age !== undefined && (
-                    <div className="text-center p-2 bg-white rounded border">
-                      <div className="text-sm font-medium">Age</div>
-                      <div className="text-lg">{face.age}</div>
-                    </div>
-                  )}
-                  
-                  {face.gender !== undefined && (
-                    <div className="text-center p-2 bg-white rounded border">
-                      <div className="text-sm font-medium">Gender</div>
-                      <div className="text-lg">{face.gender}</div>
-                    </div>
-                  )}
-                  
-                  {face.emotion !== undefined && (
-                    <div className="text-center p-2 bg-white rounded border">
-                      <div className="text-sm font-medium">Emotion</div>
-                      <div className="text-lg">{face.emotion}</div>
-                    </div>
-                  )}
+                <div className="bg-blue-100 text-blue-800 text-xs py-1 px-2 rounded-full">
+                  {result.confidence.toFixed(1)}% confidence
                 </div>
               </div>
-            ))}
+              
+              <div className="p-4">
+                <h5 className="text-sm font-medium mb-3">Similar Faces Found</h5>
+                
+                <div className="space-y-3">
+                  {result.similar.map((similar: any, idx: number) => (
+                    <div key={idx} className="flex justify-between items-center border-b pb-3 last:border-0 last:pb-0">
+                      <div>
+                        <p className="text-sm font-medium text-primary">{similar.title}</p>
+                        <a 
+                          href={similar.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-xs text-gray-500 hover:text-primary"
+                        >
+                          {similar.url}
+                        </a>
+                      </div>
+                      <div className="text-xs bg-green-100 text-green-800 font-medium py-1 px-2 rounded-full">
+                        {similar.similarity}% match
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+          
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800">
+            <p className="flex items-start">
+              <FaSearch className="text-blue-700 mr-2 mt-1 flex-shrink-0" />
+              <span>
+                Found {searchResults.length} face(s) in your image. Results show similar faces found online ranked by similarity.
+              </span>
+            </p>
           </div>
         </div>
       )}
