@@ -418,7 +418,7 @@ const WhatIsMyIPDetailed = () => {
 
   return (
     <ToolPageTemplate
-      toolSlug="what-is-my-ip"
+      toolSlug="what-is-my-ip-detailed"
       toolContent={
         <ToolContentTemplate
           introduction={introduction}

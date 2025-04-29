@@ -512,7 +512,7 @@ const IPLocationDetailed = () => {
 
   return (
     <ToolPageTemplate
-      toolSlug="ip-location"
+      toolSlug="ip-location-detailed"
       toolContent={
         <ToolContentTemplate
           introduction={introduction}

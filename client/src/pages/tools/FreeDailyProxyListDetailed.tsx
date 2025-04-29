@@ -731,7 +731,7 @@ const FreeDailyProxyListDetailed = () => {
 
   return (
     <ToolPageTemplate
-      toolSlug="free-daily-proxy-list"
+      toolSlug="free-daily-proxy-list-detailed"
       toolContent={
         <ToolContentTemplate
           introduction={introduction}
