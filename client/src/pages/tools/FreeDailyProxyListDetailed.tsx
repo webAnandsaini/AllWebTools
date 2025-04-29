@@ -32,7 +32,7 @@ interface ProxyServer {
   port: number;
   country: string;
   country_code: string;
-  anonymity: "transparent" | "anonymous" | "elite" | "high anonymous";
+  anonymity: "transparent" | "anonymous" | "elite" | "high_anonymous";
   https: boolean;
   speed: number; // in milliseconds
   uptime: number; // percentage
@@ -166,7 +166,7 @@ const FreeDailyProxyListDetailed = () => {
   };
   
   const getRandomAnonymityLevel = (): ProxyServer["anonymity"] => {
-    const levels: ProxyServer["anonymity"][] = ["transparent", "anonymous", "elite", "high anonymous"];
+    const levels: ProxyServer["anonymity"][] = ["transparent", "anonymous", "elite", "high_anonymous"];
     return levels[Math.floor(Math.random() * levels.length)];
   };
   
@@ -277,7 +277,7 @@ const FreeDailyProxyListDetailed = () => {
         return "bg-blue-100 text-blue-800";
       case "elite":
         return "bg-green-100 text-green-800";
-      case "high anonymous":
+      case "high_anonymous":
         return "bg-purple-100 text-purple-800";
       default:
         return "bg-gray-100 text-gray-800";
@@ -344,7 +344,7 @@ const FreeDailyProxyListDetailed = () => {
                         <SelectValue placeholder="All Countries" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">All Countries</SelectItem>
+                        <SelectItem value="all">All Countries</SelectItem>
                         <SelectItem value="US">United States</SelectItem>
                         <SelectItem value="DE">Germany</SelectItem>
                         <SelectItem value="NL">Netherlands</SelectItem>
@@ -369,11 +369,11 @@ const FreeDailyProxyListDetailed = () => {
                         <SelectValue placeholder="All Levels" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">All Levels</SelectItem>
+                        <SelectItem value="all">All Levels</SelectItem>
                         <SelectItem value="transparent">Transparent</SelectItem>
                         <SelectItem value="anonymous">Anonymous</SelectItem>
                         <SelectItem value="elite">Elite</SelectItem>
-                        <SelectItem value="high anonymous">High Anonymous</SelectItem>
+                        <SelectItem value="high_anonymous">High Anonymous</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
