@@ -131,6 +131,7 @@ import TimeConverterDetailed from "@/pages/tools/TimeConverterDetailed";
 import PowerConverterDetailed from "@/pages/tools/PowerConverterDetailed";
 import SpeedConverterDetailed from "@/pages/tools/SpeedConverterDetailed";
 import BinaryConverterDetailed from "@/pages/tools/BinaryConverterDetailed";
+import CalculatorDetailed from "@/pages/tools/CalculatorDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -323,6 +324,68 @@ function Router() {
       <Route path="/binary-decoder" component={BinaryConverterDetailed} />
       <Route path="/hex-to-text" component={BinaryConverterDetailed} />
       <Route path="/ascii-to-text" component={BinaryConverterDetailed} />
+      
+      {/* Calculator Tools */}
+      <Route path="/tools/age-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/percentage-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/average-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/confidence-interval-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/sales-tax-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/margin-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/probability-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/paypal-fee-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/discount-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/earnings-per-share-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/cpm-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/loan-to-value-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/gst-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/bmi-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/chronological-age-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/loan-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/hours-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/grade-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/gpa-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/percentage-increase-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/percentage-decrease-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/percentage-change-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/percentage-difference-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/calorie-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/time-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/salary-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/investment-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/tdee-calculator" component={CalculatorDetailed} />
+      <Route path="/tools/mean-median-mode-calculator" component={CalculatorDetailed} />
+      
+      {/* Direct routes for Calculator Tools */}
+      <Route path="/age-calculator" component={CalculatorDetailed} />
+      <Route path="/percentage-calculator" component={CalculatorDetailed} />
+      <Route path="/average-calculator" component={CalculatorDetailed} />
+      <Route path="/confidence-interval-calculator" component={CalculatorDetailed} />
+      <Route path="/sales-tax-calculator" component={CalculatorDetailed} />
+      <Route path="/margin-calculator" component={CalculatorDetailed} />
+      <Route path="/probability-calculator" component={CalculatorDetailed} />
+      <Route path="/paypal-fee-calculator" component={CalculatorDetailed} />
+      <Route path="/discount-calculator" component={CalculatorDetailed} />
+      <Route path="/earnings-per-share-calculator" component={CalculatorDetailed} />
+      <Route path="/cpm-calculator" component={CalculatorDetailed} />
+      <Route path="/loan-to-value-calculator" component={CalculatorDetailed} />
+      <Route path="/gst-calculator" component={CalculatorDetailed} />
+      <Route path="/bmi-calculator" component={CalculatorDetailed} />
+      <Route path="/chronological-age-calculator" component={CalculatorDetailed} />
+      <Route path="/loan-calculator" component={CalculatorDetailed} />
+      <Route path="/hours-calculator" component={CalculatorDetailed} />
+      <Route path="/grade-calculator" component={CalculatorDetailed} />
+      <Route path="/gpa-calculator" component={CalculatorDetailed} />
+      <Route path="/percentage-increase-calculator" component={CalculatorDetailed} />
+      <Route path="/percentage-decrease-calculator" component={CalculatorDetailed} />
+      <Route path="/percentage-change-calculator" component={CalculatorDetailed} />
+      <Route path="/percentage-difference-calculator" component={CalculatorDetailed} />
+      <Route path="/calorie-calculator" component={CalculatorDetailed} />
+      <Route path="/time-calculator" component={CalculatorDetailed} />
+      <Route path="/salary-calculator" component={CalculatorDetailed} />
+      <Route path="/investment-calculator" component={CalculatorDetailed} />
+      <Route path="/tdee-calculator" component={CalculatorDetailed} />
+      <Route path="/mean-median-mode-calculator" component={CalculatorDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
