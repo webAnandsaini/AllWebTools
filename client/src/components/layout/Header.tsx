@@ -2,12 +2,24 @@ import { useState } from "react";
 import { Link } from "wouter";
 import SearchBar from "@/components/common/SearchBar";
 import MobileMenu from "./MobileMenu";
+import MegaMenu from "./MegaMenu";
+import { categories } from "@/data/categories";
+import { popularTools } from "@/data/tools";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [megaMenuOpen, setMegaMenuOpen] = useState<'categories' | 'popular' | null>(null);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleMouseEnter = (menuType: 'categories' | 'popular') => {
+    setMegaMenuOpen(menuType);
+  };
+
+  const handleMouseLeave = () => {
+    setMegaMenuOpen(null);
   };
 
   return (
@@ -25,16 +37,34 @@ const Header = () => {
           </div>
 
           {/* Navigation - Desktop */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-6 relative">
             <Link href="/" className="text-gray-700 hover:text-primary font-medium">
               Home
             </Link>
-            <Link href="/#popular-tools" className="text-gray-700 hover:text-primary font-medium">
-              Popular Tools
-            </Link>
-            <Link href="/categories" className="text-gray-700 hover:text-primary font-medium">
-              All Categories
-            </Link>
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter('popular')}
+            >
+              <Link 
+                href="/#popular-tools" 
+                className="text-gray-700 hover:text-primary font-medium flex items-center"
+              >
+                Popular Tools
+                <i className="fas fa-chevron-down text-xs ml-1"></i>
+              </Link>
+            </div>
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter('categories')}
+            >
+              <Link 
+                href="/categories" 
+                className="text-gray-700 hover:text-primary font-medium flex items-center"
+              >
+                All Categories
+                <i className="fas fa-chevron-down text-xs ml-1"></i>
+              </Link>
+            </div>
             <Link href="#" className="btn-primary">
               Sign In
             </Link>
@@ -54,6 +84,24 @@ const Header = () => {
         <div className="md:hidden pb-3">
           <SearchBar />
         </div>
+      </div>
+
+      {/* Mega Menu - Desktop Only */}
+      <div className="hidden md:block relative">
+        <MegaMenu 
+          isOpen={megaMenuOpen === 'categories'} 
+          type="categories" 
+          categories={categories} 
+          popularTools={popularTools} 
+          onClose={handleMouseLeave} 
+        />
+        <MegaMenu 
+          isOpen={megaMenuOpen === 'popular'} 
+          type="popular" 
+          categories={categories} 
+          popularTools={popularTools} 
+          onClose={handleMouseLeave} 
+        />
       </div>
 
       {/* Mobile Menu */}
