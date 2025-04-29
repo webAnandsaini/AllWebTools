@@ -142,6 +142,21 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/categories/:category" component={CategoryPage} />
       
+      {/* Direct routes without /tools/ prefix for Unit Converter Tools */}
+      <Route path="/unit-converter" component={UnitConverterDetailed} />
+      <Route path="/time-converter" component={TimeConverterDetailed} />
+      <Route path="/power-converter" component={PowerConverterDetailed} />
+      <Route path="/speed-converter" component={SpeedConverterDetailed} />
+      <Route path="/volume-conversion" component={UnitConverterDetailed} />
+      <Route path="/length-converter" component={UnitConverterDetailed} />
+      <Route path="/voltage-converter" component={UnitConverterDetailed} />
+      <Route path="/area-converter" component={UnitConverterDetailed} />
+      <Route path="/weight-converter" component={UnitConverterDetailed} />
+      <Route path="/byte-converter" component={UnitConverterDetailed} />
+      <Route path="/temperature-conversion" component={UnitConverterDetailed} />
+      <Route path="/torque-converter" component={UnitConverterDetailed} />
+      <Route path="/pressure-conversion" component={UnitConverterDetailed} />
+      
       {/* Text Analysis Tools */}
       <Route path="/tools/plagiarism-checker" component={PlagiarismChecker} />
       <Route path="/tools/word-counter" component={WordCounter} />
