@@ -130,6 +130,7 @@ import UnitConverterDetailed from "@/pages/tools/UnitConverterDetailed";
 import TimeConverterDetailed from "@/pages/tools/TimeConverterDetailed";
 import PowerConverterDetailed from "@/pages/tools/PowerConverterDetailed";
 import SpeedConverterDetailed from "@/pages/tools/SpeedConverterDetailed";
+import BinaryConverterDetailed from "@/pages/tools/BinaryConverterDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -286,6 +287,42 @@ function Router() {
       <Route path="/tools/temperature-conversion" component={UnitConverterDetailed} />
       <Route path="/tools/torque-converter" component={UnitConverterDetailed} />
       <Route path="/tools/pressure-conversion" component={UnitConverterDetailed} />
+      
+      {/* Binary Converter Tools */}
+      <Route path="/tools/text-to-binary" component={BinaryConverterDetailed} />
+      <Route path="/tools/binary-to-text" component={BinaryConverterDetailed} />
+      <Route path="/tools/binary-to-hex" component={BinaryConverterDetailed} />
+      <Route path="/tools/hex-to-binary" component={BinaryConverterDetailed} />
+      <Route path="/tools/binary-to-ascii" component={BinaryConverterDetailed} />
+      <Route path="/tools/ascii-to-binary" component={BinaryConverterDetailed} />
+      <Route path="/tools/binary-to-decimal" component={BinaryConverterDetailed} />
+      <Route path="/tools/decimal-to-binary" component={BinaryConverterDetailed} />
+      <Route path="/tools/text-to-ascii" component={BinaryConverterDetailed} />
+      <Route path="/tools/decimal-to-hex" component={BinaryConverterDetailed} />
+      <Route path="/tools/binary-translator" component={BinaryConverterDetailed} />
+      <Route path="/tools/english-to-binary" component={BinaryConverterDetailed} />
+      <Route path="/tools/binary-to-english" component={BinaryConverterDetailed} />
+      <Route path="/tools/binary-decoder" component={BinaryConverterDetailed} />
+      <Route path="/tools/hex-to-text" component={BinaryConverterDetailed} />
+      <Route path="/tools/ascii-to-text" component={BinaryConverterDetailed} />
+      
+      {/* Direct routes for Binary Converter Tools */}
+      <Route path="/text-to-binary" component={BinaryConverterDetailed} />
+      <Route path="/binary-to-text" component={BinaryConverterDetailed} />
+      <Route path="/binary-to-hex" component={BinaryConverterDetailed} />
+      <Route path="/hex-to-binary" component={BinaryConverterDetailed} />
+      <Route path="/binary-to-ascii" component={BinaryConverterDetailed} />
+      <Route path="/ascii-to-binary" component={BinaryConverterDetailed} />
+      <Route path="/binary-to-decimal" component={BinaryConverterDetailed} />
+      <Route path="/decimal-to-binary" component={BinaryConverterDetailed} />
+      <Route path="/text-to-ascii" component={BinaryConverterDetailed} />
+      <Route path="/decimal-to-hex" component={BinaryConverterDetailed} />
+      <Route path="/binary-translator" component={BinaryConverterDetailed} />
+      <Route path="/english-to-binary" component={BinaryConverterDetailed} />
+      <Route path="/binary-to-english" component={BinaryConverterDetailed} />
+      <Route path="/binary-decoder" component={BinaryConverterDetailed} />
+      <Route path="/hex-to-text" component={BinaryConverterDetailed} />
+      <Route path="/ascii-to-text" component={BinaryConverterDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
