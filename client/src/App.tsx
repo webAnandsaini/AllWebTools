@@ -117,12 +117,14 @@ import PNGToJPGDetailed from "@/pages/tools/PNGToJPGDetailed";
 import JPGToPNGDetailed from "@/pages/tools/JPGToPNGDetailed";
 
 // JSON Tools
-import JSONViewerDetailed from "@/pages/tools/JSONViewerDetailed";
-import JSONFormatterDetailed from "@/pages/tools/JSONFormatterDetailed";
-import JSONValidatorDetailed from "@/pages/tools/JSONValidatorDetailed";
-import JSONToXMLDetailed from "@/pages/tools/JSONToXMLDetailed";
-import JSONEditorDetailed from "@/pages/tools/JSONEditorDetailed";
-import JSONBeautifierDetailed from "@/pages/tools/JSONBeautifierDetailed";
+import {
+  JSONViewerDetailed,
+  JSONFormatterDetailed,
+  JSONValidatorDetailed,
+  JSONToXMLDetailed,
+  JSONEditorDetailed,
+  JSONBeautifierDetailed
+} from "@/pages/tools/JSONTools";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -240,6 +242,7 @@ function Router() {
       <Route path="/tools/json-to-xml-detailed" component={JSONToXMLDetailed} />
       <Route path="/tools/json-editor-detailed" component={JSONEditorDetailed} />
       <Route path="/tools/json-beautifier-detailed" component={JSONBeautifierDetailed} />
+      <Route path="/tools/json-viewer-test" component={() => import("./pages/tools/JSONViewerTest").then(mod => mod.default)} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
