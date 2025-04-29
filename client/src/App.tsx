@@ -74,6 +74,9 @@ import PosterMakerDetailed from "@/pages/tools/PosterMakerDetailed";
 import WhatIsMyIPDetailed from "@/pages/tools/WhatIsMyIPDetailed";
 import IPLocationDetailed from "@/pages/tools/IPLocationDetailed";
 import FreeDailyProxyListDetailed from "@/pages/tools/FreeDailyProxyListDetailed";
+import PasswordGeneratorDetailed from "@/pages/tools/PasswordGeneratorDetailed";
+import PasswordStrengthCheckerDetailed from "@/pages/tools/PasswordStrengthCheckerDetailed";
+import PasswordEncryptionUtilityDetailed from "@/pages/tools/PasswordEncryptionUtilityDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -156,6 +159,9 @@ function Router() {
       <Route path="/tools/what-is-my-ip-detailed" component={WhatIsMyIPDetailed} />
       <Route path="/tools/ip-location-detailed" component={IPLocationDetailed} />
       <Route path="/tools/free-daily-proxy-list-detailed" component={FreeDailyProxyListDetailed} />
+      <Route path="/tools/password-generator-detailed" component={PasswordGeneratorDetailed} />
+      <Route path="/tools/password-strength-checker-detailed" component={PasswordStrengthCheckerDetailed} />
+      <Route path="/tools/password-encryption-utility-detailed" component={PasswordEncryptionUtilityDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />

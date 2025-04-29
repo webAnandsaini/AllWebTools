@@ -2278,7 +2278,7 @@ export const passwordManagementTools: Tool[] = [
   {
     id: 550,
     name: "Password Generator",
-    slug: "password-generator",
+    slug: "password-generator-detailed",
     description: "Create strong, secure passwords that are difficult to crack.",
     category: "Password Management Tools",
     icon: "fas fa-key",
@@ -2288,7 +2288,7 @@ export const passwordManagementTools: Tool[] = [
   {
     id: 551,
     name: "Password Strength Checker",
-    slug: "password-strength-checker",
+    slug: "password-strength-checker-detailed",
     description: "Check how strong your passwords are against common attacks.",
     category: "Password Management Tools",
     icon: "fas fa-shield-alt",
@@ -2298,7 +2298,7 @@ export const passwordManagementTools: Tool[] = [
   {
     id: 552,
     name: "Password Encryption Utility",
-    slug: "password-encryption-utility",
+    slug: "password-encryption-utility-detailed",
     description: "Encrypt your passwords for secure storage.",
     category: "Password Management Tools",
     icon: "fas fa-lock",
@@ -3461,6 +3461,36 @@ export const popularTools: Tool[] = [
 
 // Recently added tools
 export const recentTools: Tool[] = [
+  {
+    id: 550,
+    name: "Password Generator",
+    slug: "password-generator-detailed",
+    description: "Create strong, secure passwords that are difficult to crack with our advanced password generator.",
+    category: "Password Management Tools",
+    icon: "fas fa-key",
+    iconColor: "text-red-600",
+    iconBg: "bg-red-100",
+  },
+  {
+    id: 551,
+    name: "Password Strength Checker",
+    slug: "password-strength-checker-detailed",
+    description: "Check how strong your passwords are against common attacks and get personalized security recommendations.",
+    category: "Password Management Tools",
+    icon: "fas fa-shield-alt",
+    iconColor: "text-red-600",
+    iconBg: "bg-red-100",
+  },
+  {
+    id: 552,
+    name: "Password Encryption Utility",
+    slug: "password-encryption-utility-detailed",
+    description: "Encrypt your passwords for secure storage and management with our powerful encryption tool.",
+    category: "Password Management Tools",
+    icon: "fas fa-lock",
+    iconColor: "text-red-600",
+    iconBg: "bg-red-100",
+  },
   {
     id: 1058,
     name: "Poster Maker",
