@@ -133,6 +133,12 @@ import SpeedConverterDetailed from "@/pages/tools/SpeedConverterDetailed";
 import BinaryConverterDetailed from "@/pages/tools/BinaryConverterDetailed";
 import CalculatorDetailed from "@/pages/tools/CalculatorDetailed";
 
+// Name Generator Tools
+import RomanNumeralsDateConverterDetailed from "@/pages/tools/RomanNumeralsDateConverterDetailed";
+import CreditCardValidatorDetailed from "@/pages/tools/CreditCardValidatorDetailed";
+import CreditCardGeneratorDetailed from "@/pages/tools/CreditCardGeneratorDetailed";
+import FakeNameGeneratorDetailed from "@/pages/tools/FakeNameGeneratorDetailed";
+
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -300,6 +306,16 @@ function Router() {
       <Route path="/tools/decimal-to-binary" component={BinaryConverterDetailed} />
       <Route path="/tools/text-to-ascii" component={BinaryConverterDetailed} />
       <Route path="/tools/decimal-to-hex" component={BinaryConverterDetailed} />
+      
+      {/* Name Generator Tools - Both tool and direct routes */}
+      <Route path="/tools/roman-numerals-date-converter" component={RomanNumeralsDateConverterDetailed} />
+      <Route path="/roman-numerals-date-converter" component={RomanNumeralsDateConverterDetailed} />
+      <Route path="/tools/credit-card-validator" component={CreditCardValidatorDetailed} />
+      <Route path="/credit-card-validator" component={CreditCardValidatorDetailed} />
+      <Route path="/tools/credit-card-generator" component={CreditCardGeneratorDetailed} />
+      <Route path="/credit-card-generator" component={CreditCardGeneratorDetailed} />
+      <Route path="/tools/fake-name-generator" component={FakeNameGeneratorDetailed} />
+      <Route path="/fake-name-generator" component={FakeNameGeneratorDetailed} />
       <Route path="/tools/binary-translator" component={BinaryConverterDetailed} />
       <Route path="/tools/english-to-binary" component={BinaryConverterDetailed} />
       <Route path="/tools/binary-to-english" component={BinaryConverterDetailed} />
