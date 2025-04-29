@@ -276,6 +276,7 @@ function Router() {
       <Route path="/image-compressor" component={ImageToolsDetailed} />
       <Route path="/favicon-generator" component={ImageToolsDetailed} />
       <Route path="/video-to-gif-converter" component={ImageToolsDetailed} />
+      <Route path="/video-to-gif-converter-detailed" component={ImageToolsDetailed} />
       <Route path="/image-resizer" component={ImageToolsDetailed} />
       <Route path="/photo-resizer-in-kb" component={ImageToolsDetailed} />
       <Route path="/crop-image" component={ImageToolsDetailed} />
@@ -298,14 +299,23 @@ function Router() {
       <Route path="/mb-to-kb-converter" component={ImageToolsDetailed} />
       <Route path="/mp4-to-gif-converter" component={ImageToolsDetailed} />
       <Route path="/heic-to-jpg-converter" component={ImageToolsDetailed} />
+      <Route path="/heic-to-jpg-converter-detailed" component={ImageToolsDetailed} />
       <Route path="/heic-to-png" component={ImageToolsDetailed} />
+      <Route path="/heic-to-png-detailed" component={ImageToolsDetailed} />
       <Route path="/svg-converter" component={ImageToolsDetailed} />
+      <Route path="/svg-converter-detailed" component={ImageToolsDetailed} />
       <Route path="/png-to-svg" component={ImageToolsDetailed} />
+      <Route path="/png-to-svg-detailed" component={ImageToolsDetailed} />
       <Route path="/jpg-to-svg" component={ImageToolsDetailed} />
+      <Route path="/jpg-to-svg-detailed" component={ImageToolsDetailed} />
       <Route path="/jpeg-to-svg" component={ImageToolsDetailed} />
+      <Route path="/jpeg-to-svg-detailed" component={ImageToolsDetailed} />
       <Route path="/webp-to-png" component={ImageToolsDetailed} />
+      <Route path="/webp-to-png-detailed" component={ImageToolsDetailed} />
       <Route path="/svg-to-png" component={ImageToolsDetailed} />
+      <Route path="/svg-to-png-detailed" component={ImageToolsDetailed} />
       <Route path="/png-to-ico" component={ImageToolsDetailed} />
+      <Route path="/png-to-ico-detailed" component={ImageToolsDetailed} />
       <Route path="/avif-to-jpg" component={ImageToolsDetailed} />
       <Route path="/jpeg-optimizer" component={ImageToolsDetailed} />
       <Route path="/compress-png" component={ImageToolsDetailed} />
