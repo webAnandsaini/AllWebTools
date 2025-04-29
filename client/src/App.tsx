@@ -138,6 +138,8 @@ import RomanNumeralsDateConverterDetailed from "@/pages/tools/RomanNumeralsDateC
 import CreditCardValidatorDetailed from "@/pages/tools/CreditCardValidatorDetailed";
 import CreditCardGeneratorDetailed from "@/pages/tools/CreditCardGeneratorDetailed";
 import FakeNameGeneratorDetailed from "@/pages/tools/FakeNameGeneratorDetailed";
+import FakeAddressGeneratorDetailed from "@/pages/tools/FakeAddressGeneratorDetailed";
+import NameGeneratorDetailed from "@/pages/tools/NameGeneratorDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -316,6 +318,18 @@ function Router() {
       <Route path="/credit-card-generator" component={CreditCardGeneratorDetailed} />
       <Route path="/tools/fake-name-generator" component={FakeNameGeneratorDetailed} />
       <Route path="/fake-name-generator" component={FakeNameGeneratorDetailed} />
+      <Route path="/tools/fake-address-generator" component={FakeAddressGeneratorDetailed} />
+      <Route path="/fake-address-generator" component={FakeAddressGeneratorDetailed} />
+      <Route path="/tools/japanese-name-generator" component={NameGeneratorDetailed} />
+      <Route path="/japanese-name-generator" component={NameGeneratorDetailed} />
+      <Route path="/tools/last-name-generator" component={NameGeneratorDetailed} />
+      <Route path="/last-name-generator" component={NameGeneratorDetailed} />
+      <Route path="/tools/random-name-generator" component={NameGeneratorDetailed} />
+      <Route path="/random-name-generator" component={NameGeneratorDetailed} />
+      <Route path="/tools/korean-name-generator" component={NameGeneratorDetailed} />
+      <Route path="/korean-name-generator" component={NameGeneratorDetailed} />
+      <Route path="/tools/spanish-name-generator" component={NameGeneratorDetailed} />
+      <Route path="/spanish-name-generator" component={NameGeneratorDetailed} />
       <Route path="/tools/binary-translator" component={BinaryConverterDetailed} />
       <Route path="/tools/english-to-binary" component={BinaryConverterDetailed} />
       <Route path="/tools/binary-to-english" component={BinaryConverterDetailed} />
