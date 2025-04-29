@@ -77,6 +77,10 @@ import FreeDailyProxyListDetailed from "@/pages/tools/FreeDailyProxyListDetailed
 import PasswordGeneratorDetailed from "@/pages/tools/PasswordGeneratorDetailed";
 import PasswordStrengthCheckerDetailed from "@/pages/tools/PasswordStrengthCheckerDetailed";
 import PasswordEncryptionUtilityDetailed from "@/pages/tools/PasswordEncryptionUtilityDetailed";
+import InvitationMakerDetailed from "@/pages/tools/InvitationMakerDetailed";
+import BusinessCardMakerDetailed from "@/pages/tools/BusinessCardMakerDetailed";
+import MemeGeneratorDetailed from "@/pages/tools/MemeGeneratorDetailed";
+import EmojisDetailed from "@/pages/tools/EmojisDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -162,6 +166,10 @@ function Router() {
       <Route path="/tools/password-generator-detailed" component={PasswordGeneratorDetailed} />
       <Route path="/tools/password-strength-checker-detailed" component={PasswordStrengthCheckerDetailed} />
       <Route path="/tools/password-encryption-utility-detailed" component={PasswordEncryptionUtilityDetailed} />
+      <Route path="/tools/invitation-maker-detailed" component={InvitationMakerDetailed} />
+      <Route path="/tools/business-card-maker-detailed" component={BusinessCardMakerDetailed} />
+      <Route path="/tools/meme-generator-detailed" component={MemeGeneratorDetailed} />
+      <Route path="/tools/emojis-detailed" component={EmojisDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
