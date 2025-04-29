@@ -43,66 +43,77 @@ const Header = () => {
     <header 
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-white shadow-md py-2' 
-          : 'bg-white/95 backdrop-blur-sm py-4'
+          ? 'bg-white shadow-md py-3' 
+          : 'bg-white/90 backdrop-blur-md py-5'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="text-gradient text-2xl font-bold tracking-tight">ToolsHub</span>
+          <Link href="/" className="flex items-center">
+            <div className="flex items-center">
+              <div className="h-9 w-9 relative mr-2">
+                <div className="absolute w-full h-full bg-violet-500 opacity-80 rounded-md rotate-45"></div>
+                <div className="absolute w-full h-full flex items-center justify-center">
+                  <i className="fas fa-tools text-white"></i>
+                </div>
+              </div>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-violet-500 text-2xl font-bold tracking-tight">
+                ToolsHub
+              </span>
+            </div>
           </Link>
 
+          {/* Main Navigation - Desktop */}
+          <nav className="hidden lg:flex items-center ml-10 space-x-1">
+            <div className="relative group">
+              <Link href="/" className="px-4 py-2 text-gray-700 hover:text-indigo-600 font-medium rounded-md hover:bg-gray-50 transition-colors">
+                Home
+              </Link>
+            </div>
+            
+            <div className="relative group" onMouseEnter={() => handleMouseEnter('popular')}>
+              <button className="px-4 py-2 text-gray-700 hover:text-indigo-600 font-medium rounded-md hover:bg-gray-50 transition-colors flex items-center">
+                Popular Tools
+                <i className={`fas fa-chevron-down text-xs ml-2 transition-transform duration-200 ${megaMenuOpen === 'popular' ? 'rotate-180' : ''}`}></i>
+              </button>
+            </div>
+            
+            <div className="relative group" onMouseEnter={() => handleMouseEnter('categories')}>
+              <button className="px-4 py-2 text-gray-700 hover:text-indigo-600 font-medium rounded-md hover:bg-gray-50 transition-colors flex items-center">
+                All Categories
+                <i className={`fas fa-chevron-down text-xs ml-2 transition-transform duration-200 ${megaMenuOpen === 'categories' ? 'rotate-180' : ''}`}></i>
+              </button>
+            </div>
+          </nav>
+
           {/* Search Bar - Desktop */}
-          <div className="hidden lg:block flex-grow max-w-xl mx-6">
+          <div className="hidden md:block lg:block flex-grow max-w-lg mx-6">
             <SearchBar />
           </div>
 
-          {/* Navigation - Desktop */}
-          <nav className="hidden md:flex items-center space-x-8 relative">
-            <Link href="/" className="text-gray-700 hover:text-primary font-medium transition-colors">
-              Home
+          {/* Right Nav with Sign-in and Free Trial - Desktop */}
+          <div className="hidden md:flex items-center space-x-3">
+            <Link href="#" className="px-3 py-2 text-gray-700 hover:text-indigo-600 font-medium transition-colors">
+              Sign in
             </Link>
-            <div
-              className="relative"
-              onMouseEnter={() => handleMouseEnter('popular')}
-            >
-              <button 
-                className="text-gray-700 hover:text-primary font-medium flex items-center transition-colors"
-              >
-                Popular Tools
-                <i className="fas fa-chevron-down text-xs ml-1 transition-transform duration-200"></i>
-              </button>
-            </div>
-            <div
-              className="relative"
-              onMouseEnter={() => handleMouseEnter('categories')}
-            >
-              <button 
-                className="text-gray-700 hover:text-primary font-medium flex items-center transition-colors"
-              >
-                All Categories
-                <i className="fas fa-chevron-down text-xs ml-1 transition-transform duration-200"></i>
-              </button>
-            </div>
-            <Link href="#" className="btn-primary">
-              Sign In
+            <Link href="#" className="btn-primary px-5 py-2.5 rounded-full text-sm font-medium">
+              Try for Free
             </Link>
-          </nav>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-700 focus:outline-none"
+            className="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
-            <i className="fas fa-bars text-xl"></i>
+            <i className={`${mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'} text-xl`}></i>
           </button>
         </div>
 
         {/* Search Bar - Mobile */}
-        <div className="md:hidden pt-3 pb-2">
+        <div className="md:hidden pt-3 pb-1">
           <SearchBar />
         </div>
       </div>

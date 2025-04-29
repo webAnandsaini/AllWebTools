@@ -274,22 +274,31 @@ const ToolCard = ({ tool }: ToolCardProps) => {
   };
 
   return (
-    <Link href={getToolUrl(tool.slug)} className="tool-card group">
-      <div className="flex flex-col h-full">
-        <div className="flex items-start mb-4">
-          <div className={`w-14 h-14 rounded-xl ${tool.iconBg} flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300`}>
+    <Link href={getToolUrl(tool.slug)} className="rf-card group hover:shadow-lg p-5 transition-all duration-300 flex flex-col h-full">
+      <div className="flex flex-col justify-between h-full relative">
+        {/* Tool icon */}
+        <div className="mb-5 flex items-start">
+          <div className={`w-14 h-14 rounded-2xl ${tool.iconBg} flex items-center justify-center shadow-sm group-hover:scale-110 transition-all duration-300 transform`}>
             <i className={`${tool.icon} ${tool.iconColor} text-xl`}></i>
           </div>
-          <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="w-7 h-7 bg-indigo-50 rounded-full flex items-center justify-center">
-              <i className="fas fa-arrow-right text-indigo-600 text-xs"></i>
+          
+          {/* Hover effect circle with arrow */}
+          <div className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div className="w-8 h-8 bg-indigo-50 rounded-full flex items-center justify-center transform group-hover:translate-x-1 transition-transform">
+              <i className="fas fa-arrow-right text-indigo-500 text-xs"></i>
             </div>
           </div>
         </div>
-        <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">{tool.name}</h3>
-        <p className="text-gray-600 text-sm flex-grow">{tool.description}</p>
-        <div className="mt-5 pt-4 border-t border-gray-100">
-          <div className="flex items-center text-sm text-primary font-medium">
+        
+        {/* Tool content */}
+        <div className="flex-grow">
+          <h3 className="text-lg font-bold mb-3 group-hover:text-indigo-600 transition-colors">{tool.name}</h3>
+          <p className="text-gray-500 text-sm line-clamp-3">{tool.description}</p>
+        </div>
+        
+        {/* Call to action */}
+        <div className="mt-6 pt-4 border-t border-gray-100">
+          <div className="flex items-center text-sm font-medium text-indigo-600">
             <span>Use Tool</span>
             <i className="fas fa-chevron-right text-xs ml-2 group-hover:ml-3 transition-all duration-300"></i>
           </div>
