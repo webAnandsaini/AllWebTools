@@ -1,3 +1,4 @@
+import React, { lazy, Suspense } from "react";
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -116,19 +117,18 @@ import MetaTagGeneratorDetailed from "@/pages/tools/MetaTagGeneratorDetailed";
 import PNGToJPGDetailed from "@/pages/tools/PNGToJPGDetailed";
 import JPGToPNGDetailed from "@/pages/tools/JPGToPNGDetailed";
 
-// JSON Tools
-import {
-  JSONViewerDetailed,
-  JSONFormatterDetailed,
-  JSONValidatorDetailed,
-  JSONToXMLDetailed,
-  JSONEditorDetailed,
-  JSONBeautifierDetailed
-} from "@/pages/tools/JSONTools";
+// JSON Tools - lazy loaded
+const JSONViewerDetailed = lazy(() => import("@/pages/tools/JSONViewerDetailed"));
+const JSONFormatterDetailed = lazy(() => import("@/pages/tools/JSONFormatterDetailed"));
+const JSONValidatorDetailed = lazy(() => import("@/pages/tools/JSONValidatorDetailed"));
+const JSONToXMLDetailed = lazy(() => import("@/pages/tools/JSONToXMLDetailed"));
+const JSONEditorDetailed = lazy(() => import("@/pages/tools/JSONEditorDetailed"));
+const JSONBeautifierDetailed = lazy(() => import("@/pages/tools/JSONBeautifierDetailed"));
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import LoadingFallback from "@/components/common/LoadingFallback";
 
 function Router() {
   return (
@@ -236,13 +236,36 @@ function Router() {
       <Route path="/tools/meta-tag-generator-detailed" component={MetaTagGeneratorDetailed} />
       
       {/* JSON Tools */}
-      <Route path="/tools/json-viewer-detailed" component={JSONViewerDetailed} />
-      <Route path="/tools/json-formatter-detailed" component={JSONFormatterDetailed} />
-      <Route path="/tools/json-validator-detailed" component={JSONValidatorDetailed} />
-      <Route path="/tools/json-to-xml-detailed" component={JSONToXMLDetailed} />
-      <Route path="/tools/json-editor-detailed" component={JSONEditorDetailed} />
-      <Route path="/tools/json-beautifier-detailed" component={JSONBeautifierDetailed} />
-      <Route path="/tools/json-viewer-test" component={() => import("./pages/tools/JSONViewerTest").then(mod => mod.default)} />
+      <Route path="/tools/json-viewer-detailed" component={() => (
+        <Suspense fallback={<LoadingFallback />}>
+          <JSONViewerDetailed />
+        </Suspense>
+      )} />
+      <Route path="/tools/json-formatter-detailed" component={() => (
+        <Suspense fallback={<LoadingFallback />}>
+          <JSONFormatterDetailed />
+        </Suspense>
+      )} />
+      <Route path="/tools/json-validator-detailed" component={() => (
+        <Suspense fallback={<LoadingFallback />}>
+          <JSONValidatorDetailed />
+        </Suspense>
+      )} />
+      <Route path="/tools/json-to-xml-detailed" component={() => (
+        <Suspense fallback={<LoadingFallback />}>
+          <JSONToXMLDetailed />
+        </Suspense>
+      )} />
+      <Route path="/tools/json-editor-detailed" component={() => (
+        <Suspense fallback={<LoadingFallback />}>
+          <JSONEditorDetailed />
+        </Suspense>
+      )} />
+      <Route path="/tools/json-beautifier-detailed" component={() => (
+        <Suspense fallback={<LoadingFallback />}>
+          <JSONBeautifierDetailed />
+        </Suspense>
+      )} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
