@@ -68,7 +68,20 @@ const KeywordToolsDetailed: React.FC = () => {
   const [searchEngine, setSearchEngine] = useState<string>("google");
   const [location, setLocation] = useState<string>("united_states");
   const [language, setLanguage] = useState<string>("english");
-  const [results, setResults] = useState<any>(null);
+  // Define our results state with proper typing
+  interface ResultsData {
+    keywords: KeywordItem[];
+    url?: string;
+    domain?: string;
+    totalKeywords?: number;
+    competitors?: CompetitorItem[];
+    density?: Array<{keyword: string, count: number, percentage: number}>;
+    suggestions?: string[];
+    avgDifficulty?: number;
+    scanDate?: string;
+  }
+  
+  const [results, setResults] = useState<ResultsData | null>(null);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
