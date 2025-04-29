@@ -3462,6 +3462,16 @@ export const popularTools: Tool[] = [
 // Recently added tools
 export const recentTools: Tool[] = [
   {
+    id: 1058,
+    name: "Poster Maker",
+    slug: "poster-maker-detailed",
+    description: "Design stunning, professional posters for events, promotions, or presentations with our intuitive poster maker.",
+    category: "Design Studio",
+    icon: "fas fa-image",
+    iconColor: "text-pink-600",
+    iconBg: "bg-pink-100",
+  },
+  {
     id: 1057,
     name: "Flyer Maker",
     slug: "flyer-maker-detailed",
