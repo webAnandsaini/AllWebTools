@@ -276,12 +276,18 @@ const CategoryToolCard = ({ tool }: CategoryToolCardProps) => {
   return (
     <Link
       href={getToolUrl(tool.slug)}
-      className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition flex items-center"
+      className="rf-card p-4 flex items-center group hover:-translate-y-1"
     >
-      <div className={`w-10 h-10 rounded-lg ${tool.iconBg} flex items-center justify-center mr-3 flex-shrink-0`}>
-        <i className={`${tool.icon} ${tool.iconColor}`}></i>
+      <div className={`w-12 h-12 rounded-xl ${tool.iconBg} flex items-center justify-center mr-4 flex-shrink-0 shadow-sm group-hover:scale-110 transition-all duration-300`}>
+        <i className={`${tool.icon} ${tool.iconColor} text-lg`}></i>
       </div>
-      <span className="font-medium truncate">{tool.name}</span>
+      <div className="flex-grow">
+        <span className="font-medium text-gray-800 group-hover:text-primary transition-colors">{tool.name}</span>
+        <div className="mt-1 flex items-center text-xs text-gray-500">
+          <i className="fas fa-chevron-right text-xs mr-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+          <span>Use tool</span>
+        </div>
+      </div>
     </Link>
   );
 };

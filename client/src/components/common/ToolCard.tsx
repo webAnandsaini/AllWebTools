@@ -274,15 +274,26 @@ const ToolCard = ({ tool }: ToolCardProps) => {
   };
 
   return (
-    <Link href={getToolUrl(tool.slug)} className="bg-white rounded-xl shadow-sm hover:shadow-md transition p-5 flex flex-col">
-      <div className={`w-12 h-12 rounded-lg ${tool.iconBg} flex items-center justify-center mb-4`}>
-        <i className={`${tool.icon} ${tool.iconColor} text-xl`}></i>
-      </div>
-      <h3 className="text-lg font-semibold mb-2">{tool.name}</h3>
-      <p className="text-gray-600 text-sm flex-grow">{tool.description}</p>
-      <div className="flex items-center mt-4 text-sm text-primary font-medium">
-        <span>Use Tool</span>
-        <i className="fas fa-arrow-right ml-2"></i>
+    <Link href={getToolUrl(tool.slug)} className="tool-card group">
+      <div className="flex flex-col h-full">
+        <div className="flex items-start mb-4">
+          <div className={`w-14 h-14 rounded-xl ${tool.iconBg} flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300`}>
+            <i className={`${tool.icon} ${tool.iconColor} text-xl`}></i>
+          </div>
+          <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="w-7 h-7 bg-indigo-50 rounded-full flex items-center justify-center">
+              <i className="fas fa-arrow-right text-indigo-600 text-xs"></i>
+            </div>
+          </div>
+        </div>
+        <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">{tool.name}</h3>
+        <p className="text-gray-600 text-sm flex-grow">{tool.description}</p>
+        <div className="mt-5 pt-4 border-t border-gray-100">
+          <div className="flex items-center text-sm text-primary font-medium">
+            <span>Use Tool</span>
+            <i className="fas fa-chevron-right text-xs ml-2 group-hover:ml-3 transition-all duration-300"></i>
+          </div>
+        </div>
       </div>
     </Link>
   );
