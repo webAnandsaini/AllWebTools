@@ -17,7 +17,12 @@ const CategoryToolCard = ({ tool }: CategoryToolCardProps) => {
       "pressure-conversion",
       // JSON tools
       "json-viewer", "json-formatter", "json-validator", "json-to-xml", 
-      "json-editor", "json-beautifier"
+      "json-editor", "json-beautifier",
+      // Domain tools
+      "domain-age-checker", "domain-ip-lookup", "domain-hosting-checker", 
+      "domain-authority-checker", "find-dns-records", "domain-name-search", 
+      "domain-to-ip", "check-blacklist-ip", "find-expired-domains", 
+      "bulk-domain-rating-checker", "index-pages-checker"
     ];
     
     if (directAccessSlugs.includes(slug)) {

@@ -106,6 +106,9 @@ import JSONToXMLDetailed from "@/pages/tools/JSONToXMLDetailed";
 import JSONEditorDetailed from "@/pages/tools/JSONEditorDetailed";
 import JSONBeautifierDetailed from "@/pages/tools/JSONBeautifierDetailed";
 
+// Domain Tools
+import DomainsToolsDetailed from "@/pages/tools/DomainsToolsDetailed";
+
 // Unit Converter Tools
 import UnitConverterDetailed from "@/pages/tools/UnitConverterDetailed";
 import TimeConverterDetailed from "@/pages/tools/TimeConverterDetailed";
@@ -158,6 +161,19 @@ function Router() {
       <Route path="/json-to-xml" component={JSONToXMLDetailed} />
       <Route path="/json-editor" component={JSONEditorDetailed} />
       <Route path="/json-beautifier" component={JSONBeautifierDetailed} />
+      
+      {/* Direct routes without /tools/ prefix for Domain Tools */}
+      <Route path="/domain-age-checker" component={DomainsToolsDetailed} />
+      <Route path="/domain-ip-lookup" component={DomainsToolsDetailed} />
+      <Route path="/domain-hosting-checker" component={DomainsToolsDetailed} />
+      <Route path="/domain-authority-checker" component={DomainsToolsDetailed} />
+      <Route path="/find-dns-records" component={DomainsToolsDetailed} />
+      <Route path="/domain-name-search" component={DomainsToolsDetailed} />
+      <Route path="/domain-to-ip" component={DomainsToolsDetailed} />
+      <Route path="/check-blacklist-ip" component={DomainsToolsDetailed} />
+      <Route path="/find-expired-domains" component={DomainsToolsDetailed} />
+      <Route path="/bulk-domain-rating-checker" component={DomainsToolsDetailed} />
+      <Route path="/index-pages-checker" component={DomainsToolsDetailed} />
       
       {/* Text Analysis Tools */}
       <Route path="/tools/plagiarism-checker" component={PlagiarismChecker} />
@@ -230,6 +246,19 @@ function Router() {
       <Route path="/tools/what-is-my-ip-detailed" component={WhatIsMyIPDetailed} />
       <Route path="/tools/ip-location-detailed" component={IPLocationDetailed} />
       <Route path="/tools/free-daily-proxy-list-detailed" component={FreeDailyProxyListDetailed} />
+      
+      {/* Domain Tools */}
+      <Route path="/tools/domain-age-checker-detailed" component={DomainsToolsDetailed} />
+      <Route path="/tools/domain-ip-lookup-detailed" component={DomainsToolsDetailed} />
+      <Route path="/tools/domain-hosting-checker-detailed" component={DomainsToolsDetailed} />
+      <Route path="/tools/domain-authority-checker-detailed" component={DomainsToolsDetailed} />
+      <Route path="/tools/find-dns-records-detailed" component={DomainsToolsDetailed} />
+      <Route path="/tools/domain-name-search-detailed" component={DomainsToolsDetailed} />
+      <Route path="/tools/domain-to-ip-detailed" component={DomainsToolsDetailed} />
+      <Route path="/tools/check-blacklist-ip-detailed" component={DomainsToolsDetailed} />
+      <Route path="/tools/find-expired-domains-detailed" component={DomainsToolsDetailed} />
+      <Route path="/tools/bulk-domain-rating-checker-detailed" component={DomainsToolsDetailed} />
+      <Route path="/tools/index-pages-checker-detailed" component={DomainsToolsDetailed} />
       
       {/* Password Tools */}
       <Route path="/tools/password-generator-detailed" component={PasswordGeneratorDetailed} />
