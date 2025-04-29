@@ -107,7 +107,23 @@ const CategoryToolCard = ({ tool }: CategoryToolCardProps) => {
       "json-validator": "json-validator-detailed",
       "json-to-xml": "json-to-xml-detailed",
       "json-editor": "json-editor-detailed",
-      "json-beautifier": "json-beautifier-detailed"
+      "json-beautifier": "json-beautifier-detailed",
+      
+      // Keyword Tools
+      "keyword-position": "keyword-position-detailed",
+      "keyword-density-checker": "keyword-density-checker-detailed",
+      "keywords-density-checker": "keywords-density-checker-detailed", 
+      "keywords-suggestions-tool": "keywords-suggestions-tool-detailed",
+      "keyword-research-tool": "keyword-research-tool-detailed",
+      "keyword-competition-tool": "keyword-competition-tool-detailed",
+      "related-keywords-finder": "related-keywords-finder-detailed", 
+      "long-tail-keyword-suggestion-tool": "long-tail-keyword-suggestion-tool-detailed",
+      "keywords-rich-domains-suggestions-tool": "keywords-rich-domains-suggestions-tool-detailed",
+      "seo-keyword-competition-analysis": "seo-keyword-competition-analysis-detailed",
+      "live-keyword-analyzer": "live-keyword-analyzer-detailed",
+      "keyword-overview-tool": "keyword-overview-tool-detailed",
+      "keyword-difficulty-checker": "keyword-difficulty-checker-detailed",
+      "paid-keyword-finder": "paid-keyword-finder-detailed"
     };
     
     return `/tools/${detailedToolsMap[slug] || slug}`;
