@@ -151,6 +151,14 @@ function Router() {
       <Route path="/torque-converter" component={UnitConverterDetailed} />
       <Route path="/pressure-conversion" component={UnitConverterDetailed} />
       
+      {/* Direct routes without /tools/ prefix for JSON Tools */}
+      <Route path="/json-viewer" component={JSONViewerDetailed} />
+      <Route path="/json-formatter" component={JSONFormatterDetailed} />
+      <Route path="/json-validator" component={JSONValidatorDetailed} />
+      <Route path="/json-to-xml" component={JSONToXMLDetailed} />
+      <Route path="/json-editor" component={JSONEditorDetailed} />
+      <Route path="/json-beautifier" component={JSONBeautifierDetailed} />
+      
       {/* Text Analysis Tools */}
       <Route path="/tools/plagiarism-checker" component={PlagiarismChecker} />
       <Route path="/tools/word-counter" component={WordCounter} />

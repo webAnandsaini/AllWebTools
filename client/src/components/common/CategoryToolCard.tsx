@@ -8,15 +8,19 @@ interface CategoryToolCardProps {
 const CategoryToolCard = ({ tool }: CategoryToolCardProps) => {
   // Check if the slug already has a "-detailed" suffix
   const getToolUrl = (slug: string) => {
-    // Unit converter tools have a special case - they can be accessed directly
-    const unitConverterSlugs = [
+    // Some tools have a special case - they can be accessed directly
+    const directAccessSlugs = [
+      // Unit converter tools
       "unit-converter", "time-converter", "power-converter", "speed-converter",
       "volume-conversion", "length-converter", "voltage-converter", "area-converter",
       "weight-converter", "byte-converter", "temperature-conversion", "torque-converter",
-      "pressure-conversion"
+      "pressure-conversion",
+      // JSON tools
+      "json-viewer", "json-formatter", "json-validator", "json-to-xml", 
+      "json-editor", "json-beautifier"
     ];
     
-    if (unitConverterSlugs.includes(slug)) {
+    if (directAccessSlugs.includes(slug)) {
       return `/${slug}`;
     }
     
