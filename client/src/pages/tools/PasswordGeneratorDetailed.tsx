@@ -1,248 +1,283 @@
 import React, { useState } from "react";
 import ToolPageTemplate from "@/components/tools/ToolPageTemplate";
 import ToolContentTemplate from "@/components/tools/ToolContentTemplate";
-import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { passwordManagementTools } from "@/data/tools";
-import { toast } from "@/hooks/use-toast";
-import { FaCopy, FaKey, FaRedo } from "react-icons/fa";
+import { 
+  Card,
+  CardContent
+} from "@/components/ui/card";
+import { 
+  Slider 
+} from "@/components/ui/slider";
+import {
+  Checkbox
+} from "@/components/ui/checkbox";
+import {
+  Button
+} from "@/components/ui/button";
+import {
+  Label
+} from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
 
 const PasswordGeneratorDetailed = () => {
-  const [password, setPassword] = useState("");
-  const [passwordLength, setPasswordLength] = useState(16);
-  const [includeUppercase, setIncludeUppercase] = useState(true);
-  const [includeLowercase, setIncludeLowercase] = useState(true);
-  const [includeNumbers, setIncludeNumbers] = useState(true);
-  const [includeSymbols, setIncludeSymbols] = useState(true);
-  const [passwordStrength, setPasswordStrength] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [passwordLength, setPasswordLength] = useState<number>(12);
+  const [includeUppercase, setIncludeUppercase] = useState<boolean>(true);
+  const [includeLowercase, setIncludeLowercase] = useState<boolean>(true);
+  const [includeNumbers, setIncludeNumbers] = useState<boolean>(true);
+  const [includeSymbols, setIncludeSymbols] = useState<boolean>(true);
+  const [excludeSimilar, setExcludeSimilar] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>("");
+  const [passwordStrength, setPasswordStrength] = useState<string>("");
+  const [passwordStrengthColor, setPasswordStrengthColor] = useState<string>("");
+  
+  const { toast } = useToast();
 
-  const generatePassword = async () => {
-    if (!includeUppercase && !includeLowercase && !includeNumbers && !includeSymbols) {
+  const generatePassword = () => {
+    const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+    const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numberChars = "0123456789";
+    const symbolChars = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+    const similarChars = "il1Lo0O";
+    
+    let chars = "";
+    
+    if (includeLowercase) chars += lowercaseChars;
+    if (includeUppercase) chars += uppercaseChars;
+    if (includeNumbers) chars += numberChars;
+    if (includeSymbols) chars += symbolChars;
+    
+    if (excludeSimilar) {
+      // Remove similar chars
+      for (let i = 0; i < similarChars.length; i++) {
+        chars = chars.replace(similarChars[i], "");
+      }
+    }
+    
+    if (chars.length === 0) {
       toast({
-        variant: "destructive",
         title: "Error",
-        description: "Please select at least one character type.",
+        description: "Please select at least one character type",
+        variant: "destructive"
       });
       return;
     }
-
-    setIsLoading(true);
-    try {
-      const response = await fetch("/api/password/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          length: passwordLength,
-          includeUppercase,
-          includeLowercase,
-          includeNumbers,
-          includeSymbols,
-        }),
-      });
-
-      const data = await response.json();
-      
-      if (response.ok) {
-        setPassword(data.password);
-        setPasswordStrength(data.strength);
-      } else {
-        toast({
-          variant: "destructive",
-          title: "Error",
-          description: data.error || "Failed to generate password",
-        });
-      }
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "An unexpected error occurred",
-      });
-    } finally {
-      setIsLoading(false);
+    
+    let newPassword = "";
+    for (let i = 0; i < passwordLength; i++) {
+      const randomIndex = Math.floor(Math.random() * chars.length);
+      newPassword += chars[randomIndex];
     }
+    
+    setPassword(newPassword);
+    calculatePasswordStrength(newPassword);
   };
-
-  const copyToClipboard = () => {
+  
+  const calculatePasswordStrength = (pw: string) => {
+    let strength = 0;
+    
+    // Check length
+    if (pw.length >= 8) strength += 1;
+    if (pw.length >= 12) strength += 1;
+    if (pw.length >= 16) strength += 1;
+    
+    // Check character variety
+    if (/[a-z]/.test(pw)) strength += 1;
+    if (/[A-Z]/.test(pw)) strength += 1;
+    if (/[0-9]/.test(pw)) strength += 1;
+    if (/[^a-zA-Z0-9]/.test(pw)) strength += 1;
+    
+    // Check character diversity
+    const uniqueChars = new Set(pw).size;
+    if (uniqueChars >= pw.length * 0.7) strength += 1;
+    
+    // Set strength level
+    let strengthText = "";
+    let strengthColor = "";
+    
+    if (strength < 3) {
+      strengthText = "Very Weak";
+      strengthColor = "bg-red-500";
+    } else if (strength < 5) {
+      strengthText = "Weak";
+      strengthColor = "bg-orange-500";
+    } else if (strength < 7) {
+      strengthText = "Moderate";
+      strengthColor = "bg-yellow-500";
+    } else if (strength < 9) {
+      strengthText = "Strong";
+      strengthColor = "bg-green-500";
+    } else {
+      strengthText = "Very Strong";
+      strengthColor = "bg-emerald-500";
+    }
+    
+    setPasswordStrength(strengthText);
+    setPasswordStrengthColor(strengthColor);
+  };
+  
+  const copyPassword = () => {
     if (password) {
       navigator.clipboard.writeText(password);
       toast({
-        title: "Copied!",
-        description: "Password copied to clipboard",
+        title: "Password Copied",
+        description: "Password has been copied to clipboard"
+      });
+    } else {
+      toast({
+        title: "No Password",
+        description: "Generate a password first",
+        variant: "destructive"
       });
     }
   };
 
-  const getStrengthColor = () => {
-    if (passwordStrength < 30) return "bg-red-500";
-    if (passwordStrength < 60) return "bg-yellow-500";
-    if (passwordStrength < 80) return "bg-blue-500";
-    return "bg-green-500";
+  const resetOptions = () => {
+    setPasswordLength(12);
+    setIncludeUppercase(true);
+    setIncludeLowercase(true);
+    setIncludeNumbers(true);
+    setIncludeSymbols(true);
+    setExcludeSimilar(false);
+    setPassword("");
+    setPasswordStrength("");
+    setPasswordStrengthColor("");
   };
-
-  const getStrengthText = () => {
-    if (passwordStrength < 30) return "Weak";
-    if (passwordStrength < 60) return "Fair";
-    if (passwordStrength < 80) return "Good";
-    return "Strong";
-  };
-
-  const introduction = "Create secure, randomized passwords instantly with our powerful password generator.";
-
-  const description = "Our Password Generator is a secure, user-friendly tool designed to help you create strong, random passwords that protect your online accounts from unauthorized access and potential security breaches. In a digital world where password strength is critical for protecting your sensitive information, this tool helps you generate complex passwords that are difficult for hackers to crack, yet can be customized to meet specific requirements. With options to include uppercase letters, lowercase letters, numbers, and special symbols, you can create unique passwords that match the security criteria of any website or application while maintaining high entropy and unpredictability. Whether you're setting up new accounts, updating existing passwords for better security, or implementing password policies for an organization, our Password Generator helps you strengthen your digital security efficiently.";
-
-  const howToUse = [
-    "Set your desired password length using the slider (8-32 characters recommended).",
-    "Select the types of characters to include: uppercase letters, lowercase letters, numbers, and symbols.",
-    "Click the 'Generate Password' button to create a new random password.",
-    "Use the copy button to copy the password to your clipboard.",
-    "Generate a new password anytime by clicking the refresh button."
-  ];
-
-  const features = [
-    "✅ Customizable password length from 8 to 32 characters",
-    "✅ Options to include uppercase letters, lowercase letters, numbers, and special symbols",
-    "✅ Instant password strength assessment with visual indicator",
-    "✅ One-click copy functionality for easy password use",
-    "✅ Secure random generation algorithm for maximum protection",
-    "✅ No password storage - all passwords are generated client-side for security"
-  ];
-
-  const faqs = [
-    {
-      question: "How strong are the passwords created by this generator?",
-      answer: "The passwords created by our generator are highly secure when using the recommended settings. A password with 16+ characters that includes a mix of uppercase, lowercase, numbers, and symbols can take billions of years to crack using current technology."
-    },
-    {
-      question: "How long should my password be?",
-      answer: "For most accounts, we recommend passwords that are at least 16 characters long. Critical accounts like email, banking, or cryptocurrency wallets should use 20+ character passwords for maximum security."
-    },
-    {
-      question: "Should I use the same password for multiple accounts?",
-      answer: "No, you should never reuse passwords across different accounts. Even with a strong password, if one site experiences a data breach, all your accounts using that password become vulnerable. Generate a unique password for each account."
-    }
-  ];
 
   const toolInterface = (
-    <Card className="p-6 shadow-lg border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
-      <div className="mb-6">
-        <h3 className="text-xl font-semibold mb-4 text-center">Generate a Secure Password</h3>
-        
-        <div className="mb-6">
-          <div className="flex justify-between items-center mb-2">
-            <Label htmlFor="password-length" className="font-medium">Password Length: {passwordLength}</Label>
-          </div>
-          <Slider 
-            id="password-length"
-            value={[passwordLength]} 
-            min={8} 
-            max={32} 
-            step={1} 
-            onValueChange={(value) => setPasswordLength(value[0])}
-            className="my-4"
-          />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="uppercase" 
-              checked={includeUppercase} 
-              onCheckedChange={(checked) => setIncludeUppercase(checked === true)} 
-            />
-            <Label htmlFor="uppercase" className="font-medium">Uppercase (A-Z)</Label>
-          </div>
-          
-          <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="lowercase" 
-              checked={includeLowercase} 
-              onCheckedChange={(checked) => setIncludeLowercase(checked === true)} 
-            />
-            <Label htmlFor="lowercase" className="font-medium">Lowercase (a-z)</Label>
-          </div>
-          
-          <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="numbers" 
-              checked={includeNumbers} 
-              onCheckedChange={(checked) => setIncludeNumbers(checked === true)} 
-            />
-            <Label htmlFor="numbers" className="font-medium">Numbers (0-9)</Label>
-          </div>
-          
-          <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="symbols" 
-              checked={includeSymbols} 
-              onCheckedChange={(checked) => setIncludeSymbols(checked === true)} 
-            />
-            <Label htmlFor="symbols" className="font-medium">Symbols (!@#$%)</Label>
-          </div>
-        </div>
-
-        <Button 
-          onClick={generatePassword} 
-          disabled={isLoading} 
-          className="w-full mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium py-2 px-4 rounded-md transition-all duration-200"
-        >
-          <FaKey className="mr-2" />
-          {isLoading ? "Generating..." : "Generate Password"}
-        </Button>
-
-        {password && (
-          <div className="mt-6 space-y-4">
-            <div className="relative">
-              <Input 
-                value={password} 
-                readOnly 
-                className="pr-24 font-mono text-sm h-12"
-              />
-              <div className="absolute right-1 top-1 flex space-x-1">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button size="sm" variant="ghost" onClick={copyToClipboard}>
-                        <FaCopy />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Copy password</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-                
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button size="sm" variant="ghost" onClick={generatePassword}>
-                        <FaRedo />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Generate new password</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+    <div className="space-y-6">
+      <Card>
+        <CardContent className="pt-6">
+          <div className="space-y-8">
+            <div className="space-y-2">
+              <h3 className="text-lg font-medium">Generated Password</h3>
+              <div className="flex items-center space-x-2">
+                <div className="bg-gray-100 p-3 rounded-md flex-1 font-mono text-lg relative min-h-[48px] flex items-center">
+                  {password ? password : <span className="text-gray-400">Password will appear here</span>}
+                </div>
+                <Button 
+                  onClick={copyPassword}
+                  variant="outline"
+                  disabled={!password}
+                >
+                  Copy
+                </Button>
               </div>
+              
+              {passwordStrength && (
+                <div className="flex flex-col space-y-1">
+                  <div className="text-sm">Strength: <span className="font-medium">{passwordStrength}</span></div>
+                  <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+                    <div 
+                      className={`h-full ${passwordStrengthColor}`} 
+                      style={{ 
+                        width: `${password ? 
+                          (passwordStrength === "Very Weak" ? 20 : 
+                          passwordStrength === "Weak" ? 40 : 
+                          passwordStrength === "Moderate" ? 60 : 
+                          passwordStrength === "Strong" ? 80 : 100) : 0}%` 
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              )}
             </div>
             
-            <div>
-              <div className="flex justify-between items-center mb-1">
-                <span className="text-sm font-medium">Password Strength</span>
-                <span className="text-sm font-medium">{getStrengthText()}</span>
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <Label>Password Length: {passwordLength}</Label>
+                </div>
+                <Slider 
+                  value={[passwordLength]} 
+                  min={4}
+                  max={64}
+                  step={1}
+                  onValueChange={(value) => setPasswordLength(value[0])}
+                  className="w-full"
+                />
               </div>
-              <Progress value={passwordStrength} className={`h-2 ${getStrengthColor()}`} />
+              
+              <div className="space-y-3">
+                <h3 className="text-sm font-medium">Character Types</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div className="flex items-center space-x-2">
+                    <Checkbox 
+                      id="includeLowercase" 
+                      checked={includeLowercase}
+                      onCheckedChange={(checked) => setIncludeLowercase(checked as boolean)}
+                    />
+                    <Label htmlFor="includeLowercase">Include Lowercase (a-z)</Label>
+                  </div>
+                  
+                  <div className="flex items-center space-x-2">
+                    <Checkbox 
+                      id="includeUppercase" 
+                      checked={includeUppercase}
+                      onCheckedChange={(checked) => setIncludeUppercase(checked as boolean)}
+                    />
+                    <Label htmlFor="includeUppercase">Include Uppercase (A-Z)</Label>
+                  </div>
+                  
+                  <div className="flex items-center space-x-2">
+                    <Checkbox 
+                      id="includeNumbers" 
+                      checked={includeNumbers}
+                      onCheckedChange={(checked) => setIncludeNumbers(checked as boolean)}
+                    />
+                    <Label htmlFor="includeNumbers">Include Numbers (0-9)</Label>
+                  </div>
+                  
+                  <div className="flex items-center space-x-2">
+                    <Checkbox 
+                      id="includeSymbols" 
+                      checked={includeSymbols}
+                      onCheckedChange={(checked) => setIncludeSymbols(checked as boolean)}
+                    />
+                    <Label htmlFor="includeSymbols">Include Symbols (!@#$%^&*)</Label>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                <Checkbox 
+                  id="excludeSimilar" 
+                  checked={excludeSimilar}
+                  onCheckedChange={(checked) => setExcludeSimilar(checked as boolean)}
+                />
+                <Label htmlFor="excludeSimilar">Exclude Similar Characters (i, l, 1, L, o, 0, O)</Label>
+              </div>
+              
+              <div className="flex space-x-2 pt-2">
+                <Button onClick={generatePassword} className="flex-1">Generate Password</Button>
+                <Button onClick={resetOptions} variant="outline">Reset</Button>
+              </div>
             </div>
           </div>
-        )}
-      </div>
-    </Card>
+        </CardContent>
+      </Card>
+      
+      <Card>
+        <CardContent className="pt-6">
+          <h3 className="text-lg font-medium mb-4">Password Tips</h3>
+          <div className="space-y-3 text-sm">
+            <p>
+              A strong password is your first line of defense against unauthorized access. Here are some tips for creating and managing secure passwords:
+            </p>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Use a minimum of 12 characters, the more characters the better</li>
+              <li>Include a mix of uppercase and lowercase letters, numbers, and special characters</li>
+              <li>Avoid using common words, phrases, or personal information</li>
+              <li>Don't reuse passwords across multiple sites or services</li>
+              <li>Consider using a password manager to generate and store complex passwords</li>
+              <li>Change your passwords periodically, especially for critical accounts</li>
+            </ul>
+            <p className="text-red-600 font-medium mt-4">
+              Remember: Never share your passwords with others, and be cautious of phishing attempts that try to trick you into revealing your login credentials.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 
   return (
@@ -250,11 +285,46 @@ const PasswordGeneratorDetailed = () => {
       toolSlug="password-generator-detailed"
       toolContent={
         <ToolContentTemplate
-          introduction={introduction}
-          description={description}
-          howToUse={howToUse}
-          features={features}
-          faqs={faqs}
+          introduction="Generate strong, secure, and customizable passwords in seconds with our advanced Password Generator tool."
+          description="Our Password Generator creates random, secure passwords that are difficult to crack yet easy to customize. Choose password length, include uppercase letters, lowercase letters, numbers, and symbols, and even exclude confusing characters. Each generated password is analyzed for strength, giving you confidence in your digital security."
+          howToUse={[
+            "Select your desired password length using the slider (4-64 characters)",
+            "Choose which character types to include: uppercase, lowercase, numbers, and symbols",
+            "Optionally exclude similar characters that might be confusing",
+            "Click 'Generate Password' to create a new secure password",
+            "Copy your password to clipboard with one click",
+            "Check the strength indicator to ensure your password meets security standards"
+          ]}
+          features={[
+            "Fully customizable password generation options",
+            "Password strength analyzer with visual indicator",
+            "Option to exclude similar characters for better readability",
+            "One-click copy to clipboard functionality",
+            "Clean, intuitive interface for easy use",
+            "No password storage - all generation happens in your browser for security"
+          ]}
+          faqs={[
+            {
+              question: "How secure are the passwords generated by this tool?",
+              answer: "Very secure. By default, passwords include uppercase letters, lowercase letters, numbers, and symbols, creating strong combinations that are resistant to brute-force attacks. The longer and more varied your password, the more secure it will be."
+            },
+            {
+              question: "Does this tool store my generated passwords?",
+              answer: "No. All password generation happens directly in your browser. We never transmit or store your passwords on our servers, ensuring complete privacy and security."
+            },
+            {
+              question: "What makes a password 'strong'?",
+              answer: "A strong password typically has at least 12 characters and includes a mix of uppercase letters, lowercase letters, numbers, and special symbols. Our strength analyzer also considers the diversity of characters used and the overall entropy of the password."
+            },
+            {
+              question: "How often should I change my passwords?",
+              answer: "Security experts recommend changing passwords for important accounts every 3-6 months. However, using unique, strong passwords for each service is more important than frequent changes."
+            },
+            {
+              question: "Can I generate multiple passwords at once?",
+              answer: "Currently, the tool generates one password at a time. However, you can quickly generate multiple passwords by clicking the 'Generate Password' button repeatedly."
+            }
+          ]}
           toolInterface={toolInterface}
         />
       }

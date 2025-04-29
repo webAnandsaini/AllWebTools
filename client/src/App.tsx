@@ -75,10 +75,12 @@ import WhatIsMyIPDetailed from "@/pages/tools/WhatIsMyIPDetailed";
 import IPLocationDetailed from "@/pages/tools/IPLocationDetailed";
 import FreeDailyProxyListDetailed from "@/pages/tools/FreeDailyProxyListDetailed";
 
-/* We'll comment out these imports since the actual files don't exist yet
+// Password Tool Imports
 import PasswordGeneratorDetailed from "@/pages/tools/PasswordGeneratorDetailed";
 import PasswordStrengthCheckerDetailed from "@/pages/tools/PasswordStrengthCheckerDetailed";
 import PasswordEncryptionUtilityDetailed from "@/pages/tools/PasswordEncryptionUtilityDetailed";
+
+/* We'll comment out these imports since the actual files don't exist yet
 import InvitationMakerDetailed from "@/pages/tools/InvitationMakerDetailed";
 import BusinessCardMakerDetailed from "@/pages/tools/BusinessCardMakerDetailed";
 import MemeGeneratorDetailed from "@/pages/tools/MemeGeneratorDetailed";
@@ -195,6 +197,11 @@ function Router() {
       <Route path="/tools/what-is-my-ip-detailed" component={WhatIsMyIPDetailed} />
       <Route path="/tools/ip-location-detailed" component={IPLocationDetailed} />
       <Route path="/tools/free-daily-proxy-list-detailed" component={FreeDailyProxyListDetailed} />
+      
+      {/* Password Tools */}
+      <Route path="/tools/password-generator-detailed" component={PasswordGeneratorDetailed} />
+      <Route path="/tools/password-strength-checker-detailed" component={PasswordStrengthCheckerDetailed} />
+      <Route path="/tools/password-encryption-utility-detailed" component={PasswordEncryptionUtilityDetailed} />
       
       {/* Image Editing Tools */}
       <Route path="/tools/reverse-image-search-detailed" component={ReverseImageSearchDetailed} />
