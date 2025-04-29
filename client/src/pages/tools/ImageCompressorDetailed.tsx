@@ -4,20 +4,17 @@ import ToolContentTemplate from "@/components/tools/ToolContentTemplate";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
 import { imageEditingTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
 import { 
   FaUpload, 
   FaDownload, 
-  FaCompress, 
-  FaFileImage,
-  FaImages,
-  FaCheck
+  FaCompress,
+  FaCheck,
+  FaTrash
 } from "react-icons/fa";
 import { Progress } from "@/components/ui/progress";
-import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const ImageCompressorDetailed = () => {
   const [files, setFiles] = useState<File[]>([]);
@@ -27,14 +24,12 @@ const ImageCompressorDetailed = () => {
   const [compressedSizes, setCompressedSizes] = useState<number[]>([]);
   const [isCompressing, setIsCompressing] = useState(false);
   const [compressProgress, setCompressProgress] = useState(0);
-  const [quality, setQuality] = useState(85);
-  const [keepMetadata, setKeepMetadata] = useState(false);
-  const [optimizationLevel, setOptimizationLevel] = useState("balanced");
+  const [quality, setQuality] = useState(80);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const selectedFiles = Array.from(e.target.files).filter(file => 
-        file.type.match('image.*')
+        file.type.startsWith('image/')
       );
       
       if (selectedFiles.length !== e.target.files.length) {
@@ -132,26 +127,21 @@ const ImageCompressorDetailed = () => {
         progress = 100;
         clearInterval(interval);
         
-        // Simulate compressed results
-        const results = previewUrls.map(url => url); // In a real implementation, these would be compressed image URLs
+        // Simulate compressed results - in a real implementation, this would be the actual compressed images
+        const results = previewUrls.map(url => url);
         
         // Simulate file size reduction based on quality setting
-        // Lower quality = higher compression ratio
-        const compressionRatio = (100 - quality) * 0.01 + 0.2; // Between 0.2 and 0.7
+        // The lower the quality, the smaller the file size
+        const compressionRatio = (100 - quality) * 0.008 + 0.2; // Between 0.2 and 1.0
         const sizes = originalSizes.map(size => Math.floor(size * (1 - compressionRatio)));
         
         setResultUrls(results);
         setCompressedSizes(sizes);
         setIsCompressing(false);
         
-        // Calculate total savings
-        const totalOriginal = originalSizes.reduce((a, b) => a + b, 0);
-        const totalCompressed = sizes.reduce((a, b) => a + b, 0);
-        const savingsPercent = Math.round((1 - totalCompressed / totalOriginal) * 100);
-        
         toast({
           title: "Compression complete",
-          description: `Compressed ${files.length} ${files.length === 1 ? 'image' : 'images'} with ${savingsPercent}% size reduction.`,
+          description: `Compressed ${files.length} ${files.length === 1 ? 'image' : 'images'}.`,
         });
       }
       setCompressProgress(progress);
@@ -165,11 +155,10 @@ const ImageCompressorDetailed = () => {
     const a = document.createElement('a');
     a.href = resultUrls[index];
     const originalName = files[index]?.name || 'image.jpg';
-    const nameParts = originalName.split('.');
-    const ext = nameParts.pop();
-    const baseName = nameParts.join('.');
-    const compressedName = `${baseName}-compressed.${ext}`;
-    a.download = compressedName;
+    const parts = originalName.split('.');
+    const extension = parts.length > 1 ? parts.pop() : 'jpg';
+    const filename = parts.join('.') + '-compressed.' + extension;
+    a.download = filename;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -215,41 +204,40 @@ const ImageCompressorDetailed = () => {
     return `${saving}%`;
   };
 
-  const introduction = "Compress your images without losing quality, reduce file sizes, and optimize for web or mobile use.";
+  const introduction = "Reduce image file sizes without losing quality with our Image Compressor tool.";
 
-  const description = "Our Image Compressor is a powerful tool designed to reduce the file size of your images while maintaining optimal visual quality. Large image files can slow down websites, consume valuable storage space, and exceed attachment size limits. Our compression algorithm intelligently analyzes each image to remove unnecessary data and optimize the file size without sacrificing the visual appearance that matters to your audience. This tool supports all popular image formats including JPEG, PNG, WebP, and GIF, making it versatile for different use cases. With adjustable compression levels, you can fine-tune the balance between file size and image quality to meet your specific needs. Whether you're optimizing images for your website to improve page load times, preparing images for email attachments, saving storage space on your devices, or reducing bandwidth usage for mobile users, our Image Compressor provides an efficient solution with batch processing capabilities to save you time and effort.";
+  const description = "Our Image Compressor tool lets you reduce the file size of your images without significant quality loss. Whether you need to optimize images for your website to improve load times, prepare photos for email attachments, or simply free up storage space, our compression algorithm intelligently reduces file size while preserving visual quality. This tool supports common image formats including JPEG, PNG, GIF, and WebP, and gives you control over the compression level to find the perfect balance between file size and image quality. You can compress multiple images at once, compare the before and after results, and download your optimized images individually or all at once. The compression happens entirely in your browser, ensuring your images remain private and secure.";
 
   const howToUse = [
-    "Upload one or more images by clicking the 'Upload Images' button or dragging and dropping files.",
-    "Adjust the quality slider to control the compression level (lower quality results in smaller file sizes).",
-    "Choose whether to preserve metadata in your images.",
-    "Select an optimization preset based on your needs (web, maximum compression, or balanced).",
-    "Click 'Compress Images' to begin the compression process.",
-    "Once complete, preview the results, compare the file size reduction, and download individual or all compressed images."
+    "Upload one or more images using the 'Upload Images' button or drag and drop.",
+    "Adjust the quality slider to set your preferred balance of file size vs. image quality.",
+    "Click 'Compress Images' to start the optimization process.",
+    "Review the compressed images and see how much file size you've saved for each one.",
+    "Download individual compressed images or all at once with the 'Download All' button."
   ];
 
   const features = [
-    "✅ Intelligent compression that preserves visual quality",
-    "✅ Support for JPEG, PNG, WebP, and GIF formats",
-    "✅ Batch processing to compress multiple images at once",
-    "✅ Adjustable quality settings for perfect results",
-    "✅ Option to preserve or strip metadata",
-    "✅ Optimization presets for different use cases",
-    "✅ Before/after comparison with detailed size reduction metrics"
+    "✅ Compress images with adjustable quality settings",
+    "✅ Support for JPEG, PNG, GIF, and WebP formats",
+    "✅ Batch processing for compressing multiple images at once",
+    "✅ Visual comparison between original and compressed images",
+    "✅ Detailed file size reduction statistics",
+    "✅ Browser-based compression (no server uploads)",
+    "✅ No watermarks on compressed images"
   ];
 
   const faqs = [
     {
       question: "How does image compression work?",
-      answer: "Image compression works by reducing redundant and unnecessary data in image files. Our tool uses two primary techniques: 1) Lossy compression—selectively removing data that has minimal impact on perceived quality (like subtle color variations the human eye can't easily detect); and 2) Lossless compression—reorganizing data more efficiently without removing any information. The quality slider in our tool controls the balance between these techniques. At higher quality settings, we primarily use lossless techniques plus minimal lossy compression. At lower quality settings, we apply more aggressive lossy compression to achieve smaller file sizes. Additionally, we optimize encoding parameters, color palettes, and metadata handling based on each image's characteristics and your selected preferences."
+      answer: "Image compression works by reducing the file size of an image while attempting to maintain visual quality. There are two main types of compression: lossless (which preserves all original data) and lossy (which selectively discards some data to achieve smaller file sizes). Our tool uses intelligent lossy compression algorithms that analyze image content and remove redundant or less noticeable data. It optimizes color information, removes unnecessary metadata, and applies smart encoding techniques. The quality slider lets you control the compression level—higher settings preserve more detail but result in larger files, while lower settings achieve smaller files with some quality reduction. The ideal setting depends on your specific needs: website images can often use more compression, while photos you plan to print might need higher quality settings."
     },
     {
       question: "Will compression affect the quality of my images?",
-      answer: "The impact on quality depends on the compression level you choose. At high quality settings (80-100%), the visual difference is usually imperceptible to the human eye, even though file sizes can be reduced by 30-60%. At medium quality settings (60-80%), slight differences might be noticeable in detailed areas when zooming in, but images still look good at normal viewing sizes. At low quality settings (below 60%), visible artifacts may appear, but the files will be significantly smaller. Our tool is designed to make intelligent decisions about what visual data to preserve based on content type—preserving sharp edges in graphics and text while allowing more compression in photographic areas where small variations are less noticeable. The best approach is to experiment with different settings to find the optimal balance for your specific images and use case."
+      answer: "Yes, compression will affect image quality to some degree, but the extent depends on several factors. At high quality settings (70-100%), the difference is often imperceptible to the human eye, while still achieving significant file size reduction. Lower quality settings (below 70%) will introduce more noticeable artifacts like blurring, color banding, or pixelation, especially in detailed areas or smooth gradients. The content of your image also impacts how noticeable quality loss will be—photographs with natural scenes typically compress better than graphics with sharp edges and text. Our tool gives you control over the quality setting so you can find the right balance for your specific needs. For critical applications where quality is paramount, you can use higher settings and still benefit from some file size reduction."
     },
     {
-      question: "What's the difference between the optimization presets?",
-      answer: "Our three optimization presets are tailored for different use cases: 1) Web Optimized—balances quality and file size with a focus on fast loading, ideal for websites and online platforms. This preset applies smart compression techniques that work well with modern browsers and maintains good visual quality while significantly reducing file size. 2) Maximum Compression—prioritizes achieving the smallest possible file size, even if it means some quality reduction. This is suitable for archiving large numbers of images, email attachments with strict size limits, or scenarios where bandwidth is extremely limited. 3) Balanced—our default setting that maintains high visual quality while still providing substantial file size reduction. It uses a combination of techniques that work well for most images and purposes. Each preset adjusts not just the quality level but also other compression parameters including metadata handling, color sampling, and encoding methods."
+      question: "What's the difference between compressing PNG and JPEG images?",
+      answer: "PNG and JPEG files compress differently due to their inherent formats. JPEG was designed specifically for photographs and uses lossy compression that works well with natural images containing many colors and gradients. When compressing a JPEG, our tool reapplies the JPEG algorithm at your chosen quality level, which can significantly reduce file size. PNG files, on the other hand, use lossless compression by default and are ideal for graphics with text, sharp edges, or transparency. When compressing PNG files, our tool can either optimize the lossless compression (smaller reduction but no quality loss) or convert to a lossy format for greater size reduction (with some quality trade-off and loss of transparency). For photographs, JPEG compression typically achieves much smaller file sizes than PNG. For graphics, logos, or images requiring transparency, PNG is usually better despite larger file sizes."
     }
   ];
 
@@ -265,7 +253,7 @@ const ImageCompressorDetailed = () => {
               Upload images to compress
             </p>
             <p className="text-xs text-gray-400">
-              Supports JPEG, PNG, WebP, GIF (up to 10MB per file)
+              Click to browse or drag and drop images here
             </p>
           </div>
           <input
@@ -282,12 +270,13 @@ const ImageCompressorDetailed = () => {
       {files.length > 0 && (
         <div className="mt-6 space-y-5">
           <div className="flex justify-between items-center">
-            <h4 className="font-medium">Upload Queue ({files.length})</h4>
+            <h4 className="font-medium">Images to Compress ({files.length})</h4>
             <Button 
               variant="ghost" 
               size="sm"
               onClick={clearAll}
             >
+              <FaTrash className="mr-1 text-red-500" />
               Clear All
             </Button>
           </div>
@@ -306,7 +295,7 @@ const ImageCompressorDetailed = () => {
                       
                       {compressedSizes[index] && (
                         <>
-                          <span className="mx-1">→</span>
+                          <span className="mx-1 text-gray-400">→</span>
                           <span className="text-green-600 font-medium">{formatBytes(compressedSizes[index])}</span>
                           <span className="ml-1 text-green-600 font-medium">
                             ({calculateSavings(originalSizes[index], compressedSizes[index])} saved)
@@ -321,7 +310,7 @@ const ImageCompressorDetailed = () => {
                     <Button 
                       variant="ghost" 
                       size="sm"
-                      className="text-green-600 mr-2"
+                      className="text-blue-600 mr-2"
                       onClick={() => handleDownload(index)}
                     >
                       <FaDownload className="mr-1" />
@@ -344,13 +333,13 @@ const ImageCompressorDetailed = () => {
           <div className="space-y-4 pt-2">
             <div>
               <div className="flex justify-between items-center mb-1">
-                <Label htmlFor="quality-slider" className="font-medium">Quality</Label>
+                <Label htmlFor="quality-slider" className="font-medium">Compression Quality</Label>
                 <span className="text-sm">{quality}%</span>
               </div>
               <Slider 
                 id="quality-slider"
-                min={50}
-                max={100}
+                min={30}
+                max={95}
                 step={5}
                 value={[quality]}
                 onValueChange={(values) => setQuality(values[0])}
@@ -359,48 +348,6 @@ const ImageCompressorDetailed = () => {
                 <span>Smaller file size</span>
                 <span>Better quality</span>
               </div>
-            </div>
-            
-            <div>
-              <Label htmlFor="optimization" className="font-medium mb-1 block">Optimization Preset</Label>
-              <div className="grid grid-cols-3 gap-2">
-                <Button 
-                  variant={optimizationLevel === "web" ? "default" : "outline"} 
-                  size="sm"
-                  className="text-xs h-auto py-2"
-                  onClick={() => setOptimizationLevel("web")}
-                >
-                  Web Optimized
-                </Button>
-                <Button 
-                  variant={optimizationLevel === "balanced" ? "default" : "outline"} 
-                  size="sm"
-                  className="text-xs h-auto py-2"
-                  onClick={() => setOptimizationLevel("balanced")}
-                >
-                  Balanced
-                </Button>
-                <Button 
-                  variant={optimizationLevel === "maximum" ? "default" : "outline"} 
-                  size="sm"
-                  className="text-xs h-auto py-2"
-                  onClick={() => setOptimizationLevel("maximum")}
-                >
-                  Maximum
-                </Button>
-              </div>
-            </div>
-            
-            <div className="flex items-center justify-between">
-              <div>
-                <Label htmlFor="keep-metadata" className="font-medium">Preserve Metadata</Label>
-                <p className="text-xs text-gray-500">Keep EXIF data, author, GPS, etc.</p>
-              </div>
-              <Switch 
-                id="keep-metadata" 
-                checked={keepMetadata}
-                onCheckedChange={setKeepMetadata}
-              />
             </div>
           </div>
           
@@ -415,7 +362,7 @@ const ImageCompressorDetailed = () => {
               ) : (
                 <>
                   <FaCompress className="mr-2" /> 
-                  Compress {files.length > 1 ? `${files.length} Images` : 'Image'}
+                  Compress Images
                 </>
               )}
             </Button>

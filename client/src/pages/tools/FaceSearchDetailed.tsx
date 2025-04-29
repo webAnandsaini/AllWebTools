@@ -10,11 +10,15 @@ import {
   FaUpload, 
   FaSearch,
   FaUser,
-  FaCut
+  FaInfoCircle
 } from "react-icons/fa";
 import { Progress } from "@/components/ui/progress";
-import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
+import { 
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const FaceSearchDetailed = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -22,31 +26,34 @@ const FaceSearchDetailed = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [searchProgress, setSearchProgress] = useState(0);
   const [searchResults, setSearchResults] = useState<any[]>([]);
-  const [accuracy, setAccuracy] = useState(85);
-  const [includePartialMatches, setIncludePartialMatches] = useState(true);
+  const [faceDetected, setFaceDetected] = useState<boolean | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
+      const fileType = selectedFile.type;
       
       // Check if file is an image
-      if (!selectedFile.type.match('image.*')) {
+      if (!fileType.startsWith('image/')) {
         toast({
           title: "Invalid file type",
-          description: "Please select an image file (JPEG, PNG, etc.)",
+          description: "Please upload an image file (JPEG, PNG, etc.)",
           variant: "destructive",
         });
         return;
       }
       
       setFile(selectedFile);
-      
-      // Create preview URL
-      const url = URL.createObjectURL(selectedFile);
-      setPreviewUrl(url);
-      
-      // Reset search results
+      const objectUrl = URL.createObjectURL(selectedFile);
+      setPreviewUrl(objectUrl);
       setSearchResults([]);
+      setFaceDetected(null);
+      
+      return () => {
+        if (previewUrl) {
+          URL.revokeObjectURL(previewUrl);
+        }
+      };
     }
   };
 
@@ -54,7 +61,7 @@ const FaceSearchDetailed = () => {
     if (!file) {
       toast({
         title: "No image selected",
-        description: "Please upload an image containing faces to search for.",
+        description: "Please upload an image to search for faces.",
         variant: "destructive",
       });
       return;
@@ -62,111 +69,114 @@ const FaceSearchDetailed = () => {
 
     setIsSearching(true);
     setSearchProgress(0);
+    setSearchResults([]);
     
-    // Simulate search progress
+    // Simulate face detection and search process
     let progress = 0;
     const interval = setInterval(() => {
-      progress += 8;
+      progress += 4;
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
         
-        // Generate mock search results
-        const mockResults = [
-          {
-            id: 1,
-            faceFound: true,
-            confidence: 96.4,
-            similar: [
-              { url: "https://example.com/similar-1", title: "Similar Face #1", similarity: 98 },
-              { url: "https://example.com/similar-2", title: "Similar Face #2", similarity: 94 },
-              { url: "https://example.com/similar-3", title: "Similar Face #3", similarity: 90 }
-            ],
-            position: { x: 120, y: 85, width: 180, height: 220 }
-          }
-        ];
+        // Simulate face detection - randomly decide if face is detected for demo purposes
+        // In a real implementation, this would use actual face detection algorithms
+        const faceIsDetected = Math.random() > 0.2; // 80% chance of detecting a face for demo
+        setFaceDetected(faceIsDetected);
         
-        if (includePartialMatches) {
-          mockResults.push({
-            id: 2,
-            faceFound: true,
-            confidence: 82.7,
-            similar: [
-              { url: "https://example.com/partial-1", title: "Partial Match #1", similarity: 76 },
-              { url: "https://example.com/partial-2", title: "Partial Match #2", similarity: 72 }
-            ],
-            position: { x: 340, y: 110, width: 160, height: 190 }
+        if (faceIsDetected) {
+          // Simulate search results
+          const simulatedResults = [
+            {
+              id: 1,
+              url: "https://example.com/profile-1",
+              thumbnailUrl: "https://via.placeholder.com/150",
+              name: "John Smith",
+              matchConfidence: 92,
+              source: "Social Network A"
+            },
+            {
+              id: 2,
+              url: "https://example.com/profile-2",
+              thumbnailUrl: "https://via.placeholder.com/150",
+              name: "Jonathan Smith",
+              matchConfidence: 84,
+              source: "Professional Network B"
+            },
+            {
+              id: 3,
+              url: "https://example.com/profile-3",
+              thumbnailUrl: "https://via.placeholder.com/150",
+              name: "J. Smith",
+              matchConfidence: 79,
+              source: "Public Database C"
+            }
+          ];
+          
+          setSearchResults(simulatedResults);
+          
+          toast({
+            title: "Search complete",
+            description: `Found ${simulatedResults.length} possible matches.`,
+          });
+        } else {
+          toast({
+            title: "No faces detected",
+            description: "We couldn't detect any faces in this image. Please try with a clearer photo showing a face.",
+            variant: "destructive",
           });
         }
         
-        setSearchResults(mockResults);
         setIsSearching(false);
-        
-        toast({
-          title: "Face search complete",
-          description: `Found ${mockResults.length} face(s) in the uploaded image.`,
-        });
       }
       setSearchProgress(progress);
-    }, 600);
+    }, 100);
   };
 
-  const clearSearch = () => {
-    // Revoke object URL to avoid memory leaks
+  const clearImage = () => {
     if (previewUrl) {
       URL.revokeObjectURL(previewUrl);
     }
-    
     setFile(null);
     setPreviewUrl(null);
     setSearchResults([]);
-    setSearchProgress(0);
+    setFaceDetected(null);
   };
 
-  const formatFileSize = (bytes: number): string => {
-    if (bytes === 0) return '0 Bytes';
-    
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-  };
+  const introduction = "Find people online by their face with our Face Search tool.";
 
-  const introduction = "Find similar faces on the web with our advanced Face Search tool, powered by facial recognition technology.";
-
-  const description = "Our Face Search tool uses cutting-edge facial recognition algorithms to detect and analyze faces within images, allowing you to find similar faces across the web. Unlike traditional reverse image searches that analyze entire images, our Face Search specifically focuses on facial features, proportions, and characteristics to find matches based on facial similarity. This specialized search capability can help you identify celebrities who look like you, find stock photos featuring people with similar appearances, locate different photos of the same person, or detect potential unauthorized use of your portrait. The tool first analyzes your uploaded image to detect all faces present, then performs an online search for each detected face, providing results ranked by similarity percentage. Whether you're curious about celebrity lookalikes, conducting research, or verifying identity, our Face Search tool offers powerful facial recognition capabilities with a simple, user-friendly interface.";
+  const description = "Our Face Search tool helps you identify people based on facial features in an uploaded photo. Using advanced facial recognition technology, this tool can search across databases of publicly available images to find potential matches for the face in your photo. This can be invaluable for reconnecting with old friends, identifying unknown people in photographs, researching public figures, or verifying someone's online presence. Unlike traditional search engines that rely on text queries, face search analyzes the unique biometric patterns of a person's face to find visual matches. Our tool processes images securely and responsibly, focusing on publicly available information while respecting privacy concerns.";
 
   const howToUse = [
-    "Upload an image containing one or more faces using the upload button.",
-    "Adjust the accuracy slider to control the sensitivity of face matching (higher accuracy means stricter matching criteria).",
-    "Toggle the 'Include partial matches' option to include or exclude lower confidence matches.",
-    "Click 'Search Faces' to begin the facial recognition and search process.",
-    "Wait for the search to complete - our system will detect faces and compare them with millions of faces across the web.",
-    "View the results, which show detected faces in your image and similar faces found online, ranked by similarity percentage."
+    "Upload a clear photo containing the face you want to search for.",
+    "Make sure the face is clearly visible, well-lit, and facing forward for best results.",
+    "Click the 'Search Face' button to begin the process.",
+    "Our system will first detect faces in your image, then search for matches.",
+    "Review the results showing potential matches from across the web."
   ];
 
   const features = [
     "✅ Advanced facial recognition technology",
-    "✅ Multiple face detection in a single image",
-    "✅ Adjustable accuracy settings for customized results",
-    "✅ Option to include or exclude partial matches",
-    "✅ Similarity rankings to evaluate match quality",
-    "✅ Privacy-focused design that respects data protection"
+    "✅ Search across multiple public databases",
+    "✅ Fast and accurate matching algorithms",
+    "✅ Support for various photo qualities and angles",
+    "✅ Detailed matching confidence scores",
+    "✅ Privacy-compliant searching",
+    "✅ User-friendly interface"
   ];
 
   const faqs = [
     {
-      question: "How does face search differ from reverse image search?",
-      answer: "Face search uses facial recognition technology to specifically detect and analyze faces within an image, focusing solely on facial features and ignoring backgrounds, clothing, and other elements. Regular reverse image search, by contrast, analyzes the entire image including colors, shapes, and overall composition. Our face search tool is specialized for finding similar faces based on facial structure, proportions, and features, making it much more effective for finding people who look similar or different photos of the same person. If you're looking to match faces rather than entire images, face search provides significantly more accurate and relevant results."
+      question: "How accurate is face search technology?",
+      answer: "Face search accuracy varies depending on several factors, including image quality, facial clarity, lighting conditions, and the angle of the face. Under optimal conditions (clear, well-lit, front-facing images), our technology can achieve high accuracy rates. However, accuracy decreases with poor lighting, obscured faces, side profiles, or very low-resolution images. It's worth noting that facial recognition is probabilistic—results are presented as potential matches with confidence scores rather than definitive identifications. For the most reliable results, we recommend using high-quality images where the face is clearly visible and facing forward."
     },
     {
-      question: "How accurate is the face search technology?",
-      answer: "Our face search technology achieves approximately 95% accuracy in controlled environments with clear, front-facing portraits. However, accuracy can vary based on several factors including image quality, lighting conditions, face angle, facial expressions, and whether the subject is wearing accessories like glasses or hats. The accuracy slider in our tool allows you to adjust the threshold for determining matches—higher settings provide fewer but more accurate matches, while lower settings provide more potential matches at the cost of precision. For optimal results, we recommend using high-resolution images with clear, well-lit, front-facing faces without obstructions."
+      question: "What privacy considerations apply to face search?",
+      answer: "Face search technology involves important privacy considerations. Our tool only searches publicly available images and information—we do not access private accounts, protected content, or restricted databases. We also don't permanently store your uploaded images; they're processed temporarily and then deleted. The search results focus on public figures and publicly shared content. Users should be mindful that facial recognition can have privacy implications, and we encourage responsible use of this technology. We comply with relevant regulations regarding biometric data processing and facial recognition, and we're committed to transparent practices around how this technology works."
     },
     {
-      question: "What privacy measures are in place for face search?",
-      answer: "We take privacy very seriously when dealing with facial recognition technology. Our face search tool implements several privacy measures: 1) Images are processed temporarily and not permanently stored; 2) Face data is converted to encrypted numerical vectors rather than storing actual facial images; 3) We do not create or maintain a database of user-uploaded faces; 4) Search results only include publicly available images; 5) We comply with all relevant privacy regulations including GDPR and CCPA; 6) Users retain full control over their uploaded content. While we provide this tool for legitimate purposes like finding similar stock photos or celebrity lookalikes, we encourage responsible use that respects others' privacy."
+      question: "Why might I get no results from a face search?",
+      answer: "There are several reasons why a face search might return no results: 1) No faces were detected in your image—this can happen if the face is too small, blurry, obscured, or at a difficult angle; 2) The person in the photo may not have a significant online presence with publicly accessible photos; 3) The lighting, quality, or angle of the photo might not provide enough distinguishable facial features for matching; 4) For privacy and ethical reasons, our system only searches certain types of public content, limiting the search scope; 5) Very young faces or significantly changed appearances (due to aging, weight changes, facial hair, etc.) can reduce match likelihood. For best results, try uploading a clearer, well-lit photo where the face is prominently visible and directly facing the camera."
     }
   ];
 
@@ -174,169 +184,160 @@ const FaceSearchDetailed = () => {
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Face Search</h3>
       
-      <div className="border-2 border-dashed rounded-lg p-4 text-center">
-        <Label htmlFor="face-search-upload" className="cursor-pointer block">
-          <div className="py-8 flex flex-col items-center">
-            <FaUpload className="text-3xl text-gray-400 mb-2" />
-            <p className="text-sm text-gray-500 mb-1">
-              Upload an image with faces to search
-            </p>
-            <p className="text-xs text-gray-400">
-              Click to browse or drag and drop
-            </p>
+      <div className="space-y-6">
+        {!previewUrl ? (
+          <div className="border-2 border-dashed rounded-lg p-4 text-center">
+            <Label htmlFor="face-search-upload" className="cursor-pointer block">
+              <div className="py-8 flex flex-col items-center">
+                <FaUpload className="text-3xl text-gray-400 mb-2" />
+                <p className="text-sm text-gray-500 mb-1">
+                  Upload a photo with a face to search
+                </p>
+                <p className="text-xs text-gray-400">
+                  For best results, use a clear front-facing photo
+                </p>
+              </div>
+              <input
+                id="face-search-upload"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleFileChange}
+              />
+            </Label>
           </div>
-          <input
-            id="face-search-upload"
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={handleFileChange}
-          />
-        </Label>
-      </div>
-      
-      {file && previewUrl && (
-        <div className="mt-4 border rounded-lg p-4 bg-gray-50">
-          <div className="flex flex-col sm:flex-row items-center">
-            <div className="w-40 h-40 bg-white border rounded-md flex items-center justify-center overflow-hidden mb-4 sm:mb-0 sm:mr-4 relative">
+        ) : (
+          <div className="space-y-4">
+            <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100 border">
               <img 
                 src={previewUrl} 
                 alt="Preview" 
-                className="max-w-full max-h-full object-contain" 
+                className="object-contain w-full h-full" 
               />
-              
-              {/* Face markers for detected faces if results exist */}
-              {searchResults.map((result) => (
-                <div 
-                  key={result.id}
-                  className="absolute border-2 border-green-500"
-                  style={{
-                    left: `${(result.position.x / 500) * 100}%`,
-                    top: `${(result.position.y / 500) * 100}%`,
-                    width: `${(result.position.width / 500) * 100}%`,
-                    height: `${(result.position.height / 500) * 100}%`,
-                  }}
-                />
+              <Button
+                variant="outline"
+                size="sm"
+                className="absolute top-2 right-2 bg-white/80 hover:bg-white"
+                onClick={clearImage}
+              >
+                ×
+              </Button>
+            </div>
+            
+            <p className="text-sm text-gray-600">
+              {file?.name} ({(file?.size / 1024 / 1024).toFixed(2)} MB)
+            </p>
+            
+            <Button 
+              onClick={handleSearch}
+              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+              disabled={isSearching}
+            >
+              {isSearching ? (
+                <>Analyzing Face...</>
+              ) : (
+                <>
+                  <FaSearch className="mr-2" /> 
+                  Search Face
+                </>
+              )}
+            </Button>
+          </div>
+        )}
+        
+        {isSearching && (
+          <div className="space-y-2">
+            <div className="flex justify-between text-sm">
+              <span>
+                {searchProgress < 30 ? 'Detecting faces...' : 
+                 searchProgress < 60 ? 'Analyzing facial features...' : 
+                 'Searching for matches...'}
+              </span>
+              <span>{Math.round(searchProgress)}%</span>
+            </div>
+            <Progress value={searchProgress} />
+          </div>
+        )}
+        
+        {faceDetected === false && (
+          <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+            <div className="flex items-start">
+              <FaInfoCircle className="text-amber-500 mt-1 mr-3 flex-shrink-0" />
+              <div>
+                <h4 className="font-medium text-amber-800">No faces detected</h4>
+                <p className="text-sm text-amber-700 mt-1">
+                  We couldn't identify any faces in your uploaded image. Please try again with a clearer photo where the face is fully visible and well-lit.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        {searchResults.length > 0 && (
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <h4 className="font-medium">Potential Matches</h4>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                      <FaInfoCircle className="text-gray-400" />
+                      <span className="sr-only">Info</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="max-w-xs text-xs">
+                      Matches are based on publicly available information. 
+                      Higher confidence scores indicate greater similarity.
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            
+            <div className="space-y-4">
+              {searchResults.map(result => (
+                <Card key={result.id} className="p-3 flex flex-col sm:flex-row gap-3 items-center">
+                  <div className="w-16 h-16 bg-gray-100 rounded-full flex-shrink-0 overflow-hidden">
+                    <img src={result.thumbnailUrl} alt={result.name} className="w-full h-full object-cover" />
+                  </div>
+                  
+                  <div className="flex-grow space-y-1 text-center sm:text-left">
+                    <h5 className="font-medium">{result.name}</h5>
+                    <p className="text-sm text-gray-500">{result.source}</p>
+                    <div className="flex items-center text-sm">
+                      <span className="mr-2">Match confidence:</span>
+                      <span 
+                        className={`font-medium ${
+                          result.matchConfidence > 90 ? 'text-green-600' : 
+                          result.matchConfidence > 75 ? 'text-amber-600' : 
+                          'text-gray-600'
+                        }`}
+                      >
+                        {result.matchConfidence}%
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    size="sm" 
+                    variant="outline"
+                    className="flex-shrink-0"
+                    onClick={() => window.open(result.url, '_blank')}
+                  >
+                    <FaUser className="mr-2" />
+                    View Profile
+                  </Button>
+                </Card>
               ))}
             </div>
-            <div className="flex-1">
-              <p className="font-medium text-sm truncate">{file.name}</p>
-              <p className="text-xs text-gray-500 mt-1">{formatFileSize(file.size)}</p>
-              
-              <div className="space-y-3 mt-3">
-                <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <Label htmlFor="accuracy-slider" className="text-xs font-medium">Face Match Accuracy</Label>
-                    <span className="text-xs">{accuracy}%</span>
-                  </div>
-                  <Slider 
-                    id="accuracy-slider"
-                    min={60}
-                    max={98}
-                    step={1}
-                    value={[accuracy]}
-                    onValueChange={(values) => setAccuracy(values[0])}
-                  />
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="include-partial" className="text-xs font-medium">Include partial matches</Label>
-                  <Switch 
-                    id="include-partial" 
-                    checked={includePartialMatches}
-                    onCheckedChange={setIncludePartialMatches}
-                  />
-                </div>
-              </div>
-              
-              <div className="flex mt-3">
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="text-red-600 mr-2"
-                  onClick={clearSearch}
-                >
-                  Remove
-                </Button>
-                <Button 
-                  size="sm"
-                  className="bg-primary text-white"
-                  onClick={handleSearch}
-                  disabled={isSearching}
-                >
-                  <FaSearch className="mr-2" />
-                  {isSearching ? "Searching..." : "Search Faces"}
-                </Button>
-              </div>
+
+            <div className="bg-gray-50 p-3 rounded-lg text-sm text-gray-600">
+              <p><strong>Note:</strong> Face search results are provided for informational purposes only and may not be 100% accurate. Always verify identities through multiple sources.</p>
             </div>
           </div>
-        </div>
-      )}
-      
-      {isSearching && (
-        <div className="space-y-2 mt-6">
-          <div className="flex justify-between text-sm">
-            <span>Analyzing faces...</span>
-            <span>{Math.round(searchProgress)}%</span>
-          </div>
-          <Progress value={searchProgress} />
-          <p className="text-xs text-gray-500 text-center mt-2">Detecting faces and searching for matches</p>
-        </div>
-      )}
-      
-      {searchResults.length > 0 && (
-        <div className="mt-6 space-y-5">
-          <h4 className="font-medium text-lg">Search Results</h4>
-          
-          {searchResults.map((result) => (
-            <div key={result.id} className="border rounded-lg overflow-hidden bg-white shadow-sm">
-              <div className="p-3 bg-gray-50 border-b flex justify-between items-center">
-                <div className="flex items-center">
-                  <FaUser className="text-primary mr-2" />
-                  <span className="font-medium">Face #{result.id}</span>
-                </div>
-                <div className="bg-blue-100 text-blue-800 text-xs py-1 px-2 rounded-full">
-                  {result.confidence.toFixed(1)}% confidence
-                </div>
-              </div>
-              
-              <div className="p-4">
-                <h5 className="text-sm font-medium mb-3">Similar Faces Found</h5>
-                
-                <div className="space-y-3">
-                  {result.similar.map((similar: any, idx: number) => (
-                    <div key={idx} className="flex justify-between items-center border-b pb-3 last:border-0 last:pb-0">
-                      <div>
-                        <p className="text-sm font-medium text-primary">{similar.title}</p>
-                        <a 
-                          href={similar.url} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-xs text-gray-500 hover:text-primary"
-                        >
-                          {similar.url}
-                        </a>
-                      </div>
-                      <div className="text-xs bg-green-100 text-green-800 font-medium py-1 px-2 rounded-full">
-                        {similar.similarity}% match
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-          
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800">
-            <p className="flex items-start">
-              <FaSearch className="text-blue-700 mr-2 mt-1 flex-shrink-0" />
-              <span>
-                Found {searchResults.length} face(s) in your image. Results show similar faces found online ranked by similarity.
-              </span>
-            </p>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </Card>
   );
 
