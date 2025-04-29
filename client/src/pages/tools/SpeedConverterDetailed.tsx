@@ -222,7 +222,7 @@ const SpeedConverterDetailed = () => {
 
   return (
     <ToolPageTemplate
-      toolSlug="speed-converter-detailed"
+      toolSlug="speed-converter"
       toolContent={
         <ToolContentTemplate
           introduction="Convert between different units of speed with precision using our comprehensive Speed Converter tool."

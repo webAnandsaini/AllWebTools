@@ -291,7 +291,7 @@ const PowerConverterDetailed = () => {
 
   return (
     <ToolPageTemplate
-      toolSlug="power-converter-detailed"
+      toolSlug="power-converter"
       toolContent={
         <ToolContentTemplate
           introduction="Convert between watts, horsepower, and other power units with precision using our Power Converter tool."

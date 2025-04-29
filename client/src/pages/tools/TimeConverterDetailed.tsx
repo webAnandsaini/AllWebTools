@@ -224,7 +224,7 @@ const TimeConverterDetailed = () => {
 
   return (
     <ToolPageTemplate
-      toolSlug="time-converter-detailed"
+      toolSlug="time-converter"
       toolContent={
         <ToolContentTemplate
           introduction="Convert between different units of time with precision using our comprehensive Time Converter tool."
