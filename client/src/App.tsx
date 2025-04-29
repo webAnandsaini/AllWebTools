@@ -89,6 +89,7 @@ import EmojisDetailed from "@/pages/tools/EmojisDetailed";
 // All keyword tools now use the unified KeywordToolsDetailed component
 import KeywordToolsDetailed from "@/pages/tools/KeywordToolsDetailed";
 import BacklinkToolsDetailed from "@/pages/tools/BacklinkToolsDetailed";
+import WebsiteToolsDetailed from "@/pages/tools/WebsiteToolsDetailed";
 
 // Meta Tags Tools
 import MetaTagsAnalyzerDetailed from "@/pages/tools/MetaTagsAnalyzerDetailed";
@@ -379,6 +380,65 @@ function Router() {
       <Route path="/tools/backlinks-competitors-detailed" component={BacklinkToolsDetailed} />
       <Route path="/tools/anchor-text-distribution-detailed" component={BacklinkToolsDetailed} />
       
+      {/* Website Management Tools - All using WebsiteToolsDetailed component */}
+      <Route path="/tools/website-seo-score-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/google-pagerank-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/online-ping-website-tool-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/page-speed-test-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/website-page-size-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/website-page-snooper-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/website-hit-counter-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/xml-sitemap-generator-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/url-rewriting-tool-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/what-is-my-screen-resolution-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/url-encoder-decoder-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/adsense-calculator-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/open-graph-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/open-graph-generator-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/qr-code-generator-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/htaccess-redirect-generator-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/get-http-headers-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/twitter-card-generator-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/internet-speed-test-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/wordpress-theme-detector-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/instant-search-suggestions-tool-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/online-virus-scan-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/website-screenshot-generator-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/secure-email-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/mobile-friendly-test-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/video-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/facebook-video-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/soundcloud-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/vimeo-video-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/instagram-video-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/dailymotion-video-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/minify-css-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/minify-html-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/minify-js-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/robots-txt-generator-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/url-shortener-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/website-checker-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/url-opener-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/php-formatter-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/html-formatter-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/html-editor-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/html-viewer-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/xml-formatter-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/xml-beautifier-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/twitter-video-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/twitter-gif-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/tiktok-video-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/instagram-reels-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/facebook-reels-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/tiktok-to-mp4-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/instagram-to-mp4-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/twitter-to-mp4-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/facebook-to-mp4-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/pinterest-video-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/reddit-video-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/mp4-downloader-detailed" component={WebsiteToolsDetailed} />
+      <Route path="/tools/ptcl-speed-test-detailed" component={WebsiteToolsDetailed} />
+      
       {/* Direct routes for Keyword Tools */}
       <Route path="/keyword-position" component={KeywordToolsDetailed} />
       <Route path="/keywords-density-checker" component={KeywordToolsDetailed} />
@@ -407,6 +467,65 @@ function Router() {
       <Route path="/valuable-backlink-checker" component={BacklinkToolsDetailed} />
       <Route path="/backlinks-competitors" component={BacklinkToolsDetailed} />
       <Route path="/anchor-text-distribution" component={BacklinkToolsDetailed} />
+      
+      {/* Direct routes for Website Management Tools */}
+      <Route path="/website-seo-score-checker" component={WebsiteToolsDetailed} />
+      <Route path="/google-pagerank-checker" component={WebsiteToolsDetailed} />
+      <Route path="/online-ping-website-tool" component={WebsiteToolsDetailed} />
+      <Route path="/page-speed-test" component={WebsiteToolsDetailed} />
+      <Route path="/website-page-size-checker" component={WebsiteToolsDetailed} />
+      <Route path="/website-page-snooper" component={WebsiteToolsDetailed} />
+      <Route path="/website-hit-counter" component={WebsiteToolsDetailed} />
+      <Route path="/xml-sitemap-generator" component={WebsiteToolsDetailed} />
+      <Route path="/url-rewriting-tool" component={WebsiteToolsDetailed} />
+      <Route path="/what-is-my-screen-resolution" component={WebsiteToolsDetailed} />
+      <Route path="/url-encoder-decoder" component={WebsiteToolsDetailed} />
+      <Route path="/adsense-calculator" component={WebsiteToolsDetailed} />
+      <Route path="/open-graph-checker" component={WebsiteToolsDetailed} />
+      <Route path="/open-graph-generator" component={WebsiteToolsDetailed} />
+      <Route path="/qr-code-generator" component={WebsiteToolsDetailed} />
+      <Route path="/htaccess-redirect-generator" component={WebsiteToolsDetailed} />
+      <Route path="/get-http-headers" component={WebsiteToolsDetailed} />
+      <Route path="/twitter-card-generator" component={WebsiteToolsDetailed} />
+      <Route path="/internet-speed-test" component={WebsiteToolsDetailed} />
+      <Route path="/wordpress-theme-detector" component={WebsiteToolsDetailed} />
+      <Route path="/instant-search-suggestions-tool" component={WebsiteToolsDetailed} />
+      <Route path="/online-virus-scan" component={WebsiteToolsDetailed} />
+      <Route path="/website-screenshot-generator" component={WebsiteToolsDetailed} />
+      <Route path="/secure-email" component={WebsiteToolsDetailed} />
+      <Route path="/mobile-friendly-test" component={WebsiteToolsDetailed} />
+      <Route path="/video-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/facebook-video-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/soundcloud-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/vimeo-video-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/instagram-video-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/dailymotion-video-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/minify-css" component={WebsiteToolsDetailed} />
+      <Route path="/minify-html" component={WebsiteToolsDetailed} />
+      <Route path="/minify-js" component={WebsiteToolsDetailed} />
+      <Route path="/robots-txt-generator" component={WebsiteToolsDetailed} />
+      <Route path="/url-shortener" component={WebsiteToolsDetailed} />
+      <Route path="/website-checker" component={WebsiteToolsDetailed} />
+      <Route path="/url-opener" component={WebsiteToolsDetailed} />
+      <Route path="/php-formatter" component={WebsiteToolsDetailed} />
+      <Route path="/html-formatter" component={WebsiteToolsDetailed} />
+      <Route path="/html-editor" component={WebsiteToolsDetailed} />
+      <Route path="/html-viewer" component={WebsiteToolsDetailed} />
+      <Route path="/xml-formatter" component={WebsiteToolsDetailed} />
+      <Route path="/xml-beautifier" component={WebsiteToolsDetailed} />
+      <Route path="/twitter-video-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/twitter-gif-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/tiktok-video-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/instagram-reels-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/facebook-reels-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/tiktok-to-mp4" component={WebsiteToolsDetailed} />
+      <Route path="/instagram-to-mp4" component={WebsiteToolsDetailed} />
+      <Route path="/twitter-to-mp4" component={WebsiteToolsDetailed} />
+      <Route path="/facebook-to-mp4" component={WebsiteToolsDetailed} />
+      <Route path="/pinterest-video-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/reddit-video-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/mp4-downloader" component={WebsiteToolsDetailed} />
+      <Route path="/ptcl-speed-test" component={WebsiteToolsDetailed} />
       
       {/* Meta Tags Tools */}
       <Route path="/tools/meta-tags-analyzer-detailed" component={MetaTagsAnalyzerDetailed} />
