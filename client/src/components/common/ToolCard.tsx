@@ -73,7 +73,21 @@ const ToolCard = ({ tool }: ToolCardProps) => {
       // Password Management Tools
       "password-generator": "password-generator-detailed",
       "password-strength-checker": "password-strength-checker-detailed",
-      "password-encryption-utility": "password-encryption-utility-detailed"
+      "password-encryption-utility": "password-encryption-utility-detailed",
+      
+      // Image Editing Tools
+      "reverse-image-search": "reverse-image-search-detailed",
+      "face-search": "face-search-detailed",
+      "image-compressor": "image-compressor-detailed",
+      "favicon-generator": "favicon-generator-detailed",
+      "video-to-gif-converter": "video-to-gif-converter-detailed",
+      "image-resizer": "image-resizer-detailed",
+      "photo-resizer-in-kb": "photo-resizer-in-kb-detailed",
+      "crop-image": "crop-image-detailed",
+      "convert-to-jpg": "convert-to-jpg-detailed",
+      "rgb-to-hex": "rgb-to-hex-detailed",
+      "png-to-jpg": "png-to-jpg-detailed",
+      "jpg-to-png": "jpg-to-png-detailed"
     };
     
     return `/tools/${detailedToolsMap[slug] || slug}`;

@@ -91,6 +91,8 @@ import PhotoResizerInKBDetailed from "@/pages/tools/PhotoResizerInKBDetailed";
 import CropImageDetailed from "@/pages/tools/CropImageDetailed";
 import ConvertToJPGDetailed from "@/pages/tools/ConvertToJPGDetailed";
 import RGBToHexDetailed from "@/pages/tools/RGBToHexDetailed";
+import PNGToJPGDetailed from "@/pages/tools/PNGToJPGDetailed";
+import JPGToPNGDetailed from "@/pages/tools/JPGToPNGDetailed";
 
 import AllCategories from "@/pages/AllCategories";
 import Header from "@/components/layout/Header";
@@ -192,6 +194,8 @@ function Router() {
       <Route path="/tools/crop-image-detailed" component={CropImageDetailed} />
       <Route path="/tools/convert-to-jpg-detailed" component={ConvertToJPGDetailed} />
       <Route path="/tools/rgb-to-hex-detailed" component={RGBToHexDetailed} />
+      <Route path="/tools/png-to-jpg-detailed" component={PNGToJPGDetailed} />
+      <Route path="/tools/jpg-to-png-detailed" component={JPGToPNGDetailed} />
       
       <Route path="/categories" component={AllCategories} />
       <Route component={NotFound} />
