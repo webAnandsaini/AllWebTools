@@ -22,18 +22,18 @@ const TextToSpeech = () => {
   const speechUtterance = useRef<SpeechSynthesisUtterance | null>(null);
 
   useEffect(() => {
-    document.title = "Text to Speech - ToolsHub";
+    document.title = "Text to Speech - AllTooly";
     window.scrollTo(0, 0);
 
     // Initialize speech synthesis
     if (typeof window !== "undefined" && window.speechSynthesis) {
       synth.current = window.speechSynthesis;
-      
+
       // Load available voices
       const loadVoices = () => {
         const availableVoices = synth.current?.getVoices() || [];
         setVoices(availableVoices);
-        
+
         // Set default voice to first English voice or first available
         const englishVoice = availableVoices.find(v => v.lang.includes('en'));
         if (englishVoice) {
@@ -42,12 +42,12 @@ const TextToSpeech = () => {
           setVoice(availableVoices[0].name);
         }
       };
-      
+
       // Chrome loads voices asynchronously
       if (synth.current.onvoiceschanged !== undefined) {
         synth.current.onvoiceschanged = loadVoices;
       }
-      
+
       loadVoices();
     }
 
@@ -85,7 +85,7 @@ const TextToSpeech = () => {
 
     // Create a new utterance
     speechUtterance.current = new SpeechSynthesisUtterance(text);
-    
+
     // Set properties
     if (voice) {
       const selectedVoice = voices.find(v => v.name === voice);
@@ -93,22 +93,22 @@ const TextToSpeech = () => {
         speechUtterance.current.voice = selectedVoice;
       }
     }
-    
+
     speechUtterance.current.rate = rate;
     speechUtterance.current.pitch = pitch;
     speechUtterance.current.volume = volume;
-    
+
     // Set event handlers
     speechUtterance.current.onstart = () => {
       setIsSpeaking(true);
       setIsPaused(false);
     };
-    
+
     speechUtterance.current.onend = () => {
       setIsSpeaking(false);
       setIsPaused(false);
     };
-    
+
     speechUtterance.current.onerror = (event) => {
       console.error("Speech synthesis error:", event);
       setIsSpeaking(false);
@@ -119,7 +119,7 @@ const TextToSpeech = () => {
         variant: "destructive",
       });
     };
-    
+
     // Start speaking
     synth.current.speak(speechUtterance.current);
   };
@@ -178,7 +178,7 @@ const TextToSpeech = () => {
                 placeholder="Type or paste your text here..."
                 className="w-full h-64 p-4 resize-none"
               />
-              
+
               <div className="mt-2 text-right text-sm text-gray-500">
                 {text.length} characters / {text.split(/\s+/).filter(word => word.length > 0).length} words
               </div>
@@ -200,11 +200,11 @@ const TextToSpeech = () => {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div className="flex items-center space-x-4 h-full">
                 <div className="flex items-center space-x-2">
-                  <Switch 
-                    id="auto-scroll" 
+                  <Switch
+                    id="auto-scroll"
                     checked={isAutoScroll}
                     onCheckedChange={setIsAutoScroll}
                   />
@@ -226,7 +226,7 @@ const TextToSpeech = () => {
                   onValueChange={(value) => setRate(value[0])}
                 />
               </div>
-              
+
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-sm font-medium">Pitch: {pitch.toFixed(1)}</label>
@@ -239,7 +239,7 @@ const TextToSpeech = () => {
                   onValueChange={(value) => setPitch(value[0])}
                 />
               </div>
-              
+
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-sm font-medium">Volume: {Math.round(volume * 100)}%</label>
@@ -271,7 +271,7 @@ const TextToSpeech = () => {
                   <span>Pause</span>
                 </Button>
               )}
-              
+
               <Button
                 onClick={stop}
                 disabled={!isSpeaking}
@@ -280,7 +280,7 @@ const TextToSpeech = () => {
                 <i className="fas fa-stop mr-2"></i>
                 <span>Stop</span>
               </Button>
-              
+
               <Button onClick={clearText} variant="outline" className="bg-gray-100 text-gray-700 hover:bg-gray-200 transition">
                 <i className="fas fa-eraser mr-2"></i>
                 <span>Clear Text</span>

@@ -16,7 +16,7 @@ const ArticleRewriterDetailed = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    document.title = "Article Rewriter - ToolsHub";
+    document.title = "Article Rewriter - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -36,7 +36,7 @@ const ArticleRewriterDetailed = () => {
 
     setIsRewriting(true);
     setProgress(0);
-    
+
     // Simulate progress
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -126,7 +126,7 @@ const ArticleRewriterDetailed = () => {
           <TabsTrigger value="text-input">Text Input</TabsTrigger>
           <TabsTrigger value="file-upload">File Upload</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="text-input">
           <div className="mt-4">
             <label className="block text-gray-700 font-medium mb-2">Enter your text to rewrite</label>
@@ -136,7 +136,7 @@ const ArticleRewriterDetailed = () => {
               placeholder="Paste your article or text here to rewrite..."
               className="w-full h-48 p-4 resize-none"
             />
-            
+
             <div className="mt-4 flex flex-wrap gap-4">
               <Button
                 onClick={rewriteText}
@@ -146,7 +146,7 @@ const ArticleRewriterDetailed = () => {
                 <i className="fas fa-sync-alt mr-2"></i>
                 <span>{isRewriting ? "Rewriting..." : "Rewrite Text"}</span>
               </Button>
-              
+
               <Button
                 onClick={clearText}
                 variant="outline"
@@ -158,7 +158,7 @@ const ArticleRewriterDetailed = () => {
             </div>
           </div>
         </TabsContent>
-        
+
         <TabsContent value="file-upload">
           <div className="mt-6 flex flex-col items-center justify-center p-8 border-2 border-dashed border-gray-300 rounded-lg">
             <i className="fas fa-cloud-upload-alt text-gray-400 text-4xl mb-4"></i>
@@ -187,7 +187,7 @@ const ArticleRewriterDetailed = () => {
         <div className="mt-8">
           <div className="flex justify-between items-center mb-3">
             <h3 className="font-semibold text-lg">Rewritten Text</h3>
-            <Button 
+            <Button
               onClick={copyToClipboard}
               variant="outline"
               className="text-gray-700 text-sm py-1 px-3 h-8"
@@ -196,7 +196,7 @@ const ArticleRewriterDetailed = () => {
               <span>Copy</span>
             </Button>
           </div>
-          
+
           <Card className="bg-gray-50">
             <CardContent className="p-4">
               <div className="bg-white p-4 rounded-md border border-gray-100 min-h-48">

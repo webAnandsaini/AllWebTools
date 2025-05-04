@@ -22,11 +22,11 @@ const QrCodeGenerator = () => {
   const [size, setSize] = useState(200);
   const [margin, setMargin] = useState(1);
   const [format, setFormat] = useState("png");
-  
+
   const qrCodeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.title = "QR Code Generator - ToolsHub";
+    document.title = "QR Code Generator - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -49,7 +49,7 @@ const QrCodeGenerator = () => {
         margin,
         format
       });
-      
+
       const data = await response.json();
       setQrCodeUrl(data.qrCodeUrl);
     } catch (error) {
@@ -66,7 +66,7 @@ const QrCodeGenerator = () => {
 
   const downloadQrCode = () => {
     if (!qrCodeUrl) return;
-    
+
     const a = document.createElement("a");
     a.href = qrCodeUrl;
     a.download = `qrcode.${format}`;
@@ -225,7 +225,7 @@ const QrCodeGenerator = () => {
                         <TabsTrigger value="content">Content</TabsTrigger>
                         <TabsTrigger value="style">Style</TabsTrigger>
                       </TabsList>
-                    
+
                       <TabsContent value="content">
                         <div className="space-y-4">
                           <div>
@@ -245,7 +245,7 @@ const QrCodeGenerator = () => {
                               </SelectContent>
                             </Select>
                           </div>
-                          
+
                           <div>
                             <Label className="mb-2 block">Content</Label>
                             {getInputComponent()}
@@ -253,7 +253,7 @@ const QrCodeGenerator = () => {
                           </div>
                         </div>
                       </TabsContent>
-                    
+
                       <TabsContent value="style">
                         <div className="space-y-4">
                           <div>
@@ -273,7 +273,7 @@ const QrCodeGenerator = () => {
                               />
                             </div>
                           </div>
-                          
+
                           <div>
                             <Label className="mb-2 block">Background Color</Label>
                             <div className="flex items-center gap-3">
@@ -291,7 +291,7 @@ const QrCodeGenerator = () => {
                               />
                             </div>
                           </div>
-                          
+
                           <div>
                             <div className="flex justify-between items-center mb-2">
                               <Label>Size: {size}px</Label>
@@ -304,7 +304,7 @@ const QrCodeGenerator = () => {
                               onValueChange={(value) => setSize(value[0])}
                             />
                           </div>
-                          
+
                           <div>
                             <div className="flex justify-between items-center mb-2">
                               <Label>Margin: {margin}</Label>
@@ -317,7 +317,7 @@ const QrCodeGenerator = () => {
                               onValueChange={(value) => setMargin(value[0])}
                             />
                           </div>
-                          
+
                           <div>
                             <Label className="mb-2 block">File Format</Label>
                             <RadioGroup value={format} onValueChange={setFormat} className="flex gap-4">
@@ -338,7 +338,7 @@ const QrCodeGenerator = () => {
                         </div>
                       </TabsContent>
                     </Tabs>
-                    
+
                     <div className="mt-6 flex flex-col space-y-3">
                       <Button onClick={generateQrCode} disabled={loading} className="bg-primary hover:bg-blue-700">
                         {loading ? (
@@ -357,12 +357,12 @@ const QrCodeGenerator = () => {
                   </CardContent>
                 </Card>
               </div>
-              
+
               <div>
                 <Card>
                   <CardContent className="p-6">
                     <h3 className="font-semibold text-lg mb-4">Generated QR Code</h3>
-                    
+
                     <div ref={qrCodeRef} className="flex items-center justify-center bg-gray-50 border border-gray-200 rounded-lg p-4 h-64">
                       {loading ? (
                         <div className="text-center">
@@ -370,8 +370,8 @@ const QrCodeGenerator = () => {
                           <p className="text-gray-500">Generating QR code...</p>
                         </div>
                       ) : qrCodeUrl ? (
-                        <img 
-                          src={qrCodeUrl} 
+                        <img
+                          src={qrCodeUrl}
                           alt="Generated QR Code"
                           className="max-w-full max-h-full"
                         />
@@ -382,7 +382,7 @@ const QrCodeGenerator = () => {
                         </div>
                       )}
                     </div>
-                    
+
                     <div className="mt-4">
                       <Button
                         onClick={downloadQrCode}
@@ -393,7 +393,7 @@ const QrCodeGenerator = () => {
                         <span>Download QR Code</span>
                       </Button>
                     </div>
-                    
+
                     <div className="mt-4 text-center text-sm text-gray-500">
                       <p>QR code will be downloaded as {format.toUpperCase()} file</p>
                     </div>

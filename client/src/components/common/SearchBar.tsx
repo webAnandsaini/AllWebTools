@@ -49,7 +49,7 @@ const SearchBar = () => {
 
   return (
     <div className="relative" ref={searchRef}>
-      <div className={`relative flex items-center transition-all duration-200 ${isFocused ? 'shadow-md' : 'shadow-sm'}`}>
+      <div className={`relative flex items-center transition-all duration-200 rounded-full ${isFocused ? 'shadow-md' : 'shadow-sm'}`}>
         <input
           ref={inputRef}
           type="text"
@@ -65,9 +65,9 @@ const SearchBar = () => {
         <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400">
           <i className="fas fa-search"></i>
         </div>
-        
+
         {query.length > 0 && (
-          <button 
+          <button
             className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
             onClick={() => {
               setQuery("");
@@ -86,7 +86,7 @@ const SearchBar = () => {
           <div className="p-3 border-b border-gray-100 flex items-center">
             <span className="text-xs font-medium text-gray-500 uppercase">Results ({results.length})</span>
           </div>
-          
+
           {results.map((tool) => (
             <div
               key={tool.id}

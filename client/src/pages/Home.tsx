@@ -11,9 +11,9 @@ const Home = () => {
   useEffect(() => {
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
-    
+
     // Set document title
-    document.title = "ToolsHub - All-in-One Online Tools";
+    document.title = "AllTooly - All-in-One Online Tools";
   }, []);
 
   return (
@@ -21,7 +21,7 @@ const Home = () => {
       <Hero />
       <PopularTools />
       <ToolCategories />
-      <ToolDemo />
+      {/* <ToolDemo /> */}
       <Features />
       <RecentTools />
       <Newsletter />

@@ -20,7 +20,7 @@ const TextSummarizerDetailed = () => {
   const [compressionRatio, setCompressionRatio] = useState(70);
 
   useEffect(() => {
-    document.title = "Text Summarizer - ToolsHub";
+    document.title = "Text Summarizer - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -43,7 +43,7 @@ const TextSummarizerDetailed = () => {
 
     setIsSummarizing(true);
     setProgress(0);
-    
+
     // Simulate progress
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -57,7 +57,7 @@ const TextSummarizerDetailed = () => {
     }, 400);
 
     try {
-      const response = await apiRequest("POST", "/api/text/summarize", { 
+      const response = await apiRequest("POST", "/api/text/summarize", {
         text: originalText,
         length: summaryLength,
         type: summaryType,
@@ -71,7 +71,7 @@ const TextSummarizerDetailed = () => {
         description: "An error occurred while summarizing your text. Please try again.",
         variant: "destructive",
       });
-      
+
       // Generate a simulated summary for demonstration purposes
       const summarizedResult = simulateSummarization(originalText, summaryLength, compressionRatio);
       setSummarizedText(summarizedResult);
@@ -86,11 +86,11 @@ const TextSummarizerDetailed = () => {
   const simulateSummarization = (text: string, length: string, compressionRatio: number): string => {
     // Split the text into sentences
     const sentences = text.match(/[^.!?]+[.!?]+/g) || [];
-    
+
     if (sentences.length === 0) {
       return "Could not summarize the text. Please ensure the text contains complete sentences.";
     }
-    
+
     // Calculate how many sentences to keep based on compression ratio
     let sentencesToKeep: number;
     switch (length) {
@@ -106,36 +106,36 @@ const TextSummarizerDetailed = () => {
       default:
         sentencesToKeep = Math.max(2, Math.floor(sentences.length * (1 - compressionRatio / 100) * 0.7));
     }
-    
+
     // Extract the most "important" sentences (for this simulation, we'll take sentences from the beginning, middle, and end)
     let selectedSentences: string[] = [];
-    
+
     // Always include the first sentence as it often contains key information
     if (sentences.length > 0) {
       selectedSentences.push(sentences[0]);
     }
-    
+
     // Select some sentences from the middle
     if (sentences.length > 2 && sentencesToKeep > 1) {
       const startIndex = Math.floor(sentences.length * 0.25);
       const endIndex = Math.floor(sentences.length * 0.75);
       const middleSentencesToSelect = Math.min(sentencesToKeep - 2, endIndex - startIndex);
-      
+
       for (let i = 0; i < middleSentencesToSelect; i++) {
         const index = startIndex + Math.floor((i / middleSentencesToSelect) * (endIndex - startIndex));
         selectedSentences.push(sentences[index]);
       }
     }
-    
+
     // Include the last sentence if we have enough sentences to keep
     if (sentences.length > 1 && sentencesToKeep > selectedSentences.length) {
       selectedSentences.push(sentences[sentences.length - 1]);
     }
-    
+
     // Join the selected sentences to form the summary
     return selectedSentences.join(" ").trim();
   };
-  
+
   const clearText = () => {
     setOriginalText("");
     setSummarizedText("");
@@ -175,17 +175,17 @@ const TextSummarizerDetailed = () => {
     const words = text.trim().split(/\s+/).filter(word => word.length > 0);
     const sentences = text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0);
     const characters = text.length;
-    
+
     return {
       words: words.length,
       sentences: sentences.length,
       characters
     };
   };
-  
+
   const originalStats = calculateTextStats(originalText);
   const summaryStats = calculateTextStats(summarizedText);
-  
+
   const compressionPercentage = originalStats.words > 0 && summaryStats.words > 0
     ? Math.round((1 - (summaryStats.words / originalStats.words)) * 100)
     : 0;
@@ -219,7 +219,7 @@ const TextSummarizerDetailed = () => {
                 <i className="fas fa-compress-alt mr-2"></i>
                 <span>{isSummarizing ? "Summarizing..." : "Summarize"}</span>
               </Button>
-              
+
               <label className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition cursor-pointer flex items-center text-sm">
                 <i className="fas fa-upload mr-2"></i>
                 <span>Upload File</span>
@@ -230,7 +230,7 @@ const TextSummarizerDetailed = () => {
                   onChange={handleFileUpload}
                 />
               </label>
-              
+
               <Button
                 onClick={clearText}
                 variant="outline"
@@ -240,7 +240,7 @@ const TextSummarizerDetailed = () => {
                 <span>Clear</span>
               </Button>
             </div>
-            
+
             <div className="space-y-4 mt-2">
               <div>
                 <label className="block text-gray-700 font-medium mb-2">Summary Length</label>
@@ -258,7 +258,7 @@ const TextSummarizerDetailed = () => {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div>
                 <label className="block text-gray-700 font-medium mb-2">Summary Type</label>
                 <Select
@@ -274,7 +274,7 @@ const TextSummarizerDetailed = () => {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="block text-gray-700 font-medium">Compression Ratio</label>
@@ -294,14 +294,14 @@ const TextSummarizerDetailed = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="space-y-4">
             <div>
               <div className="flex items-center justify-between mb-2">
                 <label className="block text-gray-700 font-medium">Summarized Text</label>
                 <div className="flex items-center space-x-2">
                   {summarizedText && (
-                    <Button 
+                    <Button
                       onClick={copyToClipboard}
                       variant="outline"
                       className="text-gray-700 text-sm py-1 px-3 h-8"
@@ -310,7 +310,7 @@ const TextSummarizerDetailed = () => {
                       <span>Copy</span>
                     </Button>
                   )}
-                  
+
                   {summarizedText && (
                     <span className="text-sm text-gray-500">
                       {summaryStats.words} words
@@ -318,7 +318,7 @@ const TextSummarizerDetailed = () => {
                   )}
                 </div>
               </div>
-              
+
               {isSummarizing ? (
                 <div className="bg-gray-50 border rounded-lg p-4 h-64 flex flex-col items-center justify-center">
                   <Progress value={progress} className="w-full h-2 mb-4" />
@@ -336,7 +336,7 @@ const TextSummarizerDetailed = () => {
                 </div>
               )}
             </div>
-            
+
             {summarizedText && (
               <Card>
                 <CardContent className="p-4">
@@ -366,7 +366,7 @@ const TextSummarizerDetailed = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="bg-blue-50 p-4 rounded-lg mb-6">
         <h3 className="text-blue-800 font-medium mb-2">Tips for Better Summaries</h3>
         <ul className="text-blue-700 text-sm space-y-2">

@@ -4,7 +4,7 @@ import { categories } from "@/data/categories";
 
 const AllCategories = () => {
   useEffect(() => {
-    document.title = "All Categories - ToolsHub";
+    document.title = "All Categories - AllTooly";
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
   }, []);
@@ -18,7 +18,7 @@ const AllCategories = () => {
             <span>Back to Home</span>
           </Link>
           <h1 className="text-3xl font-bold">All Categories</h1>
-          <p className="text-gray-600 mt-2">Browse all tool categories available on ToolsHub</p>
+          <p className="text-gray-600 mt-2">Browse all tool categories available on AllTooly</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

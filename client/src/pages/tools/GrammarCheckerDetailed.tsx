@@ -24,7 +24,7 @@ const GrammarCheckerDetailed = () => {
   } | null>(null);
 
   useEffect(() => {
-    document.title = "Grammar Checker - ToolsHub";
+    document.title = "Grammar Checker - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -47,7 +47,7 @@ const GrammarCheckerDetailed = () => {
 
     setIsChecking(true);
     setProgress(0);
-    
+
     // Simulate progress
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -70,7 +70,7 @@ const GrammarCheckerDetailed = () => {
         description: "An error occurred while checking for grammar errors. Please try again.",
         variant: "destructive",
       });
-      
+
       // Simulate a response for demonstration purposes
       const simulatedErrors = [
         {
@@ -92,12 +92,12 @@ const GrammarCheckerDetailed = () => {
           suggestions: [",."]
         }
       ];
-      
+
       // Only include errors if their positions are valid
-      const validErrors = simulatedErrors.filter(error => 
+      const validErrors = simulatedErrors.filter(error =>
         error.position.start >= 0 && error.position.end <= text.length
       );
-      
+
       setResults({
         correctedText: text,
         errors: validErrors,
@@ -139,27 +139,27 @@ const GrammarCheckerDetailed = () => {
 
   const applyCorrection = (suggestionIndex: number, errorIndex: number) => {
     if (!results) return;
-    
+
     const error = results.errors[errorIndex];
     const suggestion = error.suggestions[suggestionIndex];
-    
+
     const before = text.substring(0, error.position.start);
     const after = text.substring(error.position.end);
     const newText = before + suggestion + after;
-    
+
     setText(newText);
-    
+
     // Update results to remove the applied correction
     const updatedErrors = [...results.errors];
     updatedErrors.splice(errorIndex, 1);
-    
+
     setResults({
       ...results,
       correctedText: newText,
       errors: updatedErrors,
       score: updatedErrors.length === 0 ? 100 : Math.min(100, results.score + 5)
     });
-    
+
     toast({
       title: "Correction applied",
       description: `Changed "${text.substring(error.position.start, error.position.end)}" to "${suggestion}"`,
@@ -178,7 +178,7 @@ const GrammarCheckerDetailed = () => {
               placeholder="Type or paste your text here to check for grammar errors..."
               className="w-full h-64 p-4 resize-none"
             />
-            
+
             <div className="flex flex-wrap gap-4 mt-4">
               <Button
                 onClick={checkGrammar}
@@ -188,7 +188,7 @@ const GrammarCheckerDetailed = () => {
                 <i className="fas fa-check-circle mr-2"></i>
                 <span>{isChecking ? "Checking..." : "Check Grammar"}</span>
               </Button>
-              
+
               <label className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition cursor-pointer flex items-center">
                 <i className="fas fa-upload mr-2"></i>
                 <span>Upload File</span>
@@ -199,7 +199,7 @@ const GrammarCheckerDetailed = () => {
                   onChange={handleFileUpload}
                 />
               </label>
-              
+
               <Button
                 onClick={clearText}
                 variant="outline"
@@ -228,19 +228,19 @@ const GrammarCheckerDetailed = () => {
               <div className="bg-white px-3 py-1 rounded-full border flex items-center">
                 <span className="text-sm mr-2">Score:</span>
                 <span className={`font-semibold text-lg ${
-                  results.score >= 90 ? "text-green-600" : 
+                  results.score >= 90 ? "text-green-600" :
                   results.score >= 70 ? "text-yellow-600" : "text-red-600"
                 }`}>{results.score}</span>
               </div>
             </div>
           </div>
-          
+
           {results.errors.length > 0 ? (
             <div>
               <p className="mb-4 text-gray-700">
                 We found {results.errors.length} {results.errors.length === 1 ? 'issue' : 'issues'} in your text. Review the suggestions below:
               </p>
-              
+
               <div className="space-y-4">
                 {results.errors.map((error, idx) => (
                   <Card key={idx} className="overflow-hidden">
@@ -255,7 +255,7 @@ const GrammarCheckerDetailed = () => {
                             {error.type}
                           </span>
                         </div>
-                        
+
                         <div className="mt-3">
                           <p className="text-sm text-gray-500 mb-1">Context:</p>
                           <p className="bg-gray-50 p-2 rounded text-sm">
@@ -264,12 +264,12 @@ const GrammarCheckerDetailed = () => {
                             {text.substring(error.position.end, Math.min(text.length, error.position.end + 20))}
                           </p>
                         </div>
-                        
+
                         <div className="mt-3">
                           <p className="text-sm text-gray-500 mb-2">Suggestions:</p>
                           <div className="flex flex-wrap gap-2">
                             {error.suggestions.map((suggestion, suggestionIdx) => (
-                              <Button 
+                              <Button
                                 key={suggestionIdx}
                                 size="sm"
                                 variant="outline"

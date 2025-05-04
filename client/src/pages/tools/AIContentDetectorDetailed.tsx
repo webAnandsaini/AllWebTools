@@ -21,7 +21,7 @@ const AIContentDetectorDetailed = () => {
   } | null>(null);
 
   useEffect(() => {
-    document.title = "AI Content Detector - ToolsHub";
+    document.title = "AI Content Detector - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -44,7 +44,7 @@ const AIContentDetectorDetailed = () => {
 
     setIsDetecting(true);
     setProgress(0);
-    
+
     // Simulate progress
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -67,7 +67,7 @@ const AIContentDetectorDetailed = () => {
         description: "An error occurred while analyzing the text. Please try again.",
         variant: "destructive",
       });
-      
+
       // Simulate a response for demonstration purposes
       simulateAIDetection();
     } finally {
@@ -84,30 +84,30 @@ const AIContentDetectorDetailed = () => {
     const avgWordLength = text.replace(/[^a-zA-Z]/g, "").length / wordCount || 0;
     const uniqueWords = new Set(text.toLowerCase().match(/\b[a-z]+\b/g)).size;
     const uniqueWordsRatio = uniqueWords / wordCount || 0;
-    
+
     // Look for patterns that might indicate AI content
     const hasRepetitiveStructures = /(.{15,}?)\1/i.test(text); // Repeated phrases
     const hasTooFluent = sentenceCount > 3 && wordCount / sentenceCount > 25; // Very long, fluent sentences
     const hasTooUniform = avgWordLength > 5.8 || avgWordLength < 3.5; // Unusually uniform word length
     const hasTooRich = uniqueWordsRatio > 0.8; // Unusually rich vocabulary
-    
+
     // Generate a probability based on these factors
     let aiProbability = 0.5; // Start neutral
-    
+
     if (hasRepetitiveStructures) aiProbability += 0.1;
     if (hasTooFluent) aiProbability += 0.15;
     if (hasTooUniform) aiProbability += 0.1;
     if (hasTooRich) aiProbability += 0.2;
-    
+
     // Text length factor
     if (wordCount < 100) aiProbability = Math.min(0.7, aiProbability); // Short texts are harder to analyze accurately
     if (wordCount > 300) aiProbability = Math.max(0.3, aiProbability); // Longer texts provide more signals
-    
+
     // Cap probability between 0.1 and 0.9 to avoid absolute judgments
     aiProbability = Math.max(0.1, Math.min(0.9, aiProbability));
-    
+
     const humanProbability = 1 - aiProbability;
-    
+
     // Generate verdict
     let verdict = "";
     if (aiProbability > 0.75) {
@@ -119,67 +119,67 @@ const AIContentDetectorDetailed = () => {
     } else {
       verdict = "Likely human-written content";
     }
-    
+
     // Generate AI markers
     const aiMarkers = [];
     if (hasTooFluent) {
-      aiMarkers.push({ 
-        marker: "Unusually long and fluent sentences", 
-        importance: "high" as const 
+      aiMarkers.push({
+        marker: "Unusually long and fluent sentences",
+        importance: "high" as const
       });
     }
     if (hasTooUniform) {
-      aiMarkers.push({ 
-        marker: "Overly consistent word length and complexity", 
-        importance: "medium" as const 
+      aiMarkers.push({
+        marker: "Overly consistent word length and complexity",
+        importance: "medium" as const
       });
     }
     if (hasTooRich) {
-      aiMarkers.push({ 
-        marker: "Exceptionally rich vocabulary", 
-        importance: "medium" as const 
+      aiMarkers.push({
+        marker: "Exceptionally rich vocabulary",
+        importance: "medium" as const
       });
     }
     if (hasRepetitiveStructures) {
-      aiMarkers.push({ 
-        marker: "Repetitive sentence structures", 
-        importance: "low" as const 
+      aiMarkers.push({
+        marker: "Repetitive sentence structures",
+        importance: "low" as const
       });
     }
     if (aiMarkers.length < 2) {
-      aiMarkers.push({ 
-        marker: "Unnaturally consistent tone throughout text", 
-        importance: "low" as const 
+      aiMarkers.push({
+        marker: "Unnaturally consistent tone throughout text",
+        importance: "low" as const
       });
     }
-    
+
     // Generate human markers
     const humanMarkers = [];
     if (aiProbability < 0.7) {
-      humanMarkers.push({ 
-        marker: "Presence of personal anecdotes or subjective expressions", 
-        importance: "high" as const 
+      humanMarkers.push({
+        marker: "Presence of personal anecdotes or subjective expressions",
+        importance: "high" as const
       });
     }
     if (uniqueWordsRatio < 0.7) {
-      humanMarkers.push({ 
-        marker: "Natural repetition of common words", 
-        importance: "medium" as const 
+      humanMarkers.push({
+        marker: "Natural repetition of common words",
+        importance: "medium" as const
       });
     }
     if (aiProbability < 0.6) {
-      humanMarkers.push({ 
-        marker: "Varied sentence complexity and structure", 
-        importance: "medium" as const 
+      humanMarkers.push({
+        marker: "Varied sentence complexity and structure",
+        importance: "medium" as const
       });
     }
     if (humanMarkers.length < 2) {
-      humanMarkers.push({ 
-        marker: "Natural flow between ideas", 
-        importance: "low" as const 
+      humanMarkers.push({
+        marker: "Natural flow between ideas",
+        importance: "low" as const
       });
     }
-    
+
     setResult({
       aiProbability,
       humanProbability,
@@ -242,7 +242,7 @@ const AIContentDetectorDetailed = () => {
                 placeholder="Paste the text you want to check for AI generation..."
                 className="w-full h-64 p-4 resize-none"
               />
-              
+
               <div className="flex flex-wrap gap-4 mt-4">
                 <Button
                   onClick={detectAIContent}
@@ -252,7 +252,7 @@ const AIContentDetectorDetailed = () => {
                   <i className="fas fa-robot mr-2"></i>
                   <span>{isDetecting ? "Analyzing..." : "Detect AI Content"}</span>
                 </Button>
-                
+
                 <label className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition cursor-pointer flex items-center">
                   <i className="fas fa-upload mr-2"></i>
                   <span>Upload File</span>
@@ -263,7 +263,7 @@ const AIContentDetectorDetailed = () => {
                     onChange={handleFileUpload}
                   />
                 </label>
-                
+
                 <Button
                   onClick={clearText}
                   variant="outline"
@@ -274,7 +274,7 @@ const AIContentDetectorDetailed = () => {
                 </Button>
               </div>
             </div>
-            
+
             <div className="bg-blue-50 p-4 rounded-lg">
               <h4 className="text-blue-800 font-medium mb-2">Tips for accurate detection</h4>
               <ul className="text-blue-700 text-sm space-y-1">
@@ -285,7 +285,7 @@ const AIContentDetectorDetailed = () => {
               </ul>
             </div>
           </div>
-          
+
           <div>
             {isDetecting ? (
               <div className="bg-white p-6 rounded-lg border border-gray-200 mb-4">
@@ -300,14 +300,14 @@ const AIContentDetectorDetailed = () => {
                     <div className="flex justify-between mb-4">
                       <h3 className="text-lg font-semibold">Analysis Result</h3>
                       <span className={`text-sm font-medium px-3 py-1 rounded-full ${
-                        result.aiProbability > 0.75 ? 'bg-red-100 text-red-800' : 
-                        result.aiProbability > 0.5 ? 'bg-orange-100 text-orange-800' : 
+                        result.aiProbability > 0.75 ? 'bg-red-100 text-red-800' :
+                        result.aiProbability > 0.5 ? 'bg-orange-100 text-orange-800' :
                         'bg-green-100 text-green-800'
                       }`}>
                         {result.verdict}
                       </span>
                     </div>
-                    
+
                     <div className="grid grid-cols-2 gap-4 mb-5">
                       <div className="bg-gray-50 p-4 rounded-lg">
                         <div className="flex justify-between mb-1">
@@ -315,8 +315,8 @@ const AIContentDetectorDetailed = () => {
                           <span className="text-sm font-bold text-red-600">{Math.round(result.aiProbability * 100)}%</span>
                         </div>
                         <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-red-500 rounded-full" 
+                          <div
+                            className="h-full bg-red-500 rounded-full"
                             style={{ width: `${Math.round(result.aiProbability * 100)}%` }}
                           ></div>
                         </div>
@@ -327,14 +327,14 @@ const AIContentDetectorDetailed = () => {
                           <span className="text-sm font-bold text-green-600">{Math.round(result.humanProbability * 100)}%</span>
                         </div>
                         <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-green-500 rounded-full" 
+                          <div
+                            className="h-full bg-green-500 rounded-full"
                             style={{ width: `${Math.round(result.humanProbability * 100)}%` }}
                           ></div>
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="space-y-3">
                       <div>
                         <h4 className="text-sm font-medium text-gray-700 mb-2">AI Content Indicators</h4>
@@ -347,7 +347,7 @@ const AIContentDetectorDetailed = () => {
                           ))}
                         </ul>
                       </div>
-                      
+
                       <div>
                         <h4 className="text-sm font-medium text-gray-700 mb-2">Human Content Indicators</h4>
                         <ul className="space-y-1">
@@ -362,11 +362,11 @@ const AIContentDetectorDetailed = () => {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardContent className="p-5">
                     <h3 className="text-lg font-semibold mb-3">Interpretation Guidelines</h3>
-                    
+
                     <div className="space-y-3 text-sm text-gray-600">
                       <p>
                         <span className="font-medium text-red-600">75%+ AI Probability:</span> The text shows strong indicators of AI generation. It may exhibit unnaturally consistent quality, lack of errors, and overly structured formatting.
@@ -383,15 +383,15 @@ const AIContentDetectorDetailed = () => {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <div className="bg-yellow-50 p-4 rounded-lg">
                   <div className="flex items-start">
                     <i className="fas fa-exclamation-triangle text-yellow-500 mt-1 mr-2"></i>
                     <div>
                       <h4 className="text-yellow-800 font-medium">Important Notice</h4>
                       <p className="text-yellow-700 text-sm">
-                        This detector provides an estimate based on text patterns and is not 100% accurate. 
-                        False positives can occur with highly structured or technical content. 
+                        This detector provides an estimate based on text patterns and is not 100% accurate.
+                        False positives can occur with highly structured or technical content.
                         Use this tool as one data point rather than definitive proof of AI generation.
                       </p>
                     </div>
