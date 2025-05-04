@@ -18,7 +18,7 @@ const WordCounter = () => {
   });
 
   useEffect(() => {
-    document.title = "Word Counter - ToolsHub";
+    document.title = "Word Counter - AllTooly";
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
   }, []);
@@ -30,10 +30,10 @@ const WordCounter = () => {
     const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
     const sentences = text === "" ? 0 : (text.match(/[.!?]+/g) || []).length;
     const paragraphs = text === "" ? 0 : text.split(/\n+/).filter(para => para.trim() !== "").length;
-    
+
     // Average reading speed is 200-250 words per minute
     const readingTime = Math.ceil(words / 225);
-    
+
     setStats({
       characters,
       charactersNoSpaces,
@@ -93,7 +93,7 @@ const WordCounter = () => {
                 <TabsTrigger value="text-input">Text Input</TabsTrigger>
                 <TabsTrigger value="file-upload">File Upload</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="text-input">
                 <div className="mt-4">
                   <label className="block text-gray-700 font-medium mb-2">Enter your text</label>
@@ -103,7 +103,7 @@ const WordCounter = () => {
                     placeholder="Type or paste your text here..."
                     className="w-full h-64 p-4 resize-none"
                   />
-                  
+
                   <div className="mt-4">
                     <Button onClick={clearText} variant="outline" className="bg-gray-100 text-gray-700 hover:bg-gray-200">
                       <i className="fas fa-eraser mr-2"></i>
@@ -112,7 +112,7 @@ const WordCounter = () => {
                   </div>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="file-upload">
                 <div className="mt-6 flex flex-col items-center justify-center p-8 border-2 border-dashed border-gray-300 rounded-lg">
                   <i className="fas fa-cloud-upload-alt text-gray-400 text-4xl mb-4"></i>
@@ -132,7 +132,7 @@ const WordCounter = () => {
 
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
               <h3 className="font-semibold text-lg mb-4">Statistics</h3>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <Card>
                   <CardContent className="p-4">
@@ -142,7 +142,7 @@ const WordCounter = () => {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardContent className="p-4">
                     <div className="text-center">
@@ -151,7 +151,7 @@ const WordCounter = () => {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardContent className="p-4">
                     <div className="text-center">
@@ -160,7 +160,7 @@ const WordCounter = () => {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardContent className="p-4">
                     <div className="text-center">
@@ -169,7 +169,7 @@ const WordCounter = () => {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardContent className="p-4">
                     <div className="text-center">
@@ -178,7 +178,7 @@ const WordCounter = () => {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardContent className="p-4">
                     <div className="text-center">

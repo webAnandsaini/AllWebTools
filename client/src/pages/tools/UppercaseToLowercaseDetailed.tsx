@@ -8,13 +8,13 @@ import { toast } from "@/hooks/use-toast";
 import ToolPageTemplate from "@/components/tools/ToolPageTemplate";
 import ToolContentTemplate from "@/components/tools/ToolContentTemplate";
 
-type ConversionType = 
-  | "lowercase" 
-  | "uppercase" 
-  | "capitalize" 
-  | "sentence_case" 
-  | "title_case" 
-  | "alternating_case" 
+type ConversionType =
+  | "lowercase"
+  | "uppercase"
+  | "capitalize"
+  | "sentence_case"
+  | "title_case"
+  | "alternating_case"
   | "inverse_case";
 
 const UppercaseToLowercaseDetailed = () => {
@@ -28,7 +28,7 @@ const UppercaseToLowercaseDetailed = () => {
   }>>([]);
 
   useEffect(() => {
-    document.title = "Text Case Converter - ToolsHub";
+    document.title = "Text Case Converter - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -47,16 +47,16 @@ const UppercaseToLowercaseDetailed = () => {
     }
 
     let result = "";
-    
+
     switch (conversionType) {
       case "lowercase":
         result = inputText.toLowerCase();
         break;
-        
+
       case "uppercase":
         result = inputText.toUpperCase();
         break;
-        
+
       case "capitalize":
         result = inputText
           .toLowerCase()
@@ -64,12 +64,12 @@ const UppercaseToLowercaseDetailed = () => {
           .map(word => word.charAt(0).toUpperCase() + word.slice(1))
           .join(' ');
         break;
-        
+
       case "sentence_case":
         result = inputText.toLowerCase()
           .replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
         break;
-        
+
       case "title_case":
         const exclusions = ["a", "an", "the", "and", "but", "or", "for", "nor", "on", "at", "to", "from", "by", "with", "in", "of"];
         result = inputText
@@ -85,16 +85,16 @@ const UppercaseToLowercaseDetailed = () => {
           })
           .join(' ');
         break;
-        
+
       case "alternating_case":
         result = inputText
           .split('')
-          .map((char, index) => 
+          .map((char, index) =>
             index % 2 === 0 ? char.toLowerCase() : char.toUpperCase()
           )
           .join('');
         break;
-        
+
       case "inverse_case":
         result = inputText
           .split('')
@@ -106,20 +106,20 @@ const UppercaseToLowercaseDetailed = () => {
           })
           .join('');
         break;
-        
+
       default:
         result = inputText;
     }
-    
+
     setOutputText(result);
-    
+
     // Add to conversion history
     const newHistory = {
       original: inputText,
       converted: result,
       type: conversionType
     };
-    
+
     setConversionHistory(prev => [newHistory, ...prev].slice(0, 5));
   };
 
@@ -166,7 +166,7 @@ const UppercaseToLowercaseDetailed = () => {
       });
       return;
     }
-    
+
     const blob = new Blob([outputText], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -195,7 +195,7 @@ const UppercaseToLowercaseDetailed = () => {
     const charCount = inputText.length;
     const wordCount = inputText.trim() ? inputText.trim().split(/\s+/).length : 0;
     const lineCount = inputText.split(/\r\n|\r|\n/).length;
-    
+
     return { charCount, wordCount, lineCount };
   };
 
@@ -214,7 +214,7 @@ const UppercaseToLowercaseDetailed = () => {
                     {stats.charCount} characters • {stats.wordCount} words • {stats.lineCount} lines
                   </div>
                 </div>
-                
+
                 <Textarea
                   id="input-text"
                   value={inputText}
@@ -222,7 +222,7 @@ const UppercaseToLowercaseDetailed = () => {
                   placeholder="Type or paste your text here..."
                   className="min-h-[200px] font-mono text-sm"
                 />
-                
+
                 <div className="flex flex-wrap gap-3 mt-4">
                   <Button
                     onClick={convertText}
@@ -231,7 +231,7 @@ const UppercaseToLowercaseDetailed = () => {
                     <i className="fas fa-exchange-alt mr-2"></i>
                     <span>Convert</span>
                   </Button>
-                  
+
                   <label className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition cursor-pointer flex items-center text-sm">
                     <i className="fas fa-upload mr-2"></i>
                     <span>Upload File</span>
@@ -242,7 +242,7 @@ const UppercaseToLowercaseDetailed = () => {
                       onChange={handleFileUpload}
                     />
                   </label>
-                  
+
                   <Button
                     onClick={clearText}
                     variant="outline"
@@ -254,13 +254,13 @@ const UppercaseToLowercaseDetailed = () => {
                 </div>
               </CardContent>
             </Card>
-            
+
             <Card>
               <CardContent className="p-5">
                 <h3 className="text-base font-medium mb-3">Conversion Options</h3>
-                
-                <RadioGroup 
-                  value={conversionType} 
+
+                <RadioGroup
+                  value={conversionType}
                   onValueChange={(value) => setConversionType(value as ConversionType)}
                   className="space-y-2"
                 >
@@ -268,32 +268,32 @@ const UppercaseToLowercaseDetailed = () => {
                     <RadioGroupItem value="lowercase" id="lowercase" />
                     <Label htmlFor="lowercase" className="cursor-pointer">lowercase</Label>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="uppercase" id="uppercase" />
                     <Label htmlFor="uppercase" className="cursor-pointer">UPPERCASE</Label>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="capitalize" id="capitalize" />
                     <Label htmlFor="capitalize" className="cursor-pointer">Capitalize Each Word</Label>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="sentence_case" id="sentence_case" />
                     <Label htmlFor="sentence_case" className="cursor-pointer">Sentence case</Label>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="title_case" id="title_case" />
                     <Label htmlFor="title_case" className="cursor-pointer">Title Case</Label>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="alternating_case" id="alternating_case" />
                     <Label htmlFor="alternating_case" className="cursor-pointer">aLtErNaTiNg cAsE</Label>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="inverse_case" id="inverse_case" />
                     <Label htmlFor="inverse_case" className="cursor-pointer">iNVERSE CASE</Label>
@@ -302,7 +302,7 @@ const UppercaseToLowercaseDetailed = () => {
               </CardContent>
             </Card>
           </div>
-          
+
           <div className="space-y-4">
             <Card>
               <CardContent className="p-5">
@@ -331,7 +331,7 @@ const UppercaseToLowercaseDetailed = () => {
                     </Button>
                   </div>
                 </div>
-                
+
                 <Textarea
                   id="output-text"
                   value={outputText}
@@ -341,12 +341,12 @@ const UppercaseToLowercaseDetailed = () => {
                 />
               </CardContent>
             </Card>
-            
+
             {conversionHistory.length > 0 && (
               <Card>
                 <CardContent className="p-5">
                   <h3 className="text-base font-medium mb-3">Conversion History</h3>
-                  
+
                   <div className="space-y-3">
                     {conversionHistory.map((item, index) => (
                       <div key={index} className="border rounded-lg p-3 text-sm">
@@ -377,11 +377,11 @@ const UppercaseToLowercaseDetailed = () => {
                 </CardContent>
               </Card>
             )}
-            
+
             <Card>
               <CardContent className="p-5">
                 <h3 className="text-base font-medium mb-3">About Case Conversion Types</h3>
-                
+
                 <ul className="space-y-2 text-sm">
                   <li><span className="font-medium">lowercase:</span> Converts all characters to lowercase.</li>
                   <li><span className="font-medium">UPPERCASE:</span> Converts all characters to uppercase.</li>

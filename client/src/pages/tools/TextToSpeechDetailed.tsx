@@ -27,16 +27,16 @@ const TextToSpeechDetailed = () => {
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   useEffect(() => {
-    document.title = "Text to Speech - ToolsHub";
+    document.title = "Text to Speech - AllTooly";
     window.scrollTo(0, 0);
-    
+
     // Initialize Web Speech API
     if ('speechSynthesis' in window) {
       // Speech Synthesis API is supported
-      
+
       // Get available voices
       const synth = window.speechSynthesis;
-      
+
       // Function to load and process voices
       const loadVoices = () => {
         const voices = synth.getVoices();
@@ -45,16 +45,16 @@ const TextToSpeechDetailed = () => {
           lang: voice.lang,
           gender: voice.name.toLowerCase().includes('female') ? 'female' as const : 'male' as const
         }));
-        
+
         setAvailableVoices(processedVoices);
         if (processedVoices.length > 0 && !selectedVoice) {
           setSelectedVoice(processedVoices[0].name);
         }
       };
-      
+
       // Load voices initially
       loadVoices();
-      
+
       // Chrome loads voices asynchronously, so we need to listen for the voiceschanged event
       if (synth.onvoiceschanged !== undefined) {
         synth.onvoiceschanged = loadVoices;
@@ -67,7 +67,7 @@ const TextToSpeechDetailed = () => {
         variant: "destructive",
       });
     }
-    
+
     // Cleanup
     return () => {
       if (audioRef.current) {
@@ -92,38 +92,38 @@ const TextToSpeechDetailed = () => {
       });
       return;
     }
-    
+
     if ('speechSynthesis' in window) {
       // Cancel any ongoing speech
       window.speechSynthesis.cancel();
-      
+
       // Create a new utterance
       const utterance = new SpeechSynthesisUtterance(text);
       utteranceRef.current = utterance;
-      
+
       // Set voice
       const voices = window.speechSynthesis.getVoices();
       const voice = voices.find(v => v.name === selectedVoice);
       if (voice) {
         utterance.voice = voice;
       }
-      
+
       // Set other properties
       utterance.rate = rate;
       utterance.pitch = pitch;
       utterance.volume = volume;
-      
+
       // Event handlers
       utterance.onstart = () => {
         setIsPlaying(true);
         setIsPaused(false);
       };
-      
+
       utterance.onend = () => {
         setIsPlaying(false);
         setIsPaused(false);
       };
-      
+
       utterance.onerror = (event) => {
         console.error("Speech synthesis error:", event);
         setIsPlaying(false);
@@ -134,7 +134,7 @@ const TextToSpeechDetailed = () => {
           variant: "destructive",
         });
       };
-      
+
       // Start speaking
       window.speechSynthesis.speak(utterance);
     }
@@ -197,18 +197,18 @@ const TextToSpeechDetailed = () => {
       });
       return;
     }
-    
+
     toast({
       title: "Feature not available",
       description: "Audio download functionality is not available in the browser preview. In a production environment, this would generate an MP3 file from your text.",
       variant: "default",
     });
-    
+
     // In a real implementation, we would:
     // 1. Send the text to a server endpoint
     // 2. Use a TTS service to generate an audio file
     // 3. Return a URL to download the audio file
-    
+
     // Simulate a download delay
     setTimeout(() => {
       toast({
@@ -229,7 +229,7 @@ const TextToSpeechDetailed = () => {
             placeholder="Type or paste your text here..."
             className="w-full h-32 md:h-48 p-4 resize-none"
           />
-          
+
           <div className="flex flex-wrap gap-3 mt-4">
             <Button
               onClick={clearText}
@@ -239,7 +239,7 @@ const TextToSpeechDetailed = () => {
               <i className="fas fa-eraser mr-2"></i>
               <span>Clear Text</span>
             </Button>
-            
+
             <label className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition cursor-pointer flex items-center">
               <i className="fas fa-upload mr-2"></i>
               <span>Upload File</span>
@@ -252,11 +252,11 @@ const TextToSpeechDetailed = () => {
             </label>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
             <h3 className="text-lg font-medium mb-4">Voice Settings</h3>
-            
+
             <div className="space-y-6">
               <div>
                 <label className="block text-gray-700 font-medium mb-2">Voice</label>
@@ -277,7 +277,7 @@ const TextToSpeechDetailed = () => {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="block text-gray-700 font-medium">Speed</label>
@@ -291,7 +291,7 @@ const TextToSpeechDetailed = () => {
                   onValueChange={(value) => setRate(value[0])}
                 />
               </div>
-              
+
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="block text-gray-700 font-medium">Pitch</label>
@@ -305,7 +305,7 @@ const TextToSpeechDetailed = () => {
                   onValueChange={(value) => setPitch(value[0])}
                 />
               </div>
-              
+
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="block text-gray-700 font-medium">Volume</label>
@@ -321,10 +321,10 @@ const TextToSpeechDetailed = () => {
               </div>
             </div>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-medium mb-4">Audio Controls</h3>
-            
+
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 flex flex-col items-center justify-center h-[280px]">
               <div className="flex flex-wrap gap-4 mb-6">
                 <Button
@@ -334,7 +334,7 @@ const TextToSpeechDetailed = () => {
                 >
                   <i className="fas fa-play"></i>
                 </Button>
-                
+
                 <Button
                   onClick={pauseResumeSpeech}
                   disabled={!isPlaying}
@@ -342,7 +342,7 @@ const TextToSpeechDetailed = () => {
                 >
                   <i className={`fas ${isPaused ? 'fa-play' : 'fa-pause'}`}></i>
                 </Button>
-                
+
                 <Button
                   onClick={stopSpeech}
                   disabled={!isPlaying}
@@ -351,7 +351,7 @@ const TextToSpeechDetailed = () => {
                   <i className="fas fa-stop"></i>
                 </Button>
               </div>
-              
+
               <Button
                 onClick={downloadAudio}
                 className="bg-gray-800 hover:bg-gray-900 transition flex items-center"
@@ -359,24 +359,24 @@ const TextToSpeechDetailed = () => {
                 <i className="fas fa-download mr-2"></i>
                 <span>Download as MP3</span>
               </Button>
-              
+
               <p className="text-sm text-gray-500 mt-4 text-center">
-                {isPlaying ? 
-                  (isPaused ? "Speech paused" : "Playing audio...") : 
+                {isPlaying ?
+                  (isPaused ? "Speech paused" : "Playing audio...") :
                   "Click play to hear your text"}
               </p>
             </div>
           </div>
         </div>
-        
+
         <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
           <div className="flex items-start">
             <i className="fas fa-info-circle text-blue-500 mt-1 mr-2"></i>
             <div>
               <h4 className="text-blue-800 font-medium">Browser Support</h4>
               <p className="text-blue-700 text-sm">
-                This tool uses the Web Speech API which is supported in most modern browsers. 
-                For optimal performance, we recommend using Chrome, Edge, or Safari. 
+                This tool uses the Web Speech API which is supported in most modern browsers.
+                For optimal performance, we recommend using Chrome, Edge, or Safari.
                 Voice availability may vary depending on your browser and operating system.
               </p>
             </div>

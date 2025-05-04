@@ -11,7 +11,7 @@ const UppercaseToLowercase = () => {
   const [activeTab, setActiveTab] = useState("lowercase");
 
   useEffect(() => {
-    document.title = "Uppercase To Lowercase - ToolsHub";
+    document.title = "Uppercase To Lowercase - AllTooly";
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
   }, []);
@@ -129,37 +129,37 @@ const UppercaseToLowercase = () => {
                   <TabsTrigger value="alternating">aLtErNaTiNg</TabsTrigger>
                   <TabsTrigger value="inverse">InVeRsE cAsE</TabsTrigger>
                 </TabsList>
-                
+
                 <TabsContent value="lowercase" className="pt-4">
                   <p className="text-sm text-gray-600 mb-2">
                     Converts all characters to lowercase.
                   </p>
                 </TabsContent>
-                
+
                 <TabsContent value="uppercase" className="pt-4">
                   <p className="text-sm text-gray-600 mb-2">
                     Converts all characters to uppercase.
                   </p>
                 </TabsContent>
-                
+
                 <TabsContent value="capitalize" className="pt-4">
                   <p className="text-sm text-gray-600 mb-2">
                     Capitalizes the first letter of each word.
                   </p>
                 </TabsContent>
-                
+
                 <TabsContent value="sentence" className="pt-4">
                   <p className="text-sm text-gray-600 mb-2">
                     Capitalizes the first letter of each sentence.
                   </p>
                 </TabsContent>
-                
+
                 <TabsContent value="alternating" className="pt-4">
                   <p className="text-sm text-gray-600 mb-2">
                     Alternates between lowercase and uppercase for each character.
                   </p>
                 </TabsContent>
-                
+
                 <TabsContent value="inverse" className="pt-4">
                   <p className="text-sm text-gray-600 mb-2">
                     Inverts the case of each character.

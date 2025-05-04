@@ -11,12 +11,12 @@ const CategoryPage = () => {
   useEffect(() => {
     // Find the category data based on the slug from the URL
     const foundCategory = categories.find((c) => c.slug === category);
-    
+
     if (foundCategory) {
       setCategoryData(foundCategory);
-      document.title = `${foundCategory.name} - ToolsHub`;
+      document.title = `${foundCategory.name} - AllTooly`;
     }
-    
+
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
   }, [category]);

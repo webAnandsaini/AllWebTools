@@ -21,14 +21,14 @@ const ToolContentTemplate = ({
 }: ToolContentTemplateProps) => {
   return (
     <>
+      {/* Tool Interface */}
+      <div className="mb-10">{toolInterface}</div>
+
       {/* Introduction */}
       <div className="mb-8">
         <p className="text-lg font-medium text-gray-700 mb-4">{introduction}</p>
         <p className="text-gray-600">{description}</p>
       </div>
-
-      {/* Tool Interface */}
-      <div className="mb-10">{toolInterface}</div>
 
       {/* How to Use Section */}
       <div className="mb-10">

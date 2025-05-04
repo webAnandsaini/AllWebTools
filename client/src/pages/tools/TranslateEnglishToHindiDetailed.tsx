@@ -41,7 +41,7 @@ const TranslateEnglishToHindiDetailed = () => {
   ];
 
   useEffect(() => {
-    document.title = "English to Hindi Translator - ToolsHub";
+    document.title = "English to Hindi Translator - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -64,7 +64,7 @@ const TranslateEnglishToHindiDetailed = () => {
 
     setIsTranslating(true);
     setProgress(0);
-    
+
     // Simulate progress
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -90,33 +90,33 @@ const TranslateEnglishToHindiDetailed = () => {
       const data = await response.json();
       setTranslatedText(data.translatedText);
       */
-      
+
       // For demonstration purposes, simulate translation
       setTimeout(() => {
         const result = simulateTranslation(sourceText, translationMode, preferRomanized);
         setTranslatedText(result);
-        
+
         // Add to history
         const historyItem = {
           source: sourceText,
           translated: result,
           mode: translationMode
         };
-        
+
         setTranslationHistory(prev => [historyItem, ...prev].slice(0, 10));
-        
+
         clearInterval(interval);
         setProgress(100);
         setIsTranslating(false);
       }, 1500);
-      
+
     } catch (error) {
       toast({
         title: "Translation error",
         description: "An error occurred during translation. Please try again.",
         variant: "destructive",
       });
-      
+
       clearInterval(interval);
       setProgress(100);
       setIsTranslating(false);
@@ -126,12 +126,12 @@ const TranslateEnglishToHindiDetailed = () => {
   const simulateTranslation = (text: string, mode: TranslationMode, romanized: boolean): string => {
     // This is a simplified simulation for demonstration purposes
     // In a real app, we would use a translation API
-    
+
     // Check for exact matches in common phrases
     for (const phrase of commonPhrases) {
       if (text.toLowerCase().includes(phrase.english.toLowerCase())) {
         let translatedPhrase = romanized ? phrase.romanized : phrase.hindi;
-        
+
         // Apply mode-specific formatting if needed
         switch (mode) {
           case "formal":
@@ -142,7 +142,7 @@ const TranslateEnglishToHindiDetailed = () => {
               translatedPhrase = translatedPhrase.replace("Namaste", "Namaskar");
             }
             break;
-            
+
           case "conversational":
             // Make more casual for conversational Hindi
             if (!romanized) {
@@ -151,46 +151,46 @@ const TranslateEnglishToHindiDetailed = () => {
               translatedPhrase = translatedPhrase.replace("aap kaise hain", "tum kaise ho");
             }
             break;
-            
+
           default:
             // Use as is for other modes
             break;
         }
-        
+
         return translatedPhrase;
       }
     }
-    
+
     // For text not in common phrases, generate a plausible Hindi-looking result based on input length
     if (romanized) {
       // Generate romanized Hindi-like text
       const romanizedWords = [
-        "Namaste", "dhanyavaad", "kripya", "shubh", "prem", "vishwas", 
+        "Namaste", "dhanyavaad", "kripya", "shubh", "prem", "vishwas",
         "aasha", "samay", "jeevan", "mitra", "parivaar", "khushi",
         "aaj", "kal", "yahan", "vahan", "bahut", "thoda", "accha"
       ];
-      
+
       const words = text.split(" ");
       const result = words.map(() => {
         const randomWord = romanizedWords[Math.floor(Math.random() * romanizedWords.length)];
         return randomWord;
       }).join(" ");
-      
+
       return result;
     } else {
       // Generate Devanagari Hindi-like text
       const hindiWords = [
-        "नमस्ते", "धन्यवाद", "कृपया", "शुभ", "प्रेम", "विश्वास", 
+        "नमस्ते", "धन्यवाद", "कृपया", "शुभ", "प्रेम", "विश्वास",
         "आशा", "समय", "जीवन", "मित्र", "परिवार", "खुशी",
         "आज", "कल", "यहां", "वहां", "बहुत", "थोड़ा", "अच्छा"
       ];
-      
+
       const words = text.split(" ");
       const result = words.map(() => {
         const randomWord = hindiWords[Math.floor(Math.random() * hindiWords.length)];
         return randomWord;
       }).join(" ");
-      
+
       return result;
     }
   };
@@ -242,7 +242,7 @@ const TranslateEnglishToHindiDetailed = () => {
       });
       return;
     }
-    
+
     const blob = new Blob([translatedText], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -262,7 +262,7 @@ const TranslateEnglishToHindiDetailed = () => {
             <TabsTrigger value="translate">Translate</TabsTrigger>
             <TabsTrigger value="history">History</TabsTrigger>
           </TabsList>
-          
+
           <TabsContent value="translate" className="mt-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="space-y-4">
@@ -274,14 +274,14 @@ const TranslateEnglishToHindiDetailed = () => {
                         English
                       </div>
                     </div>
-                    
+
                     <Textarea
                       value={sourceText}
                       onChange={handleSourceTextChange}
                       placeholder="Enter text in English to translate to Hindi..."
                       className="min-h-[200px] mb-3"
                     />
-                    
+
                     <div className="flex flex-wrap gap-3">
                       <Button
                         onClick={translateText}
@@ -291,7 +291,7 @@ const TranslateEnglishToHindiDetailed = () => {
                         <i className="fas fa-language mr-2"></i>
                         <span>{isTranslating ? "Translating..." : "Translate to Hindi"}</span>
                       </Button>
-                      
+
                       <label className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition cursor-pointer flex items-center text-sm">
                         <i className="fas fa-upload mr-2"></i>
                         <span>Upload File</span>
@@ -302,7 +302,7 @@ const TranslateEnglishToHindiDetailed = () => {
                           onChange={handleFileUpload}
                         />
                       </label>
-                      
+
                       <Button
                         onClick={clearText}
                         variant="outline"
@@ -314,11 +314,11 @@ const TranslateEnglishToHindiDetailed = () => {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardContent className="p-5">
                     <h3 className="text-base font-medium mb-3">Translation Settings</h3>
-                    
+
                     <div className="space-y-4">
                       <div>
                         <Label className="mb-1 block">Translation Mode</Label>
@@ -341,7 +341,7 @@ const TranslateEnglishToHindiDetailed = () => {
                           Choose the style and tone appropriate for your content
                         </p>
                       </div>
-                      
+
                       <div className="space-y-3">
                         <div className="flex items-center space-x-2">
                           <Switch
@@ -353,7 +353,7 @@ const TranslateEnglishToHindiDetailed = () => {
                             Show Hindi in Roman script (transliteration)
                           </Label>
                         </div>
-                        
+
                         <div className="flex items-center space-x-2">
                           <Switch
                             id="definitions"
@@ -368,7 +368,7 @@ const TranslateEnglishToHindiDetailed = () => {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardContent className="p-5">
                     <h3 className="text-base font-medium mb-3">Common Phrases</h3>
@@ -387,7 +387,7 @@ const TranslateEnglishToHindiDetailed = () => {
                   </CardContent>
                 </Card>
               </div>
-              
+
               <div className="space-y-4">
                 <Card>
                   <CardContent className="p-5">
@@ -397,7 +397,7 @@ const TranslateEnglishToHindiDetailed = () => {
                         <div className="text-xs font-medium px-2 py-1 bg-orange-100 rounded-full text-orange-700">
                           हिंदी
                         </div>
-                        
+
                         {translatedText && (
                           <div className="flex space-x-1">
                             <Button
@@ -420,7 +420,7 @@ const TranslateEnglishToHindiDetailed = () => {
                         )}
                       </div>
                     </div>
-                    
+
                     {isTranslating ? (
                       <div className="bg-gray-50 border rounded-lg p-6 min-h-[200px] flex flex-col items-center justify-center">
                         <Progress value={progress} className="w-full h-2 mb-4" />
@@ -439,7 +439,7 @@ const TranslateEnglishToHindiDetailed = () => {
                         </p>
                       </div>
                     )}
-                    
+
                     {translatedText && showDefinitions && (
                       <div className="bg-gray-50 p-3 rounded-lg border mt-3">
                         <p className="text-sm text-gray-600">
@@ -449,7 +449,7 @@ const TranslateEnglishToHindiDetailed = () => {
                     )}
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardContent className="p-5">
                     <h3 className="text-base font-medium mb-3">About Hindi Language</h3>
@@ -466,7 +466,7 @@ const TranslateEnglishToHindiDetailed = () => {
                     </div>
                   </CardContent>
                 </Card>
-                
+
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <h4 className="text-blue-800 font-medium mb-2">Translation Notes</h4>
                   <ul className="text-blue-700 text-sm space-y-1">
@@ -479,12 +479,12 @@ const TranslateEnglishToHindiDetailed = () => {
               </div>
             </div>
           </TabsContent>
-          
+
           <TabsContent value="history" className="mt-6">
             <Card>
               <CardContent className="p-5">
                 <h3 className="text-lg font-medium mb-4">Translation History</h3>
-                
+
                 {translationHistory.length > 0 ? (
                   <div className="space-y-4">
                     {translationHistory.map((item, index) => (
@@ -497,7 +497,7 @@ const TranslateEnglishToHindiDetailed = () => {
                               {item.mode}
                             </div>
                           </div>
-                          
+
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                               <p className="text-xs text-gray-500 mb-1">English:</p>
@@ -505,7 +505,7 @@ const TranslateEnglishToHindiDetailed = () => {
                                 {item.source.length > 150 ? `${item.source.substring(0, 150)}...` : item.source}
                               </p>
                             </div>
-                            
+
                             <div>
                               <p className="text-xs text-gray-500 mb-1">Hindi:</p>
                               <p className="text-sm text-gray-800 bg-gray-50 p-2 rounded">
@@ -513,7 +513,7 @@ const TranslateEnglishToHindiDetailed = () => {
                               </p>
                             </div>
                           </div>
-                          
+
                           <div className="flex justify-end mt-3">
                             <Button
                               onClick={() => {

@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from "@/components/ui/select";
 import {
   Card,
@@ -27,15 +27,15 @@ const TitleGenerator = () => {
   const [contentType, setContentType] = useState<ContentType>("blog");
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeEmotional, setIncludeEmotional] = useState(true);
-  
+
   const [generatedTitles, setGeneratedTitles] = useState<string[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [selectedTitle, setSelectedTitle] = useState("");
-  
+
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    document.title = "Title Generator - ToolsHub";
+    document.title = "Title Generator - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -76,15 +76,15 @@ const TitleGenerator = () => {
       if (keywordsList.length > 0) {
         topicText += ` with focus on ${keywordsList.join(", ")}`;
       }
-      
+
       if (contentType) {
         topicText += ` for ${contentType}`;
       }
-      
+
       if (includeNumbers) {
         topicText += ` include numbers`;
       }
-      
+
       if (includeEmotional) {
         topicText += ` make it emotional`;
       }
@@ -148,7 +148,7 @@ const TitleGenerator = () => {
                 <Card>
                   <CardContent className="p-6">
                     <h3 className="text-lg font-semibold mb-4">Title Settings</h3>
-                    
+
                     <div className="space-y-5">
                       <div>
                         <Label htmlFor="topic" className="mb-2 block">Topic</Label>
@@ -160,7 +160,7 @@ const TitleGenerator = () => {
                           className="w-full"
                         />
                       </div>
-                      
+
                       <div>
                         <Label htmlFor="keywords" className="mb-2 block">Keywords (optional)</Label>
                         <Input
@@ -174,7 +174,7 @@ const TitleGenerator = () => {
                           Add keywords to focus your titles on specific terms
                         </p>
                       </div>
-                      
+
                       <div>
                         <Label className="mb-2 block">Content Type</Label>
                         <Select value={contentType} onValueChange={handleContentTypeChange}>
@@ -191,12 +191,12 @@ const TitleGenerator = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      
+
                       <div className="space-y-3">
                         <Label className="block">Title Style</Label>
                         <div className="flex items-center space-x-2">
-                          <Checkbox 
-                            id="includeNumbers" 
+                          <Checkbox
+                            id="includeNumbers"
                             checked={includeNumbers}
                             onCheckedChange={(checked) => setIncludeNumbers(!!checked)}
                           />
@@ -208,8 +208,8 @@ const TitleGenerator = () => {
                           </label>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <Checkbox 
-                            id="includeEmotional" 
+                          <Checkbox
+                            id="includeEmotional"
                             checked={includeEmotional}
                             onCheckedChange={(checked) => setIncludeEmotional(!!checked)}
                           />
@@ -222,11 +222,11 @@ const TitleGenerator = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="mt-6 flex flex-col space-y-3">
-                      <Button 
-                        onClick={handleGenerateTitles} 
-                        disabled={isGenerating || !topic.trim()} 
+                      <Button
+                        onClick={handleGenerateTitles}
+                        disabled={isGenerating || !topic.trim()}
                         className="bg-primary hover:bg-blue-700"
                       >
                         {isGenerating ? (
@@ -241,10 +241,10 @@ const TitleGenerator = () => {
                           </>
                         )}
                       </Button>
-                      
-                      <Button 
-                        onClick={clearFields} 
-                        variant="outline" 
+
+                      <Button
+                        onClick={clearFields}
+                        variant="outline"
                         className="border-gray-300"
                       >
                         <i className="fas fa-eraser mr-2"></i>
@@ -264,7 +264,7 @@ const TitleGenerator = () => {
                   </ul>
                 </div>
               </div>
-              
+
               <div className="lg:col-span-7">
                 <div className="mb-3">
                   <h3 className="font-semibold text-lg">Generated Titles</h3>
@@ -272,7 +272,7 @@ const TitleGenerator = () => {
                     Click on a title to copy it to clipboard
                   </p>
                 </div>
-                
+
                 {isGenerating ? (
                   <div className="flex flex-col items-center justify-center bg-gray-50 border border-gray-200 rounded-lg p-12">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
@@ -281,7 +281,7 @@ const TitleGenerator = () => {
                 ) : generatedTitles.length > 0 ? (
                   <div className="space-y-3">
                     {generatedTitles.map((title, index) => (
-                      <div 
+                      <div
                         key={index}
                         onClick={() => copyToClipboard(title)}
                         className={`p-4 border rounded-lg cursor-pointer transition hover:bg-gray-50 ${selectedTitle === title ? 'border-primary bg-blue-50' : 'border-gray-200'}`}
@@ -309,7 +309,7 @@ const TitleGenerator = () => {
                 )}
               </div>
             </div>
-            
+
             <div className="mt-8 bg-gray-50 p-6 rounded-lg border border-gray-100">
               <h3 className="font-semibold text-lg mb-3">Why Great Titles Matter</h3>
               <p className="text-gray-700 mb-3">

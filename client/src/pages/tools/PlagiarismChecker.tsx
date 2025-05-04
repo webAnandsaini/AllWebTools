@@ -16,7 +16,7 @@ const PlagiarismChecker = () => {
   } | null>(null);
 
   useEffect(() => {
-    document.title = "Plagiarism Checker - ToolsHub";
+    document.title = "Plagiarism Checker - AllTooly";
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
   }, []);
@@ -122,7 +122,7 @@ const PlagiarismChecker = () => {
                   <i className="fas fa-search mr-2"></i>
                   <span>{isChecking ? "Checking..." : "Check Plagiarism"}</span>
                 </Button>
-                
+
                 <label className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition cursor-pointer flex items-center">
                   <i className="fas fa-upload mr-2"></i>
                   <span>Upload File</span>
@@ -133,7 +133,7 @@ const PlagiarismChecker = () => {
                     onChange={handleFileUpload}
                   />
                 </label>
-                
+
                 <Button
                   onClick={clearText}
                   variant="outline"
@@ -147,7 +147,7 @@ const PlagiarismChecker = () => {
 
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
               <h3 className="font-semibold text-lg mb-3">Results</h3>
-              
+
               {isChecking ? (
                 <div className="text-center py-8">
                   <div className="mb-4">
@@ -167,7 +167,7 @@ const PlagiarismChecker = () => {
                       </div>
                       <Progress value={results.uniqueContent} className="h-2 mt-2 bg-gray-100" />
                     </div>
-                    
+
                     <div className="bg-white rounded-lg shadow-sm p-4 md:w-5/12">
                       <div className="flex items-center justify-between">
                         <h4 className="font-medium text-gray-700">Plagiarized Content</h4>
@@ -178,7 +178,7 @@ const PlagiarismChecker = () => {
                       <Progress value={results.plagiarizedContent} className="h-2 mt-2 bg-gray-100" />
                     </div>
                   </div>
-                  
+
                   {results.sources.length > 0 && (
                     <div>
                       <h4 className="font-medium text-gray-700 mb-3">Matching Sources</h4>

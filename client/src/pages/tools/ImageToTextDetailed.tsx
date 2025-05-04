@@ -23,7 +23,7 @@ const ImageToTextDetailed = () => {
   const [recognizeHandwriting, setRecognizeHandwriting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  
+
   const languageOptions = [
     { value: "eng", label: "English" },
     { value: "fra", label: "French" },
@@ -40,7 +40,7 @@ const ImageToTextDetailed = () => {
   ];
 
   useEffect(() => {
-    document.title = "Image to Text Converter - ToolsHub";
+    document.title = "Image to Text Converter - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -52,7 +52,7 @@ const ImageToTextDetailed = () => {
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       handleImageSelect(e.dataTransfer.files[0]);
     }
@@ -73,10 +73,10 @@ const ImageToTextDetailed = () => {
       });
       return;
     }
-    
+
     setSelectedImage(file);
     setExtractedText("");
-    
+
     // Create preview
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -87,7 +87,7 @@ const ImageToTextDetailed = () => {
 
   const handleImagePaste = (e: React.ClipboardEvent) => {
     const items = e.clipboardData.items;
-    
+
     for (let i = 0; i < items.length; i++) {
       if (items[i].type.indexOf("image") !== -1) {
         const file = items[i].getAsFile();
@@ -106,7 +106,7 @@ const ImageToTextDetailed = () => {
         const video = document.createElement('video');
         video.srcObject = stream;
         video.play();
-        
+
         // After video starts playing, capture a frame
         video.onloadeddata = () => {
           // Wait a moment to let camera adjust
@@ -118,14 +118,14 @@ const ImageToTextDetailed = () => {
               canvas.height = video.videoHeight;
               const ctx = canvas.getContext('2d');
               ctx?.drawImage(video, 0, 0);
-              
+
               // Convert canvas to blob
               canvas.toBlob(blob => {
                 if (blob) {
                   const file = new File([blob], "camera-capture.jpg", { type: "image/jpeg" });
                   handleImageSelect(file);
                 }
-                
+
                 // Stop all video tracks
                 stream.getTracks().forEach(track => track.stop());
               }, 'image/jpeg');
@@ -155,7 +155,7 @@ const ImageToTextDetailed = () => {
 
     setIsProcessing(true);
     setProgress(0);
-    
+
     // Simulate progress
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -176,14 +176,14 @@ const ImageToTextDetailed = () => {
       formData.append("preserveFormatting", String(preserveFormatting));
       formData.append("enhanceImage", String(enhanceImage));
       formData.append("recognizeHandwriting", String(recognizeHandwriting));
-      
+
       // Simulate API request
       /*
       const response = await apiRequest("POST", "/api/ocr/image-to-text", formData);
       const data = await response.json();
       setExtractedText(data.text);
       */
-      
+
       // For demo purposes, simulate OCR with a delayed response
       setTimeout(() => {
         simulateOCR(selectedImage, language);
@@ -191,7 +191,7 @@ const ImageToTextDetailed = () => {
         setProgress(100);
         setIsProcessing(false);
       }, 2000);
-      
+
     } catch (error) {
       toast({
         title: "Error processing image",
@@ -209,10 +209,10 @@ const ImageToTextDetailed = () => {
     // Generate simulated text based on file properties
     const fileSize = image.size;
     const fileName = image.name.toLowerCase();
-    
+
     // Base text for simulation
     let simulatedText = "";
-    
+
     // Different text types based on image name hints
     if (fileName.includes("receipt") || fileName.includes("invoice")) {
       simulatedText = "RECEIPT\n\nStore: Example Shop\nDate: April 28, 2025\n\nItems:\n1. Product A - $19.99\n2. Product B - $24.50\n3. Service X - $45.00\n\nSubtotal: $89.49\nTax (8%): $7.16\nTotal: $96.65\n\nThank you for your purchase!";
@@ -226,7 +226,7 @@ const ImageToTextDetailed = () => {
       // Generic text for other images
       simulatedText = "Sample extracted text from image.\n\nThis is a demonstration of the Image to Text conversion capability.\n\nIn a real application, the actual text from your image would be extracted using optical character recognition technology.\n\nThe accuracy depends on several factors including image quality, text clarity, and font type.";
     }
-    
+
     // Add language-specific elements if not English
     if (lang !== "eng") {
       // Add a simulated language-specific header
@@ -247,9 +247,9 @@ const ImageToTextDetailed = () => {
           simulatedText = "EXTRACTED TEXT (" + lang + "):\n\n" + simulatedText;
       }
     }
-    
+
     setExtractedText(simulatedText);
-    
+
     // Show success toast
     toast({
       title: "Text extracted successfully",
@@ -283,7 +283,7 @@ const ImageToTextDetailed = () => {
       });
       return;
     }
-    
+
     const blob = new Blob([extractedText], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -303,8 +303,8 @@ const ImageToTextDetailed = () => {
             <Card>
               <CardContent className="p-5">
                 <h3 className="text-lg font-medium mb-4">Upload Image</h3>
-                
-                <div 
+
+                <div
                   className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-50 transition"
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
@@ -313,9 +313,9 @@ const ImageToTextDetailed = () => {
                 >
                   {imagePreview ? (
                     <div className="flex flex-col items-center">
-                      <img 
-                        src={imagePreview} 
-                        alt="Preview" 
+                      <img
+                        src={imagePreview}
+                        alt="Preview"
                         className="max-h-56 max-w-full mb-3 rounded"
                       />
                       <p className="text-sm text-gray-500">Click or drop to change image</p>
@@ -336,7 +336,7 @@ const ImageToTextDetailed = () => {
                     onChange={handleFileInputChange}
                   />
                 </div>
-                
+
                 <div className="flex flex-wrap gap-3 mt-4">
                   <Button
                     onClick={captureFromCamera}
@@ -346,7 +346,7 @@ const ImageToTextDetailed = () => {
                     <i className="fas fa-camera mr-2"></i>
                     <span>Capture from Camera</span>
                   </Button>
-                  
+
                   {selectedImage && (
                     <Button
                       onClick={clearImage}
@@ -360,11 +360,11 @@ const ImageToTextDetailed = () => {
                 </div>
               </CardContent>
             </Card>
-            
+
             <Card>
               <CardContent className="p-5">
                 <h3 className="text-lg font-medium mb-4">Extraction Settings</h3>
-                
+
                 <div className="space-y-4">
                   <div>
                     <Label className="block text-gray-700 mb-2">Language</Label>
@@ -384,7 +384,7 @@ const ImageToTextDetailed = () => {
                       Select the primary language in the image for better recognition
                     </p>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="flex items-center space-x-2">
                       <Switch
@@ -396,7 +396,7 @@ const ImageToTextDetailed = () => {
                         Preserve text formatting
                       </Label>
                     </div>
-                    
+
                     <div className="flex items-center space-x-2">
                       <Switch
                         id="enhance-image"
@@ -407,7 +407,7 @@ const ImageToTextDetailed = () => {
                         Enhance image before processing
                       </Label>
                     </div>
-                    
+
                     <div className="flex items-center space-x-2">
                       <Switch
                         id="recognize-handwriting"
@@ -419,7 +419,7 @@ const ImageToTextDetailed = () => {
                       </Label>
                     </div>
                   </div>
-                  
+
                   <Button
                     onClick={processImage}
                     disabled={!selectedImage || isProcessing}
@@ -428,7 +428,7 @@ const ImageToTextDetailed = () => {
                     <i className="fas fa-file-alt mr-2"></i>
                     <span>{isProcessing ? "Processing..." : "Extract Text"}</span>
                   </Button>
-                  
+
                   {isProcessing && (
                     <div>
                       <p className="text-sm text-gray-500 mb-1">Processing image...</p>
@@ -439,13 +439,13 @@ const ImageToTextDetailed = () => {
               </CardContent>
             </Card>
           </div>
-          
+
           <div>
             <Card className="h-full flex flex-col">
               <CardContent className="p-5 flex-grow flex flex-col">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-lg font-medium">Extracted Text</h3>
-                  
+
                   {extractedText && (
                     <div className="flex space-x-2">
                       <Button
@@ -457,7 +457,7 @@ const ImageToTextDetailed = () => {
                         <i className="fas fa-copy mr-1"></i>
                         <span>Copy</span>
                       </Button>
-                      
+
                       <Button
                         onClick={downloadAsText}
                         variant="outline"
@@ -470,7 +470,7 @@ const ImageToTextDetailed = () => {
                     </div>
                   )}
                 </div>
-                
+
                 <div className="flex-grow flex">
                   <Textarea
                     value={extractedText}
@@ -484,7 +484,7 @@ const ImageToTextDetailed = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="bg-blue-50 p-5 rounded-lg mb-6">
         <h3 className="text-blue-800 font-medium mb-3">Tips for Best Results</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 text-sm text-blue-700">
@@ -518,7 +518,7 @@ const ImageToTextDetailed = () => {
           </ul>
         </div>
       </div>
-      
+
       {/* Hidden canvas for camera capture */}
       <canvas ref={canvasRef} className="hidden"></canvas>
     </>

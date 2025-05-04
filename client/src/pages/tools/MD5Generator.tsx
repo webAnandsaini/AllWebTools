@@ -13,7 +13,7 @@ const MD5Generator = () => {
   const [isGenerating, setIsGenerating] = useState(false);
 
   useEffect(() => {
-    document.title = "MD5 Generator - ToolsHub";
+    document.title = "MD5 Generator - AllTooly";
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
   }, []);

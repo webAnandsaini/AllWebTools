@@ -23,7 +23,7 @@ const SpellCheckerDetailed = () => {
   } | null>(null);
 
   useEffect(() => {
-    document.title = "Spell Checker - ToolsHub";
+    document.title = "Spell Checker - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -46,7 +46,7 @@ const SpellCheckerDetailed = () => {
 
     setIsChecking(true);
     setProgress(0);
-    
+
     // Simulate progress
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -69,20 +69,20 @@ const SpellCheckerDetailed = () => {
         description: "An error occurred while checking for spelling errors. Please try again.",
         variant: "destructive",
       });
-      
+
       // Simulate a response for demonstration purposes
       // Generate some fake spelling errors
       const words = text.split(/\\s+/);
       const errors = [];
-      
+
       // Randomly select a few words to mark as misspelled
       const errorCount = Math.min(Math.floor(words.length * 0.1) + 1, 5);
       const randomIndexes = new Set<number>();
-      
+
       while (randomIndexes.size < errorCount && randomIndexes.size < words.length) {
         randomIndexes.add(Math.floor(Math.random() * words.length));
       }
-      
+
       let currentIndex = 0;
       for (let i = 0; i < words.length; i++) {
         const word = words[i];
@@ -99,7 +99,7 @@ const SpellCheckerDetailed = () => {
           }
         }
       }
-      
+
       setResults({
         correctedText: text,
         errors,
@@ -121,14 +121,14 @@ const SpellCheckerDetailed = () => {
     } else {
       suggestions.push(word.charAt(0).toLowerCase() + word.slice(1));
     }
-    
+
     // Add a suggestion with a common letter substitution
     if (word.includes('i')) {
       suggestions.push(word.replace('i', 'e'));
     } else if (word.includes('e')) {
       suggestions.push(word.replace('e', 'i'));
     }
-    
+
     // Add a suggestion with a doubled letter
     for (let i = 0; i < word.length - 1; i++) {
       if (word[i] === word[i + 1]) {
@@ -137,7 +137,7 @@ const SpellCheckerDetailed = () => {
         break;
       }
     }
-    
+
     // If we don't have enough suggestions yet, add some common correct words
     const commonWords = ["the", "their", "there", "they're", "your", "you're", "its", "it's", "weather", "whether"];
     while (suggestions.length < 3) {
@@ -146,7 +146,7 @@ const SpellCheckerDetailed = () => {
         suggestions.push(randomWord);
       }
     }
-    
+
     return suggestions;
   };
 
@@ -179,27 +179,27 @@ const SpellCheckerDetailed = () => {
 
   const applyCorrection = (suggestionIndex: number, errorIndex: number) => {
     if (!results) return;
-    
+
     const error = results.errors[errorIndex];
     const suggestion = error.suggestions[suggestionIndex];
-    
+
     const before = text.substring(0, error.position.start);
     const after = text.substring(error.position.end);
     const newText = before + suggestion + after;
-    
+
     setText(newText);
-    
+
     // Update results to remove the applied correction
     const updatedErrors = [...results.errors];
     updatedErrors.splice(errorIndex, 1);
-    
+
     setResults({
       ...results,
       correctedText: newText,
       errors: updatedErrors,
       errorCount: updatedErrors.length
     });
-    
+
     toast({
       title: "Correction applied",
       description: `Changed "${error.word}" to "${suggestion}"`,
@@ -208,31 +208,31 @@ const SpellCheckerDetailed = () => {
 
   const applyAllCorrections = () => {
     if (!results || results.errors.length === 0) return;
-    
+
     let correctedText = text;
     let offset = 0;
-    
+
     // Sort errors by position to handle them in order
     const sortedErrors = [...results.errors].sort((a, b) => a.position.start - b.position.start);
-    
+
     for (const error of sortedErrors) {
       const suggestion = error.suggestions[0]; // Use the first suggestion by default
-      
+
       const before = correctedText.substring(0, error.position.start + offset);
       const after = correctedText.substring(error.position.end + offset);
       correctedText = before + suggestion + after;
-      
+
       // Update offset for subsequent replacements
       offset += suggestion.length - (error.position.end - error.position.start);
     }
-    
+
     setText(correctedText);
     setResults({
       correctedText,
       errors: [],
       errorCount: 0
     });
-    
+
     toast({
       title: "All corrections applied",
       description: `Fixed ${sortedErrors.length} spelling ${sortedErrors.length === 1 ? 'error' : 'errors'}.`,
@@ -251,7 +251,7 @@ const SpellCheckerDetailed = () => {
               placeholder="Type or paste your text here to check for spelling errors..."
               className="w-full h-64 p-4 resize-none"
             />
-            
+
             <div className="flex flex-wrap gap-4 mt-4">
               <Button
                 onClick={checkSpelling}
@@ -261,7 +261,7 @@ const SpellCheckerDetailed = () => {
                 <i className="fas fa-spell-check mr-2"></i>
                 <span>{isChecking ? "Checking..." : "Check Spelling"}</span>
               </Button>
-              
+
               <label className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition cursor-pointer flex items-center">
                 <i className="fas fa-upload mr-2"></i>
                 <span>Upload File</span>
@@ -272,7 +272,7 @@ const SpellCheckerDetailed = () => {
                   onChange={handleFileUpload}
                 />
               </label>
-              
+
               <Button
                 onClick={clearText}
                 variant="outline"
@@ -306,7 +306,7 @@ const SpellCheckerDetailed = () => {
               </div>
             </div>
           </div>
-          
+
           {results.errors.length > 0 ? (
             <div>
               <div className="flex justify-between mb-4">
@@ -321,7 +321,7 @@ const SpellCheckerDetailed = () => {
                   Fix All Errors
                 </Button>
               </div>
-              
+
               <div className="space-y-4">
                 {results.errors.map((error, idx) => (
                   <Card key={idx} className="overflow-hidden">
@@ -332,7 +332,7 @@ const SpellCheckerDetailed = () => {
                           <p className="text-gray-700 text-sm">"{error.word}" might be misspelled</p>
                         </div>
                       </div>
-                      
+
                       <div className="mt-3">
                         <p className="text-sm text-gray-500 mb-1">Context:</p>
                         <p className="bg-gray-50 p-2 rounded text-sm">
@@ -341,12 +341,12 @@ const SpellCheckerDetailed = () => {
                           {text.substring(error.position.end, Math.min(text.length, error.position.end + 20))}
                         </p>
                       </div>
-                      
+
                       <div className="mt-3">
                         <p className="text-sm text-gray-500 mb-2">Suggestions:</p>
                         <div className="flex flex-wrap gap-2">
                           {error.suggestions.map((suggestion, suggestionIdx) => (
-                            <Button 
+                            <Button
                               key={suggestionIdx}
                               size="sm"
                               variant="outline"

@@ -17,11 +17,11 @@ const PasswordGenerator = () => {
   const [includeSymbols, setIncludeSymbols] = useState(true);
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [generatingPassword, setGeneratingPassword] = useState(false);
-  
+
   const { toast } = useToast();
 
   useEffect(() => {
-    document.title = "Password Generator - ToolsHub";
+    document.title = "Password Generator - AllTooly";
     generatePassword();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -47,7 +47,7 @@ const PasswordGenerator = () => {
         includeNumbers,
         includeSymbols,
       });
-      
+
       const data = await response.json();
       setPassword(data.password);
       setPasswordStrength(data.strength);
@@ -115,14 +115,14 @@ const PasswordGenerator = () => {
                   <i className="far fa-copy text-lg"></i>
                 </button>
               </div>
-              
+
               <div className="mt-3">
                 <div className="flex justify-between items-center mb-1">
                   <span className="text-sm font-medium">Strength: {getStrengthLabel()}</span>
                   <span className="text-sm font-medium">{passwordStrength}%</span>
                 </div>
                 <div className="w-full h-2 bg-gray-200 rounded-full">
-                  <div 
+                  <div
                     className={`h-2 rounded-full ${getStrengthColor()}`}
                     style={{ width: `${passwordStrength}%` }}
                   ></div>
@@ -150,7 +150,7 @@ const PasswordGenerator = () => {
                       <span className="ml-4 text-sm">32</span>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="flex items-center space-x-2">
                       <Checkbox
@@ -165,7 +165,7 @@ const PasswordGenerator = () => {
                         Include Uppercase Letters (A-Z)
                       </label>
                     </div>
-                    
+
                     <div className="flex items-center space-x-2">
                       <Checkbox
                         id="lowercase"
@@ -179,7 +179,7 @@ const PasswordGenerator = () => {
                         Include Lowercase Letters (a-z)
                       </label>
                     </div>
-                    
+
                     <div className="flex items-center space-x-2">
                       <Checkbox
                         id="numbers"
@@ -193,7 +193,7 @@ const PasswordGenerator = () => {
                         Include Numbers (0-9)
                       </label>
                     </div>
-                    
+
                     <div className="flex items-center space-x-2">
                       <Checkbox
                         id="symbols"

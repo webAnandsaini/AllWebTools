@@ -12,7 +12,7 @@ const ReverseText = () => {
   const [reverseOption, setReverseOption] = useState("characters");
 
   useEffect(() => {
-    document.title = "Reverse Text Generator - ToolsHub";
+    document.title = "Reverse Text Generator - AllTooly";
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
   }, []);

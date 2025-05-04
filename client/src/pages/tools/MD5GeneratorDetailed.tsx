@@ -16,27 +16,27 @@ import ToolContentTemplate from "@/components/tools/ToolContentTemplate";
 const generateMD5Hash = (input: string): string => {
   // In a real implementation, we would use a proper MD5 library
   // For now, we'll simulate MD5 by returning a deterministic hash-like string
-  
+
   // Create a simulation of an MD5 hash (32 hex characters)
   // This is NOT a real MD5 hash, just a demo representation
   const chars = '0123456789abcdef';
   let hash = '';
-  
+
   // Create a simple deterministic hash based on input
   let sum = 0;
   for (let i = 0; i < input.length; i++) {
     sum += input.charCodeAt(i) * (i + 1);
   }
-  
+
   const seed = sum + input.length;
-  
+
   // Generate a 32-character "fake" MD5 hash
   for (let i = 0; i < 32; i++) {
     // Use a simple deterministic algorithm based on the seed and position
     const index = (seed + i * 17) % 16;
     hash += chars[index];
   }
-  
+
   return hash;
 };
 
@@ -54,7 +54,7 @@ const MD5GeneratorDetailed = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    document.title = "MD5 Generator - ToolsHub";
+    document.title = "MD5 Generator - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -73,10 +73,10 @@ const MD5GeneratorDetailed = () => {
       // For demo, we'll use our simplified function
       const hash = generateMD5Hash(inputText);
       setHashResult(hash);
-      
+
       // Add to history
       setHashHistory(prev => [{ input: inputText, hash }, ...prev].slice(0, 5));
-      
+
       toast({
         title: "Hash generated",
         description: "MD5 hash has been successfully generated.",
@@ -109,20 +109,20 @@ const MD5GeneratorDetailed = () => {
 
     // In a real implementation, we would read the file and generate its MD5 hash
     // For demonstration, we'll simulate this process
-    
+
     // Simulate file processing
     toast({
       title: "Processing file",
       description: `Generating ${hashType.toUpperCase()} hash for ${fileToHash.name}...`,
     });
-    
+
     setTimeout(() => {
       try {
         // Generate deterministic hash based on file properties
         const fileInfo = `${fileToHash.name}-${fileToHash.size}-${fileToHash.lastModified}`;
         const hash = generateMD5Hash(fileInfo);
         setFileHashResult(hash);
-        
+
         toast({
           title: "Hash generated",
           description: `${hashType.toUpperCase()} hash has been successfully generated for ${fileToHash.name}.`,
@@ -149,15 +149,15 @@ const MD5GeneratorDetailed = () => {
 
     // Generate hash for the input text
     const generatedHash = generateMD5Hash(verifyInput);
-    
+
     // Compare with provided hash (case-insensitive)
     const isMatch = generatedHash.toLowerCase() === verifyHash.toLowerCase();
     setVerifyResult(isMatch);
-    
+
     toast({
       title: isMatch ? "Hash verified" : "Hash does not match",
-      description: isMatch 
-        ? "The provided hash matches the generated hash for the input text." 
+      description: isMatch
+        ? "The provided hash matches the generated hash for the input text."
         : "The provided hash does not match the generated hash for the input text.",
       variant: isMatch ? "default" : "destructive",
     });
@@ -199,7 +199,7 @@ const MD5GeneratorDetailed = () => {
             <TabsTrigger value="file">File to Hash</TabsTrigger>
             <TabsTrigger value="verify">Verify Hash</TabsTrigger>
           </TabsList>
-          
+
           <TabsContent value="text" className="mt-6">
             <Card>
               <CardContent className="pt-6">
@@ -214,7 +214,7 @@ const MD5GeneratorDetailed = () => {
                       className="h-32 mt-1"
                     />
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-3">
                     <Button
                       onClick={generateHash}
@@ -223,7 +223,7 @@ const MD5GeneratorDetailed = () => {
                       <i className="fas fa-fingerprint mr-2"></i>
                       <span>Generate MD5 Hash</span>
                     </Button>
-                    
+
                     <Button
                       onClick={clearInputs}
                       variant="outline"
@@ -233,7 +233,7 @@ const MD5GeneratorDetailed = () => {
                       <span>Clear</span>
                     </Button>
                   </div>
-                  
+
                   {hashResult && (
                     <div className="mt-4">
                       <Label htmlFor="hash-result">MD5 Hash</Label>
@@ -254,7 +254,7 @@ const MD5GeneratorDetailed = () => {
                       </div>
                     </div>
                   )}
-                  
+
                   {hashHistory.length > 0 && (
                     <div className="mt-2">
                       <h4 className="text-sm font-medium text-gray-700 mb-2">Recent Hashes</h4>
@@ -284,7 +284,7 @@ const MD5GeneratorDetailed = () => {
               </CardContent>
             </Card>
           </TabsContent>
-          
+
           <TabsContent value="file" className="mt-6">
             <Card>
               <CardContent className="pt-6">
@@ -305,7 +305,7 @@ const MD5GeneratorDetailed = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   <div className="flex justify-center py-6">
                     <div className="w-full max-w-sm">
                       <Label
@@ -329,7 +329,7 @@ const MD5GeneratorDetailed = () => {
                       </Label>
                     </div>
                   </div>
-                  
+
                   {fileToHash && (
                     <div className="bg-blue-50 p-3 rounded-lg flex items-center justify-between">
                       <div>
@@ -348,7 +348,7 @@ const MD5GeneratorDetailed = () => {
                       </Button>
                     </div>
                   )}
-                  
+
                   <div className="flex flex-wrap gap-3">
                     <Button
                       onClick={generateFileHash}
@@ -359,7 +359,7 @@ const MD5GeneratorDetailed = () => {
                       <span>Generate Hash</span>
                     </Button>
                   </div>
-                  
+
                   {fileHashResult && (
                     <div className="mt-4">
                       <Label htmlFor="file-hash-result">{hashType.toUpperCase()} Hash</Label>
@@ -384,7 +384,7 @@ const MD5GeneratorDetailed = () => {
               </CardContent>
             </Card>
           </TabsContent>
-          
+
           <TabsContent value="verify" className="mt-6">
             <Card>
               <CardContent className="pt-6">
@@ -399,7 +399,7 @@ const MD5GeneratorDetailed = () => {
                       className="h-24 mt-1"
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="verify-hash">Enter MD5 hash to verify</Label>
                     <Input
@@ -410,7 +410,7 @@ const MD5GeneratorDetailed = () => {
                       className="font-mono mt-1"
                     />
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-3">
                     <Button
                       onClick={checkHashMatch}
@@ -419,7 +419,7 @@ const MD5GeneratorDetailed = () => {
                       <i className="fas fa-check-circle mr-2"></i>
                       <span>Verify Hash</span>
                     </Button>
-                    
+
                     <Button
                       onClick={clearVerifyInputs}
                       variant="outline"
@@ -429,7 +429,7 @@ const MD5GeneratorDetailed = () => {
                       <span>Clear</span>
                     </Button>
                   </div>
-                  
+
                   {verifyResult !== null && (
                     <div className={`mt-4 p-4 rounded-lg ${verifyResult ? 'bg-green-50' : 'bg-red-50'}`}>
                       <div className="flex items-center">
@@ -453,7 +453,7 @@ const MD5GeneratorDetailed = () => {
           </TabsContent>
         </Tabs>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <Card>
           <CardContent className="p-5">
@@ -468,7 +468,7 @@ const MD5GeneratorDetailed = () => {
             </p>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="p-5">
             <div className="flex items-center mb-3">
@@ -482,7 +482,7 @@ const MD5GeneratorDetailed = () => {
             </p>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="p-5">
             <div className="flex items-center mb-3">
@@ -497,7 +497,7 @@ const MD5GeneratorDetailed = () => {
           </CardContent>
         </Card>
       </div>
-      
+
       <div className="bg-yellow-50 p-4 rounded-lg mb-6">
         <div className="flex items-start">
           <i className="fas fa-exclamation-triangle text-yellow-500 mt-1 mr-2"></i>

@@ -3,12 +3,12 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from "@/components/ui/select";
 import {
   Card,
@@ -33,15 +33,15 @@ const AIEssayWriter = () => {
   const [tone, setTone] = useState<EssayTone>("formal");
   const [essayType, setEssayType] = useState<EssayType>("argumentative");
   const [academicLevel, setAcademicLevel] = useState<AcademicLevel>("college");
-  
+
   const [generatedEssay, setGeneratedEssay] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [wordCount, setWordCount] = useState(0);
-  
+
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    document.title = "AI Essay Writer - ToolsHub";
+    document.title = "AI Essay Writer - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -152,7 +152,7 @@ const AIEssayWriter = () => {
                 <Card>
                   <CardContent className="p-6">
                     <h3 className="text-lg font-semibold mb-4">Essay Settings</h3>
-                    
+
                     <div className="space-y-5">
                       <div>
                         <Label htmlFor="topic" className="mb-2 block">Essay Topic</Label>
@@ -164,7 +164,7 @@ const AIEssayWriter = () => {
                           className="w-full"
                         />
                       </div>
-                      
+
                       <div>
                         <Label htmlFor="keywords" className="mb-2 block">Keywords (optional)</Label>
                         <Input
@@ -178,7 +178,7 @@ const AIEssayWriter = () => {
                           Add keywords to focus your essay on specific points
                         </p>
                       </div>
-                      
+
                       <div>
                         <Label className="mb-2 block">Essay Type</Label>
                         <Select value={essayType} onValueChange={(value) => setEssayType(value as EssayType)}>
@@ -193,7 +193,7 @@ const AIEssayWriter = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      
+
                       <div>
                         <Label className="mb-2 block">Academic Level</Label>
                         <Select value={academicLevel} onValueChange={(value) => setAcademicLevel(value as AcademicLevel)}>
@@ -208,7 +208,7 @@ const AIEssayWriter = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      
+
                       <div>
                         <Label className="mb-2 block">Writing Tone</Label>
                         <Select value={tone} onValueChange={(value) => setTone(value as EssayTone)}>
@@ -223,14 +223,14 @@ const AIEssayWriter = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      
+
                       <div>
                         <Label className="mb-2 block">Essay Length: {
                           essayLength === "short" ? "Short (300-500 words)" :
                           essayLength === "medium" ? "Medium (500-800 words)" :
                           "Long (800-1200 words)"
                         }</Label>
-                        
+
                         <Tabs value={essayLength} onValueChange={(value) => setEssayLength(value as EssayLength)}>
                           <TabsList className="grid grid-cols-3">
                             <TabsTrigger value="short">Short</TabsTrigger>
@@ -240,11 +240,11 @@ const AIEssayWriter = () => {
                         </Tabs>
                       </div>
                     </div>
-                    
+
                     <div className="mt-6 flex flex-col space-y-3">
-                      <Button 
-                        onClick={handleGenerateEssay} 
-                        disabled={isGenerating || !topic.trim()} 
+                      <Button
+                        onClick={handleGenerateEssay}
+                        disabled={isGenerating || !topic.trim()}
                         className="bg-primary hover:bg-blue-700"
                       >
                         {isGenerating ? (
@@ -259,10 +259,10 @@ const AIEssayWriter = () => {
                           </>
                         )}
                       </Button>
-                      
-                      <Button 
-                        onClick={clearFields} 
-                        variant="outline" 
+
+                      <Button
+                        onClick={clearFields}
+                        variant="outline"
                         className="border-gray-300"
                       >
                         <i className="fas fa-eraser mr-2"></i>
@@ -282,7 +282,7 @@ const AIEssayWriter = () => {
                   </ul>
                 </div>
               </div>
-              
+
               <div className="lg:col-span-7">
                 <div className="mb-3 flex justify-between items-center">
                   <h3 className="font-semibold text-lg">Generated Essay</h3>
@@ -292,28 +292,28 @@ const AIEssayWriter = () => {
                     </div>
                   )}
                 </div>
-                
+
                 <Textarea
                   value={generatedEssay}
                   onChange={(e) => setGeneratedEssay(e.target.value)}
                   placeholder={isGenerating ? "Generating your essay..." : "Your essay will appear here. Make sure to enter a topic and click 'Generate Essay'."}
                   className="min-h-[400px] mb-4 font-sans text-base leading-relaxed"
                 />
-                
+
                 {generatedEssay && (
                   <div className="flex flex-wrap gap-3">
                     <Button onClick={copyToClipboard} variant="secondary">
                       <i className="far fa-copy mr-2"></i>
                       <span>Copy</span>
                     </Button>
-                    
+
                     <Button onClick={downloadEssay} variant="secondary">
                       <i className="fas fa-download mr-2"></i>
                       <span>Download</span>
                     </Button>
                   </div>
                 )}
-                
+
                 {isGenerating && (
                   <div className="mt-8 p-4 bg-blue-50 rounded-lg">
                     <div className="flex items-center">
@@ -326,7 +326,7 @@ const AIEssayWriter = () => {
                 )}
               </div>
             </div>
-            
+
             <div className="mt-8 bg-gray-50 p-6 rounded-lg border border-gray-100">
               <h3 className="font-semibold text-lg mb-3">About AI Essay Writer</h3>
               <p className="text-gray-700 mb-3">

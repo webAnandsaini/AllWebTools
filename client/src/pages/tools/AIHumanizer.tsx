@@ -18,11 +18,11 @@ const AIHumanizer = () => {
   const [isHumanizing, setIsHumanizing] = useState(false);
   const [humanizationLevel, setHumanizationLevel] = useState<HumanizationLevel>("medium");
   const [changePercentage, setChangePercentage] = useState(0);
-  
+
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    document.title = "AI Humanizer - ToolsHub";
+    document.title = "AI Humanizer - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -126,7 +126,7 @@ const AIHumanizer = () => {
                         Character count: {text.length}
                       </p>
                     </div>
-                    
+
                     <div className="mb-6">
                       <h3 className="text-sm font-medium mb-3">Humanization Level</h3>
                       <RadioGroup value={humanizationLevel} onValueChange={handleHumanizationLevelChange}>
@@ -155,11 +155,11 @@ const AIHumanizer = () => {
                         </div>
                       </RadioGroup>
                     </div>
-                    
+
                     <div className="flex flex-col space-y-3">
-                      <Button 
-                        onClick={handleHumanizeText} 
-                        disabled={isHumanizing || !text.trim()} 
+                      <Button
+                        onClick={handleHumanizeText}
+                        disabled={isHumanizing || !text.trim()}
                         className="bg-primary hover:bg-blue-700"
                       >
                         {isHumanizing ? (
@@ -174,10 +174,10 @@ const AIHumanizer = () => {
                           </>
                         )}
                       </Button>
-                      
-                      <Button 
-                        onClick={clearFields} 
-                        variant="outline" 
+
+                      <Button
+                        onClick={clearFields}
+                        variant="outline"
                         className="border-gray-300"
                       >
                         <i className="fas fa-eraser mr-2"></i>
@@ -187,7 +187,7 @@ const AIHumanizer = () => {
                   </CardContent>
                 </Card>
               </div>
-              
+
               <div>
                 <Card>
                   <CardContent className="p-6">
@@ -212,14 +212,14 @@ const AIHumanizer = () => {
                         className="w-full h-64 resize-none bg-gray-50"
                       />
                     </div>
-                    
+
                     {humanizedText && (
                       <Button onClick={copyToClipboard} variant="secondary" className="w-full">
                         <i className="far fa-copy mr-2"></i>
                         <span>Copy to Clipboard</span>
                       </Button>
                     )}
-                    
+
                     {isHumanizing && (
                       <div className="mt-4 p-3 bg-blue-50 rounded-lg">
                         <div className="flex items-center">
@@ -234,7 +234,7 @@ const AIHumanizer = () => {
                 </Card>
               </div>
             </div>
-            
+
             <div className="mt-8 bg-gray-50 p-6 rounded-lg border border-gray-100">
               <h3 className="font-semibold text-lg mb-3">How AI Humanizer Works</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

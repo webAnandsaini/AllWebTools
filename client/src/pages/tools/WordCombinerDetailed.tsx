@@ -26,7 +26,7 @@ const WordCombinerDetailed = () => {
   const [activeTab, setActiveTab] = useState<string>("input");
 
   useEffect(() => {
-    document.title = "Word Combiner - ToolsHub";
+    document.title = "Word Combiner - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -39,7 +39,7 @@ const WordCombinerDetailed = () => {
       .split(/[\n,]+/)
       .map(word => word.trim())
       .filter(word => word.length > 0);
-    
+
     if (words.length === 0) {
       toast({
         title: "No words to combine",
@@ -48,50 +48,50 @@ const WordCombinerDetailed = () => {
       });
       return;
     }
-    
+
     if (words.length === 1) {
       setCombinedOutput(words[0]);
       setActiveTab("output");
       return;
     }
-    
+
     let combinations: string[] = [];
-    
+
     switch (mode) {
       case "all_combinations":
         combinations = generateAllCombinations(words);
         break;
-        
+
       case "pairs":
         combinations = generatePairs(words);
         break;
-        
+
       case "with_separator":
         combinations = generateWithSeparator(words, separator);
         break;
-        
+
       case "with_prefix_suffix":
         combinations = generateWithPrefixSuffix(words, prefix, suffix);
         break;
     }
-    
+
     if (randomOrder) {
       combinations = shuffleArray(combinations);
     }
-    
+
     if (limitResults && combinations.length > resultLimit) {
       combinations = combinations.slice(0, resultLimit);
     }
-    
+
     const output = combinations.join("\n");
     setCombinedOutput(output);
-    
+
     // Show toast with info about the results
     toast({
       title: "Words combined successfully",
       description: `Generated ${combinations.length} combinations.`,
     });
-    
+
     // Switch to output tab
     setActiveTab("output");
   };
@@ -99,10 +99,10 @@ const WordCombinerDetailed = () => {
   const generateAllCombinations = (words: string[]): string[] => {
     // Maximum safe number of combinations to avoid browser hanging
     const MAX_SAFE_COMBINATIONS = 10000;
-    
+
     // Calculate total possible combinations
     const totalPossibleCombinations = Math.pow(2, words.length) - 1;
-    
+
     if (totalPossibleCombinations > MAX_SAFE_COMBINATIONS) {
       toast({
         title: "Warning: Large number of combinations",
@@ -110,31 +110,31 @@ const WordCombinerDetailed = () => {
         variant: "destructive",
       });
     }
-    
+
     const result: string[] = [];
     const maxCombinations = Math.min(totalPossibleCombinations, MAX_SAFE_COMBINATIONS);
-    
+
     function backtrack(start: number, current: string[]) {
       if (result.length >= maxCombinations) return;
-      
+
       if (current.length > 0) {
         result.push(current.join(' '));
       }
-      
+
       for (let i = start; i < words.length; i++) {
         current.push(words[i]);
         backtrack(i + 1, current);
         current.pop();
       }
     }
-    
+
     backtrack(0, []);
     return result;
   };
 
   const generatePairs = (words: string[]): string[] => {
     const result: string[] = [];
-    
+
     for (let i = 0; i < words.length; i++) {
       for (let j = 0; j < words.length; j++) {
         if (i !== j) {
@@ -142,13 +142,13 @@ const WordCombinerDetailed = () => {
         }
       }
     }
-    
+
     return result;
   };
 
   const generateWithSeparator = (words: string[], sep: string): string[] => {
     const result: string[] = [];
-    
+
     for (let i = 0; i < words.length; i++) {
       for (let j = 0; j < words.length; j++) {
         if (i !== j) {
@@ -156,7 +156,7 @@ const WordCombinerDetailed = () => {
         }
       }
     }
-    
+
     return result;
   };
 
@@ -195,7 +195,7 @@ const WordCombinerDetailed = () => {
       });
       return;
     }
-    
+
     const blob = new Blob([combinedOutput], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -215,7 +215,7 @@ const WordCombinerDetailed = () => {
             <TabsTrigger value="input">Input</TabsTrigger>
             <TabsTrigger value="output">Output</TabsTrigger>
           </TabsList>
-          
+
           <TabsContent value="input" className="space-y-6 mt-6">
             <Card>
               <CardContent className="pt-6">
@@ -234,7 +234,7 @@ sample"
                     className="min-h-[200px]"
                   />
                 </div>
-                
+
                 <div className="flex flex-wrap gap-3">
                   <Button
                     onClick={combineWords}
@@ -243,7 +243,7 @@ sample"
                     <i className="fas fa-object-group mr-2"></i>
                     <span>Combine Words</span>
                   </Button>
-                  
+
                   <Button
                     onClick={clearInput}
                     variant="outline"
@@ -255,16 +255,16 @@ sample"
                 </div>
               </CardContent>
             </Card>
-            
+
             <Card>
               <CardContent className="pt-6">
                 <h3 className="text-base font-medium mb-4">Combination Settings</h3>
-                
+
                 <div className="space-y-4">
                   <div>
                     <Label htmlFor="mode-select">Combination Mode</Label>
-                    <Select 
-                      value={mode} 
+                    <Select
+                      value={mode}
                       onValueChange={(value) => setMode(value as CombinationMode)}
                     >
                       <SelectTrigger id="mode-select" className="mt-1">
@@ -278,7 +278,7 @@ sample"
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   {mode === "with_separator" && (
                     <div>
                       <Label htmlFor="separator-input">Separator</Label>
@@ -291,7 +291,7 @@ sample"
                       />
                     </div>
                   )}
-                  
+
                   {mode === "with_prefix_suffix" && (
                     <div className="grid grid-cols-2 gap-4">
                       <div>
@@ -316,7 +316,7 @@ sample"
                       </div>
                     </div>
                   )}
-                  
+
                   <div className="flex items-center space-x-2">
                     <Switch
                       id="random-order"
@@ -327,7 +327,7 @@ sample"
                       Randomize order of combinations
                     </Label>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     <Switch
                       id="limit-results"
@@ -338,7 +338,7 @@ sample"
                       Limit number of results
                     </Label>
                   </div>
-                  
+
                   {limitResults && (
                     <div>
                       <Label htmlFor="limit-input">Maximum results</Label>
@@ -357,7 +357,7 @@ sample"
               </CardContent>
             </Card>
           </TabsContent>
-          
+
           <TabsContent value="output" className="space-y-6 mt-6">
             <Card>
               <CardContent className="pt-6">
@@ -386,14 +386,14 @@ sample"
                     </Button>
                   </div>
                 </div>
-                
+
                 <Textarea
                   value={combinedOutput}
                   readOnly
                   placeholder="Combined words will appear here..."
                   className="min-h-[300px]"
                 />
-                
+
                 <div className="flex justify-between mt-3">
                   <Button
                     onClick={() => setActiveTab("input")}
@@ -403,14 +403,14 @@ sample"
                     <i className="fas fa-arrow-left mr-1"></i>
                     <span>Back to Input</span>
                   </Button>
-                  
+
                   <div className="text-sm text-gray-500">
                     {combinedOutput ? combinedOutput.split("\n").length : 0} combinations
                   </div>
                 </div>
               </CardContent>
             </Card>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Card>
                 <CardContent className="p-4">
@@ -423,7 +423,7 @@ sample"
                   </ul>
                 </CardContent>
               </Card>
-              
+
               <Card>
                 <CardContent className="p-4">
                   <h3 className="text-sm font-medium mb-2">Tips</h3>
@@ -439,11 +439,11 @@ sample"
           </TabsContent>
         </Tabs>
       </div>
-      
+
       <Card className="mb-6">
         <CardContent className="p-5">
           <h3 className="text-lg font-medium mb-3">About Combination Modes</h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-3">
               <div>
@@ -462,7 +462,7 @@ sample"
                   red blue green
                 </pre>
               </div>
-              
+
               <div>
                 <h4 className="text-base font-medium">Word Pairs</h4>
                 <p className="text-sm text-gray-600 mt-1">
@@ -479,7 +479,7 @@ sample"
                 </pre>
               </div>
             </div>
-            
+
             <div className="space-y-3">
               <div>
                 <h4 className="text-base font-medium">With Custom Separator</h4>
@@ -492,7 +492,7 @@ sample"
                   data-cloud
                 </pre>
               </div>
-              
+
               <div>
                 <h4 className="text-base font-medium">With Prefix & Suffix</h4>
                 <p className="text-sm text-gray-600 mt-1">

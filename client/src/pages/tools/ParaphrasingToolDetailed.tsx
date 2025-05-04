@@ -20,7 +20,7 @@ const ParaphrasingToolDetailed = () => {
   const [mode, setMode] = useState<ParaphrasingMode>("standard");
 
   useEffect(() => {
-    document.title = "Paraphrasing Tool - ToolsHub";
+    document.title = "Paraphrasing Tool - AllTooly";
     window.scrollTo(0, 0);
   }, []);
 
@@ -43,7 +43,7 @@ const ParaphrasingToolDetailed = () => {
 
     setIsParaphrasing(true);
     setProgress(0);
-    
+
     // Simulate progress
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -57,9 +57,9 @@ const ParaphrasingToolDetailed = () => {
     }, 500);
 
     try {
-      const response = await apiRequest("POST", "/api/text/paraphrase", { 
+      const response = await apiRequest("POST", "/api/text/paraphrase", {
         text: originalText,
-        mode 
+        mode
       });
       const data = await response.json();
       setParaphrasedText(data.paraphrasedText);
@@ -69,10 +69,10 @@ const ParaphrasingToolDetailed = () => {
         description: "An error occurred while paraphrasing your text. Please try again.",
         variant: "destructive",
       });
-      
+
       // Simulate a response based on the selected mode
       let paraphrasedResult = "";
-      
+
       switch (mode) {
         case "standard":
           paraphrasedResult = standardParaphrase(originalText);
@@ -92,7 +92,7 @@ const ParaphrasingToolDetailed = () => {
         default:
           paraphrasedResult = standardParaphrase(originalText);
       }
-      
+
       setParaphrasedText(paraphrasedResult);
     } finally {
       clearInterval(interval);
@@ -105,31 +105,31 @@ const ParaphrasingToolDetailed = () => {
   const standardParaphrase = (text: string): string => {
     // Replace common words and phrases
     return text
-      .replace(/([Ii]t is|[Tt]here are)/g, match => 
+      .replace(/([Ii]t is|[Tt]here are)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "There's" : "there's")
       .replace(/([Ii]n order to)/g, "to")
-      .replace(/([Hh]owever)/g, match => 
+      .replace(/([Hh]owever)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "But" : "but")
-      .replace(/([Tt]herefore)/g, match => 
+      .replace(/([Tt]herefore)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "So" : "so")
-      .replace(/([Ii]n addition)/g, match => 
+      .replace(/([Ii]n addition)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Additionally" : "additionally")
-      .replace(/([Cc]onsequently)/g, match => 
+      .replace(/([Cc]onsequently)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "As a result" : "as a result");
   };
 
   const fluentParaphrase = (text: string): string => {
     // More natural, conversational rewording
     return text
-      .replace(/([Ii]t is important to note that)/g, match => 
+      .replace(/([Ii]t is important to note that)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Importantly" : "importantly")
-      .replace(/([Ii]n conclusion)/g, match => 
+      .replace(/([Ii]n conclusion)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "To sum up" : "to sum up")
-      .replace(/([Tt]his study shows)/g, match => 
+      .replace(/([Tt]his study shows)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "This research demonstrates" : "this research demonstrates")
-      .replace(/([Mm]oreover)/g, match => 
+      .replace(/([Mm]oreover)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "What's more" : "what's more")
-      .replace(/([Nn]evertheless)/g, match => 
+      .replace(/([Nn]evertheless)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Even so" : "even so");
   };
 
@@ -152,13 +152,13 @@ const ParaphrasingToolDetailed = () => {
         }
       }
       return sentence
-        .replace(/([Mm]any people believe)/g, match => 
+        .replace(/([Mm]any people believe)/g, match =>
           match.charAt(0) === match.charAt(0).toUpperCase() ? "It's widely thought" : "it's widely thought")
-        .replace(/([Tt]he results indicate)/g, match => 
+        .replace(/([Tt]he results indicate)/g, match =>
           match.charAt(0) === match.charAt(0).toUpperCase() ? "The findings suggest" : "the findings suggest")
-        .replace(/([Aa]s a consequence)/g, match => 
+        .replace(/([Aa]s a consequence)/g, match =>
           match.charAt(0) === match.charAt(0).toUpperCase() ? "Consequently" : "consequently")
-        .replace(/([Ff]or instance)/g, match => 
+        .replace(/([Ff]or instance)/g, match =>
           match.charAt(0) === match.charAt(0).toUpperCase() ? "As an example" : "as an example");
     }).join(' ');
   };
@@ -166,36 +166,36 @@ const ParaphrasingToolDetailed = () => {
   const academicParaphrase = (text: string): string => {
     // More formal, scholarly tone
     return text
-      .replace(/([Ss]hows)/g, match => 
+      .replace(/([Ss]hows)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Demonstrates" : "demonstrates")
-      .replace(/([Ll]ooks like)/g, match => 
+      .replace(/([Ll]ooks like)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Appears to be" : "appears to be")
-      .replace(/([Tt]alks about)/g, match => 
+      .replace(/([Tt]alks about)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Discusses" : "discusses")
-      .replace(/([Gg]et)/g, match => 
+      .replace(/([Gg]et)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Obtain" : "obtain")
-      .replace(/([Uu]se)/g, match => 
+      .replace(/([Uu]se)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Utilize" : "utilize")
-      .replace(/([Ff]ind out)/g, match => 
+      .replace(/([Ff]ind out)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Determine" : "determine")
-      .replace(/([Bb]ig)/g, match => 
+      .replace(/([Bb]ig)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Substantial" : "substantial");
   };
 
   const simpleParaphrase = (text: string): string => {
     // Simplified vocabulary and sentence structure
     return text
-      .replace(/([Uu]tilize)/g, match => 
+      .replace(/([Uu]tilize)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Use" : "use")
-      .replace(/([Ii]mplement)/g, match => 
+      .replace(/([Ii]mplement)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Do" : "do")
-      .replace(/([Ss]ubsequently)/g, match => 
+      .replace(/([Ss]ubsequently)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Then" : "then")
-      .replace(/([Aa]dditionally)/g, match => 
+      .replace(/([Aa]dditionally)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Also" : "also")
-      .replace(/([Cc]ommence)/g, match => 
+      .replace(/([Cc]ommence)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "Start" : "start")
-      .replace(/([Tt]erminate)/g, match => 
+      .replace(/([Tt]erminate)/g, match =>
         match.charAt(0) === match.charAt(0).toUpperCase() ? "End" : "end");
   };
 
@@ -248,7 +248,7 @@ const ParaphrasingToolDetailed = () => {
                 className="w-full h-64 p-4 resize-none"
               />
             </div>
-            
+
             <div className="flex flex-wrap gap-3 mb-4">
               <Button
                 onClick={paraphraseText}
@@ -258,7 +258,7 @@ const ParaphrasingToolDetailed = () => {
                 <i className="fas fa-exchange-alt mr-2"></i>
                 <span>{isParaphrasing ? "Paraphrasing..." : "Paraphrase"}</span>
               </Button>
-              
+
               <label className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition cursor-pointer flex items-center text-sm">
                 <i className="fas fa-upload mr-2"></i>
                 <span>Upload File</span>
@@ -269,7 +269,7 @@ const ParaphrasingToolDetailed = () => {
                   onChange={handleFileUpload}
                 />
               </label>
-              
+
               <Button
                 onClick={clearText}
                 variant="outline"
@@ -279,7 +279,7 @@ const ParaphrasingToolDetailed = () => {
                 <span>Clear</span>
               </Button>
             </div>
-            
+
             <div className="mb-4">
               <label className="block text-gray-700 font-medium mb-2">Paraphrasing Mode</label>
               <Select value={mode} onValueChange={(value) => setMode(value as ParaphrasingMode)}>
@@ -296,12 +296,12 @@ const ParaphrasingToolDetailed = () => {
               </Select>
             </div>
           </div>
-          
+
           <div>
             <div className="mb-2 flex justify-between items-center">
               <label className="block text-gray-700 font-medium">Paraphrased Text</label>
               {paraphrasedText && (
-                <Button 
+                <Button
                   onClick={copyToClipboard}
                   variant="outline"
                   className="text-gray-700 text-sm py-1 px-3 h-8"
@@ -311,7 +311,7 @@ const ParaphrasingToolDetailed = () => {
                 </Button>
               )}
             </div>
-            
+
             {isParaphrasing ? (
               <div className="bg-gray-50 border rounded-lg p-4 h-64 flex flex-col items-center justify-center">
                 <Progress value={progress} className="w-full h-2 mb-4" />
@@ -331,7 +331,7 @@ const ParaphrasingToolDetailed = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="bg-blue-50 p-4 rounded-lg mb-6">
         <h3 className="text-blue-800 font-medium mb-2">About Paraphrasing Modes</h3>
         <ul className="text-blue-700 text-sm space-y-2">

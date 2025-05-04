@@ -40,10 +40,10 @@ const Header = () => {
   };
 
   return (
-    <header 
+    <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-white shadow-md py-3' 
+        scrolled
+          ? 'bg-white shadow-md py-3'
           : 'bg-white/90 backdrop-blur-md py-5'
       }`}
     >
@@ -58,9 +58,7 @@ const Header = () => {
                   <i className="fas fa-tools text-white"></i>
                 </div>
               </div>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-violet-500 text-2xl font-bold tracking-tight">
-                ToolsHub
-              </span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-violet-500 text-2xl font-bold tracking-tight">AllTooly</span>
             </div>
           </Link>
 
@@ -71,14 +69,14 @@ const Header = () => {
                 Home
               </Link>
             </div>
-            
+
             <div className="relative group" onMouseEnter={() => handleMouseEnter('popular')}>
               <button className="px-4 py-2 text-gray-700 hover:text-indigo-600 font-medium rounded-md hover:bg-gray-50 transition-colors flex items-center">
                 Popular Tools
                 <i className={`fas fa-chevron-down text-xs ml-2 transition-transform duration-200 ${megaMenuOpen === 'popular' ? 'rotate-180' : ''}`}></i>
               </button>
             </div>
-            
+
             <div className="relative group" onMouseEnter={() => handleMouseEnter('categories')}>
               <button className="px-4 py-2 text-gray-700 hover:text-indigo-600 font-medium rounded-md hover:bg-gray-50 transition-colors flex items-center">
                 All Categories
@@ -88,19 +86,19 @@ const Header = () => {
           </nav>
 
           {/* Search Bar - Desktop */}
-          <div className="hidden md:block lg:block flex-grow max-w-lg mx-6">
+          <div className="hidden md:block lg:block flex-grow max-w-lg ml-6">
             <SearchBar />
           </div>
 
           {/* Right Nav with Sign-in and Free Trial - Desktop */}
-          <div className="hidden md:flex items-center space-x-3">
+          {/* <div className="hidden md:flex items-center space-x-3">
             <Link href="#" className="px-3 py-2 text-gray-700 hover:text-indigo-600 font-medium transition-colors">
               Sign in
             </Link>
             <Link href="#" className="btn-primary px-5 py-2.5 rounded-full text-sm font-medium">
               Try for Free
             </Link>
-          </div>
+          </div> */}
 
           {/* Mobile Menu Button */}
           <button
@@ -120,24 +118,24 @@ const Header = () => {
 
       {/* Mega Menu - Desktop Only */}
       <div className="hidden md:block relative">
-        <MegaMenu 
-          isOpen={megaMenuOpen === 'categories'} 
-          type="categories" 
-          categories={categories} 
-          popularTools={popularTools} 
-          onClose={handleMouseLeave} 
+        <MegaMenu
+          isOpen={megaMenuOpen === 'categories'}
+          type="categories"
+          categories={categories}
+          popularTools={popularTools}
+          onClose={handleMouseLeave}
         />
-        <MegaMenu 
-          isOpen={megaMenuOpen === 'popular'} 
-          type="popular" 
-          categories={categories} 
-          popularTools={popularTools} 
-          onClose={handleMouseLeave} 
+        <MegaMenu
+          isOpen={megaMenuOpen === 'popular'}
+          type="popular"
+          categories={categories}
+          popularTools={popularTools}
+          onClose={handleMouseLeave}
         />
       </div>
 
       {/* Mobile Menu */}
-      <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
+      <MobileMenu isOpen={mobileMenuOpen} isScroll={scrolled} onClose={() => setMobileMenuOpen(false)} />
     </header>
   );
 };

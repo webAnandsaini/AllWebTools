@@ -10,19 +10,19 @@ interface ToolPageProps {
 const ToolPageTemplate = ({ toolSlug, toolContent }: ToolPageProps) => {
   // Find the current tool from all available tools
   const currentTool = allTools.find(tool => tool.slug === toolSlug);
-  
+
   if (!currentTool) {
     return <div>Tool not found</div>;
   }
-  
+
   // Determine what tools to show as related tools
   let relatedToolsArray = allTools;
-  
+
   // For password management tools, only show other password management tools
   if (currentTool.category === "Password Management Tools") {
     relatedToolsArray = passwordManagementTools;
   }
-  
+
   // Find related tools (up to 4 from the same category)
   const relatedTools = relatedToolsArray
     .filter(tool => tool.slug !== toolSlug && tool.category === currentTool.category)
@@ -45,7 +45,7 @@ const ToolPageTemplate = ({ toolSlug, toolContent }: ToolPageProps) => {
 
             {/* Tool content section */}
             <div className="space-y-6">{toolContent}</div>
-            
+
             {/* Related Tools section */}
             <div className="mt-12">
               <h2 className="text-xl font-bold mb-4">Related Tools You May Like</h2>

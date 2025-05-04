@@ -30,10 +30,10 @@ const SpeechToTextDetailed = () => {
   const [audioFile, setAudioFile] = useState<File | null>(null);
   const [isProcessingAudio, setIsProcessingAudio] = useState(false);
   const [processingProgress, setProcessingProgress] = useState(0);
-  
+
   const recognitionRef = useRef<any>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   const languageOptions: LanguageOption[] = [
     { code: "en-US", name: "English (US)" },
     { code: "en-GB", name: "English (UK)" },
@@ -51,9 +51,9 @@ const SpeechToTextDetailed = () => {
   ];
 
   useEffect(() => {
-    document.title = "Speech to Text - ToolsHub";
+    document.title = "Speech to Text - AllTooly";
     window.scrollTo(0, 0);
-    
+
     // Check browser support for Speech Recognition
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
@@ -63,7 +63,7 @@ const SpeechToTextDetailed = () => {
         variant: "destructive",
       });
     }
-    
+
     // Clean up on unmount
     return () => {
       if (recognitionRef.current) {
@@ -85,22 +85,22 @@ const SpeechToTextDetailed = () => {
       });
       return;
     }
-    
+
     try {
       // Create a new recognition instance
       const recognition = new SpeechRecognition();
       recognitionRef.current = recognition;
-      
+
       // Configure recognition
       recognition.lang = selectedLanguage;
       recognition.continuous = true;
       recognition.interimResults = true;
-      
+
       // Set up event handlers
       recognition.onresult = (event: any) => {
         let interimTranscript = '';
         let finalTranscript = '';
-        
+
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
             finalTranscript += event.results[i][0].transcript;
@@ -108,16 +108,16 @@ const SpeechToTextDetailed = () => {
             interimTranscript += event.results[i][0].transcript;
           }
         }
-        
+
         setTranscription(prevTranscription => {
           const newTranscription = (prevTranscription + ' ' + finalTranscript).trim();
           return interimTranscript ? `${newTranscription} ${interimTranscript}` : newTranscription;
         });
       };
-      
+
       recognition.onerror = (event: any) => {
         console.error("Speech recognition error", event.error);
-        
+
         let errorMessage = "An error occurred during speech recognition.";
         switch (event.error) {
           case 'no-speech':
@@ -136,16 +136,16 @@ const SpeechToTextDetailed = () => {
             errorMessage = "Microphone permission was denied. Please allow microphone access.";
             break;
         }
-        
+
         toast({
           title: "Speech recognition error",
           description: errorMessage,
           variant: "destructive",
         });
-        
+
         stopRecording();
       };
-      
+
       recognition.onend = () => {
         // If we're not pausing manually, restart recognition (for continuous mode)
         if (isRecording && !isPaused) {
@@ -154,19 +154,19 @@ const SpeechToTextDetailed = () => {
           setIsRecording(false);
         }
       };
-      
+
       // Start recognition
       recognition.start();
       setIsRecording(true);
       setIsPaused(false);
-      
+
       // Start timer
       let seconds = 0;
       timerRef.current = setInterval(() => {
         seconds++;
         setRecordingTime(seconds);
       }, 1000);
-      
+
     } catch (error) {
       console.error("Error starting speech recognition:", error);
       toast({
@@ -207,7 +207,7 @@ const SpeechToTextDetailed = () => {
   const clearTranscription = () => {
     setTranscription("");
     setRecordingTime(0);
-    
+
     if (isRecording) {
       stopRecording();
     }
@@ -230,7 +230,7 @@ const SpeechToTextDetailed = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    
+
     // Check file type
     if (!file.type.startsWith('audio/')) {
       toast({
@@ -240,7 +240,7 @@ const SpeechToTextDetailed = () => {
       });
       return;
     }
-    
+
     // Check file size (limit to 10MB)
     if (file.size > 10 * 1024 * 1024) {
       toast({
@@ -250,7 +250,7 @@ const SpeechToTextDetailed = () => {
       });
       return;
     }
-    
+
     setAudioFile(file);
   };
 
@@ -263,10 +263,10 @@ const SpeechToTextDetailed = () => {
       });
       return;
     }
-    
+
     setIsProcessingAudio(true);
     setProcessingProgress(0);
-    
+
     // Simulate progress
     const interval = setInterval(() => {
       setProcessingProgress(prev => {
@@ -281,7 +281,7 @@ const SpeechToTextDetailed = () => {
         return newProgress;
       });
     }, 300);
-    
+
     // In a real implementation, we would:
     // 1. Upload the file to a server
     // 2. Process it with a speech-to-text service
@@ -296,11 +296,11 @@ const SpeechToTextDetailed = () => {
       "Thank you for trying our speech to text tool. Your audio file would be processed with high accuracy to generate a transcription like this one.",
       "Speech recognition technology has advanced significantly in recent years. Your audio would be analyzed using machine learning algorithms to produce accurate transcriptions."
     ];
-    
+
     const randomTranscription = simulatedTranscriptions[Math.floor(Math.random() * simulatedTranscriptions.length)];
     setTranscription(randomTranscription);
     setIsProcessingAudio(false);
-    
+
     toast({
       title: "Transcription complete",
       description: "Your audio file has been transcribed successfully.",
@@ -316,18 +316,18 @@ const SpeechToTextDetailed = () => {
       });
       return;
     }
-    
+
     // Create a blob from the transcription
     const blob = new Blob([transcription], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
-    
+
     // Create a temporary link and trigger download
     const a = document.createElement('a');
     a.href = url;
     a.download = 'transcription.txt';
     document.body.appendChild(a);
     a.click();
-    
+
     // Clean up
     setTimeout(() => {
       document.body.removeChild(a);
@@ -341,7 +341,7 @@ const SpeechToTextDetailed = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h3 className="text-lg font-medium mb-4">Record Audio</h3>
-            
+
             <Card className="mb-4">
               <CardContent className="p-6">
                 <div className="flex justify-between items-center mb-4">
@@ -360,7 +360,7 @@ const SpeechToTextDetailed = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   {isRecording && (
                     <div className="text-right">
                       <div className="flex items-center gap-2 text-red-600">
@@ -373,7 +373,7 @@ const SpeechToTextDetailed = () => {
                     </div>
                   )}
                 </div>
-                
+
                 <div className="flex flex-wrap gap-4 justify-center mt-6">
                   {!isRecording ? (
                     <Button
@@ -390,7 +390,7 @@ const SpeechToTextDetailed = () => {
                       >
                         <i className={`fas ${isPaused ? 'fa-play' : 'fa-pause'}`}></i>
                       </Button>
-                      
+
                       <Button
                         onClick={stopRecording}
                         className="bg-red-600 hover:bg-red-700 transition h-12 w-12 rounded-full flex items-center justify-center"
@@ -400,19 +400,19 @@ const SpeechToTextDetailed = () => {
                     </>
                   )}
                 </div>
-                
+
                 <p className="text-center text-gray-500 text-sm mt-4">
-                  {!isRecording 
-                    ? "Click the microphone button to start recording" 
-                    : (isPaused 
-                      ? "Recording paused. Click to resume." 
+                  {!isRecording
+                    ? "Click the microphone button to start recording"
+                    : (isPaused
+                      ? "Recording paused. Click to resume."
                       : "Speak clearly into your microphone.")}
                 </p>
               </CardContent>
             </Card>
-            
+
             <h3 className="text-lg font-medium mb-4">Or Upload Audio File</h3>
-            
+
             <Card>
               <CardContent className="p-6">
                 <div className="flex flex-col items-center">
@@ -433,7 +433,7 @@ const SpeechToTextDetailed = () => {
                       <p className="mt-2 text-sm text-gray-600">{audioFile.name}</p>
                     )}
                   </div>
-                  
+
                   {audioFile && (
                     <Button
                       onClick={processAudioFile}
@@ -444,7 +444,7 @@ const SpeechToTextDetailed = () => {
                       <span>Transcribe Audio File</span>
                     </Button>
                   )}
-                  
+
                   {isProcessingAudio && (
                     <div className="w-full mt-4">
                       <p className="text-sm text-gray-500 mb-2">Processing audio...</p>
@@ -455,11 +455,11 @@ const SpeechToTextDetailed = () => {
               </CardContent>
             </Card>
           </div>
-          
+
           <div>
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-medium">Transcription</h3>
-              
+
               <div className="flex gap-2">
                 <Button
                   onClick={clearTranscription}
@@ -471,7 +471,7 @@ const SpeechToTextDetailed = () => {
                   <i className="fas fa-eraser mr-1"></i>
                   <span>Clear</span>
                 </Button>
-                
+
                 <Button
                   onClick={copyToClipboard}
                   variant="outline"
@@ -482,7 +482,7 @@ const SpeechToTextDetailed = () => {
                   <i className="fas fa-copy mr-1"></i>
                   <span>Copy</span>
                 </Button>
-                
+
                 <Button
                   onClick={downloadTranscription}
                   variant="outline"
@@ -495,7 +495,7 @@ const SpeechToTextDetailed = () => {
                 </Button>
               </div>
             </div>
-            
+
             <div className="bg-white border rounded-lg p-4 h-[400px] overflow-auto">
               {transcription ? (
                 <p className="text-gray-800 whitespace-pre-wrap">{transcription}</p>
@@ -509,7 +509,7 @@ const SpeechToTextDetailed = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-100 mt-6">
           <div className="flex items-start">
             <i className="fas fa-info-circle text-yellow-500 mt-1 mr-2"></i>
