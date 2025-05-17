@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    emailjs.init('PVb_XqhW37DVJPK6l');
 
     if (!email || !email.includes('@')) {
       toast({
@@ -16,11 +18,27 @@ const Newsletter = () => {
       return;
     }
 
+    emailjs.send('service_di1ixgi', 'template_ho9kmmc', {
+      name: "Newsletter Subscriber",
+      email: email,
+      message: "Please subscribe me to the newsletter.",
+      title: "Newsletter Subscription",
+      time: new Date().toLocaleString(),
+    }, ).then((response) =>{
+      toast({
+        title: "Success!",
+        description: "You've been subscribed to our newsletter",
+      });
+      console.log(response);
+    }).catch((error) =>{
+     console.log(error);
+
+    })
+
     // Here we would typically send this to an API
-    toast({
-      title: "Success!",
-      description: "You've been subscribed to our newsletter",
-    });
+
+
+
 
     setEmail("");
   };

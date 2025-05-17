@@ -4,33 +4,10 @@ import bannerVideo from '../../../../public/bannerVideo.mp4';
 
 
 const Hero = () => {
-  const bannerVideoRef = useRef(null);
-  const [bannerVideocontrol, setBannerVideoControl] = useState(false);
 
-  const bannerVideoButton = () => {
-    const BannVid = bannerVideoRef.current;
-    if (BannVid) {
-      if (BannVid.paused) {
-        BannVid.play().catch(err => {
-          console.warn("Autoplay blocked:", err);
-        });
-        setBannerVideoControl(true);
-      } else {
-        BannVid.pause();
-        setBannerVideoControl(false);
-      }
-    }
-  };
-
-
-
-
-  // useEffect(() => {
-  //   bannerVideoButton();
-  // }, [bannerVideocontrol]);
 
   return (
-    <section className="relative overflow-hidden pt-16 pb-32 bg-gradient-to-b from-[#f5f7ff] to-white">
+    <section className="relative overflow-hidden pt-16 md:pt-24 pb-20 bg-gradient-to-b from-[#f5f7ff] to-white">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -right-32 -top-32 w-64 h-64 rounded-full bg-blue-50 opacity-70"></div>
@@ -45,20 +22,18 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-4 relative">
-        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12 justify-center">
           {/* Text content */}
-          <div className="lg:w-1/2 text-center lg:text-left">
+          <div className="lg:w-4/5 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight">
               All your <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">design tools</span>
               <br />in one place
             </h1>
-            <p className="text-lg text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
               Start growing your business by creating stunning tools for text analysis, design, image editing, SEO, development and much more.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
-              <Link href="#popular-tools" className="btn-primary px-8 py-3 text-base rounded-full">
-                Start Free Now
-              </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+              <a href="#all-categories" className="btn-primary px-8 py-3 text-base rounded-full">Explore Now</a>
             </div>
 
             {/* Trust indicators */}
@@ -77,8 +52,8 @@ const Hero = () => {
                 <img src="https://via.placeholder.com/80x24" alt="SourceForge" className="h-6 opacity-70" />
               </div> */}
 
-              <div className="mt-12 pt-8 border-t border-gray-200">
-                <p className="text-center lg:text-left text-sm text-gray-500 mb-3">
+              <div className="mt-10 md:mt-20 pt-8 border-t border-gray-200">
+                <p className="text-center text-sm text-gray-500 mb-3">
                   Trusted by <span className="font-semibold">25M+</span> users and <span className="font-semibold">100k+</span> high-end companies
                 </p>
                 {/* <div className="flex flex-wrap items-center justify-center lg:justify-start gap-8 mt-4">
@@ -92,40 +67,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Hero image/video */}
-          <div className="lg:w-1/2 relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white group">
-              <div className="aspect-video relative">
-                <video width="704" ref={bannerVideoRef} className="w-full" muted>
-                  <source src={bannerVideo} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
 
-              {/* Play button overlay */}
-              <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${bannerVideocontrol ? ' hidden group-hover:block' : '' }`}>
-                <div className="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center"  onClick={bannerVideoButton}>
-                  <i className={`fas text-pink-500 ml-1  ${bannerVideocontrol ? ' fa-pause' : ' fa-play' }`}></i>
-                </div>
-              </div>
-            </div>
-
-            {/* Decorative elements */}
-            <div className="absolute -top-8 -right-8 w-20 h-20 text-4xl">
-              <div className="relative w-full h-full">
-                <div className="absolute animate-float-slow">
-                  <span className="text-orange-400">🔍</span>
-                </div>
-              </div>
-            </div>
-            <div className="absolute -bottom-10 -left-10 w-24 h-24 text-4xl">
-              <div className="relative w-full h-full">
-                <div className="absolute animate-float">
-                  <span className="text-blue-400">📝</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
