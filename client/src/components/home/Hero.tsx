@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import bannerVideo from '../../../../public/bannerVideo.mp4';
 
 
 const Hero = () => {
