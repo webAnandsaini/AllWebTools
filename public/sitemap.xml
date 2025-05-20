@@ -1,16 +1,2504 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-  <loc>https://www.alltooly.com/</loc>
-  <lastmod>2025-05-17T17:58:42+00:00</lastmod>
+	<loc>https://www.alltooly.com/</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
 </url>
-
-
+<url>
+	<loc>https://www.alltooly.com/categories</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/categories/text-analysis</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/categories/ai-writing</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/categories/design-studio</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/categories/images-editing</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/categories/pdf-tools</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/categories/seo-tools</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/plagiarism-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/image-compressor</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/pdf-to-word</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/word-counter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/grammar-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/qr-code-generator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/unit-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/time-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/power-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/speed-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/volume-conversion</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/length-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/voltage-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/area-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/weight-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/byte-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/temperature-conversion</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/torque-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/pressure-conversion</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/json-viewer</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/json-formatter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/json-validator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/json-to-xml</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/json-editor</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/json-beautifier</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/domain-age-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/domain-ip-lookup</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/domain-hosting-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/domain-authority-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/find-dns-records</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/domain-name-search</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/domain-to-ip</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/check-blacklist-ip</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/find-expired-domains</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/bulk-domain-rating-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/index-pages-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/text-to-speech</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/md5-generator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/uppercase-to-lowercase</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/reverse-text</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/ai-essay-writer</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/ai-humanizer</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/title-generator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/password-generator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/plagiarism-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/word-counter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/article-rewriter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/grammar-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/spell-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/paraphrasing-tool-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/text-to-speech-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/speech-to-text-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/text-summarizer-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/ai-content-detector-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/ocr-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/md5-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/uppercase-to-lowercase-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/word-combiner-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/image-to-text-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/translate-english-to-hindi-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/text-to-image-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/jpg-to-word-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/small-text-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/online-text-editor-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/reverse-text-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/sentence-rephraser-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/sentence-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/rewording-tool-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/punctuation-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/essay-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/paper-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/online-proofreader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/paragraph-rewriter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/word-changer-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/sentence-rewriter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/essay-rewriter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/paraphrase-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/sentence-changer-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/image-translator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/chatgpt-detector-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/citation-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/online-notepad-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/invisible-character-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/ai-essay-writer-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/ai-writer-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/ai-text-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/paragraph-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/plot-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/logo-maker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/resume-builder-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/flyer-maker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/poster-maker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/what-is-my-ip-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/ip-location-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/free-daily-proxy-list-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/domain-age-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/domain-ip-lookup-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/domain-hosting-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/domain-authority-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/find-dns-records-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/domain-name-search-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/domain-to-ip-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/check-blacklist-ip-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/find-expired-domains-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/bulk-domain-rating-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/index-pages-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/password-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/password-strength-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/password-encryption-utility-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/reverse-image-search-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/face-search-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/image-compressor-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/favicon-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/video-to-gif-converter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/image-resizer-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/photo-resizer-in-kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/crop-image-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/convert-to-jpg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/rgb-to-hex-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/png-to-jpg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/jpg-to-png-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-image-to-50kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-image-to-20kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-jpeg-to-100kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-jpeg-to-200kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-jpg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/resize-image-to-50kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/resize-image-to-100kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/resize-image-to-20kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/reduce-image-size-in-kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-image-to-10kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-jpeg-to-30kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-image-to-1mb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/mb-to-kb-converter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/mp4-to-gif-converter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/heic-to-jpg-converter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/heic-to-png-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/svg-converter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/png-to-svg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/jpg-to-svg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/jpeg-to-svg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/webp-to-png-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/svg-to-png-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/png-to-ico-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/avif-to-jpg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/jpeg-optimizer-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-png-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/reverse-image-search</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/face-search</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/image-compressor</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/favicon-generator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/video-to-gif-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/video-to-gif-converter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/video-to-gif-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/image-resizer</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/photo-resizer-in-kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/crop-image</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/convert-to-jpg</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/rgb-to-hex</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/png-to-jpg</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/jpg-to-png</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-image-to-50kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-image-to-20kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-jpeg-to-100kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-jpeg-to-200kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-jpg</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/resize-image-to-50kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/resize-image-to-100kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/resize-image-to-20kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/reduce-image-size-in-kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-image-to-10kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-jpeg-to-30kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-image-to-1mb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/mb-to-kb-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/mp4-to-gif-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/mp4-to-gif-converter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/mp4-to-gif-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/heic-to-jpg-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/heic-to-jpg-converter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/heic-to-jpg-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/heic-to-png</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/heic-to-png-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/heic-to-png</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/svg-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/svg-converter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/svg-converter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/png-to-svg</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/png-to-svg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/png-to-svg</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/jpg-to-svg</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/jpg-to-svg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/jpg-to-svg</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/jpeg-to-svg</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/jpeg-to-svg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/jpeg-to-svg</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/webp-to-png</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/webp-to-png-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/webp-to-png</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/svg-to-png</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/svg-to-png-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/svg-to-png</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/png-to-ico</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/png-to-ico-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/png-to-ico</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/avif-to-jpg</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/avif-to-jpg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/avif-to-jpg</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/jpeg-optimizer</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/jpeg-optimizer-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/jpeg-optimizer</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-png</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-png-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-png</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/keyword-position-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/keywords-density-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/keyword-density-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/keywords-suggestions-tool-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/keyword-research-tool-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/keyword-competition-tool-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/related-keywords-finder-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/long-tail-keyword-suggestion-tool-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/keywords-rich-domains-suggestions-tool-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/seo-keyword-competition-analysis-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/live-keyword-analyzer-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/keyword-overview-tool-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/keyword-difficulty-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/paid-keyword-finder-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/backlink-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/backlink-maker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/website-link-count-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/website-broken-link-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/link-price-calculator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/reciprocal-link-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/website-link-analyzer-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/broken-backlink-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/valuable-backlink-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/backlinks-competitors-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/anchor-text-distribution-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/website-seo-score-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/google-pagerank-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/online-ping-website-tool-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/page-speed-test-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/website-page-size-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/website-page-snooper-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/website-hit-counter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/xml-sitemap-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/url-rewriting-tool-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/what-is-my-screen-resolution-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/url-encoder-decoder-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/adsense-calculator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/open-graph-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/open-graph-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/qr-code-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/htaccess-redirect-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/get-http-headers-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/twitter-card-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/internet-speed-test-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/wordpress-theme-detector-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/instant-search-suggestions-tool-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/online-virus-scan-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/website-screenshot-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/secure-email-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/mobile-friendly-test-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/video-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/facebook-video-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/soundcloud-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/vimeo-video-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/instagram-video-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/dailymotion-video-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/minify-css-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/minify-html-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/minify-js-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/robots-txt-generator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/url-shortener-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/website-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/url-opener-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/php-formatter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/html-formatter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/html-editor-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/html-viewer-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/xml-formatter-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/xml-beautifier-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/twitter-video-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/twitter-gif-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/tiktok-video-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/instagram-reels-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/facebook-reels-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/tiktok-to-mp4-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/instagram-to-mp4-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/twitter-to-mp4-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/facebook-to-mp4-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/pinterest-video-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/reddit-video-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/mp4-downloader-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/ptcl-speed-test-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/link-tracker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/reverse-ip-lookup-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/check-server-status-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/class-c-ip-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/code-to-text-ratio-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/alexa-rank-comparison-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/page-comparison-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/spider-simulator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/comparison-search-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/google-cache-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/whois-lookup-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/mozrank-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/page-authority-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/google-index-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/alexa-rank-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/redirect-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/similar-site-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/cloaking-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/google-malware-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/find-facebook-id-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/check-gzip-compression-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/ssl-checker-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/pokemon-go-server-status-finder-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/find-blog-sites-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/geo-ip-locator-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/apps-rank-tracking-tool-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/what-is-my-browser-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/check-social-status-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/pdf-to-word-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/word-to-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/pdf-to-jpg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/jpg-to-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/merge-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/rotate-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/unlock-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/lock-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/watermark-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/powerpoint-to-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/excel-to-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/split-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-pdf-to-50kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-pdf-to-100kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-pdf-to-150kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-pdf-to-200kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/resize-pdf-to-200kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-pdf-to-300kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-pdf-to-500kb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-pdf-to-1mb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/compress-pdf-to-2mb-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/pdf-to-zip-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/delete-pages-from-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/pdf-to-bmp-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/gif-to-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/pdf-to-tiff-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/tiff-to-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/png-to-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/svg-to-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/pdf-to-svg-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/pdf-to-png-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/bmp-to-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/remove-password-from-pdf-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tools/pdf-page-remover-detailed</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/keyword-position</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/keywords-density-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/keyword-density-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/keywords-suggestions-tool</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/keyword-research-tool</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/keyword-competition-tool</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/related-keywords-finder</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/long-tail-keyword-suggestion-tool</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/keywords-rich-domains-suggestions-tool</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/seo-keyword-competition-analysis</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/live-keyword-analyzer</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/keyword-overview-tool</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/keyword-difficulty-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/paid-keyword-finder</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/backlink-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/backlink-maker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/website-link-count-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/website-broken-link-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/link-price-calculator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/reciprocal-link-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/website-link-analyzer</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/broken-backlink-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/valuable-backlink-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/backlinks-competitors</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/anchor-text-distribution</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/website-seo-score-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/google-pagerank-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/online-ping-website-tool</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/page-speed-test</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/website-page-size-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/website-page-snooper</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/website-hit-counter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/xml-sitemap-generator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/url-rewriting-tool</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/what-is-my-screen-resolution</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/url-encoder-decoder</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/adsense-calculator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/open-graph-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/open-graph-generator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/qr-code-generator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/htaccess-redirect-generator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/get-http-headers</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/twitter-card-generator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/internet-speed-test</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/wordpress-theme-detector</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/instant-search-suggestions-tool</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/online-virus-scan</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/website-screenshot-generator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/secure-email</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/mobile-friendly-test</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/video-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/facebook-video-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/soundcloud-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/vimeo-video-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/instagram-video-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/dailymotion-video-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/minify-css</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/minify-html</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/minify-js</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/robots-txt-generator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/url-shortener</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/website-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/url-opener</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/php-formatter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/html-formatter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/html-editor</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/html-viewer</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/xml-formatter</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/xml-beautifier</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/twitter-video-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/twitter-gif-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tiktok-video-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/instagram-reels-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/facebook-reels-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/tiktok-to-mp4</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/instagram-to-mp4</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/twitter-to-mp4</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/facebook-to-mp4</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/pinterest-video-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/reddit-video-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/mp4-downloader</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/ptcl-speed-test</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/link-tracker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/reverse-ip-lookup</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/check-server-status</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/class-c-ip-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/code-to-text-ratio-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/alexa-rank-comparison</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/page-comparison</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/spider-simulator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/comparison-search</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/google-cache-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/whois-lookup</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/mozrank-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/page-authority-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/google-index-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/alexa-rank-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/redirect-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/similar-site-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/cloaking-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/google-malware-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/find-facebook-id</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/check-gzip-compression</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/ssl-checker</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/pokemon-go-server-status-finder</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/find-blog-sites</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/geo-ip-locator</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/apps-rank-tracking-tool</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/what-is-my-browser</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/check-social-status</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/pdf-to-word</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/word-to-pdf</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/pdf-to-jpg</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/jpg-to-pdf</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/merge-pdf</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-pdf</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/rotate-pdf</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/unlock-pdf</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/lock-pdf</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/watermark</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/powerpoint-to-pdf</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/excel-to-pdf</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/split-pdf</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-pdf-to-50kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-pdf-to-100kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-pdf-to-150kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-pdf-to-200kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/resize-pdf-to-200kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-pdf-to-300kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-pdf-to-500kb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-pdf-to-1mb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/compress-pdf-to-2mb</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/pdf-to-zip</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://www.alltooly.com/delete-pages-from-pdf</loc>
+	<lastmod>2025-05-20T20:31:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
 </urlset>
