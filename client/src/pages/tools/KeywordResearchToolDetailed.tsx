@@ -8,8 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { keywordsTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
-import { 
-  FaSearch, 
+import {
+  FaSearch,
   FaChartBar,
   FaArrowRight,
   FaAward,
@@ -22,7 +22,7 @@ import {
 } from "react-icons/fa";
 import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -54,7 +54,7 @@ const KeywordResearchToolDetailed = () => {
     setResearchProgress(0);
     setResults(null);
     setSelectedKeywords([]);
-    
+
     // Simulate research process
     let progress = 0;
     const interval = setInterval(() => {
@@ -62,10 +62,10 @@ const KeywordResearchToolDetailed = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         // Generate simulated research results
         const mainKeyword = keyword.toLowerCase().trim();
-        
+
         // Simulate search metrics for main keyword
         const mainKeywordData = {
           keyword: mainKeyword,
@@ -90,14 +90,14 @@ const KeywordResearchToolDetailed = () => {
             totalResults: Math.floor(Math.random() * 10000000) + 500000
           }
         };
-        
+
         // Generate related keywords
         const generateRelatedKeywords = () => {
           const prefixes = ["best", "top", "affordable", "cheap", "premium", "how to", "what is", "why", "when to", "where to"];
           const suffixes = ["guide", "tutorial", "services", "tips", "software", "tools", "examples", "for beginners", "near me", "online"];
-          
+
           const relatedKeywords = [];
-          
+
           // Generate with prefixes
           for (let i = 0; i < 6; i++) {
             const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
@@ -109,7 +109,7 @@ const KeywordResearchToolDetailed = () => {
               competition: (Math.random() * 0.8 + 0.1).toFixed(2)
             });
           }
-          
+
           // Generate with suffixes
           for (let i = 0; i < 6; i++) {
             const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
@@ -121,16 +121,16 @@ const KeywordResearchToolDetailed = () => {
               competition: (Math.random() * 0.8 + 0.1).toFixed(2)
             });
           }
-          
+
           // Sort by search volume
           return relatedKeywords.sort((a, b) => b.searchVolume - a.searchVolume);
         };
-        
+
         // Generate questions
         const generateQuestions = () => {
           const questionPrefixes = ["how to", "what is", "why is", "when to", "where to", "which", "who", "can", "does", "how does", "how many", "how much"];
           const questions = [];
-          
+
           for (let i = 0; i < 10; i++) {
             const prefix = questionPrefixes[Math.floor(Math.random() * questionPrefixes.length)];
             questions.push({
@@ -141,10 +141,10 @@ const KeywordResearchToolDetailed = () => {
               competition: (Math.random() * 0.6 + 0.1).toFixed(2)
             });
           }
-          
+
           return questions.sort((a, b) => b.searchVolume - a.searchVolume);
         };
-        
+
         // Generate competitors
         const generateCompetitors = () => {
           const competitors = [
@@ -154,31 +154,31 @@ const KeywordResearchToolDetailed = () => {
             { domain: "example4.com", keywordCount: Math.floor(Math.random() * 350) + 70, topKeywords: [mainKeyword + " examples", "what is " + mainKeyword, mainKeyword + " near me"] },
             { domain: "example5.com", keywordCount: Math.floor(Math.random() * 300) + 60, topKeywords: [mainKeyword + " online", "best " + mainKeyword + " software", mainKeyword + " for professionals"] }
           ];
-          
+
           return competitors.sort((a, b) => b.keywordCount - a.keywordCount);
         };
-        
+
         // Generate trend data
         const generateTrendData = () => {
           const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
           const trendData = [];
-          
+
           let volume = Math.floor(Math.random() * 5000) + 3000;
-          
+
           for (const month of months) {
             // Add some variance (-20% to +20%)
             const variance = (Math.random() * 0.4) - 0.2;
             volume = Math.floor(volume * (1 + variance));
-            
+
             trendData.push({
               period: month,
               volume: Math.max(100, volume)
             });
           }
-          
+
           return trendData;
         };
-        
+
         setResults({
           mainKeyword: mainKeywordData,
           relatedKeywords: generateRelatedKeywords(),
@@ -186,9 +186,9 @@ const KeywordResearchToolDetailed = () => {
           competitors: generateCompetitors(),
           trendData: generateTrendData()
         });
-        
+
         setIsResearching(false);
-        
+
         toast({
           title: "Research complete",
           description: `Keyword research for "${mainKeyword}" is ready.`,
@@ -208,13 +208,13 @@ const KeywordResearchToolDetailed = () => {
 
   const handleExportCSV = () => {
     if (!results) return;
-    
+
     const keywordsToExport = [
-      ...selectedKeywords.length > 0 
+      ...selectedKeywords.length > 0
         ? [...results.relatedKeywords, ...results.questions].filter(k => selectedKeywords.includes(k.keyword))
         : [...results.relatedKeywords, ...results.questions]
     ];
-    
+
     if (keywordsToExport.length === 0) {
       toast({
         title: "No keywords to export",
@@ -223,14 +223,14 @@ const KeywordResearchToolDetailed = () => {
       });
       return;
     }
-    
+
     // Create CSV content
     let csv = 'Keyword,Search Volume,Keyword Difficulty,CPC,Competition\n';
-    
+
     keywordsToExport.forEach(item => {
       csv += `"${item.keyword}",${item.searchVolume},${item.keywordDifficulty},$${item.cpc},${item.competition}\n`;
     });
-    
+
     // Create and download file
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
@@ -240,7 +240,7 @@ const KeywordResearchToolDetailed = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     toast({
       title: "Export complete",
       description: `${keywordsToExport.length} keywords exported to CSV.`,
@@ -256,7 +256,7 @@ const KeywordResearchToolDetailed = () => {
       });
       return;
     }
-    
+
     navigator.clipboard.writeText(selectedKeywords.join('\n'))
       .then(() => {
         toast({
@@ -307,14 +307,14 @@ const KeywordResearchToolDetailed = () => {
   ];
 
   const features = [
-    "✅ Comprehensive keyword metrics (search volume, difficulty, CPC, competition)",
-    "✅ SERP analysis showing top-ranking pages and their metrics",
-    "✅ Related keyword suggestions with complete data",
-    "✅ Question-based variations for FAQ and featured snippet opportunities",
-    "✅ Competitor analysis showing domains ranking for similar terms",
-    "✅ Search trend data to identify seasonal patterns",
-    "✅ Export capabilities for further analysis and planning",
-    "✅ Country-specific data for targeted geographic insights"
+    " Comprehensive keyword metrics (search volume, difficulty, CPC, competition)",
+    " SERP analysis showing top-ranking pages and their metrics",
+    " Related keyword suggestions with complete data",
+    " Question-based variations for FAQ and featured snippet opportunities",
+    " Competitor analysis showing domains ranking for similar terms",
+    " Search trend data to identify seasonal patterns",
+    " Export capabilities for further analysis and planning",
+    " Country-specific data for targeted geographic insights"
   ];
 
   const faqs = [
@@ -335,20 +335,20 @@ const KeywordResearchToolDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Keyword Research Tool</h3>
-      
+
       <div className="space-y-5">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="md:col-span-2">
             <Label htmlFor="keyword" className="block mb-2">Keyword</Label>
             <div className="flex">
-              <Input 
-                id="keyword" 
-                placeholder="Enter a keyword to research..." 
+              <Input
+                id="keyword"
+                placeholder="Enter a keyword to research..."
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 className="rounded-r-none"
               />
-              <Button 
+              <Button
                 onClick={handleResearch}
                 className="rounded-l-none bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
                 disabled={isResearching}
@@ -357,14 +357,14 @@ const KeywordResearchToolDetailed = () => {
                   <>Researching...</>
                 ) : (
                   <>
-                    <FaSearch className="mr-2" /> 
+                    <FaSearch className="mr-2" />
                     Research
                   </>
                 )}
               </Button>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label className="block mb-2">Country</Label>
@@ -381,7 +381,7 @@ const KeywordResearchToolDetailed = () => {
                 </SelectContent>
               </Select>
             </div>
-            
+
             <div>
               <Label className="block mb-2">Time Period</Label>
               <Select value={timePeriod} onValueChange={setTimePeriod}>
@@ -397,7 +397,7 @@ const KeywordResearchToolDetailed = () => {
             </div>
           </div>
         </div>
-        
+
         {isResearching && (
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
@@ -407,7 +407,7 @@ const KeywordResearchToolDetailed = () => {
             <Progress value={researchProgress} />
           </div>
         )}
-        
+
         {results && (
           <div className="space-y-5 pt-2">
             <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab}>
@@ -418,7 +418,7 @@ const KeywordResearchToolDetailed = () => {
                 <TabsTrigger value="serp" className="text-xs sm:text-sm">SERP Analysis</TabsTrigger>
                 <TabsTrigger value="competitors" className="text-xs sm:text-sm">Competitors</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="overview" className="mt-4 space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Card className="p-4 border">
@@ -450,7 +450,7 @@ const KeywordResearchToolDetailed = () => {
                       </div>
                     </div>
                   </Card>
-                  
+
                   <Card className="p-4 border">
                     <h4 className="text-lg font-medium mb-4">Search Volume Trend</h4>
                     <div className="h-48">
@@ -458,10 +458,10 @@ const KeywordResearchToolDetailed = () => {
                         {results.trendData.map((item, index) => {
                           const maxVolume = Math.max(...results.trendData.map(d => d.volume));
                           const height = (item.volume / maxVolume) * 100;
-                          
+
                           return (
                             <div key={index} className="flex flex-col items-center flex-1">
-                              <div 
+                              <div
                                 className="w-full bg-blue-500 rounded-t"
                                 style={{ height: `${height}%` }}
                               ></div>
@@ -473,7 +473,7 @@ const KeywordResearchToolDetailed = () => {
                     </div>
                   </Card>
                 </div>
-                
+
                 <Card className="p-4 border">
                   <h4 className="text-lg font-medium mb-4">SERP Features</h4>
                   <div className="flex flex-wrap gap-2">
@@ -487,11 +487,11 @@ const KeywordResearchToolDetailed = () => {
                     Total results: {results.mainKeyword.serp.totalResults.toLocaleString()}
                   </p>
                 </Card>
-                
+
                 <div className="flex justify-between">
                   <h4 className="text-md font-medium">Top Related Keywords</h4>
-                  <Button 
-                    variant="link" 
+                  <Button
+                    variant="link"
                     size="sm"
                     onClick={() => setActiveTab("related")}
                     className="text-sm"
@@ -499,7 +499,7 @@ const KeywordResearchToolDetailed = () => {
                     View all <FaArrowRight className="ml-1" />
                   </Button>
                 </div>
-                
+
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
@@ -525,7 +525,7 @@ const KeywordResearchToolDetailed = () => {
                   </table>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="related" className="mt-4 space-y-4">
                 <div className="flex justify-between items-center">
                   <h4 className="font-medium text-lg flex items-center">
@@ -535,36 +535,36 @@ const KeywordResearchToolDetailed = () => {
                       {results.relatedKeywords.length}
                     </span>
                   </h4>
-                  
+
                   <div className="flex gap-2">
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       size="sm"
                       onClick={handleCopySelected}
                       disabled={selectedKeywords.length === 0}
                       className="text-xs"
                     >
-                      <FaCopy className="mr-1" /> 
+                      <FaCopy className="mr-1" />
                       Copy {selectedKeywords.length > 0 ? `(${selectedKeywords.length})` : ''}
                     </Button>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       size="sm"
                       onClick={handleExportCSV}
                       className="text-xs"
                     >
-                      <FaDownload className="mr-1" /> 
+                      <FaDownload className="mr-1" />
                       Export CSV
                     </Button>
                   </div>
                 </div>
-                
+
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="bg-gray-50 border-b">
                         <th className="py-2 px-3 text-left w-8">
-                          <Checkbox 
+                          <Checkbox
                             checked={selectedKeywords.length === results.relatedKeywords.length}
                             onCheckedChange={(checked) => {
                               if (checked) {
@@ -586,7 +586,7 @@ const KeywordResearchToolDetailed = () => {
                       {results.relatedKeywords.map((item, index) => (
                         <tr key={index} className="border-b hover:bg-gray-50">
                           <td className="py-2 px-3">
-                            <Checkbox 
+                            <Checkbox
                               checked={selectedKeywords.includes(item.keyword)}
                               onCheckedChange={() => handleKeywordSelect(item.keyword)}
                             />
@@ -610,7 +610,7 @@ const KeywordResearchToolDetailed = () => {
                   </table>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="questions" className="mt-4 space-y-4">
                 <div className="flex justify-between items-center">
                   <h4 className="font-medium text-lg flex items-center">
@@ -620,36 +620,36 @@ const KeywordResearchToolDetailed = () => {
                       {results.questions.length}
                     </span>
                   </h4>
-                  
+
                   <div className="flex gap-2">
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       size="sm"
                       onClick={handleCopySelected}
                       disabled={selectedKeywords.length === 0}
                       className="text-xs"
                     >
-                      <FaCopy className="mr-1" /> 
+                      <FaCopy className="mr-1" />
                       Copy {selectedKeywords.length > 0 ? `(${selectedKeywords.length})` : ''}
                     </Button>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       size="sm"
                       onClick={handleExportCSV}
                       className="text-xs"
                     >
-                      <FaDownload className="mr-1" /> 
+                      <FaDownload className="mr-1" />
                       Export CSV
                     </Button>
                   </div>
                 </div>
-                
+
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="bg-gray-50 border-b">
                         <th className="py-2 px-3 text-left w-8">
-                          <Checkbox 
+                          <Checkbox
                             checked={results.questions.every(q => selectedKeywords.includes(q.keyword))}
                             onCheckedChange={(checked) => {
                               if (checked) {
@@ -671,7 +671,7 @@ const KeywordResearchToolDetailed = () => {
                       {results.questions.map((item, index) => (
                         <tr key={index} className="border-b hover:bg-gray-50">
                           <td className="py-2 px-3">
-                            <Checkbox 
+                            <Checkbox
                               checked={selectedKeywords.includes(item.keyword)}
                               onCheckedChange={() => handleKeywordSelect(item.keyword)}
                             />
@@ -694,7 +694,7 @@ const KeywordResearchToolDetailed = () => {
                     </tbody>
                   </table>
                 </div>
-                
+
                 <div className="p-3 bg-purple-50 border border-purple-200 rounded-lg text-sm">
                   <div className="flex items-start">
                     <FaInfoCircle className="text-purple-600 mt-0.5 mr-2 flex-shrink-0" />
@@ -710,7 +710,7 @@ const KeywordResearchToolDetailed = () => {
                   </div>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="serp" className="mt-4 space-y-4">
                 <div className="flex justify-between items-center">
                   <h4 className="font-medium text-lg flex items-center">
@@ -721,7 +721,7 @@ const KeywordResearchToolDetailed = () => {
                     </span>
                   </h4>
                 </div>
-                
+
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
@@ -750,7 +750,7 @@ const KeywordResearchToolDetailed = () => {
                     </tbody>
                   </table>
                 </div>
-                
+
                 <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg text-sm">
                   <div className="flex items-start">
                     <FaInfoCircle className="text-blue-600 mt-0.5 mr-2 flex-shrink-0" />
@@ -766,7 +766,7 @@ const KeywordResearchToolDetailed = () => {
                   </div>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="competitors" className="mt-4 space-y-4">
                 <div className="flex justify-between items-center">
                   <h4 className="font-medium text-lg flex items-center">
@@ -777,7 +777,7 @@ const KeywordResearchToolDetailed = () => {
                     </span>
                   </h4>
                 </div>
-                
+
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
@@ -806,7 +806,7 @@ const KeywordResearchToolDetailed = () => {
                     </tbody>
                   </table>
                 </div>
-                
+
                 <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm">
                   <div className="flex items-start">
                     <FaChartLine className="text-amber-600 mt-0.5 mr-2 flex-shrink-0" />

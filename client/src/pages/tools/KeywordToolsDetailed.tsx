@@ -80,7 +80,7 @@ const KeywordToolsDetailed: React.FC = () => {
     avgDifficulty?: number;
     scanDate?: string;
   }
-  
+
   const [results, setResults] = useState<ResultsData | null>(null);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -139,11 +139,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Click 'Check Positions' and wait for the results to be analyzed"
         ],
         features: [
-          "✅ Check rankings across Google, Bing, Yahoo, and other major search engines",
-          "✅ Location-specific ranking checks for accurate local SEO insights",
-          "✅ Historical ranking data to track position changes over time",
-          "✅ Competitor comparison to see how you rank against other websites",
-          "✅ Mobile vs. desktop ranking differentiation for comprehensive insights"
+          " Check rankings across Google, Bing, Yahoo, and other major search engines",
+          " Location-specific ranking checks for accurate local SEO insights",
+          " Historical ranking data to track position changes over time",
+          " Competitor comparison to see how you rank against other websites",
+          " Mobile vs. desktop ranking differentiation for comprehensive insights"
         ],
         faqs: [
           {
@@ -188,11 +188,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Make adjustments to your content based on the analysis"
         ],
         features: [
-          "✅ Calculate precise keyword and phrase density percentages",
-          "✅ Identify primary, secondary, and LSI keywords automatically",
-          "✅ Visualize keyword distribution throughout your content",
-          "✅ Compare your density metrics against ideal ranges for your industry",
-          "✅ Receive actionable suggestions to improve keyword usage"
+          " Calculate precise keyword and phrase density percentages",
+          " Identify primary, secondary, and LSI keywords automatically",
+          " Visualize keyword distribution throughout your content",
+          " Compare your density metrics against ideal ranges for your industry",
+          " Receive actionable suggestions to improve keyword usage"
         ],
         faqs: [
           {
@@ -237,11 +237,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Export your selected keywords for use in your content planning"
         ],
         features: [
-          "✅ Generate hundreds of relevant keyword suggestions from a single seed term",
-          "✅ Discover long-tail keywords with higher conversion potential",
-          "✅ Identify questions your audience is asking about your topic",
-          "✅ Uncover semantically-related terms to expand your content scope",
-          "✅ Find trending keywords with growing search volume"
+          " Generate hundreds of relevant keyword suggestions from a single seed term",
+          " Discover long-tail keywords with higher conversion potential",
+          " Identify questions your audience is asking about your topic",
+          " Uncover semantically-related terms to expand your content scope",
+          " Find trending keywords with growing search volume"
         ],
         faqs: [
           {
@@ -286,11 +286,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Export your selected keywords with full metrics for your SEO strategy"
         ],
         features: [
-          "✅ Comprehensive data including search volume, trends, and competition",
-          "✅ Keyword difficulty scoring to identify realistic ranking opportunities",
-          "✅ Historical trend data to spot seasonal patterns and emerging terms",
-          "✅ Click potential analysis showing estimated traffic values",
-          "✅ Content gap finder to discover keywords your competitors rank for but you don't"
+          " Comprehensive data including search volume, trends, and competition",
+          " Keyword difficulty scoring to identify realistic ranking opportunities",
+          " Historical trend data to spot seasonal patterns and emerging terms",
+          " Click potential analysis showing estimated traffic values",
+          " Content gap finder to discover keywords your competitors rank for but you don't"
         ],
         faqs: [
           {
@@ -335,11 +335,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Identify keywords with the best opportunity-to-effort ratio"
         ],
         features: [
-          "✅ Competition score from 1-100 for quick difficulty assessment",
-          "✅ In-depth analysis of top-ranking domains and their authority",
-          "✅ Content quality evaluation of current top results",
-          "✅ Backlink profile analysis of ranking competitors",
-          "✅ Actionable recommendations for competitive keywords you can realistically target"
+          " Competition score from 1-100 for quick difficulty assessment",
+          " In-depth analysis of top-ranking domains and their authority",
+          " Content quality evaluation of current top results",
+          " Backlink profile analysis of ranking competitors",
+          " Actionable recommendations for competitive keywords you can realistically target"
         ],
         faqs: [
           {
@@ -384,11 +384,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Export your selected keywords for content planning"
         ],
         features: [
-          "✅ Discover semantically related terms beyond simple variations",
-          "✅ Organize keywords by topical clusters for better content planning",
-          "✅ Identify complementary concepts to expand your content scope",
-          "✅ Find entity relationships that strengthen topical relevance",
-          "✅ Access synonyms, related questions, and concept variations"
+          " Discover semantically related terms beyond simple variations",
+          " Organize keywords by topical clusters for better content planning",
+          " Identify complementary concepts to expand your content scope",
+          " Find entity relationships that strengthen topical relevance",
+          " Access synonyms, related questions, and concept variations"
         ],
         faqs: [
           {
@@ -433,11 +433,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Export your selected long-tail keywords for content planning"
         ],
         features: [
-          "✅ Generate hundreds of specific 3-6 word keyword phrases",
-          "✅ Discover question-based keywords perfect for featured snippets",
-          "✅ Find purchase-intent modifiers for commercial content",
-          "✅ Identify informational long-tail keywords for top-of-funnel content",
-          "✅ Access modifiers that indicate high conversion potential"
+          " Generate hundreds of specific 3-6 word keyword phrases",
+          " Discover question-based keywords perfect for featured snippets",
+          " Find purchase-intent modifiers for commercial content",
+          " Identify informational long-tail keywords for top-of-funnel content",
+          " Access modifiers that indicate high conversion potential"
         ],
         faqs: [
           {
@@ -482,11 +482,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Review suggestions and check real-time availability"
         ],
         features: [
-          "✅ Generate dozens of available keyword-rich domain suggestions",
-          "✅ Check real-time availability across multiple TLDs",
-          "✅ Balance SEO value with brandability and memorability",
-          "✅ Discover creative word combinations that include your keywords",
-          "✅ Evaluate domain quality with our proprietary scoring system"
+          " Generate dozens of available keyword-rich domain suggestions",
+          " Check real-time availability across multiple TLDs",
+          " Balance SEO value with brandability and memorability",
+          " Discover creative word combinations that include your keywords",
+          " Evaluate domain quality with our proprietary scoring system"
         ],
         faqs: [
           {
@@ -531,11 +531,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Export a complete competitive analysis report for your strategy planning"
         ],
         features: [
-          "✅ Comprehensive analysis of top 10 ranking pages for each keyword",
-          "✅ Detailed domain and page authority metrics with comparative analysis",
-          "✅ Content quality assessment including word count, readability, and topic coverage",
-          "✅ Backlink profile evaluation with quality and quantity metrics",
-          "✅ Custom difficulty score with specific recommendations for ranking improvement"
+          " Comprehensive analysis of top 10 ranking pages for each keyword",
+          " Detailed domain and page authority metrics with comparative analysis",
+          " Content quality assessment including word count, readability, and topic coverage",
+          " Backlink profile evaluation with quality and quantity metrics",
+          " Custom difficulty score with specific recommendations for ranking improvement"
         ],
         faqs: [
           {
@@ -580,11 +580,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Track historical performance with interactive timeline graphs"
         ],
         features: [
-          "✅ Real-time ranking updates with configurable refresh intervals",
-          "✅ Live SERP feature tracking to capture featured snippet opportunities",
-          "✅ Instant alerts for significant ranking changes or competitor movements",
-          "✅ Interactive dashboards showing minute-by-minute performance",
-          "✅ Comparative analysis with live competitor rank tracking"
+          " Real-time ranking updates with configurable refresh intervals",
+          " Live SERP feature tracking to capture featured snippet opportunities",
+          " Instant alerts for significant ranking changes or competitor movements",
+          " Interactive dashboards showing minute-by-minute performance",
+          " Comparative analysis with live competitor rank tracking"
         ],
         faqs: [
           {
@@ -629,11 +629,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Export complete keyword reports for your strategy planning"
         ],
         features: [
-          "✅ Comprehensive data including search volume, CPC, and competition",
-          "✅ Historical trends showing seasonal patterns and growth trajectory",
-          "✅ SERP feature analysis showing snippet opportunities",
-          "✅ Click-through rate estimates based on current SERP layouts",
-          "✅ Related keywords and questions for content planning"
+          " Comprehensive data including search volume, CPC, and competition",
+          " Historical trends showing seasonal patterns and growth trajectory",
+          " SERP feature analysis showing snippet opportunities",
+          " Click-through rate estimates based on current SERP layouts",
+          " Related keywords and questions for content planning"
         ],
         faqs: [
           {
@@ -678,11 +678,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Review detailed difficulty scores and ranking requirements"
         ],
         features: [
-          "✅ Precise difficulty scoring on a 1-100 scale with ranking probability",
-          "✅ Personalized assessment based on your website's current metrics",
-          "✅ Estimated time-to-rank based on your site's authority",
-          "✅ Specific benchmarks showing required backlinks and content quality",
-          "✅ Competitive gap analysis comparing your site to current top rankers"
+          " Precise difficulty scoring on a 1-100 scale with ranking probability",
+          " Personalized assessment based on your website's current metrics",
+          " Estimated time-to-rank based on your site's authority",
+          " Specific benchmarks showing required backlinks and content quality",
+          " Competitive gap analysis comparing your site to current top rankers"
         ],
         faqs: [
           {
@@ -727,11 +727,11 @@ const KeywordToolsDetailed: React.FC = () => {
           "Filter results by CPC, competition, conversion potential, or other metrics"
         ],
         features: [
-          "✅ Comprehensive CPC data across multiple ad platforms",
-          "✅ Conversion potential scoring based on intent analysis",
-          "✅ ROI projections based on industry average conversion rates",
-          "✅ Negative keyword suggestions to improve campaign efficiency",
-          "✅ Ad group organization recommendations for account structure"
+          " Comprehensive CPC data across multiple ad platforms",
+          " Conversion potential scoring based on intent analysis",
+          " ROI projections based on industry average conversion rates",
+          " Negative keyword suggestions to improve campaign efficiency",
+          " Ad group organization recommendations for account structure"
         ],
         faqs: [
           {
@@ -771,7 +771,7 @@ const KeywordToolsDetailed: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Simple validation
     if (!keywords.trim()) {
       setErrorMessage("Please enter at least one keyword.");
@@ -830,7 +830,7 @@ const KeywordToolsDetailed: React.FC = () => {
 
   const simulatePositionResults = () => {
     const keywordsList = keywords.split(/[\n,]+/).map(k => k.trim()).filter(k => k);
-    
+
     return {
       url: url,
       keywords: keywordsList.map(keyword => ({
@@ -847,7 +847,7 @@ const KeywordToolsDetailed: React.FC = () => {
   const simulateDensityResults = () => {
     const wordCount = Math.floor(Math.random() * 1000) + 500;
     const keywordsArray = keywords.split(/[\n,]+/).map(k => k.trim()).filter(k => k);
-    
+
     return {
       wordCount,
       keywordDensity: keywordsArray.map(keyword => ({
@@ -868,7 +868,7 @@ const KeywordToolsDetailed: React.FC = () => {
 
   const simulateSuggestionResults = () => {
     const mainKeyword = keywords.split(/[\n,]+/)[0].trim();
-    
+
     return {
       baseKeyword: mainKeyword,
       suggestions: [
@@ -892,7 +892,7 @@ const KeywordToolsDetailed: React.FC = () => {
 
   const simulateResearchResults = () => {
     const keywordsList = keywords.split(/[\n,]+/).map(k => k.trim()).filter(k => k);
-    
+
     return {
       keywords: keywordsList.map(keyword => ({
         keyword,
@@ -907,25 +907,25 @@ const KeywordToolsDetailed: React.FC = () => {
 
   const simulateCompetitionResults = () => {
     const keywordsList = keywords.split(/[\n,]+/).map(k => k.trim()).filter(k => k);
-    
+
     return {
       keywords: keywordsList.map(keyword => ({
         keyword,
         difficulty: Math.floor(Math.random() * 100),
         topCompetitors: [
-          { 
-            domain: 'competitor1.com', 
-            authority: Math.floor(Math.random() * 100), 
+          {
+            domain: 'competitor1.com',
+            authority: Math.floor(Math.random() * 100),
             backlinks: Math.floor(Math.random() * 10000)
           },
-          { 
-            domain: 'competitor2.com', 
-            authority: Math.floor(Math.random() * 100), 
+          {
+            domain: 'competitor2.com',
+            authority: Math.floor(Math.random() * 100),
             backlinks: Math.floor(Math.random() * 10000)
           },
-          { 
-            domain: 'competitor3.com', 
-            authority: Math.floor(Math.random() * 100), 
+          {
+            domain: 'competitor3.com',
+            authority: Math.floor(Math.random() * 100),
             backlinks: Math.floor(Math.random() * 10000)
           }
         ],
@@ -938,7 +938,7 @@ const KeywordToolsDetailed: React.FC = () => {
 
   const simulateLiveAnalyzerResults = () => {
     const keywordsList = keywords.split(/[\n,]+/).map(k => k.trim()).filter(k => k);
-    
+
     return {
       url: url,
       timestamp: new Date().toLocaleString(),
@@ -947,13 +947,13 @@ const KeywordToolsDetailed: React.FC = () => {
         currentPosition: Math.floor(Math.random() * 100) + 1,
         hourlyChanges: [0, 1, -1, 2, 0, -2, 1, 0, 0, 3, -1, 0, 1, -2, 0, 2, 1, 0, -1, 2, 0, -1, 1, 0],
         competitorMovements: [
-          { 
-            domain: 'competitor1.com', 
+          {
+            domain: 'competitor1.com',
             position: Math.floor(Math.random() * 10) + 1,
             change: Math.floor(Math.random() * 5) - 2
           },
-          { 
-            domain: 'competitor2.com', 
+          {
+            domain: 'competitor2.com',
             position: Math.floor(Math.random() * 10) + 1,
             change: Math.floor(Math.random() * 5) - 2
           }
@@ -964,7 +964,7 @@ const KeywordToolsDetailed: React.FC = () => {
 
   const simulateDomainSuggestions = () => {
     const mainKeyword = keywords.split(/[\n,]+/)[0].trim().replace(/\s+/g, '');
-    
+
     return {
       keyword: mainKeyword,
       availableDomains: [
@@ -984,7 +984,7 @@ const KeywordToolsDetailed: React.FC = () => {
 
   const simulatePaidKeywordResults = () => {
     const keywordsList = keywords.split(/[\n,]+/).map(k => k.trim()).filter(k => k);
-    
+
     return {
       keywords: keywordsList.map(keyword => ({
         keyword,
@@ -1008,8 +1008,8 @@ const KeywordToolsDetailed: React.FC = () => {
         {/* Input for Keywords */}
         <div>
           <Label htmlFor="keywords">Enter Keywords</Label>
-          <Textarea 
-            id="keywords" 
+          <Textarea
+            id="keywords"
             placeholder={`Enter your keywords here${toolType.includes("density") ? "\n\nOr paste your content for analysis" : "\n(one per line or comma-separated)"}`}
             value={keywords}
             onChange={(e) => setKeywords(e.target.value)}
@@ -1022,17 +1022,17 @@ const KeywordToolsDetailed: React.FC = () => {
         {(toolType === "keyword-position" || toolType === "live-keyword-analyzer" || toolType === "seo-keyword-competition-analysis") && (
           <div>
             <Label htmlFor="url">Website URL</Label>
-            <Input 
-              id="url" 
-              type="url" 
+            <Input
+              id="url"
+              type="url"
               placeholder="https://yourwebsite.com"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               required={toolType === "keyword-position" || toolType === "live-keyword-analyzer"}
             />
             <p className="text-sm text-gray-500 mt-1">
-              {toolType === "seo-keyword-competition-analysis" 
-                ? "Optional: Add your website to see how you compare" 
+              {toolType === "seo-keyword-competition-analysis"
+                ? "Optional: Add your website to see how you compare"
                 : "Enter the website you want to check rankings for"}
             </p>
           </div>
@@ -1102,8 +1102,8 @@ const KeywordToolsDetailed: React.FC = () => {
         )}
 
         {/* Submit Button */}
-        <Button 
-          type="submit" 
+        <Button
+          type="submit"
           className="w-full"
           disabled={isProcessing}
         >
@@ -1311,7 +1311,7 @@ const KeywordToolsDetailed: React.FC = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <div className="flex items-center">
                       <div className="w-24 bg-gray-200 rounded-full h-2.5">
-                        <div 
+                        <div
                           className={`h-2.5 rounded-full ${item.difficulty < 33 ? 'bg-green-500' : item.difficulty < 66 ? 'bg-yellow-500' : 'bg-red-500'}`}
                           style={{ width: `${item.difficulty}%` }}
                         ></div>
@@ -1375,7 +1375,7 @@ const KeywordToolsDetailed: React.FC = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
                   <div className="flex items-center">
                     <div className="w-24 bg-gray-200 rounded-full h-2.5">
-                      <div 
+                      <div
                         className={`h-2.5 rounded-full ${item.difficulty < 33 ? 'bg-green-500' : item.difficulty < 66 ? 'bg-yellow-500' : 'bg-red-500'}`}
                         style={{ width: `${item.difficulty}%` }}
                       ></div>
@@ -1386,8 +1386,8 @@ const KeywordToolsDetailed: React.FC = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.cpc}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
                   <Badge className={`
-                    ${item.intent === 'informational' ? 'bg-blue-100 text-blue-800' : 
-                      item.intent === 'commercial' ? 'bg-purple-100 text-purple-800' : 
+                    ${item.intent === 'informational' ? 'bg-blue-100 text-blue-800' :
+                      item.intent === 'commercial' ? 'bg-purple-100 text-purple-800' :
                       'bg-green-100 text-green-800'}
                   `}>
                     {item.intent}
@@ -1396,9 +1396,9 @@ const KeywordToolsDetailed: React.FC = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
                   <div className="h-6 flex items-end space-x-1">
                     {item.trends.map((value, i) => (
-                      <div 
-                        key={i} 
-                        className={`w-1.5 bg-blue-${Math.max(300, Math.min(700, 300 + Math.floor(value / 10) * 50))}`} 
+                      <div
+                        key={i}
+                        className={`w-1.5 bg-blue-${Math.max(300, Math.min(700, 300 + Math.floor(value / 10) * 50))}`}
                         style={{ height: `${value}%` }}
                       ></div>
                     ))}
@@ -1424,7 +1424,7 @@ const KeywordToolsDetailed: React.FC = () => {
               <div className="flex items-center">
                 <span className="mr-2 text-sm">Difficulty:</span>
                 <div className="w-24 bg-gray-200 rounded-full h-2.5">
-                  <div 
+                  <div
                     className={`h-2.5 rounded-full ${item.difficulty < 33 ? 'bg-green-500' : item.difficulty < 66 ? 'bg-yellow-500' : 'bg-red-500'}`}
                     style={{ width: `${item.difficulty}%` }}
                   ></div>
@@ -1433,7 +1433,7 @@ const KeywordToolsDetailed: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="px-4 py-5 sm:p-6">
             <h4 className="text-sm font-medium text-gray-900 mb-4">Top Ranking Competitors</h4>
             <div className="space-y-4">
@@ -1446,7 +1446,7 @@ const KeywordToolsDetailed: React.FC = () => {
                     <div className="flex items-center mb-1">
                       <span className="text-xs text-gray-500 w-28">Domain Authority:</span>
                       <div className="w-full bg-gray-200 rounded-full h-1.5">
-                        <div 
+                        <div
                           className="h-1.5 rounded-full bg-blue-600"
                           style={{ width: `${competitor.authority}%` }}
                         ></div>
@@ -1461,7 +1461,7 @@ const KeywordToolsDetailed: React.FC = () => {
                 </div>
               ))}
             </div>
-            
+
             <div className="mt-8 grid grid-cols-2 gap-4 text-center">
               <div className="bg-gray-50 rounded-lg p-4">
                 <p className="text-xs text-gray-500">Average Word Count</p>
@@ -1472,7 +1472,7 @@ const KeywordToolsDetailed: React.FC = () => {
                 <p className="text-lg font-medium mt-2">{item.avgBacklinks.toLocaleString()}</p>
               </div>
             </div>
-            
+
             <div className="mt-4 bg-blue-50 rounded-lg p-4">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
@@ -1514,9 +1514,9 @@ const KeywordToolsDetailed: React.FC = () => {
               <div className="flex items-center">
                 <span className="text-sm text-gray-500 mr-2">Current Position:</span>
                 <Badge className={`
-                  ${item.currentPosition <= 3 ? 'bg-green-100 text-green-800' : 
-                    item.currentPosition <= 10 ? 'bg-blue-100 text-blue-800' : 
-                    item.currentPosition <= 30 ? 'bg-yellow-100 text-yellow-800' : 
+                  ${item.currentPosition <= 3 ? 'bg-green-100 text-green-800' :
+                    item.currentPosition <= 10 ? 'bg-blue-100 text-blue-800' :
+                    item.currentPosition <= 30 ? 'bg-yellow-100 text-yellow-800' :
                     'bg-gray-100 text-gray-800'}
                 `}>
                   {item.currentPosition}
@@ -1524,17 +1524,17 @@ const KeywordToolsDetailed: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="p-6">
             <h5 className="text-sm font-medium text-gray-700 mb-3">24-Hour Ranking Changes</h5>
             <div className="h-16 flex items-end space-x-1">
               {item.hourlyChanges.map((change, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className={`w-3 ${change > 0 ? 'bg-green-500' : change < 0 ? 'bg-red-500' : 'bg-gray-300'}`}
-                  style={{ 
+                  style={{
                     height: `${Math.abs(change) * 20 + 5}%`,
-                    marginTop: change > 0 ? 'auto' : '0' 
+                    marginTop: change > 0 ? 'auto' : '0'
                   }}
                   title={`Hour ${i+1}: ${change > 0 ? '+' : ''}${change}`}
                 ></div>
@@ -1547,7 +1547,7 @@ const KeywordToolsDetailed: React.FC = () => {
               <span>6 PM</span>
               <span>Now</span>
             </div>
-            
+
             <div className="mt-8">
               <h5 className="text-sm font-medium text-gray-700 mb-3">Competitor Movements</h5>
               <div className="space-y-2">
@@ -1557,7 +1557,7 @@ const KeywordToolsDetailed: React.FC = () => {
                     <div className="flex items-center">
                       <span className="text-sm mr-2">Rank: {comp.position}</span>
                       <span className={`text-xs ${comp.change > 0 ? 'text-green-600' : comp.change < 0 ? 'text-red-600' : 'text-gray-600'}`}>
-                        {comp.change > 0 ? '▲' : comp.change < 0 ? '▼' : '■'} 
+                        {comp.change > 0 ? '▲' : comp.change < 0 ? '▼' : '■'}
                         {comp.change !== 0 && Math.abs(comp.change)}
                       </span>
                     </div>
@@ -1637,10 +1637,10 @@ const KeywordToolsDetailed: React.FC = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <div className="flex items-center">
                       <div className="w-24 bg-gray-200 rounded-full h-2.5">
-                        <div 
+                        <div
                           className={`h-2.5 rounded-full ${
-                            parseFloat(item.competition) < 0.33 ? 'bg-green-500' : 
-                            parseFloat(item.competition) < 0.66 ? 'bg-yellow-500' : 
+                            parseFloat(item.competition) < 0.33 ? 'bg-green-500' :
+                            parseFloat(item.competition) < 0.66 ? 'bg-yellow-500' :
                             'bg-red-500'
                           }`}
                           style={{ width: `${parseFloat(item.competition) * 100}%` }}
@@ -1652,8 +1652,8 @@ const KeywordToolsDetailed: React.FC = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <Badge className={`
                       ${
-                        parseFloat(item.potentialROI) > 200 ? 'bg-green-100 text-green-800' : 
-                        parseFloat(item.potentialROI) > 100 ? 'bg-blue-100 text-blue-800' : 
+                        parseFloat(item.potentialROI) > 200 ? 'bg-green-100 text-green-800' :
+                        parseFloat(item.potentialROI) > 100 ? 'bg-blue-100 text-blue-800' :
                         'bg-yellow-100 text-yellow-800'
                       }
                     `}>
@@ -1709,11 +1709,11 @@ const KeywordToolsDetailed: React.FC = () => {
             "Review the detailed results and insights"
           ]}
           features={config?.features || [
-            "✅ Comprehensive keyword analysis",
-            "✅ Detailed metrics and insights",
-            "✅ User-friendly interface",
-            "✅ Actionable recommendations",
-            "✅ Save and export results"
+            " Comprehensive keyword analysis",
+            " Detailed metrics and insights",
+            " User-friendly interface",
+            " Actionable recommendations",
+            " Save and export results"
           ]}
           faqs={config?.faqs || [
             {

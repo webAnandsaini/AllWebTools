@@ -9,10 +9,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
-import { 
-  FaSearch, 
-  FaCheck, 
-  FaTimes, 
+import {
+  FaSearch,
+  FaCheck,
+  FaTimes,
   FaExclamationTriangle,
   FaGlobe,
   FaCopy,
@@ -51,7 +51,7 @@ const MetaTagsAnalyzerDetailed = () => {
     setIsAnalyzing(true);
     setAnalyzeProgress(0);
     setResults(null);
-    
+
     // Simulate analysis process
     let progress = 0;
     const interval = setInterval(() => {
@@ -59,11 +59,11 @@ const MetaTagsAnalyzerDetailed = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         // Generate simulated analysis results
         const metaTags = generateSimulatedMetaTags();
         const scores = calculateScores(metaTags);
-        
+
         setResults({
           url: url,
           metaTags: metaTags,
@@ -75,10 +75,10 @@ const MetaTagsAnalyzerDetailed = () => {
             overallScore: scores.overall
           }
         });
-        
+
         setIsAnalyzing(false);
         setActiveTab("summary");
-        
+
         toast({
           title: "Analysis complete",
           description: `Analyzed ${metaTags.length} meta tags on ${url}`,
@@ -243,18 +243,18 @@ const MetaTagsAnalyzerDetailed = () => {
     const criticalTags = metaTags.filter(tag => tag.importance === "critical");
     const recommendedTags = metaTags.filter(tag => tag.importance === "recommended");
     const otherTags = metaTags.filter(tag => tag.importance !== "critical" && tag.importance !== "recommended");
-    
+
     const criticalScore = Math.round((criticalTags.filter(tag => tag.present).length / criticalTags.length) * 100);
     const recommendedScore = Math.round((recommendedTags.filter(tag => tag.present).length / recommendedTags.length) * 100);
     const otherScore = Math.round((otherTags.filter(tag => tag.present).length / otherTags.length) * 100);
-    
+
     // Calculate optimal implementation scores
     const criticalOptimalScore = Math.round((criticalTags.filter(tag => tag.present && tag.optimal).length / criticalTags.length) * 100);
     const recommendedOptimalScore = Math.round((recommendedTags.filter(tag => tag.present && tag.optimal).length / recommendedTags.length) * 100);
-    
+
     // Calculate overall score (weighted)
     const overallScore = Math.round((criticalScore * 0.6) + (recommendedScore * 0.3) + (otherScore * 0.1));
-    
+
     return {
       critical: criticalScore,
       recommended: recommendedScore,
@@ -267,17 +267,17 @@ const MetaTagsAnalyzerDetailed = () => {
 
   const exportResultsAsJSON = () => {
     if (!results) return;
-    
+
     const dataStr = JSON.stringify(results, null, 2);
     const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-    
+
     const exportFileDefaultName = `${url.replace(/[^a-zA-Z0-9]/g, '_')}_meta_analysis.json`;
-    
+
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', exportFileDefaultName);
     linkElement.click();
-    
+
     toast({
       title: "Export successful",
       description: "Meta tags analysis exported as JSON",
@@ -286,9 +286,9 @@ const MetaTagsAnalyzerDetailed = () => {
 
   const exportResultsAsCSV = () => {
     if (!results) return;
-    
+
     let csvContent = "Name,Content,Present,Importance,Optimal,Recommendation\n";
-    
+
     results.metaTags.forEach((tag: any) => {
       const row = [
         `"${tag.name}"`,
@@ -298,18 +298,18 @@ const MetaTagsAnalyzerDetailed = () => {
         tag.optimal ? "Yes" : "No",
         `"${tag.recommendation}"`
       ].join(',');
-      
+
       csvContent += row + "\n";
     });
-    
+
     const dataUri = 'data:text/csv;charset=utf-8,'+ encodeURIComponent(csvContent);
     const exportFileDefaultName = `${url.replace(/[^a-zA-Z0-9]/g, '_')}_meta_analysis.csv`;
-    
+
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', exportFileDefaultName);
     linkElement.click();
-    
+
     toast({
       title: "Export successful",
       description: "Meta tags analysis exported as CSV",
@@ -318,11 +318,11 @@ const MetaTagsAnalyzerDetailed = () => {
 
   const copyMetaTagsToClipboard = () => {
     if (!results) return;
-    
-    const metaTagsText = results.metaTags.map((tag: any) => 
+
+    const metaTagsText = results.metaTags.map((tag: any) =>
       `${tag.name}: ${tag.content} (${tag.present ? 'Present' : 'Missing'}, ${tag.importance})`
     ).join('\n');
-    
+
     navigator.clipboard.writeText(metaTagsText)
       .then(() => {
         toast({
@@ -367,7 +367,7 @@ const MetaTagsAnalyzerDetailed = () => {
 
   const getOptimalBadge = (present: boolean, optimal: boolean) => {
     if (!present) return null;
-    
+
     if (optimal) {
       return <Badge className="ml-2 bg-blue-100 text-blue-800 hover:bg-blue-100 hover:text-blue-800">Optimal</Badge>;
     } else {
@@ -407,13 +407,13 @@ const MetaTagsAnalyzerDetailed = () => {
   ];
 
   const features = [
-    "✅ Comprehensive scan of all SEO and social meta tags on your webpage",
-    "✅ Detailed analysis with categorization by importance (critical, recommended, optional)",
-    "✅ Specific improvement recommendations for each meta tag",
-    "✅ Color-coded scoring system to quickly identify areas needing attention",
-    "✅ Social meta tags analysis for Facebook Open Graph and Twitter Cards",
-    "✅ Export functionality for CSV and JSON formats",
-    "✅ Prioritized list of critical issues requiring immediate attention"
+    " Comprehensive scan of all SEO and social meta tags on your webpage",
+    " Detailed analysis with categorization by importance (critical, recommended, optional)",
+    " Specific improvement recommendations for each meta tag",
+    " Color-coded scoring system to quickly identify areas needing attention",
+    " Social meta tags analysis for Facebook Open Graph and Twitter Cards",
+    " Export functionality for CSV and JSON formats",
+    " Prioritized list of critical issues requiring immediate attention"
   ];
 
   const faqs = [
@@ -434,19 +434,19 @@ const MetaTagsAnalyzerDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Meta Tags Analyzer</h3>
-      
+
       <div className="space-y-5">
         <div>
           <Label htmlFor="url-input" className="block mb-2">Website URL</Label>
           <div className="flex">
-            <Input 
-              id="url-input" 
-              placeholder="https://example.com" 
+            <Input
+              id="url-input"
+              placeholder="https://example.com"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               className="rounded-r-none"
             />
-            <Button 
+            <Button
               onClick={handleAnalyze}
               className="rounded-l-none bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
               disabled={isAnalyzing}
@@ -455,7 +455,7 @@ const MetaTagsAnalyzerDetailed = () => {
                 <>Analyzing...</>
               ) : (
                 <>
-                  <FaSearch className="mr-2" /> 
+                  <FaSearch className="mr-2" />
                   Analyze Meta Tags
                 </>
               )}
@@ -463,7 +463,7 @@ const MetaTagsAnalyzerDetailed = () => {
           </div>
           <p className="text-xs text-gray-500 mt-1">Enter complete URL including http:// or https://</p>
         </div>
-        
+
         {isAnalyzing && (
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
@@ -473,7 +473,7 @@ const MetaTagsAnalyzerDetailed = () => {
             <Progress value={analyzeProgress} />
           </div>
         )}
-        
+
         {results && (
           <div className="space-y-5 pt-2">
             <Tabs defaultValue="summary" value={activeTab} onValueChange={setActiveTab}>
@@ -482,7 +482,7 @@ const MetaTagsAnalyzerDetailed = () => {
                 <TabsTrigger value="all">All Tags</TabsTrigger>
                 <TabsTrigger value="issues">Critical Issues</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="summary" className="mt-4 space-y-4">
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Card className="flex-1 p-4 border">
@@ -493,7 +493,7 @@ const MetaTagsAnalyzerDetailed = () => {
                       </div>
                     </div>
                   </Card>
-                  
+
                   <Card className="flex-1 p-4 border">
                     <h4 className="text-lg font-medium mb-2">Meta Tag Summary</h4>
                     <div className="space-y-2">
@@ -516,7 +516,7 @@ const MetaTagsAnalyzerDetailed = () => {
                     </div>
                   </Card>
                 </div>
-                
+
                 <Card className="p-4 border">
                   <h4 className="text-lg font-medium mb-3">Category Scores</h4>
                   <div className="space-y-3">
@@ -526,33 +526,33 @@ const MetaTagsAnalyzerDetailed = () => {
                         <span className={getScoreColor(results.scores.critical)}>{results.scores.critical}%</span>
                       </div>
                       <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div 
+                        <div
                           className={`h-full rounded-full ${results.scores.critical >= 80 ? 'bg-green-500' : results.scores.critical >= 60 ? 'bg-amber-500' : 'bg-red-500'}`}
                           style={{ width: `${results.scores.critical}%` }}
                         ></div>
                       </div>
                     </div>
-                    
+
                     <div>
                       <div className="flex justify-between text-sm mb-1">
                         <span>Recommended Tags</span>
                         <span className={getScoreColor(results.scores.recommended)}>{results.scores.recommended}%</span>
                       </div>
                       <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div 
+                        <div
                           className={`h-full rounded-full ${results.scores.recommended >= 80 ? 'bg-green-500' : results.scores.recommended >= 60 ? 'bg-amber-500' : 'bg-red-500'}`}
                           style={{ width: `${results.scores.recommended}%` }}
                         ></div>
                       </div>
                     </div>
-                    
+
                     <div>
                       <div className="flex justify-between text-sm mb-1">
                         <span>Optional Tags</span>
                         <span className={getScoreColor(results.scores.other)}>{results.scores.other}%</span>
                       </div>
                       <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div 
+                        <div
                           className={`h-full rounded-full ${results.scores.other >= 80 ? 'bg-green-500' : results.scores.other >= 60 ? 'bg-amber-500' : 'bg-red-500'}`}
                           style={{ width: `${results.scores.other}%` }}
                         ></div>
@@ -560,7 +560,7 @@ const MetaTagsAnalyzerDetailed = () => {
                     </div>
                   </div>
                 </Card>
-                
+
                 <Card className="p-4 border">
                   <h4 className="text-lg font-medium mb-3">Critical Tag Implementation</h4>
                   <div className="space-y-2">
@@ -584,29 +584,29 @@ const MetaTagsAnalyzerDetailed = () => {
                     }
                   </div>
                 </Card>
-                
+
                 <div className="flex justify-between">
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
                     onClick={copyMetaTagsToClipboard}
                   >
                     <FaCopy className="mr-2" />
                     Copy Results
                   </Button>
-                  
+
                   <div className="space-x-2">
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       size="sm"
                       onClick={exportResultsAsCSV}
                     >
                       <FaDownload className="mr-2" />
                       Export CSV
                     </Button>
-                    
-                    <Button 
-                      variant="outline" 
+
+                    <Button
+                      variant="outline"
                       size="sm"
                       onClick={exportResultsAsJSON}
                     >
@@ -616,23 +616,23 @@ const MetaTagsAnalyzerDetailed = () => {
                   </div>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="all" className="mt-4 space-y-4">
                 <div className="flex justify-between items-center">
                   <h4 className="font-medium text-lg">All Meta Tags</h4>
-                  
+
                   <div className="flex gap-2">
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       size="sm"
                       onClick={exportResultsAsCSV}
                     >
-                      <FaDownload className="mr-1" /> 
+                      <FaDownload className="mr-1" />
                       Export CSV
                     </Button>
                   </div>
                 </div>
-                
+
                 <div className="divide-y">
                   {results.metaTags.map((tag: any, index: number) => (
                     <div key={index} className="py-3">
@@ -644,7 +644,7 @@ const MetaTagsAnalyzerDetailed = () => {
                           {getImportanceBadge(tag.importance)}
                         </div>
                       </div>
-                      
+
                       {tag.present && (
                         <div className="pl-4 border-l-2 border-gray-200 mt-2">
                           <p className="text-sm text-gray-600 mb-1">
@@ -655,7 +655,7 @@ const MetaTagsAnalyzerDetailed = () => {
                           </p>
                         </div>
                       )}
-                      
+
                       {!tag.present && (
                         <div className="pl-4 border-l-2 border-gray-200 mt-2">
                           <p className="text-sm text-gray-700">
@@ -668,7 +668,7 @@ const MetaTagsAnalyzerDetailed = () => {
                   ))}
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="issues" className="mt-4 space-y-4">
                 <div className="flex justify-between items-center">
                   <h4 className="font-medium text-lg flex items-center">
@@ -676,7 +676,7 @@ const MetaTagsAnalyzerDetailed = () => {
                     Critical Issues
                   </h4>
                 </div>
-                
+
                 <div className="divide-y">
                   {results.metaTags
                     .filter((tag: any) => !tag.present && tag.importance === "critical")
@@ -686,13 +686,13 @@ const MetaTagsAnalyzerDetailed = () => {
                           <h5 className="font-medium">{tag.name}</h5>
                           <Badge className="bg-red-100 text-red-800 hover:bg-red-100 hover:text-red-800">Missing Critical Tag</Badge>
                         </div>
-                        
+
                         <div className="pl-4 border-l-2 border-red-300 mt-2">
                           <p className="text-sm text-gray-700">
                             <FaExclamationTriangle className="text-red-500 inline-block mr-1" />
                             <span className="font-medium">Recommendation:</span> {tag.recommendation}
                           </p>
-                          
+
                           <div className="mt-2 text-sm">
                             <span className="font-medium">Example implementation:</span>
                             <pre className="bg-gray-100 p-2 mt-1 rounded text-xs overflow-x-auto">
@@ -716,16 +716,16 @@ const MetaTagsAnalyzerDetailed = () => {
                         </div>
                       </div>
                     ))}
-                  
+
                   {results.metaTags.filter((tag: any) => !tag.present && tag.importance === "critical").length === 0 && (
                     <div className="py-6 text-center">
                       <FaCheck className="text-green-500 mx-auto mb-2 text-2xl" />
                       <p className="text-gray-600">No critical tag issues found. Great job!</p>
                     </div>
                   )}
-                  
+
                   <h4 className="font-medium pt-4 mt-2">Recommended Tag Issues</h4>
-                  
+
                   {results.metaTags
                     .filter((tag: any) => !tag.present && tag.importance === "recommended")
                     .map((tag: any, index: number) => (
@@ -734,7 +734,7 @@ const MetaTagsAnalyzerDetailed = () => {
                           <h5 className="font-medium">{tag.name}</h5>
                           <Badge className="bg-amber-100 text-amber-800 hover:bg-amber-100 hover:text-amber-800">Missing Recommended Tag</Badge>
                         </div>
-                        
+
                         <div className="pl-4 border-l-2 border-amber-300 mt-2">
                           <p className="text-sm text-gray-700">
                             <FaExclamationTriangle className="text-amber-500 inline-block mr-1" />
@@ -743,7 +743,7 @@ const MetaTagsAnalyzerDetailed = () => {
                         </div>
                       </div>
                     ))}
-                  
+
                   {results.metaTags.filter((tag: any) => !tag.present && tag.importance === "recommended").length === 0 && (
                     <div className="py-6 text-center">
                       <FaCheck className="text-green-500 mx-auto mb-2 text-2xl" />

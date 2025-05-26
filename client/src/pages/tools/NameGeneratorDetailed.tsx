@@ -133,29 +133,29 @@ const NameGeneratorDetailed: React.FC = () => {
   // Generate a first name based on gender and name type
   const generateFirstName = (nameGender: string, type: string): string => {
     // Determine gender (if "any", randomly pick one)
-    const actualGender = nameGender === "any" 
-      ? (Math.random() > 0.5 ? "male" : "female") 
+    const actualGender = nameGender === "any"
+      ? (Math.random() > 0.5 ? "male" : "female")
       : nameGender;
-    
+
     if (type === "japanese") {
-      return actualGender === "male" 
-        ? getRandomElement(japaneseFirstNamesMale) 
+      return actualGender === "male"
+        ? getRandomElement(japaneseFirstNamesMale)
         : getRandomElement(japaneseFirstNamesFemale);
     } else if (type === "korean") {
-      return actualGender === "male" 
-        ? getRandomElement(koreanFirstNamesMale) 
+      return actualGender === "male"
+        ? getRandomElement(koreanFirstNamesMale)
         : getRandomElement(koreanFirstNamesFemale);
     } else if (type === "spanish") {
-      return actualGender === "male" 
-        ? getRandomElement(spanishFirstNamesMale) 
+      return actualGender === "male"
+        ? getRandomElement(spanishFirstNamesMale)
         : getRandomElement(spanishFirstNamesFemale);
     } else if (type === "last") {
       // For last name generator, return a last name as "first name"
       return getRandomElement(lastNames);
     } else {
       // Default/random/generic
-      return actualGender === "male" 
-        ? getRandomElement(maleFirstNames) 
+      return actualGender === "male"
+        ? getRandomElement(maleFirstNames)
         : getRandomElement(femaleFirstNames);
     }
   };
@@ -178,9 +178,9 @@ const NameGeneratorDetailed: React.FC = () => {
   const generateName = (): GeneratedName => {
     const firstName = generateFirstName(gender, nameType);
     const lastName = includeLastName ? generateLastName(nameType) : "";
-    
+
     const fullName = includeLastName ? `${firstName} ${lastName}` : firstName;
-    
+
     return {
       firstName,
       lastName,
@@ -192,18 +192,18 @@ const NameGeneratorDetailed: React.FC = () => {
   const handleGenerate = () => {
     try {
       const count = parseInt(quantity);
-      
+
       if (isNaN(count) || count < 1 || count > 50) {
         setError("Please enter a valid quantity between 1 and 50");
         return;
       }
-      
+
       const names: GeneratedName[] = [];
-      
+
       for (let i = 0; i < count; i++) {
         names.push(generateName());
       }
-      
+
       setGeneratedNames(names);
       setError("");
     } catch (error: any) {
@@ -254,43 +254,43 @@ const NameGeneratorDetailed: React.FC = () => {
   const getFeatures = (): string[] => {
     if (nameType === "japanese") {
       return [
-        "✅ Generates authentic Japanese first and last names",
-        "✅ Option to select gender-specific names or random gender",
-        "✅ Culturally appropriate name combinations",
-        "✅ Generate up to 50 names in a single batch",
-        "✅ Easy copy functionality for all generated names"
+        " Generates authentic Japanese first and last names",
+        " Option to select gender-specific names or random gender",
+        " Culturally appropriate name combinations",
+        " Generate up to 50 names in a single batch",
+        " Easy copy functionality for all generated names"
       ];
     } else if (nameType === "last") {
       return [
-        "✅ Generates diverse surnames from multiple cultural backgrounds",
-        "✅ Creates believable last names for fictional characters",
-        "✅ Generate up to 50 surnames in a single batch",
-        "✅ Easy copy functionality for all generated names",
-        "✅ Perfect for writers, game developers, and creative projects"
+        " Generates diverse surnames from multiple cultural backgrounds",
+        " Creates believable last names for fictional characters",
+        " Generate up to 50 surnames in a single batch",
+        " Easy copy functionality for all generated names",
+        " Perfect for writers, game developers, and creative projects"
       ];
     } else if (nameType === "korean") {
       return [
-        "✅ Generates authentic Korean first and last names",
-        "✅ Option to select gender-specific names or random gender",
-        "✅ Culturally appropriate Korean name combinations",
-        "✅ Generate up to 50 names in a single batch",
-        "✅ Easy copy functionality for all generated names"
+        " Generates authentic Korean first and last names",
+        " Option to select gender-specific names or random gender",
+        " Culturally appropriate Korean name combinations",
+        " Generate up to 50 names in a single batch",
+        " Easy copy functionality for all generated names"
       ];
     } else if (nameType === "spanish") {
       return [
-        "✅ Generates authentic Spanish and Hispanic names",
-        "✅ Option to select gender-specific names or random gender",
-        "✅ Culturally appropriate Spanish name combinations",
-        "✅ Generate up to 50 names in a single batch",
-        "✅ Easy copy functionality for all generated names"
+        " Generates authentic Spanish and Hispanic names",
+        " Option to select gender-specific names or random gender",
+        " Culturally appropriate Spanish name combinations",
+        " Generate up to 50 names in a single batch",
+        " Easy copy functionality for all generated names"
       ];
     } else {
       return [
-        "✅ Generates diverse names from multiple cultural backgrounds",
-        "✅ Option to select gender-specific names or random gender",
-        "✅ Creates believable character names for any purpose",
-        "✅ Generate up to 50 names in a single batch",
-        "✅ Easy copy functionality for all generated names"
+        " Generates diverse names from multiple cultural backgrounds",
+        " Option to select gender-specific names or random gender",
+        " Creates believable character names for any purpose",
+        " Generate up to 50 names in a single batch",
+        " Easy copy functionality for all generated names"
       ];
     }
   };
@@ -418,7 +418,7 @@ const NameGeneratorDetailed: React.FC = () => {
                 </Select>
               </div>
             )}
-            
+
             <div>
               <Label htmlFor="quantity">Quantity (1-50)</Label>
               <Input
@@ -431,11 +431,11 @@ const NameGeneratorDetailed: React.FC = () => {
                 className="mt-1.5"
               />
             </div>
-            
+
             {nameType !== "last" && (
               <div className="flex items-center space-x-2">
-                <Switch 
-                  id="include-last-name" 
+                <Switch
+                  id="include-last-name"
                   checked={includeLastName}
                   onCheckedChange={setIncludeLastName}
                 />
@@ -460,8 +460,8 @@ const NameGeneratorDetailed: React.FC = () => {
                   {generatedNames.map((name, index) => (
                     <div key={index} className="p-2 border border-gray-200 rounded-md bg-white flex justify-between items-center">
                       <span>{name.fullName}</span>
-                      <Button 
-                        variant="ghost" 
+                      <Button
+                        variant="ghost"
                         size="sm"
                         onClick={() => {
                           navigator.clipboard.writeText(name.fullName);
@@ -473,7 +473,7 @@ const NameGeneratorDetailed: React.FC = () => {
                   ))}
                 </div>
                 <div className="flex justify-end mt-2">
-                  <Button 
+                  <Button
                     variant="outline"
                     onClick={() => {
                       const namesList = generatedNames.map(name => name.fullName).join("\n");
@@ -496,7 +496,7 @@ const NameGeneratorDetailed: React.FC = () => {
             <p>
               Our {getTitle()} creates realistic{nameType !== "generic" ? ` ${nameType}` : ""} names for characters, creative writing, games, and more.
             </p>
-            
+
             <div>
               <h4 className="font-medium mb-2">Common Uses:</h4>
               <ul className="list-disc pl-5 space-y-1">
@@ -527,7 +527,7 @@ const NameGeneratorDetailed: React.FC = () => {
     `Click the 'Generate Names' button`,
     `View the generated ${nameType === "last" ? "surnames" : "names"} and copy individual names or all names at once`,
   ].filter(Boolean);
-  
+
   const features = getFeatures();
   const faqs = getFaqs();
 

@@ -6,10 +6,10 @@ import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { imageEditingTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
-import { 
-  FaUpload, 
-  FaDownload, 
-  FaExchangeAlt, 
+import {
+  FaUpload,
+  FaDownload,
+  FaExchangeAlt,
   FaFileImage,
   FaImages,
   FaCheck
@@ -33,11 +33,11 @@ const ConvertToJPGDetailed = () => {
     if (e.target.files) {
       const selectedFiles = Array.from(e.target.files);
       setFiles([...files, ...selectedFiles]);
-      
+
       // Create preview URLs for each file
       const urls = selectedFiles.map(file => URL.createObjectURL(file));
       setPreviewUrls([...previewUrls, ...urls]);
-      
+
       // Reset results
       setResultUrls([]);
       setConvertProgress(0);
@@ -47,13 +47,13 @@ const ConvertToJPGDetailed = () => {
   const removeFile = (index: number) => {
     const newFiles = [...files];
     const newPreviewUrls = [...previewUrls];
-    
+
     // Revoke object URL to prevent memory leaks
     URL.revokeObjectURL(newPreviewUrls[index]);
-    
+
     newFiles.splice(index, 1);
     newPreviewUrls.splice(index, 1);
-    
+
     setFiles(newFiles);
     setPreviewUrls(newPreviewUrls);
   };
@@ -62,7 +62,7 @@ const ConvertToJPGDetailed = () => {
     // Revoke all object URLs
     previewUrls.forEach(url => URL.revokeObjectURL(url));
     resultUrls.forEach(url => URL.revokeObjectURL(url));
-    
+
     setFiles([]);
     setPreviewUrls([]);
     setResultUrls([]);
@@ -82,7 +82,7 @@ const ConvertToJPGDetailed = () => {
     setIsConverting(true);
     setConvertProgress(0);
     setResultUrls([]);
-    
+
     // Simulate conversion process
     let progress = 0;
     const interval = setInterval(() => {
@@ -90,13 +90,13 @@ const ConvertToJPGDetailed = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         // Simulate conversion result
         const results = previewUrls.map(url => url); // In a real implementation, these would be converted JPG URLs
         setResultUrls(results);
-        
+
         setIsConverting(false);
-        
+
         toast({
           title: "Conversion complete",
           description: `Successfully converted ${files.length} ${files.length === 1 ? 'image' : 'images'} to JPG.`,
@@ -108,7 +108,7 @@ const ConvertToJPGDetailed = () => {
 
   const handleDownload = (index: number) => {
     if (!resultUrls[index]) return;
-    
+
     // Create a download link
     const a = document.createElement('a');
     a.href = resultUrls[index];
@@ -116,7 +116,7 @@ const ConvertToJPGDetailed = () => {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    
+
     toast({
       title: "Download started",
       description: "Your converted image is being downloaded.",
@@ -125,12 +125,12 @@ const ConvertToJPGDetailed = () => {
 
   const handleDownloadAll = () => {
     if (resultUrls.length === 0) return;
-    
+
     toast({
       title: "Preparing download",
       description: "All converted images will be downloaded in a few moments.",
     });
-    
+
     // In a real implementation, this would create a zip file with all images
     // For this demo, we'll just download the first one
     setTimeout(() => {
@@ -140,13 +140,13 @@ const ConvertToJPGDetailed = () => {
 
   const formatBytes = (bytes: number, decimals = 2) => {
     if (bytes === 0) return '0 Bytes';
-    
+
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    
+
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    
+
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   };
 
@@ -164,12 +164,12 @@ const ConvertToJPGDetailed = () => {
   ];
 
   const features = [
-    "✅ Convert multiple image formats to JPG (PNG, WebP, GIF, BMP, TIFF, etc.)",
-    "✅ Batch processing for multiple images simultaneously",
-    "✅ Adjustable quality settings for optimal results",
-    "✅ Option to preserve original image metadata",
-    "✅ Intelligent transparency handling for PNG images",
-    "✅ Free and unlimited image conversion"
+    " Convert multiple image formats to JPG (PNG, WebP, GIF, BMP, TIFF, etc.)",
+    " Batch processing for multiple images simultaneously",
+    " Adjustable quality settings for optimal results",
+    " Option to preserve original image metadata",
+    " Intelligent transparency handling for PNG images",
+    " Free and unlimited image conversion"
   ];
 
   const faqs = [
@@ -190,7 +190,7 @@ const ConvertToJPGDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Convert to JPG</h3>
-      
+
       <div className="border-2 border-dashed rounded-lg p-4 text-center">
         <Label htmlFor="convert-image-upload" className="cursor-pointer block">
           <div className="py-8 flex flex-col items-center">
@@ -212,20 +212,20 @@ const ConvertToJPGDetailed = () => {
           />
         </Label>
       </div>
-      
+
       {files.length > 0 && (
         <div className="mt-6 space-y-5">
           <div className="flex justify-between items-center">
             <h4 className="font-medium">Upload Queue ({files.length})</h4>
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               size="sm"
               onClick={clearAll}
             >
               Clear All
             </Button>
           </div>
-          
+
           <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
             {files.map((file, index) => (
               <div key={index} className="flex items-center justify-between border rounded-lg p-3 bg-gray-50">
@@ -240,8 +240,8 @@ const ConvertToJPGDetailed = () => {
                 </div>
                 <div className="flex items-center">
                   {resultUrls[index] && (
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       size="sm"
                       className="text-green-600 mr-2"
                       onClick={() => handleDownload(index)}
@@ -250,8 +250,8 @@ const ConvertToJPGDetailed = () => {
                       Download
                     </Button>
                   )}
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     size="sm"
                     className="text-red-600"
                     onClick={() => removeFile(index)}
@@ -262,14 +262,14 @@ const ConvertToJPGDetailed = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="space-y-4 pt-2">
             <div>
               <div className="flex justify-between items-center mb-1">
                 <Label htmlFor="jpg-quality" className="font-medium">JPG Quality</Label>
                 <span className="text-sm">{quality}%</span>
               </div>
-              <Slider 
+              <Slider
                 id="jpg-quality"
                 min={50}
                 max={100}
@@ -282,19 +282,19 @@ const ConvertToJPGDetailed = () => {
                 <span>Better quality</span>
               </div>
             </div>
-            
+
             <div className="flex items-center justify-between">
               <div>
                 <Label htmlFor="preserve-metadata" className="font-medium">Preserve Metadata</Label>
                 <p className="text-xs text-gray-500">Keep EXIF data (camera info, GPS, etc.)</p>
               </div>
-              <Switch 
-                id="preserve-metadata" 
+              <Switch
+                id="preserve-metadata"
                 checked={preserveExif}
                 onCheckedChange={setPreserveExif}
               />
             </div>
-            
+
             <div className="flex items-center justify-between">
               <div>
                 <Label htmlFor="transparency" className="font-medium">Transparency Handling</Label>
@@ -308,17 +308,17 @@ const ConvertToJPGDetailed = () => {
                   className="w-8 h-8 rounded border mr-2"
                   disabled={!preserveTransparency}
                 />
-                <Switch 
-                  id="transparency" 
+                <Switch
+                  id="transparency"
                   checked={preserveTransparency}
                   onCheckedChange={setPreserveTransparency}
                 />
               </div>
             </div>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button 
+            <Button
               onClick={handleConvert}
               className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
               disabled={isConverting || files.length === 0}
@@ -327,24 +327,24 @@ const ConvertToJPGDetailed = () => {
                 <>Converting...</>
               ) : (
                 <>
-                  <FaExchangeAlt className="mr-2" /> 
+                  <FaExchangeAlt className="mr-2" />
                   Convert to JPG
                 </>
               )}
             </Button>
-            
+
             {resultUrls.length > 0 && (
-              <Button 
+              <Button
                 onClick={handleDownloadAll}
                 variant="outline"
                 className="flex-1"
               >
-                <FaDownload className="mr-2" /> 
+                <FaDownload className="mr-2" />
                 Download All
               </Button>
             )}
           </div>
-          
+
           {isConverting && (
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
@@ -354,7 +354,7 @@ const ConvertToJPGDetailed = () => {
               <Progress value={convertProgress} />
             </div>
           )}
-          
+
           {resultUrls.length > 0 && (
             <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-800 flex items-center">
               <FaCheck className="mr-2 flex-shrink-0" />

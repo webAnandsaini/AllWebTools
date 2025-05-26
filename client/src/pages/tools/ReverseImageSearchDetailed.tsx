@@ -6,9 +6,9 @@ import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { imageEditingTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
-import { 
-  FaUpload, 
-  FaImage, 
+import {
+  FaUpload,
+  FaImage,
   FaSearch,
   FaEye
 } from "react-icons/fa";
@@ -25,7 +25,7 @@ const ReverseImageSearchDetailed = () => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
       const fileType = selectedFile.type;
-      
+
       // Check if file is an image
       if (!fileType.startsWith('image/')) {
         toast({
@@ -35,12 +35,12 @@ const ReverseImageSearchDetailed = () => {
         });
         return;
       }
-      
+
       setFile(selectedFile);
       const objectUrl = URL.createObjectURL(selectedFile);
       setPreviewUrl(objectUrl);
       setSearchResults([]);
-      
+
       return () => {
         if (previewUrl) {
           URL.revokeObjectURL(previewUrl);
@@ -62,7 +62,7 @@ const ReverseImageSearchDetailed = () => {
     setIsSearching(true);
     setSearchProgress(0);
     setSearchResults([]);
-    
+
     // Simulate search process
     let progress = 0;
     const interval = setInterval(() => {
@@ -70,7 +70,7 @@ const ReverseImageSearchDetailed = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         // Simulate search results
         const simulatedResults = [
           {
@@ -114,10 +114,10 @@ const ReverseImageSearchDetailed = () => {
             source: "images.anotherexample.com"
           }
         ];
-        
+
         setSearchResults(simulatedResults);
         setIsSearching(false);
-        
+
         toast({
           title: "Search complete",
           description: `Found ${simulatedResults.length} similar images.`,
@@ -149,13 +149,13 @@ const ReverseImageSearchDetailed = () => {
   ];
 
   const features = [
-    "✅ Search for visually similar images across the web",
-    "✅ Find original sources of images",
-    "✅ Discover potentially modified versions of your images",
-    "✅ Identify websites using your visual content",
-    "✅ Locate higher resolution versions of images",
-    "✅ Support for common image formats (JPEG, PNG, GIF, etc.)",
-    "✅ Fast and accurate search results"
+    " Search for visually similar images across the web",
+    " Find original sources of images",
+    " Discover potentially modified versions of your images",
+    " Identify websites using your visual content",
+    " Locate higher resolution versions of images",
+    " Support for common image formats (JPEG, PNG, GIF, etc.)",
+    " Fast and accurate search results"
   ];
 
   const faqs = [
@@ -176,7 +176,7 @@ const ReverseImageSearchDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Reverse Image Search</h3>
-      
+
       <div className="space-y-6">
         {!previewUrl ? (
           <div className="border-2 border-dashed rounded-lg p-4 text-center">
@@ -202,10 +202,10 @@ const ReverseImageSearchDetailed = () => {
         ) : (
           <div className="space-y-4">
             <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100 border">
-              <img 
-                src={previewUrl} 
-                alt="Preview" 
-                className="object-contain w-full h-full" 
+              <img
+                src={previewUrl}
+                alt="Preview"
+                className="object-contain w-full h-full"
               />
               <Button
                 variant="outline"
@@ -216,12 +216,12 @@ const ReverseImageSearchDetailed = () => {
                 ×
               </Button>
             </div>
-            
+
             <p className="text-sm text-gray-600">
               {file?.name} ({(file?.size / 1024 / 1024).toFixed(2)} MB)
             </p>
-            
-            <Button 
+
+            <Button
               onClick={handleSearch}
               className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
               disabled={isSearching}
@@ -230,14 +230,14 @@ const ReverseImageSearchDetailed = () => {
                 <>Searching...</>
               ) : (
                 <>
-                  <FaSearch className="mr-2" /> 
+                  <FaSearch className="mr-2" />
                   Search Image
                 </>
               )}
             </Button>
           </div>
         )}
-        
+
         {isSearching && (
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
@@ -247,27 +247,27 @@ const ReverseImageSearchDetailed = () => {
             <Progress value={searchProgress} />
           </div>
         )}
-        
+
         {searchResults.length > 0 && (
           <div className="space-y-4">
             <h4 className="font-medium">Search Results</h4>
-            
+
             <div className="space-y-4">
               {searchResults.map(result => (
                 <Card key={result.id} className="p-3 flex flex-col sm:flex-row gap-3 items-center">
                   <div className="w-20 h-20 bg-gray-100 rounded flex-shrink-0 overflow-hidden">
                     <img src={result.thumbnailUrl} alt={result.title} className="w-full h-full object-cover" />
                   </div>
-                  
+
                   <div className="flex-grow space-y-1 text-center sm:text-left">
                     <h5 className="font-medium">{result.title}</h5>
                     <p className="text-sm text-gray-500">{result.source}</p>
                     <div className="flex items-center text-sm">
                       <span className="mr-2">Match confidence:</span>
-                      <span 
+                      <span
                         className={`font-medium ${
-                          result.matchConfidence > 90 ? 'text-green-600' : 
-                          result.matchConfidence > 75 ? 'text-amber-600' : 
+                          result.matchConfidence > 90 ? 'text-green-600' :
+                          result.matchConfidence > 75 ? 'text-amber-600' :
                           'text-gray-600'
                         }`}
                       >
@@ -275,9 +275,9 @@ const ReverseImageSearchDetailed = () => {
                       </span>
                     </div>
                   </div>
-                  
-                  <Button 
-                    size="sm" 
+
+                  <Button
+                    size="sm"
                     variant="outline"
                     className="flex-shrink-0"
                     onClick={() => window.open(result.url, '_blank')}

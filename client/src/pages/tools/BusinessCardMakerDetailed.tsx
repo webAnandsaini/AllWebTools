@@ -20,7 +20,7 @@ const BusinessCardMakerDetailed = () => {
   const [phone, setPhone] = useState("(555) 123-4567");
   const [website, setWebsite] = useState("www.acmecorp.com");
   const [address, setAddress] = useState("123 Business Ave., Suite 200, New York, NY 10001");
-  
+
   // Design state
   const [template, setTemplate] = useState("modern");
   const [color, setColor] = useState("blue");
@@ -56,12 +56,12 @@ const BusinessCardMakerDetailed = () => {
   ];
 
   const features = [
-    "✅ Dozens of professional business card templates for various industries",
-    "✅ Customizable colors, fonts, and layout options",
-    "✅ Support for both standard and creative card designs",
-    "✅ Logo upload and placement customization",
-    "✅ High-resolution downloads in print-ready formats",
-    "✅ Both horizontal and vertical orientation options"
+    " Dozens of professional business card templates for various industries",
+    " Customizable colors, fonts, and layout options",
+    " Support for both standard and creative card designs",
+    " Logo upload and placement customization",
+    " High-resolution downloads in print-ready formats",
+    " Both horizontal and vertical orientation options"
   ];
 
   const faqs = [
@@ -95,16 +95,16 @@ const BusinessCardMakerDetailed = () => {
       purple: "text-purple-700 border-purple-700",
       black: "text-gray-900 border-gray-900",
     };
-    
+
     const selectedStyle = templateStyles[template as keyof typeof templateStyles] || templateStyles.modern;
     const selectedColor = colorAccents[color as keyof typeof colorAccents] || colorAccents.blue;
-    
+
     // Horizontal or vertical layout
     const isHorizontal = orientation === "horizontal";
-    const cardClass = isHorizontal 
-      ? "w-64 h-36 p-4" 
+    const cardClass = isHorizontal
+      ? "w-64 h-36 p-4"
       : "w-36 h-64 p-4";
-    
+
     const contentLayout = isHorizontal
       ? "flex-col justify-between"
       : "flex-col justify-between h-full";
@@ -116,7 +116,7 @@ const BusinessCardMakerDetailed = () => {
           <p className="text-sm text-gray-600">{title}</p>
           <p className="text-xs font-semibold mt-1">{company}</p>
         </div>
-        
+
         <div className={`border-t ${selectedColor} mt-2 pt-2`}>
           <div className="text-xs space-y-1">
             <p>{phone}</p>
@@ -132,7 +132,7 @@ const BusinessCardMakerDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Business Card Designer</h3>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
           <div className="space-y-3">
@@ -145,7 +145,7 @@ const BusinessCardMakerDetailed = () => {
                 placeholder="e.g. John Doe"
               />
             </div>
-            
+
             <div>
               <Label htmlFor="title" className="font-medium">Job Title</Label>
               <Input
@@ -155,7 +155,7 @@ const BusinessCardMakerDetailed = () => {
                 placeholder="e.g. Marketing Director"
               />
             </div>
-            
+
             <div>
               <Label htmlFor="company" className="font-medium">Company Name</Label>
               <Input
@@ -165,7 +165,7 @@ const BusinessCardMakerDetailed = () => {
                 placeholder="e.g. Acme Corporation"
               />
             </div>
-            
+
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <Label htmlFor="phone" className="font-medium">Phone Number</Label>
@@ -176,7 +176,7 @@ const BusinessCardMakerDetailed = () => {
                   placeholder="e.g. (555) 123-4567"
                 />
               </div>
-              
+
               <div>
                 <Label htmlFor="email" className="font-medium">Email</Label>
                 <Input
@@ -187,7 +187,7 @@ const BusinessCardMakerDetailed = () => {
                 />
               </div>
             </div>
-            
+
             <div>
               <Label htmlFor="website" className="font-medium">Website</Label>
               <Input
@@ -197,7 +197,7 @@ const BusinessCardMakerDetailed = () => {
                 placeholder="e.g. www.company.com"
               />
             </div>
-            
+
             <div>
               <Label htmlFor="address" className="font-medium">Address</Label>
               <Input
@@ -208,7 +208,7 @@ const BusinessCardMakerDetailed = () => {
               />
             </div>
           </div>
-          
+
           <div className="space-y-4 pt-2">
             <Tabs defaultValue="design" className="w-full">
               <TabsList className="grid w-full grid-cols-3">
@@ -225,7 +225,7 @@ const BusinessCardMakerDetailed = () => {
                   Typography
                 </TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="design" className="space-y-4 pt-4">
                 <div>
                   <Label htmlFor="template" className="font-medium">Template Style</Label>
@@ -241,7 +241,7 @@ const BusinessCardMakerDetailed = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                
+
                 <div>
                   <Label htmlFor="color" className="font-medium">Primary Color</Label>
                   <Select value={color} onValueChange={setColor}>
@@ -258,7 +258,7 @@ const BusinessCardMakerDetailed = () => {
                   </Select>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="layout" className="pt-4">
                 <div>
                   <Label htmlFor="orientation" className="font-medium">Card Orientation</Label>
@@ -272,12 +272,12 @@ const BusinessCardMakerDetailed = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                
+
                 <p className="text-sm text-gray-500 mt-4">
                   Layout options such as logo placement and alignment would be available here in the full version.
                 </p>
               </TabsContent>
-              
+
               <TabsContent value="font" className="pt-4">
                 <p className="text-sm text-gray-500">
                   Font and typography options would be available here in the full version.
@@ -286,22 +286,22 @@ const BusinessCardMakerDetailed = () => {
             </Tabs>
           </div>
         </div>
-        
+
         <div className="flex flex-col">
           <div className="bg-gray-50 rounded-lg p-4 mb-4 flex-grow flex items-center justify-center">
             {renderPreview()}
           </div>
-          
+
           <div className="flex space-x-3">
-            <Button 
-              className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700" 
+            <Button
+              className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
               onClick={handleDownload}
             >
               <FaDownload className="mr-2" /> Download
             </Button>
-            <Button 
-              variant="outline" 
-              className="flex-1" 
+            <Button
+              variant="outline"
+              className="flex-1"
               onClick={handleShare}
             >
               <FaShareAlt className="mr-2" /> Share

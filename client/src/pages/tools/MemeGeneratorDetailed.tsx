@@ -49,12 +49,12 @@ const MemeGeneratorDetailed = () => {
   ];
 
   const features = [
-    "✅ Extensive library of popular and trending meme templates",
-    "✅ Custom text positioning, sizing, and styling options",
-    "✅ Ability to upload your own images for unique memes",
-    "✅ High-resolution downloads for sharp-looking memes",
-    "✅ One-click social media sharing",
-    "✅ No watermarks on any generated memes"
+    " Extensive library of popular and trending meme templates",
+    " Custom text positioning, sizing, and styling options",
+    " Ability to upload your own images for unique memes",
+    " High-resolution downloads for sharp-looking memes",
+    " One-click social media sharing",
+    " No watermarks on any generated memes"
   ];
 
   const faqs = [
@@ -84,12 +84,12 @@ const MemeGeneratorDetailed = () => {
     };
 
     const selectedTemplate = templates[template as keyof typeof templates] || templates["success-kid"];
-    
+
     return (
       <div className="relative bg-gray-900 w-full h-full min-h-[300px] rounded-md flex flex-col items-center justify-between p-4">
-        <div 
+        <div
           className="text-center py-2 px-4 w-full font-bold"
-          style={{ 
+          style={{
             fontSize: `${fontSize}px`,
             color: textColor,
             textShadow: `2px 2px 0 ${textOutline}, -2px -2px 0 ${textOutline}, 2px -2px 0 ${textOutline}, -2px 2px 0 ${textOutline}`,
@@ -98,14 +98,14 @@ const MemeGeneratorDetailed = () => {
         >
           {topText.toUpperCase()}
         </div>
-        
+
         <div className="text-7xl my-4">
           {selectedTemplate}
         </div>
-        
-        <div 
+
+        <div
           className="text-center py-2 px-4 w-full font-bold"
-          style={{ 
+          style={{
             fontSize: `${fontSize}px`,
             color: textColor,
             textShadow: `2px 2px 0 ${textOutline}, -2px -2px 0 ${textOutline}, 2px -2px 0 ${textOutline}, -2px 2px 0 ${textOutline}`,
@@ -114,7 +114,7 @@ const MemeGeneratorDetailed = () => {
         >
           {bottomText.toUpperCase()}
         </div>
-        
+
         <div className="absolute bottom-2 right-2 text-xs text-gray-400">
           Demo Mode: Image placeholder
         </div>
@@ -125,7 +125,7 @@ const MemeGeneratorDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Meme Generator</h3>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-5">
           <div>
@@ -143,14 +143,14 @@ const MemeGeneratorDetailed = () => {
                 <SelectItem value="doge">Doge</SelectItem>
               </SelectContent>
             </Select>
-            
+
             <div className="mt-3 flex items-center">
               <Button variant="outline" size="sm" className="w-full">
                 <FaImage className="mr-2" /> Upload Your Own Image
               </Button>
             </div>
           </div>
-          
+
           <div className="space-y-3">
             <div>
               <Label htmlFor="top-text" className="font-medium">Top Text</Label>
@@ -161,7 +161,7 @@ const MemeGeneratorDetailed = () => {
                 placeholder="Enter top text"
               />
             </div>
-            
+
             <div>
               <Label htmlFor="bottom-text" className="font-medium">Bottom Text</Label>
               <Input
@@ -172,7 +172,7 @@ const MemeGeneratorDetailed = () => {
               />
             </div>
           </div>
-          
+
           <div className="space-y-5 pt-2">
             <div>
               <div className="flex justify-between">
@@ -189,7 +189,7 @@ const MemeGeneratorDetailed = () => {
                 className="mt-2"
               />
             </div>
-            
+
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <Label htmlFor="text-color" className="font-medium">Text Color</Label>
@@ -206,7 +206,7 @@ const MemeGeneratorDetailed = () => {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div>
                 <Label htmlFor="text-outline" className="font-medium">Text Outline</Label>
                 <Select value={textOutline} onValueChange={setTextOutline}>
@@ -223,7 +223,7 @@ const MemeGeneratorDetailed = () => {
                 </Select>
               </div>
             </div>
-            
+
             <div>
               <Label className="font-medium">Advanced Options</Label>
               <p className="text-sm text-gray-500 mt-1 mb-2">
@@ -235,22 +235,22 @@ const MemeGeneratorDetailed = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="flex flex-col">
           <div className="bg-gray-50 rounded-lg p-4 mb-4 flex-grow flex items-center justify-center">
             {renderPreview()}
           </div>
-          
+
           <div className="flex space-x-3">
-            <Button 
-              className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700" 
+            <Button
+              className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
               onClick={handleDownload}
             >
               <FaDownload className="mr-2" /> Download
             </Button>
-            <Button 
-              variant="outline" 
-              className="flex-1" 
+            <Button
+              variant="outline"
+              className="flex-1"
               onClick={handleShare}
             >
               <FaShareAlt className="mr-2" /> Share

@@ -30,34 +30,34 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
     "Willow Lane", "Church Street", "Ridge Road", "Dogwood Lane", "Forest Drive",
     "River Road", "Walnut Street", "Chestnut Street", "Poplar Street", "4th Street"
   ];
-  
+
   const usStreetTypes = [
     "Street", "Avenue", "Boulevard", "Drive", "Lane", "Road", "Place", "Court", "Terrace", "Way"
   ];
-  
+
   const usCities = [
-    "New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", 
-    "San Diego", "Dallas", "San Jose", "Austin", "Jacksonville", "Fort Worth", "Columbus", 
+    "New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio",
+    "San Diego", "Dallas", "San Jose", "Austin", "Jacksonville", "Fort Worth", "Columbus",
     "Indianapolis", "Charlotte", "San Francisco", "Seattle", "Denver", "Boston",
     "Nashville", "Portland", "Las Vegas", "Memphis", "Louisville", "Baltimore", "Milwaukee",
     "Albuquerque", "Tucson", "Fresno", "Sacramento", "Mesa", "Atlanta", "Kansas City", "Omaha"
   ];
-  
+
   const usStates = [
-    "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", 
-    "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", 
-    "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", 
-    "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", 
-    "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", 
-    "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", 
-    "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", 
+    "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
+    "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
+    "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
+    "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
+    "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
+    "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+    "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia",
     "Wisconsin", "Wyoming"
   ];
-  
+
   const usStateAbbreviations = [
-    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", 
-    "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", 
-    "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", 
+    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA",
+    "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+    "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT",
     "VA", "WA", "WV", "WI", "WY"
   ];
 
@@ -70,15 +70,15 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
     "Windsor Road", "Richmond Road", "Highfield Road", "Albert Road", "School Lane",
     "The Green", "Springfield Road", "Grange Road", "Victoria Street", "Park Lane"
   ];
-  
+
   const ukCities = [
-    "London", "Birmingham", "Manchester", "Glasgow", "Liverpool", "Leeds", "Newcastle", 
-    "Sheffield", "Bristol", "Edinburgh", "Cardiff", "Belfast", "Nottingham", "Leicester", 
+    "London", "Birmingham", "Manchester", "Glasgow", "Liverpool", "Leeds", "Newcastle",
+    "Sheffield", "Bristol", "Edinburgh", "Cardiff", "Belfast", "Nottingham", "Leicester",
     "Coventry", "Reading", "Blackpool", "Bolton", "Brighton", "Derby",
     "Aberdeen", "Cambridge", "Exeter", "Oxford", "York", "Swansea", "Southampton",
     "Plymouth", "Bradford", "Northampton", "Bournemouth", "Norwich", "Swindon", "Dundee", "Ipswich"
   ];
-  
+
   const ukCounties = [
     "Greater London", "West Midlands", "Greater Manchester", "West Yorkshire", "Merseyside",
     "South Yorkshire", "Tyne and Wear", "Essex", "Kent", "Lancashire",
@@ -97,21 +97,21 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
     "Donald Street", "Princess Street", "Laurier Avenue", "Spadina Avenue", "College Street",
     "St. Laurent Boulevard", "René-Lévesque Boulevard", "Sherbrooke Street", "McGill Street", "Victoria Avenue"
   ];
-  
+
   const canadaCities = [
-    "Toronto", "Montreal", "Vancouver", "Calgary", "Edmonton", "Ottawa", "Winnipeg", 
-    "Quebec City", "Hamilton", "Kitchener", "London", "Victoria", "Halifax", "Oshawa", 
+    "Toronto", "Montreal", "Vancouver", "Calgary", "Edmonton", "Ottawa", "Winnipeg",
+    "Quebec City", "Hamilton", "Kitchener", "London", "Victoria", "Halifax", "Oshawa",
     "Windsor", "Saskatoon", "Regina", "St. John's", "Barrie", "Kelowna",
     "Abbotsford", "Sherbrooke", "Trois-Rivières", "Guelph", "Moncton", "Thunder Bay",
     "Saint John", "Brantford", "Fredericton", "Red Deer", "Lethbridge", "Kamloops", "Prince George", "Medicine Hat", "Drummondville"
   ];
-  
+
   const canadaProvinces = [
-    "Ontario", "Quebec", "British Columbia", "Alberta", "Manitoba", 
-    "Saskatchewan", "Nova Scotia", "New Brunswick", "Newfoundland and Labrador", 
+    "Ontario", "Quebec", "British Columbia", "Alberta", "Manitoba",
+    "Saskatchewan", "Nova Scotia", "New Brunswick", "Newfoundland and Labrador",
     "Prince Edward Island", "Northwest Territories", "Yukon", "Nunavut"
   ];
-  
+
   const canadaProvinceAbbreviations = [
     "ON", "QC", "BC", "AB", "MB", "SK", "NS", "NB", "NL", "PE", "NT", "YT", "NU"
   ];
@@ -134,10 +134,10 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
     const stateIndex = getRandomInt(0, usStates.length - 1);
     const state = usStates[stateIndex];
     const stateAbbr = usStateAbbreviations[stateIndex];
-    
+
     // US ZIP codes are 5 digits
     const zipCode = `${getRandomInt(10000, 99999)}`;
-    
+
     return {
       street: `${streetNumber} ${streetName}`,
       city,
@@ -153,7 +153,7 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
     const streetName = getRandomElement(ukStreetNames);
     const city = getRandomElement(ukCities);
     const county = getRandomElement(ukCounties);
-    
+
     // UK postcodes have a format like "AB12 3CD"
     const postcodePrefixes = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const postcodePrefix1 = postcodePrefixes.charAt(getRandomInt(0, postcodePrefixes.length - 1));
@@ -162,9 +162,9 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
     const postcodeSuffix1 = getRandomInt(1, 9);
     const postcodeSuffix2 = postcodePrefixes.charAt(getRandomInt(0, postcodePrefixes.length - 1));
     const postcodeSuffix3 = postcodePrefixes.charAt(getRandomInt(0, postcodePrefixes.length - 1));
-    
+
     const postcode = `${postcodePrefix1}${postcodePrefix2}${postcodeNumber} ${postcodeSuffix1}${postcodeSuffix2}${postcodeSuffix3}`;
-    
+
     return {
       street: `${houseNumber} ${streetName}`,
       city,
@@ -182,11 +182,11 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
     const provinceIndex = getRandomInt(0, canadaProvinces.length - 1);
     const province = canadaProvinces[provinceIndex];
     const provinceAbbr = canadaProvinceAbbreviations[provinceIndex];
-    
+
     // Canadian postal codes have a format like "A1A 1A1"
     const postalCodeLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const postalCode = `${postalCodeLetters.charAt(getRandomInt(0, postalCodeLetters.length - 1))}${getRandomInt(1, 9)}${postalCodeLetters.charAt(getRandomInt(0, postalCodeLetters.length - 1))} ${getRandomInt(1, 9)}${postalCodeLetters.charAt(getRandomInt(0, postalCodeLetters.length - 1))}${getRandomInt(1, 9)}`;
-    
+
     return {
       street: `${streetNumber} ${streetName}`,
       city,
@@ -214,18 +214,18 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
   const handleGenerate = () => {
     try {
       const count = parseInt(quantity);
-      
+
       if (isNaN(count) || count < 1 || count > 20) {
         setError("Please enter a valid quantity between 1 and 20");
         return;
       }
-      
+
       const addresses: GeneratedAddress[] = [];
-      
+
       for (let i = 0; i < count; i++) {
         addresses.push(generateAddress());
       }
-      
+
       setGeneratedAddresses(addresses);
       setError("");
     } catch (error: any) {
@@ -254,7 +254,7 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
                 </SelectContent>
               </Select>
             </div>
-            
+
             <div>
               <Label htmlFor="quantity">Quantity (1-20)</Label>
               <Input
@@ -306,8 +306,8 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
                   </table>
                 </div>
                 <div className="flex justify-end">
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     onClick={() => {
                       const csvContent = [
                         ["Street", "City", "State/Province", "ZIP/Postal Code", "Country"].join(","),
@@ -319,7 +319,7 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
                           address.country
                         ].join(","))
                       ].join("\n");
-                      
+
                       navigator.clipboard.writeText(csvContent);
                     }}
                   >
@@ -339,7 +339,7 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
             <p>
               Our Fake Address Generator creates realistic-looking random addresses for testing, development, and creative purposes.
             </p>
-            
+
             <div>
               <h4 className="font-medium mb-2">Common Uses:</h4>
               <ul className="list-disc pl-5 space-y-1">
@@ -361,9 +361,9 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
   );
 
   const introduction = "Generate realistic fake addresses for the US, UK, and Canada with our versatile address generator.";
-  
+
   const description = "Our Fake Address Generator creates realistic random addresses that can be used for testing applications, populating databases, creating sample shipping details, or developing mockups. You can generate addresses for the United States, United Kingdom, or Canada, each following the correct address format for that country. The tool creates complete addresses with street numbers, street names, cities, states/provinces, and ZIP/postal codes that look authentic but don't correspond to real locations. Perfect for developers, testers, designers, and anyone who needs sample address data without using real addresses.";
-  
+
   const howToUse = [
     "Select the country for which you want to generate addresses (US, UK, or Canada)",
     "Choose how many addresses you want to generate (1-20)",
@@ -371,15 +371,15 @@ const FakeAddressGeneratorDetailed: React.FC = () => {
     "View the generated addresses in table format with all address components",
     "Use the 'Copy as CSV' button to export the data for use in spreadsheets or databases"
   ];
-  
+
   const features = [
-    "✅ Generates realistic street addresses for multiple countries",
-    "✅ Country-specific formatting for addresses (US, UK, Canada)",
-    "✅ Proper regional naming conventions for streets, cities, and states/provinces",
-    "✅ Correctly formatted postal/ZIP codes for each country",
-    "✅ Export generated addresses as CSV with one click"
+    " Generates realistic street addresses for multiple countries",
+    " Country-specific formatting for addresses (US, UK, Canada)",
+    " Proper regional naming conventions for streets, cities, and states/provinces",
+    " Correctly formatted postal/ZIP codes for each country",
+    " Export generated addresses as CSV with one click"
   ];
-  
+
   const faqs = [
     {
       question: "Are these real addresses?",

@@ -54,7 +54,7 @@ const ToolContentTemplate = ({
             <ul className="space-y-3">
               {features.map((feature, index) => (
                 <li key={index} className="flex items-start">
-                  <span className="text-green-500 mr-2 mt-0.5">✅</span>
+                  <span className="text-gray-700 mr-2 mt-0.5">✔</span>
                   <span className="text-gray-700">{feature}</span>
                 </li>
               ))}

@@ -6,14 +6,14 @@ import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { imageEditingTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
-import { 
-  FaUpload, 
+import {
+  FaUpload,
   FaSearch,
   FaUser,
   FaInfoCircle
 } from "react-icons/fa";
 import { Progress } from "@/components/ui/progress";
-import { 
+import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -32,7 +32,7 @@ const FaceSearchDetailed = () => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
       const fileType = selectedFile.type;
-      
+
       // Check if file is an image
       if (!fileType.startsWith('image/')) {
         toast({
@@ -42,13 +42,13 @@ const FaceSearchDetailed = () => {
         });
         return;
       }
-      
+
       setFile(selectedFile);
       const objectUrl = URL.createObjectURL(selectedFile);
       setPreviewUrl(objectUrl);
       setSearchResults([]);
       setFaceDetected(null);
-      
+
       return () => {
         if (previewUrl) {
           URL.revokeObjectURL(previewUrl);
@@ -70,7 +70,7 @@ const FaceSearchDetailed = () => {
     setIsSearching(true);
     setSearchProgress(0);
     setSearchResults([]);
-    
+
     // Simulate face detection and search process
     let progress = 0;
     const interval = setInterval(() => {
@@ -78,12 +78,12 @@ const FaceSearchDetailed = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         // Simulate face detection - randomly decide if face is detected for demo purposes
         // In a real implementation, this would use actual face detection algorithms
         const faceIsDetected = Math.random() > 0.2; // 80% chance of detecting a face for demo
         setFaceDetected(faceIsDetected);
-        
+
         if (faceIsDetected) {
           // Simulate search results
           const simulatedResults = [
@@ -112,9 +112,9 @@ const FaceSearchDetailed = () => {
               source: "Public Database C"
             }
           ];
-          
+
           setSearchResults(simulatedResults);
-          
+
           toast({
             title: "Search complete",
             description: `Found ${simulatedResults.length} possible matches.`,
@@ -126,7 +126,7 @@ const FaceSearchDetailed = () => {
             variant: "destructive",
           });
         }
-        
+
         setIsSearching(false);
       }
       setSearchProgress(progress);
@@ -156,13 +156,13 @@ const FaceSearchDetailed = () => {
   ];
 
   const features = [
-    "✅ Advanced facial recognition technology",
-    "✅ Search across multiple public databases",
-    "✅ Fast and accurate matching algorithms",
-    "✅ Support for various photo qualities and angles",
-    "✅ Detailed matching confidence scores",
-    "✅ Privacy-compliant searching",
-    "✅ User-friendly interface"
+    " Advanced facial recognition technology",
+    " Search across multiple public databases",
+    " Fast and accurate matching algorithms",
+    " Support for various photo qualities and angles",
+    " Detailed matching confidence scores",
+    " Privacy-compliant searching",
+    " User-friendly interface"
   ];
 
   const faqs = [
@@ -183,7 +183,7 @@ const FaceSearchDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Face Search</h3>
-      
+
       <div className="space-y-6">
         {!previewUrl ? (
           <div className="border-2 border-dashed rounded-lg p-4 text-center">
@@ -209,10 +209,10 @@ const FaceSearchDetailed = () => {
         ) : (
           <div className="space-y-4">
             <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100 border">
-              <img 
-                src={previewUrl} 
-                alt="Preview" 
-                className="object-contain w-full h-full" 
+              <img
+                src={previewUrl}
+                alt="Preview"
+                className="object-contain w-full h-full"
               />
               <Button
                 variant="outline"
@@ -223,12 +223,12 @@ const FaceSearchDetailed = () => {
                 ×
               </Button>
             </div>
-            
+
             <p className="text-sm text-gray-600">
               {file?.name} ({(file?.size / 1024 / 1024).toFixed(2)} MB)
             </p>
-            
-            <Button 
+
+            <Button
               onClick={handleSearch}
               className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
               disabled={isSearching}
@@ -237,20 +237,20 @@ const FaceSearchDetailed = () => {
                 <>Analyzing Face...</>
               ) : (
                 <>
-                  <FaSearch className="mr-2" /> 
+                  <FaSearch className="mr-2" />
                   Search Face
                 </>
               )}
             </Button>
           </div>
         )}
-        
+
         {isSearching && (
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span>
-                {searchProgress < 30 ? 'Detecting faces...' : 
-                 searchProgress < 60 ? 'Analyzing facial features...' : 
+                {searchProgress < 30 ? 'Detecting faces...' :
+                 searchProgress < 60 ? 'Analyzing facial features...' :
                  'Searching for matches...'}
               </span>
               <span>{Math.round(searchProgress)}%</span>
@@ -258,7 +258,7 @@ const FaceSearchDetailed = () => {
             <Progress value={searchProgress} />
           </div>
         )}
-        
+
         {faceDetected === false && (
           <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
             <div className="flex items-start">
@@ -272,7 +272,7 @@ const FaceSearchDetailed = () => {
             </div>
           </div>
         )}
-        
+
         {searchResults.length > 0 && (
           <div className="space-y-4">
             <div className="flex justify-between items-center">
@@ -287,30 +287,30 @@ const FaceSearchDetailed = () => {
                   </TooltipTrigger>
                   <TooltipContent>
                     <p className="max-w-xs text-xs">
-                      Matches are based on publicly available information. 
+                      Matches are based on publicly available information.
                       Higher confidence scores indicate greater similarity.
                     </p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
             </div>
-            
+
             <div className="space-y-4">
               {searchResults.map(result => (
                 <Card key={result.id} className="p-3 flex flex-col sm:flex-row gap-3 items-center">
                   <div className="w-16 h-16 bg-gray-100 rounded-full flex-shrink-0 overflow-hidden">
                     <img src={result.thumbnailUrl} alt={result.name} className="w-full h-full object-cover" />
                   </div>
-                  
+
                   <div className="flex-grow space-y-1 text-center sm:text-left">
                     <h5 className="font-medium">{result.name}</h5>
                     <p className="text-sm text-gray-500">{result.source}</p>
                     <div className="flex items-center text-sm">
                       <span className="mr-2">Match confidence:</span>
-                      <span 
+                      <span
                         className={`font-medium ${
-                          result.matchConfidence > 90 ? 'text-green-600' : 
-                          result.matchConfidence > 75 ? 'text-amber-600' : 
+                          result.matchConfidence > 90 ? 'text-green-600' :
+                          result.matchConfidence > 75 ? 'text-amber-600' :
                           'text-gray-600'
                         }`}
                       >
@@ -318,9 +318,9 @@ const FaceSearchDetailed = () => {
                       </span>
                     </div>
                   </div>
-                  
-                  <Button 
-                    size="sm" 
+
+                  <Button
+                    size="sm"
                     variant="outline"
                     className="flex-shrink-0"
                     onClick={() => window.open(result.url, '_blank')}

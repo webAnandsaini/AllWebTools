@@ -10,6 +10,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import stripJsonComments from 'strip-json-comments';
 
 const JSONToXMLDetailed = () => {
   const [jsonInput, setJsonInput] = useState<string>("");
@@ -28,7 +29,7 @@ const JSONToXMLDetailed = () => {
   // Extract the actual tool slug without the "-detailed" suffix
   const pathSegments = window.location.pathname.split('/');
   let toolSlug = pathSegments[pathSegments.length - 1].replace('-detailed', '');
-  
+
   // Handle direct routes without /tools/ prefix
   if (pathSegments.length === 2) {
     toolSlug = pathSegments[1].replace('-detailed', '');
@@ -50,16 +51,16 @@ const JSONToXMLDetailed = () => {
     setLoading(true);
 
     try {
-      // Clean comments to handle commented JSON
-      const cleanedInput = jsonInput
-        .replace(/\/\/.*$/gm, '') // Remove single-line comments
-        .replace(/\/\*[\s\S]*?\*\//g, ''); // Remove multi-line comments
-      
+
+
+            let cleanedInput = stripJsonComments(jsonInput);
+            cleanedInput = cleanedInput.replace(/,\s*([}\]])/g, '$1');
+
       const parsedJSON = JSON.parse(cleanedInput);
       const xml = jsonToXml(parsedJSON, options);
       setXmlOutput(xml);
       setActiveTab("output");
-      
+
       toast({
         title: "Success",
         description: "JSON converted to XML successfully",
@@ -77,7 +78,7 @@ const JSONToXMLDetailed = () => {
   };
 
   const jsonToXml = (
-    obj: any, 
+    obj: any,
     options: { rootElementName: string; indentSize: number; includeDeclaration: boolean; arrayItemName: string },
     level = 0
   ): string => {
@@ -109,7 +110,7 @@ const JSONToXMLDetailed = () => {
       } else if (typeof obj === 'object') {
         for (const [key, value] of Object.entries(obj)) {
           const safeKey = makeXmlElementName(key);
-          
+
           if (value === null || value === undefined) {
             xml += `${indent}<${safeKey}/>\n`;
           } else if (typeof value === 'boolean' || typeof value === 'number' || typeof value === 'string') {
@@ -140,15 +141,15 @@ const JSONToXMLDetailed = () => {
   const makeXmlElementName = (str: string): string => {
     // XML element names must start with a letter or underscore, followed by letters, digits, hyphens, underscores, or periods
     let safeName = str;
-    
+
     // Replace invalid starting characters
     if (!/^[a-zA-Z_]/.test(safeName)) {
       safeName = '_' + safeName;
     }
-    
+
     // Replace invalid characters in the rest of the name
     safeName = safeName.replace(/[^a-zA-Z0-9_\-\.]/g, '_');
-    
+
     return safeName;
   };
 
@@ -224,7 +225,7 @@ const JSONToXMLDetailed = () => {
                 <TabsTrigger value="input">Input (JSON)</TabsTrigger>
                 <TabsTrigger value="output" disabled={!xmlOutput && !error}>Output (XML)</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="input" className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="jsonInput">Enter JSON</Label>
@@ -237,7 +238,7 @@ const JSONToXMLDetailed = () => {
                     className="font-mono"
                   />
                 </div>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-3">
                     <div className="space-y-1">
@@ -248,7 +249,7 @@ const JSONToXMLDetailed = () => {
                         onChange={(e) => setOptions({...options, rootElementName: e.target.value})}
                       />
                     </div>
-                    
+
                     <div className="space-y-1">
                       <Label htmlFor="arrayItemName">Array Item Element Name</Label>
                       <Input
@@ -258,7 +259,7 @@ const JSONToXMLDetailed = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="space-y-1">
                       <Label htmlFor="indentSize">Indentation Size</Label>
@@ -276,7 +277,7 @@ const JSONToXMLDetailed = () => {
                         }}
                       />
                     </div>
-                    
+
                     <div className="flex items-center space-x-2 pt-2">
                       <Checkbox
                         id="includeDeclaration"
@@ -287,7 +288,7 @@ const JSONToXMLDetailed = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="flex flex-wrap gap-2">
                   <Button onClick={handleConvertToXML} disabled={loading}>
                     {loading ? "Converting..." : "Convert to XML"}
@@ -297,7 +298,7 @@ const JSONToXMLDetailed = () => {
                   </Button>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="output" className="space-y-4">
                 {error ? (
                   <Alert variant="destructive">
@@ -314,7 +315,7 @@ const JSONToXMLDetailed = () => {
                           <i className="fas fa-copy mr-2"></i> Copy
                         </Button>
                       </div>
-                      
+
                       <div className="border rounded-md p-4 font-mono text-sm overflow-x-auto bg-gray-50 max-h-96 overflow-y-auto">
                         <pre>{xmlOutput}</pre>
                       </div>
@@ -325,7 +326,7 @@ const JSONToXMLDetailed = () => {
             </Tabs>
           </CardContent>
         </Card>
-        
+
         <div className="text-sm text-gray-500 px-1">
           <p>Convert your JSON data to XML format with full control over the output structure. Customize element names, indentation, and more to produce valid XML that meets your specific requirements.</p>
         </div>

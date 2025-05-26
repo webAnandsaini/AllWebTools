@@ -35,7 +35,7 @@ const JSONFormatterDetailed = () => {
   // Extract the actual tool slug without the "-detailed" suffix
   const pathSegments = window.location.pathname.split('/');
   let toolSlug = pathSegments[pathSegments.length - 1].replace('-detailed', '');
-  
+
   // Handle direct routes without /tools/ prefix
   if (pathSegments.length === 2) {
     toolSlug = pathSegments[1].replace('-detailed', '');
@@ -67,17 +67,17 @@ const JSONFormatterDetailed = () => {
       }
 
       const parsedJSON = JSON.parse(cleanedInput);
-      
+
       // Handle sorting if enabled
       const processedJSON = options.sortKeys ? sortJSONKeys(parsedJSON) : parsedJSON;
-      
+
       // Format with proper indentation
       const formatted = JSON.stringify(
-        processedJSON, 
-        options.escapeUnicode ? unicodeReplacer : undefined, 
+        processedJSON,
+        options.escapeUnicode ? unicodeReplacer : undefined,
         options.indent
       );
-      
+
       setFormattedJSON(formatted);
       setActiveTab("output");
       toast({
@@ -104,11 +104,11 @@ const JSONFormatterDetailed = () => {
 
     const sortedKeys = Object.keys(obj).sort();
     const sortedObj: Record<string, any> = {};
-    
+
     for (const key of sortedKeys) {
       sortedObj[key] = sortJSONKeys(obj[key]);
     }
-    
+
     return sortedObj;
   };
 
@@ -189,7 +189,7 @@ const JSONFormatterDetailed = () => {
           introduction: "Format and beautify JSON data with customizable indentation and sorting options.",
           description: "Our JSON Formatter transforms hard-to-read JSON data into a clean, indented format that's easy to understand and analyze. Whether you're working with minified JSON, API responses, or manually created JSON objects, this tool helps you structure your data with customizable indentation, sorting, and formatting options. Perfect for developers, data analysts, and anyone working with JSON data structures.",
           howToUse: [
-            "Enter or paste your JSON data in the input field",
+            "‎ Enter or paste your JSON data in the input field",
             "Customize formatting options (indentation, sorting, etc.)",
             "Click 'Format JSON' to process your data",
             "View and copy the formatted result",
@@ -231,7 +231,7 @@ const JSONFormatterDetailed = () => {
           introduction: "Transform messy JSON into beautifully formatted, readable code.",
           description: "Our JSON Beautifier converts unformatted, minified, or poorly structured JSON data into a clean, properly indented format that's easy to read and understand. With customizable indentation, sorting options, and syntax highlighting, this tool helps you transform compact JSON into a well-organized structure that improves readability and makes debugging easier. Perfect for working with API responses, configuration files, or any JSON data that needs beautification.",
           howToUse: [
-            "Enter or paste your JSON data in the input field",
+            " Enter or paste your JSON data in the input field",
             "Adjust beautification options as needed",
             "Click 'Format JSON' to beautify your code",
             "View the beautified result with proper structure",
@@ -322,7 +322,7 @@ const JSONFormatterDetailed = () => {
                 <TabsTrigger value="input">Input</TabsTrigger>
                 <TabsTrigger value="output" disabled={!formattedJSON && !error}>Output</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="input" className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="jsonInput">Enter JSON</Label>
@@ -335,7 +335,7 @@ const JSONFormatterDetailed = () => {
                     className="font-mono"
                   />
                 </div>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-3">
                     <div className="space-y-1">
@@ -354,7 +354,7 @@ const JSONFormatterDetailed = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="space-y-1">
                       <Label className="block mb-1">Options</Label>
@@ -367,7 +367,7 @@ const JSONFormatterDetailed = () => {
                           />
                           <Label htmlFor="sortKeys" className="text-sm">Sort object keys alphabetically</Label>
                         </div>
-                        
+
                         <div className="flex items-center space-x-2">
                           <Checkbox
                             id="removeComments"
@@ -376,7 +376,7 @@ const JSONFormatterDetailed = () => {
                           />
                           <Label htmlFor="removeComments" className="text-sm">Remove comments</Label>
                         </div>
-                        
+
                         <div className="flex items-center space-x-2">
                           <Checkbox
                             id="escapeUnicode"
@@ -389,7 +389,7 @@ const JSONFormatterDetailed = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="flex flex-wrap gap-2">
                   <Button onClick={handleFormatJSON} disabled={loading}>
                     {loading ? "Processing..." : "Format JSON"}
@@ -402,7 +402,7 @@ const JSONFormatterDetailed = () => {
                   </Button>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="output" className="space-y-4">
                 {error ? (
                   <Alert variant="destructive">
@@ -419,7 +419,7 @@ const JSONFormatterDetailed = () => {
                           <i className="fas fa-copy mr-2"></i> Copy
                         </Button>
                       </div>
-                      
+
                       <div className="border rounded-md p-4 font-mono text-sm overflow-x-auto bg-gray-50">
                         <pre>{formattedJSON}</pre>
                       </div>
@@ -430,7 +430,7 @@ const JSONFormatterDetailed = () => {
             </Tabs>
           </CardContent>
         </Card>
-        
+
         <div className="text-sm text-gray-500 px-1">
           <p>Format and beautify JSON data by adding proper indentation and line breaks. Use minify to compress JSON by removing whitespace.</p>
         </div>

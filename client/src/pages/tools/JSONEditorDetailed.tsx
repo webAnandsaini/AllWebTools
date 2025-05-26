@@ -10,6 +10,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import stripJsonComments from "strip-json-comments";
 
 const JSONEditorDetailed = () => {
   const [jsonInput, setJsonInput] = useState<string>("");
@@ -25,7 +26,7 @@ const JSONEditorDetailed = () => {
   // Extract the actual tool slug without the "-detailed" suffix
   const pathSegments = window.location.pathname.split('/');
   let toolSlug = pathSegments[pathSegments.length - 1].replace('-detailed', '');
-  
+
   // Handle direct routes without /tools/ prefix
   if (pathSegments.length === 2) {
     toolSlug = pathSegments[1].replace('-detailed', '');
@@ -47,14 +48,13 @@ const JSONEditorDetailed = () => {
 
     try {
       // Clean comments to handle commented JSON
-      const cleanedInput = jsonInput
-        .replace(/\/\/.*$/gm, '') // Remove single-line comments
-        .replace(/\/\*[\s\S]*?\*\//g, ''); // Remove multi-line comments
-      
+      let cleanedInput = stripJsonComments(jsonInput);
+      cleanedInput = cleanedInput.replace(/,\s*([}\]])/g, '$1');
+
       const parsedJSON = JSON.parse(cleanedInput);
       setCurrentJson(parsedJSON);
       setJsonInput(JSON.stringify(parsedJSON, null, prettifyIndent));
-      
+
       toast({
         title: "Success",
         description: "JSON parsed successfully",
@@ -93,14 +93,14 @@ const JSONEditorDetailed = () => {
     try {
       // Split the path into segments (handle both dot notation and bracket notation)
       const pathSegments = editPath.match(/[^.[\]]+/g) || [];
-      
+
       if (pathSegments.length === 0) {
         throw new Error("Invalid path format");
       }
 
       // Make a deep copy of the current JSON
       const updatedJson = JSON.parse(JSON.stringify(currentJson));
-      
+
       if (editMode === "delete") {
         deleteByPath(updatedJson, pathSegments);
       } else if (editMode === "add" || editMode === "update") {
@@ -113,23 +113,23 @@ const JSONEditorDetailed = () => {
           // If parsing fails, treat it as a string
           parsedValue = editValue;
         }
-        
+
         setByPath(updatedJson, pathSegments, parsedValue, editMode === "add");
       }
-      
+
       // Update the current JSON and the text in the editor
       setCurrentJson(updatedJson);
       setJsonInput(JSON.stringify(updatedJson, null, prettifyIndent));
-      
+
       toast({
         title: "Success",
         description: `JSON ${editMode === "add" ? "updated with new property" : editMode === "update" ? "property updated" : "property deleted"}`,
       });
-      
+
       // Clear the edit fields
       setEditPath("");
       setEditValue("");
-      
+
     } catch (err: any) {
       toast({
         title: "Error",
@@ -143,7 +143,7 @@ const JSONEditorDetailed = () => {
   const setByPath = (obj: any, path: string[], value: any, isAdd: boolean) => {
     const lastKey = path.pop();
     if (!lastKey) return;
-    
+
     // Navigate to the containing object
     const container = path.reduce((o, key) => {
       // Create a path if it doesn't exist
@@ -152,17 +152,17 @@ const JSONEditorDetailed = () => {
       }
       return o[key];
     }, obj);
-    
+
     // Check if we're trying to add a new property but it already exists
     if (isAdd && container[lastKey] !== undefined) {
       throw new Error(`Property '${lastKey}' already exists at the specified path`);
     }
-    
+
     // Check if we're trying to update a property but it doesn't exist
     if (!isAdd && container[lastKey] === undefined) {
       throw new Error(`Property '${lastKey}' doesn't exist at the specified path`);
     }
-    
+
     // Set the value
     container[lastKey] = value;
   };
@@ -171,7 +171,7 @@ const JSONEditorDetailed = () => {
   const deleteByPath = (obj: any, path: string[]) => {
     const lastKey = path.pop();
     if (!lastKey) return;
-    
+
     // Navigate to the containing object
     const container = path.reduce((o, key) => {
       if (o[key] === undefined) {
@@ -179,12 +179,12 @@ const JSONEditorDetailed = () => {
       }
       return o[key];
     }, obj);
-    
+
     // Check if the property exists
     if (container[lastKey] === undefined) {
       throw new Error(`Property '${lastKey}' doesn't exist at the specified path`);
     }
-    
+
     // Delete the property
     if (Array.isArray(container)) {
       container.splice(parseInt(lastKey), 1);
@@ -226,12 +226,12 @@ const JSONEditorDetailed = () => {
       const cleanedInput = jsonInput
         .replace(/\/\/.*$/gm, '')
         .replace(/\/\*[\s\S]*?\*\//g, '');
-      
+
       const parsedJSON = JSON.parse(cleanedInput);
       const prettified = JSON.stringify(parsedJSON, null, prettifyIndent);
       setJsonInput(prettified);
       setCurrentJson(parsedJSON);
-      
+
       toast({
         title: "Success",
         description: "JSON prettified",
@@ -261,12 +261,12 @@ const JSONEditorDetailed = () => {
       const cleanedInput = jsonInput
         .replace(/\/\/.*$/gm, '')
         .replace(/\/\*[\s\S]*?\*\//g, '');
-      
+
       const parsedJSON = JSON.parse(cleanedInput);
       const minified = JSON.stringify(parsedJSON);
       setJsonInput(minified);
       setCurrentJson(parsedJSON);
-      
+
       toast({
         title: "Success",
         description: "JSON minified",
@@ -361,7 +361,7 @@ const JSONEditorDetailed = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="jsonInput">JSON Editor</Label>
                 <Textarea
@@ -372,7 +372,7 @@ const JSONEditorDetailed = () => {
                   className="font-mono min-h-[300px]"
                 />
               </div>
-              
+
               <div className="flex flex-wrap gap-2">
                 <Button onClick={handleParseJSON} disabled={loading}>
                   {loading ? "Parsing..." : "Parse JSON"}
@@ -384,7 +384,7 @@ const JSONEditorDetailed = () => {
                   Clear
                 </Button>
               </div>
-              
+
               {error && (
                 <Alert variant="destructive">
                   <AlertDescription>
@@ -392,12 +392,12 @@ const JSONEditorDetailed = () => {
                   </AlertDescription>
                 </Alert>
               )}
-              
+
               {currentJson && (
                 <Card className="mt-4">
                   <CardContent className="pt-6 space-y-4">
                     <h3 className="text-lg font-semibold">Edit JSON</h3>
-                    
+
                     <div className="space-y-4">
                       <div className="space-y-2">
                         <Label htmlFor="editPath">Property Path</Label>
@@ -411,7 +411,7 @@ const JSONEditorDetailed = () => {
                           Use dot notation for object properties (user.name) and bracket notation for arrays (items[0])
                         </p>
                       </div>
-                      
+
                       <div className="grid grid-cols-3 gap-2">
                         <Button
                           variant={editMode === "add" ? "default" : "outline"}
@@ -435,7 +435,7 @@ const JSONEditorDetailed = () => {
                           Delete
                         </Button>
                       </div>
-                      
+
                       {editMode !== "delete" && (
                         <div className="space-y-2">
                           <Label htmlFor="editValue">Value</Label>
@@ -451,7 +451,7 @@ const JSONEditorDetailed = () => {
                           </p>
                         </div>
                       )}
-                      
+
                       <Button onClick={handleApplyEdit}>
                         Apply Changes
                       </Button>
@@ -462,7 +462,7 @@ const JSONEditorDetailed = () => {
             </div>
           </CardContent>
         </Card>
-        
+
         <div className="text-sm text-gray-500 px-1">
           <p>Use this editor to make precise modifications to your JSON data. Navigate through complex structures using JSON path notation and apply changes with confidence knowing real-time validation will prevent syntax errors.</p>
         </div>

@@ -90,7 +90,7 @@ const EmojisDetailed = () => {
 
   // Filter emojis based on search query
   const filteredEmojis = emojiCategories[activeCategory as keyof typeof emojiCategories]
-    .filter(emoji => 
+    .filter(emoji =>
       emoji.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       emoji.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -130,12 +130,12 @@ const EmojisDetailed = () => {
   ];
 
   const features = [
-    "✅ Comprehensive library with thousands of emojis across multiple categories",
-    "✅ Powerful search functionality to find emojis by name or description",
-    "✅ One-click copy to clipboard for easy use anywhere",
-    "✅ Favorites system to save your most-used emojis",
-    "✅ Recent emojis tracking for quick access to frequently used emojis",
-    "✅ Compatible with all modern platforms and applications"
+    " Comprehensive library with thousands of emojis across multiple categories",
+    " Powerful search functionality to find emojis by name or description",
+    " One-click copy to clipboard for easy use anywhere",
+    " Favorites system to save your most-used emojis",
+    " Recent emojis tracking for quick access to frequently used emojis",
+    " Compatible with all modern platforms and applications"
   ];
 
   const faqs = [
@@ -156,8 +156,8 @@ const EmojisDetailed = () => {
   const renderEmojiGrid = (emojiList: { emoji: string; name: string; description: string }[]) => (
     <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3">
       {emojiList.map((item, index) => (
-        <div 
-          key={index} 
+        <div
+          key={index}
           className="relative p-2 bg-white hover:bg-gray-50 rounded-lg border border-gray-100 shadow-sm flex flex-col items-center cursor-pointer transition-all hover:scale-105"
           onClick={() => copyToClipboard(item.emoji)}
           title={`${item.name}: ${item.description}`}
@@ -181,7 +181,7 @@ const EmojisDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Emoji Finder</h3>
-      
+
       <div className="mb-6">
         <div className="relative">
           <Input
@@ -194,7 +194,7 @@ const EmojisDetailed = () => {
           <FaSearch className="absolute left-3 top-3 text-gray-400" />
         </div>
       </div>
-      
+
       <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
         <TabsList className="grid grid-cols-4 md:grid-cols-8 mb-6">
           <TabsTrigger value="all">All</TabsTrigger>
@@ -212,7 +212,7 @@ const EmojisDetailed = () => {
             Favorites
           </TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="all" className="space-y-6">
           {searchQuery && filteredEmojis.length === 0 ? (
             <p className="text-center text-gray-500 py-8">No emojis found matching your search.</p>
@@ -220,7 +220,7 @@ const EmojisDetailed = () => {
             renderEmojiGrid(filteredEmojis)
           )}
         </TabsContent>
-        
+
         <TabsContent value="recent">
           {recentEmojis.length === 0 ? (
             <p className="text-center text-gray-500 py-8">
@@ -231,8 +231,8 @@ const EmojisDetailed = () => {
               {recentEmojis.map((emoji, index) => {
                 const emojiInfo = emojiCategories.all.find(e => e.emoji === emoji);
                 return (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className="p-2 bg-white hover:bg-gray-50 rounded-lg border border-gray-100 shadow-sm flex flex-col items-center cursor-pointer transition-all hover:scale-105"
                     onClick={() => copyToClipboard(emoji)}
                     title={emojiInfo ? `${emojiInfo.name}: ${emojiInfo.description}` : emoji}
@@ -245,7 +245,7 @@ const EmojisDetailed = () => {
             </div>
           )}
         </TabsContent>
-        
+
         <TabsContent value="favorites">
           {favoriteEmojis.length === 0 ? (
             <p className="text-center text-gray-500 py-8">
@@ -256,8 +256,8 @@ const EmojisDetailed = () => {
               {favoriteEmojis.map((emoji, index) => {
                 const emojiInfo = emojiCategories.all.find(e => e.emoji === emoji);
                 return (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className="relative p-2 bg-white hover:bg-gray-50 rounded-lg border border-gray-100 shadow-sm flex flex-col items-center cursor-pointer transition-all hover:scale-105"
                     onClick={() => copyToClipboard(emoji)}
                     title={emojiInfo ? `${emojiInfo.name}: ${emojiInfo.description}` : emoji}
@@ -279,43 +279,43 @@ const EmojisDetailed = () => {
             </div>
           )}
         </TabsContent>
-        
+
         <TabsContent value="smileys">
-          {renderEmojiGrid(emojiCategories.smileys.filter(emoji => 
+          {renderEmojiGrid(emojiCategories.smileys.filter(emoji =>
             emoji.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             emoji.description.toLowerCase().includes(searchQuery.toLowerCase())
           ))}
         </TabsContent>
-        
+
         <TabsContent value="people">
-          {renderEmojiGrid(emojiCategories.people.filter(emoji => 
+          {renderEmojiGrid(emojiCategories.people.filter(emoji =>
             emoji.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             emoji.description.toLowerCase().includes(searchQuery.toLowerCase())
           ))}
         </TabsContent>
-        
+
         <TabsContent value="animals">
-          {renderEmojiGrid(emojiCategories.animals.filter(emoji => 
+          {renderEmojiGrid(emojiCategories.animals.filter(emoji =>
             emoji.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             emoji.description.toLowerCase().includes(searchQuery.toLowerCase())
           ))}
         </TabsContent>
-        
+
         <TabsContent value="food">
-          {renderEmojiGrid(emojiCategories.food.filter(emoji => 
+          {renderEmojiGrid(emojiCategories.food.filter(emoji =>
             emoji.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             emoji.description.toLowerCase().includes(searchQuery.toLowerCase())
           ))}
         </TabsContent>
-        
+
         <TabsContent value="activities">
-          {renderEmojiGrid(emojiCategories.activities.filter(emoji => 
+          {renderEmojiGrid(emojiCategories.activities.filter(emoji =>
             emoji.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             emoji.description.toLowerCase().includes(searchQuery.toLowerCase())
           ))}
         </TabsContent>
       </Tabs>
-      
+
       <div className="mt-6 text-center text-sm text-gray-500">
         Click any emoji to copy it to your clipboard
       </div>

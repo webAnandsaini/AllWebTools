@@ -22,13 +22,13 @@ const CropImageDetailed = () => {
   const [cropPreset, setCropPreset] = useState("square");
   const [outputFormat, setOutputFormat] = useState("jpeg");
   const [isCropping, setIsCropping] = useState(false);
-  
+
   // Crop coordinates
   const [cropX, setCropX] = useState(0);
   const [cropY, setCropY] = useState(0);
   const [cropWidth, setCropWidth] = useState(0);
   const [cropHeight, setCropHeight] = useState(0);
-  
+
   // For simulation purposes
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
@@ -42,19 +42,19 @@ const CropImageDetailed = () => {
       const url = URL.createObjectURL(selectedFile);
       setPreviewUrl(url);
       setResultUrl("");
-      
+
       // Load image to get original dimensions
       const img = new Image();
       img.onload = () => {
         setOriginalWidth(img.width);
         setOriginalHeight(img.height);
-        
+
         // Initialize crop area to full image
         setCropX(0);
         setCropY(0);
         setCropWidth(img.width);
         setCropHeight(img.height);
-        
+
         // Apply initial crop based on selected method
         if (cropMethod === "ratio") {
           applyRatioCrop(cropRatio, img.width, img.height);
@@ -69,9 +69,9 @@ const CropImageDetailed = () => {
   const applyRatioCrop = (ratio: string, imgWidth: number, imgHeight: number) => {
     const [widthRatio, heightRatio] = ratio.split(':').map(Number);
     const aspectRatio = widthRatio / heightRatio;
-    
+
     let newWidth, newHeight;
-    
+
     if (imgWidth / imgHeight > aspectRatio) {
       // Image is wider than the ratio
       newHeight = imgHeight;
@@ -81,7 +81,7 @@ const CropImageDetailed = () => {
       newWidth = imgWidth;
       newHeight = imgWidth / aspectRatio;
     }
-    
+
     setCropX(Math.max(0, (imgWidth - newWidth) / 2));
     setCropY(Math.max(0, (imgHeight - newHeight) / 2));
     setCropWidth(newWidth);
@@ -124,7 +124,7 @@ const CropImageDetailed = () => {
 
   const handleCropMethodChange = (method: "free" | "ratio" | "preset") => {
     setCropMethod(method);
-    
+
     if (method === "ratio") {
       applyRatioCrop(cropRatio, originalWidth, originalHeight);
     } else if (method === "preset") {
@@ -154,12 +154,12 @@ const CropImageDetailed = () => {
     }
 
     setIsCropping(true);
-    
+
     // Simulate cropping process
     setTimeout(() => {
       setResultUrl(previewUrl); // In a real implementation, this would be the cropped image URL
       setIsCropping(false);
-      
+
       toast({
         title: "Crop complete",
         description: `Image cropped to ${Math.round(cropWidth)}×${Math.round(cropHeight)}.`,
@@ -169,7 +169,7 @@ const CropImageDetailed = () => {
 
   const handleDownload = () => {
     if (!resultUrl) return;
-    
+
     // Create a download link
     const a = document.createElement('a');
     a.href = resultUrl;
@@ -177,7 +177,7 @@ const CropImageDetailed = () => {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    
+
     toast({
       title: "Download started",
       description: "Your cropped image is being downloaded.",
@@ -187,11 +187,11 @@ const CropImageDetailed = () => {
   // Simulated dragging interaction for crop area
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!imageContainerRef.current) return;
-    
+
     const rect = imageContainerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     setIsDragging(true);
     setDragStartX(x);
     setDragStartY(y);
@@ -199,19 +199,19 @@ const CropImageDetailed = () => {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isDragging || !imageContainerRef.current) return;
-    
+
     const rect = imageContainerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     // Calculate the movement
     const deltaX = x - dragStartX;
     const deltaY = y - dragStartY;
-    
+
     // Update crop coordinates (with bounds checking)
     const newX = Math.max(0, Math.min(originalWidth - cropWidth, cropX + deltaX));
     const newY = Math.max(0, Math.min(originalHeight - cropHeight, cropY + deltaY));
-    
+
     setCropX(newX);
     setCropY(newY);
     setDragStartX(x);
@@ -245,12 +245,12 @@ const CropImageDetailed = () => {
   ];
 
   const features = [
-    "✅ Free-form cropping with precise control",
-    "✅ Fixed aspect ratio options (1:1, 16:9, 4:3, etc.)",
-    "✅ Preset dimensions for social media platforms",
-    "✅ Real-time preview of crop results",
-    "✅ Accurate pixel dimensions display",
-    "✅ Multiple output formats support"
+    " Free-form cropping with precise control",
+    " Fixed aspect ratio options (1:1, 16:9, 4:3, etc.)",
+    " Preset dimensions for social media platforms",
+    " Real-time preview of crop results",
+    " Accurate pixel dimensions display",
+    " Multiple output formats support"
   ];
 
   const faqs = [
@@ -271,7 +271,7 @@ const CropImageDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Image Cropper</h3>
-      
+
       <div className="border-2 border-dashed rounded-lg p-4 text-center">
         <Label htmlFor="crop-image-upload" className="cursor-pointer block">
           <div className="py-8 flex flex-col items-center">
@@ -292,15 +292,15 @@ const CropImageDetailed = () => {
           />
         </Label>
       </div>
-      
+
       {previewUrl && (
         <div className="mt-6 space-y-6">
           <div className="relative">
             <h4 className="font-medium mb-2">Preview & Crop</h4>
-            <div 
+            <div
               ref={imageContainerRef}
               className="border rounded-lg overflow-hidden bg-gray-50 relative"
-              style={{ 
+              style={{
                 height: originalHeight > 500 ? '500px' : `${originalHeight}px`,
                 cursor: isDragging ? 'grabbing' : 'grab'
               }}
@@ -309,14 +309,14 @@ const CropImageDetailed = () => {
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}
             >
-              <img 
-                src={previewUrl} 
-                alt="Preview" 
+              <img
+                src={previewUrl}
+                alt="Preview"
                 className="w-full h-full object-contain"
               />
-              
+
               {/* Crop overlay */}
-              <div 
+              <div
                 className="absolute border-2 border-blue-500 bg-white bg-opacity-20"
                 style={{
                   left: `${(cropX / originalWidth) * 100}%`,
@@ -330,22 +330,22 @@ const CropImageDetailed = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="flex justify-between mt-2">
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="sm"
                 onClick={resetCrop}
               >
                 <FaRedo className="mr-1" /> Reset Crop
               </Button>
-              
+
               <div className="text-sm text-gray-600">
                 Original: {originalWidth} × {originalHeight} px
               </div>
             </div>
           </div>
-          
+
           <div className="space-y-4">
             <Tabs value={cropMethod} onValueChange={(value) => handleCropMethodChange(value as "free" | "ratio" | "preset")}>
               <TabsList className="grid w-full grid-cols-3 mb-4">
@@ -353,7 +353,7 @@ const CropImageDetailed = () => {
                 <TabsTrigger value="ratio">Aspect Ratio</TabsTrigger>
                 <TabsTrigger value="preset">Presets</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="free" className="space-y-2">
                 <p className="text-sm text-gray-600">
                   Freely drag the crop area to select any portion of the image.
@@ -363,7 +363,7 @@ const CropImageDetailed = () => {
                   Tip: Drag the highlighted area to move it
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="ratio" className="space-y-4">
                 <div>
                   <Label htmlFor="aspect-ratio" className="font-medium">Aspect Ratio</Label>
@@ -384,7 +384,7 @@ const CropImageDetailed = () => {
                   </Select>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="preset" className="space-y-4">
                 <div>
                   <Label htmlFor="crop-preset" className="font-medium">Common Presets</Label>
@@ -406,7 +406,7 @@ const CropImageDetailed = () => {
                 </div>
               </TabsContent>
             </Tabs>
-            
+
             <div>
               <Label htmlFor="output-format" className="font-medium">Output Format</Label>
               <Select value={outputFormat} onValueChange={setOutputFormat}>
@@ -421,9 +421,9 @@ const CropImageDetailed = () => {
               </Select>
             </div>
           </div>
-          
+
           <div className="flex space-x-3">
-            <Button 
+            <Button
               onClick={handleCrop}
               className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
               disabled={isCropping || !file}
@@ -432,31 +432,31 @@ const CropImageDetailed = () => {
                 <>Cropping...</>
               ) : (
                 <>
-                  <FaCrop className="mr-2" /> 
+                  <FaCrop className="mr-2" />
                   Crop Image
                 </>
               )}
             </Button>
-            
+
             {resultUrl && (
-              <Button 
+              <Button
                 onClick={handleDownload}
                 variant="outline"
                 className="flex-1"
               >
-                <FaDownload className="mr-2" /> 
+                <FaDownload className="mr-2" />
                 Download
               </Button>
             )}
           </div>
-          
+
           {resultUrl && (
             <div>
               <h4 className="font-medium mb-2">Result</h4>
               <div className="border rounded-lg overflow-hidden bg-gray-50 flex justify-center p-2">
-                <img 
-                  src={resultUrl} 
-                  alt="Cropped Result" 
+                <img
+                  src={resultUrl}
+                  alt="Cropped Result"
                   className="max-h-48 object-contain"
                 />
               </div>

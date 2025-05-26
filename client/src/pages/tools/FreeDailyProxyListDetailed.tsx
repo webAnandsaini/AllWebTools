@@ -52,13 +52,13 @@ const FreeDailyProxyListDetailed = () => {
   const [savedProxies, setSavedProxies] = useState<SavedProxy[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("proxy-list");
-  
+
   // Filters
   const [countryFilter, setCountryFilter] = useState<string>("all");
   const [anonymityFilter, setAnonymityFilter] = useState<string>("all");
   const [httpsOnlyFilter, setHttpsOnlyFilter] = useState<boolean>(false);
   const [searchFilter, setSearchFilter] = useState<string>("");
-  
+
   const { toast } = useToast();
 
   // Generate mock proxy data
@@ -75,7 +75,7 @@ const FreeDailyProxyListDetailed = () => {
   // Generate mock proxy list
   const fetchProxyList = async () => {
     setIsLoading(true);
-    
+
     try {
       // In a real implementation, this would call an actual proxy list API
       // For demonstration, we'll simulate a network call
@@ -94,7 +94,7 @@ const FreeDailyProxyListDetailed = () => {
           last_checked: getRandomRecentTime(),
           status: Math.random() > 0.1 ? "online" : "offline" // 90% are online
         }));
-        
+
         setProxyList(mockProxies);
         setFilteredProxyList(mockProxies);
         setIsLoading(false);
@@ -113,35 +113,35 @@ const FreeDailyProxyListDetailed = () => {
   // Apply all filters to the proxy list
   const applyFilters = () => {
     let filtered = [...proxyList];
-    
+
     // Apply country filter
     if (countryFilter && countryFilter !== "all") {
-      filtered = filtered.filter(proxy => 
+      filtered = filtered.filter(proxy =>
         proxy.country_code === countryFilter
       );
     }
-    
+
     // Apply anonymity filter
     if (anonymityFilter && anonymityFilter !== "all") {
-      filtered = filtered.filter(proxy => 
+      filtered = filtered.filter(proxy =>
         proxy.anonymity === anonymityFilter
       );
     }
-    
+
     // Apply HTTPS filter
     if (httpsOnlyFilter) {
-      filtered = filtered.filter(proxy => 
+      filtered = filtered.filter(proxy =>
         proxy.https === true
       );
     }
-    
+
     // Apply search filter (IP address)
     if (searchFilter) {
-      filtered = filtered.filter(proxy => 
+      filtered = filtered.filter(proxy =>
         proxy.ip.includes(searchFilter)
       );
     }
-    
+
     setFilteredProxyList(filtered);
   };
 
@@ -149,27 +149,27 @@ const FreeDailyProxyListDetailed = () => {
   const generateRandomIP = (): string => {
     return `${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
   };
-  
+
   const generateRandomPort = (): number => {
     const commonPorts = [80, 8080, 3128, 8118, 1080, 4145, 9050, 8888, 9999];
     return commonPorts[Math.floor(Math.random() * commonPorts.length)];
   };
-  
+
   const getRandomCountry = (): string => {
     const countries = ["United States", "Germany", "Netherlands", "France", "United Kingdom", "Canada", "Russia", "Brazil", "India", "Japan"];
     return countries[Math.floor(Math.random() * countries.length)];
   };
-  
+
   const getRandomCountryCode = (): string => {
     const countryCodes = ["US", "DE", "NL", "FR", "GB", "CA", "RU", "BR", "IN", "JP"];
     return countryCodes[Math.floor(Math.random() * countryCodes.length)];
   };
-  
+
   const getRandomAnonymityLevel = (): ProxyServer["anonymity"] => {
     const levels: ProxyServer["anonymity"][] = ["transparent", "anonymous", "elite", "high_anonymous"];
     return levels[Math.floor(Math.random() * levels.length)];
   };
-  
+
   const getRandomRecentTime = (): string => {
     const now = new Date();
     // Random time in the last 24 hours
@@ -183,15 +183,15 @@ const FreeDailyProxyListDetailed = () => {
       timestamp: new Date().toISOString(),
       proxy: proxy
     };
-    
+
     const savedList = loadSavedProxies();
-    
+
     // Check if this proxy is already saved
     if (!savedList.some(item => item.proxy.ip === proxy.ip && item.proxy.port === proxy.port)) {
       const updatedList = [newEntry, ...savedList];
       localStorage.setItem('saved_proxies', JSON.stringify(updatedList));
       setSavedProxies(updatedList);
-      
+
       toast({
         title: "Proxy Saved",
         description: `Proxy ${proxy.ip}:${proxy.port} has been saved to your list.`
@@ -208,10 +208,10 @@ const FreeDailyProxyListDetailed = () => {
   const removeProxy = (proxyId: number) => {
     const savedList = loadSavedProxies();
     const updatedList = savedList.filter(item => item.proxy.id !== proxyId);
-    
+
     localStorage.setItem('saved_proxies', JSON.stringify(updatedList));
     setSavedProxies(updatedList);
-    
+
     toast({
       title: "Proxy Removed",
       description: "The proxy has been removed from your saved list."
@@ -261,7 +261,7 @@ const FreeDailyProxyListDetailed = () => {
   const copyProxy = (proxy: ProxyServer) => {
     const proxyString = `${proxy.ip}:${proxy.port}`;
     navigator.clipboard.writeText(proxyString);
-    
+
     toast({
       title: "Proxy Copied",
       description: `${proxyString} has been copied to clipboard.`
@@ -301,9 +301,9 @@ const FreeDailyProxyListDetailed = () => {
 
   const toolInterface = (
     <div className="space-y-6">
-      <Tabs 
-        defaultValue="proxy-list" 
-        value={activeTab} 
+      <Tabs
+        defaultValue="proxy-list"
+        value={activeTab}
         onValueChange={setActiveTab}
         className="w-full"
       >
@@ -311,7 +311,7 @@ const FreeDailyProxyListDetailed = () => {
           <TabsTrigger value="proxy-list">Daily Proxy List</TabsTrigger>
           <TabsTrigger value="saved-proxies">Saved Proxies</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="proxy-list" className="space-y-6 mt-6">
           <Card>
             <CardContent className="p-6">
@@ -321,9 +321,9 @@ const FreeDailyProxyListDetailed = () => {
                   <Badge className="bg-blue-100 text-blue-800">
                     Updated Daily
                   </Badge>
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
+                  <Button
+                    size="sm"
+                    variant="outline"
                     onClick={handleRefreshList}
                     disabled={isLoading}
                   >
@@ -331,7 +331,7 @@ const FreeDailyProxyListDetailed = () => {
                   </Button>
                 </div>
               </div>
-              
+
               <div className="space-y-4 mb-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
@@ -358,7 +358,7 @@ const FreeDailyProxyListDetailed = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="anonymity-filter" className="text-sm">Anonymity Level</Label>
                     <Select
@@ -377,7 +377,7 @@ const FreeDailyProxyListDetailed = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   <div className="flex flex-col">
                     <Label htmlFor="ip-search" className="text-sm">Search by IP</Label>
                     <Input
@@ -388,27 +388,27 @@ const FreeDailyProxyListDetailed = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-6">
                   <div className="flex items-center space-x-2">
-                    <Checkbox 
-                      id="https-only" 
+                    <Checkbox
+                      id="https-only"
                       checked={httpsOnlyFilter}
                       onCheckedChange={(checked) => setHttpsOnlyFilter(checked as boolean)}
                     />
                     <Label htmlFor="https-only" className="text-sm">HTTPS only</Label>
                   </div>
-                  
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     onClick={resetFilters}
                   >
                     Reset Filters
                   </Button>
                 </div>
               </div>
-              
+
               {isLoading ? (
                 <div className="py-12 space-y-4">
                   <Progress value={65} className="w-full h-2" />
@@ -461,15 +461,15 @@ const FreeDailyProxyListDetailed = () => {
                               <TableCell>{proxy.uptime}%</TableCell>
                               <TableCell className="text-right">
                                 <div className="flex justify-end space-x-2">
-                                  <Button 
-                                    variant="ghost" 
+                                  <Button
+                                    variant="ghost"
                                     size="sm"
                                     onClick={() => copyProxy(proxy)}
                                   >
                                     Copy
                                   </Button>
-                                  <Button 
-                                    variant="ghost" 
+                                  <Button
+                                    variant="ghost"
                                     size="sm"
                                     onClick={() => saveProxy(proxy)}
                                   >
@@ -489,7 +489,7 @@ const FreeDailyProxyListDetailed = () => {
                       </TableBody>
                     </Table>
                   </div>
-                  
+
                   <div className="mt-2 text-xs text-gray-500 flex justify-between items-center">
                     <span>Showing {filteredProxyList.length} of {proxyList.length} proxies</span>
                     <span>Last updated: {new Date().toLocaleDateString()}</span>
@@ -498,7 +498,7 @@ const FreeDailyProxyListDetailed = () => {
               )}
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <h3 className="font-medium text-lg mb-4">About Proxy Servers</h3>
@@ -524,23 +524,23 @@ const FreeDailyProxyListDetailed = () => {
             </CardContent>
           </Card>
         </TabsContent>
-        
+
         <TabsContent value="saved-proxies" className="space-y-6 mt-6">
           <Card>
             <CardContent className="p-6">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="font-medium text-lg">Your Saved Proxies</h3>
                 {savedProxies.length > 0 && (
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
+                  <Button
+                    size="sm"
+                    variant="outline"
                     onClick={clearSavedProxies}
                   >
                     Clear All
                   </Button>
                 )}
               </div>
-              
+
               {savedProxies.length > 0 ? (
                 <div className="rounded-md border">
                   <Table>
@@ -584,15 +584,15 @@ const FreeDailyProxyListDetailed = () => {
                           </TableCell>
                           <TableCell className="text-right">
                             <div className="flex justify-end space-x-2">
-                              <Button 
-                                variant="ghost" 
+                              <Button
+                                variant="ghost"
                                 size="sm"
                                 onClick={() => copyProxy(item.proxy)}
                               >
                                 Copy
                               </Button>
-                              <Button 
-                                variant="ghost" 
+                              <Button
+                                variant="ghost"
                                 size="sm"
                                 onClick={() => removeProxy(item.proxy.id)}
                               >
@@ -609,8 +609,8 @@ const FreeDailyProxyListDetailed = () => {
                 <div className="text-center py-8">
                   <p className="text-gray-500">No saved proxies found.</p>
                   <p className="text-sm text-gray-400 mt-2">Your saved proxy servers will appear here.</p>
-                  <Button 
-                    className="mt-4" 
+                  <Button
+                    className="mt-4"
                     variant="outline"
                     onClick={() => setActiveTab("proxy-list")}
                   >
@@ -620,7 +620,7 @@ const FreeDailyProxyListDetailed = () => {
               )}
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <h3 className="font-medium text-lg mb-4">How to Use Saved Proxies</h3>
@@ -644,7 +644,7 @@ const FreeDailyProxyListDetailed = () => {
                   </li>
                 </ol>
                 <p>
-                  Remember that free proxies may have inconsistent performance and security. 
+                  Remember that free proxies may have inconsistent performance and security.
                   Consider using a trusted VPN service for tasks requiring reliability and security.
                 </p>
               </div>
@@ -652,7 +652,7 @@ const FreeDailyProxyListDetailed = () => {
           </Card>
         </TabsContent>
       </Tabs>
-      
+
       <Card>
         <CardContent className="p-6">
           <h3 className="font-medium text-lg mb-4">Related Tools</h3>
@@ -682,14 +682,14 @@ const FreeDailyProxyListDetailed = () => {
   );
 
   const introduction = "Access a constantly updated list of free, working proxy servers from around the world—verified and sorted for your convenience.";
-  
+
   const description = `
     Our Free Daily Proxy List tool provides a comprehensive, regularly updated collection of working proxy servers sourced from around the globe. Each server in our database undergoes rigorous verification to ensure functionality, with key metrics such as speed, uptime percentage, and anonymity level carefully measured and displayed to help you select the most suitable proxy for your specific needs.
-    
+
     The proxy list includes essential technical details for each server, including IP address, port number, geographical location, supported protocols (HTTP/HTTPS), anonymity level, response speed, and reliability rating. Our advanced filtering system enables you to quickly narrow down the extensive list based on specific criteria such as country, anonymity level, or protocol support, making it simple to find exactly the type of proxy you need among hundreds of available options.
-    
+
     Proxy servers serve numerous practical purposes across various technical scenarios. They can help bypass geographical restrictions to access region-locked content, enhance online privacy by masking your original IP address, improve security when accessing sensitive websites, and assist in web scraping or data collection projects. Our tool supports these use cases by providing a reliable source of working proxies with clear performance metrics and easy-to-use filtering capabilities.
-    
+
     The tool includes a convenient feature for saving your preferred proxy servers to a personal list stored locally on your device. This allows you to maintain a collection of reliable proxies for future use without having to search through the entire database again. The proxy list is updated daily to ensure you always have access to fresh, working servers, while non-functional proxies are promptly removed to maintain the quality and reliability of our directory.
   `;
 
@@ -705,13 +705,13 @@ const FreeDailyProxyListDetailed = () => {
   ];
 
   const features = [
-    "✅ Daily updated database of verified working proxy servers from around the world",
-    "✅ Detailed information for each proxy including speed, uptime percentage, and anonymity level",
-    "✅ Advanced filtering system to find proxies by country, anonymity level, and protocol support",
-    "✅ Personal saved proxy list feature to store and organize your preferred servers",
-    "✅ One-click copy functionality for easy implementation in browsers and applications",
-    "✅ Transparency on proxy performance with real-time speed and reliability metrics",
-    "✅ Compatible with all modern browsers and devices without requiring any installations or plugins"
+    " Daily updated database of verified working proxy servers from around the world",
+    " Detailed information for each proxy including speed, uptime percentage, and anonymity level",
+    " Advanced filtering system to find proxies by country, anonymity level, and protocol support",
+    " Personal saved proxy list feature to store and organize your preferred servers",
+    " One-click copy functionality for easy implementation in browsers and applications",
+    " Transparency on proxy performance with real-time speed and reliability metrics",
+    " Compatible with all modern browsers and devices without requiring any installations or plugins"
   ];
 
   const faqs = [

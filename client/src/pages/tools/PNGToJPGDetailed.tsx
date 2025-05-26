@@ -7,10 +7,10 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { imageEditingTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
-import { 
-  FaUpload, 
-  FaDownload, 
-  FaImage, 
+import {
+  FaUpload,
+  FaDownload,
+  FaImage,
   FaCheck,
   FaExchangeAlt
 } from "react-icons/fa";
@@ -28,10 +28,10 @@ const PNGToJPGDetailed = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const selectedFiles = Array.from(e.target.files).filter(file => 
+      const selectedFiles = Array.from(e.target.files).filter(file =>
         file.type === 'image/png'
       );
-      
+
       if (selectedFiles.length !== e.target.files.length) {
         toast({
           title: "Invalid files",
@@ -39,18 +39,18 @@ const PNGToJPGDetailed = () => {
           variant: "destructive",
         });
       }
-      
+
       if (selectedFiles.length > 0) {
         setFiles([...files, ...selectedFiles]);
-        
+
         // Store original file sizes
         const sizes = selectedFiles.map(file => file.size);
         setOriginalSizes([...originalSizes, ...sizes]);
-        
+
         // Create preview URLs for each file
         const urls = selectedFiles.map(file => URL.createObjectURL(file));
         setPreviewUrls([...previewUrls, ...urls]);
-        
+
         // Reset results
         setResultUrls([]);
         setConvertedSizes([]);
@@ -63,28 +63,28 @@ const PNGToJPGDetailed = () => {
     const newFiles = [...files];
     const newPreviewUrls = [...previewUrls];
     const newOriginalSizes = [...originalSizes];
-    
+
     // Revoke object URL to prevent memory leaks
     URL.revokeObjectURL(newPreviewUrls[index]);
-    
+
     newFiles.splice(index, 1);
     newPreviewUrls.splice(index, 1);
     newOriginalSizes.splice(index, 1);
-    
+
     setFiles(newFiles);
     setPreviewUrls(newPreviewUrls);
     setOriginalSizes(newOriginalSizes);
-    
+
     // Also remove converted results if they exist
     if (resultUrls.length > 0) {
       const newResultUrls = [...resultUrls];
       const newConvertedSizes = [...convertedSizes];
-      
+
       if (index < newResultUrls.length) {
         URL.revokeObjectURL(newResultUrls[index]);
         newResultUrls.splice(index, 1);
         newConvertedSizes.splice(index, 1);
-        
+
         setResultUrls(newResultUrls);
         setConvertedSizes(newConvertedSizes);
       }
@@ -95,7 +95,7 @@ const PNGToJPGDetailed = () => {
     // Revoke all object URLs
     previewUrls.forEach(url => URL.revokeObjectURL(url));
     resultUrls.forEach(url => URL.revokeObjectURL(url));
-    
+
     setFiles([]);
     setPreviewUrls([]);
     setOriginalSizes([]);
@@ -118,7 +118,7 @@ const PNGToJPGDetailed = () => {
     setConvertProgress(0);
     setResultUrls([]);
     setConvertedSizes([]);
-    
+
     // Simulate conversion process
     let progress = 0;
     const interval = setInterval(() => {
@@ -126,20 +126,20 @@ const PNGToJPGDetailed = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         // Simulate converted results - in a real implementation, this would be the actual converted images
         const results = previewUrls.map(url => url);
-        
+
         // Simulate file size reduction based on quality setting
         // JPG typically has smaller file size than PNG for photographic content
         // The higher the quality, the larger the file size (but still smaller than PNG)
         const compressionRatio = (100 - quality) * 0.005 + 0.3; // Between 0.3 and 0.8
         const sizes = originalSizes.map(size => Math.floor(size * (1 - compressionRatio)));
-        
+
         setResultUrls(results);
         setConvertedSizes(sizes);
         setIsConverting(false);
-        
+
         toast({
           title: "Conversion complete",
           description: `Converted ${files.length} ${files.length === 1 ? 'PNG file' : 'PNG files'} to JPG.`,
@@ -151,7 +151,7 @@ const PNGToJPGDetailed = () => {
 
   const handleDownload = (index: number) => {
     if (!resultUrls[index]) return;
-    
+
     // Create a download link
     const a = document.createElement('a');
     a.href = resultUrls[index];
@@ -161,7 +161,7 @@ const PNGToJPGDetailed = () => {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    
+
     toast({
       title: "Download started",
       description: "Your converted JPG image is being downloaded.",
@@ -170,12 +170,12 @@ const PNGToJPGDetailed = () => {
 
   const handleDownloadAll = () => {
     if (resultUrls.length === 0) return;
-    
+
     toast({
       title: "Preparing download",
       description: "All converted JPG images will be downloaded in a few moments.",
     });
-    
+
     // In a real implementation, this would create a zip file with all images
     // For this demo, we'll just download them one by one with a delay
     resultUrls.forEach((_, index) => {
@@ -187,13 +187,13 @@ const PNGToJPGDetailed = () => {
 
   const formatBytes = (bytes: number, decimals = 2) => {
     if (bytes === 0) return '0 Bytes';
-    
+
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    
+
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    
+
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   };
 
@@ -216,13 +216,13 @@ const PNGToJPGDetailed = () => {
   ];
 
   const features = [
-    "✅ Convert PNG files to JPG format with adjustable quality",
-    "✅ Batch processing for multiple PNG files simultaneously",
-    "✅ Visual preview of converted images before downloading",
-    "✅ File size comparison between original PNG and converted JPG",
-    "✅ Easy one-click download of individual or all converted images",
-    "✅ No watermarks on converted images",
-    "✅ Works completely in your browser - no files uploaded to our servers"
+    " Convert PNG files to JPG format with adjustable quality",
+    " Batch processing for multiple PNG files simultaneously",
+    " Visual preview of converted images before downloading",
+    " File size comparison between original PNG and converted JPG",
+    " Easy one-click download of individual or all converted images",
+    " No watermarks on converted images",
+    " Works completely in your browser - no files uploaded to our servers"
   ];
 
   const faqs = [
@@ -243,7 +243,7 @@ const PNGToJPGDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">PNG to JPG Converter</h3>
-      
+
       <div className="border-2 border-dashed rounded-lg p-4 text-center">
         <Label htmlFor="png-to-jpg-upload" className="cursor-pointer block">
           <div className="py-8 flex flex-col items-center">
@@ -265,20 +265,20 @@ const PNGToJPGDetailed = () => {
           />
         </Label>
       </div>
-      
+
       {files.length > 0 && (
         <div className="mt-6 space-y-5">
           <div className="flex justify-between items-center">
             <h4 className="font-medium">Files to Convert ({files.length})</h4>
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               size="sm"
               onClick={clearAll}
             >
               Clear All
             </Button>
           </div>
-          
+
           <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
             {files.map((file, index) => (
               <div key={index} className="flex items-center justify-between border rounded-lg p-3 bg-gray-50">
@@ -290,7 +290,7 @@ const PNGToJPGDetailed = () => {
                     <p className="text-sm font-medium truncate w-40 sm:w-auto">{file.name}</p>
                     <div className="flex items-center text-xs text-gray-500">
                       <span>{formatBytes(originalSizes[index])}</span>
-                      
+
                       {convertedSizes[index] && (
                         <>
                           <span className="mx-1 text-gray-400">→</span>
@@ -305,8 +305,8 @@ const PNGToJPGDetailed = () => {
                 </div>
                 <div className="flex items-center">
                   {resultUrls[index] && (
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       size="sm"
                       className="text-blue-600 mr-2"
                       onClick={() => handleDownload(index)}
@@ -315,8 +315,8 @@ const PNGToJPGDetailed = () => {
                       Download
                     </Button>
                   )}
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     size="sm"
                     className="text-red-600"
                     onClick={() => removeFile(index)}
@@ -327,14 +327,14 @@ const PNGToJPGDetailed = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="space-y-4 pt-2">
             <div>
               <div className="flex justify-between items-center mb-1">
                 <Label htmlFor="quality-slider" className="font-medium">JPG Quality</Label>
                 <span className="text-sm">{quality}%</span>
               </div>
-              <Slider 
+              <Slider
                 id="quality-slider"
                 min={50}
                 max={100}
@@ -348,9 +348,9 @@ const PNGToJPGDetailed = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button 
+            <Button
               onClick={handleConvert}
               className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
               disabled={isConverting || files.length === 0}
@@ -359,24 +359,24 @@ const PNGToJPGDetailed = () => {
                 <>Converting...</>
               ) : (
                 <>
-                  <FaExchangeAlt className="mr-2" /> 
+                  <FaExchangeAlt className="mr-2" />
                   Convert to JPG
                 </>
               )}
             </Button>
-            
+
             {resultUrls.length > 0 && (
-              <Button 
+              <Button
                 onClick={handleDownloadAll}
                 variant="outline"
                 className="flex-1"
               >
-                <FaDownload className="mr-2" /> 
+                <FaDownload className="mr-2" />
                 Download All
               </Button>
             )}
           </div>
-          
+
           {isConverting && (
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
@@ -386,12 +386,12 @@ const PNGToJPGDetailed = () => {
               <Progress value={convertProgress} />
             </div>
           )}
-          
+
           {resultUrls.length > 0 && files.length > 0 && (
             <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-800 flex items-center">
               <FaCheck className="mr-2 flex-shrink-0" />
               <span>
-                Successfully converted {files.length} {files.length === 1 ? 'PNG file' : 'PNG files'} to JPG! 
+                Successfully converted {files.length} {files.length === 1 ? 'PNG file' : 'PNG files'} to JPG!
                 Total savings: {calculateSavings(
                   originalSizes.reduce((a, b) => a + b, 0),
                   convertedSizes.reduce((a, b) => a + b, 0)

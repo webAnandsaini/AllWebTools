@@ -94,11 +94,11 @@ const AIContentGeneratorDetailed: React.FC = () => {
           "Click 'Generate Content' and receive AI-written text in seconds"
         ],
         features: [
-          "✅ Creates high-quality content on virtually any topic",
-          "✅ Customizable tone and style options to match your brand voice",
-          "✅ Multiple length options from short paragraphs to full articles",
-          "✅ Keyword integration for SEO-friendly content",
-          "✅ Instant results with unlimited generations"
+          " Creates high-quality content on virtually any topic",
+          " Customizable tone and style options to match your brand voice",
+          " Multiple length options from short paragraphs to full articles",
+          " Keyword integration for SEO-friendly content",
+          " Instant results with unlimited generations"
         ],
         faqs: [
           {
@@ -142,11 +142,11 @@ const AIContentGeneratorDetailed: React.FC = () => {
           "Click 'Generate Text' and review your results"
         ],
         features: [
-          "✅ Versatile text generation for multiple purposes and formats",
-          "✅ Adjustable creativity and style settings",
-          "✅ Custom tone options ranging from formal to casual",
-          "✅ Length options from short paragraphs to comprehensive articles",
-          "✅ User-friendly interface with instant results"
+          " Versatile text generation for multiple purposes and formats",
+          " Adjustable creativity and style settings",
+          " Custom tone options ranging from formal to casual",
+          " Length options from short paragraphs to comprehensive articles",
+          " User-friendly interface with instant results"
         ],
         faqs: [
           {
@@ -190,11 +190,11 @@ const AIContentGeneratorDetailed: React.FC = () => {
           "Click 'Generate Paragraph' to create your content"
         ],
         features: [
-          "✅ Creates logically structured paragraphs with topic sentences and supporting details",
-          "✅ Adjustable paragraph length from brief to comprehensive",
-          "✅ Multiple tone options to match your writing style",
-          "✅ Keyword integration for focused content",
-          "✅ Ideal for academic essays, blog posts, or professional writing"
+          " Creates logically structured paragraphs with topic sentences and supporting details",
+          " Adjustable paragraph length from brief to comprehensive",
+          " Multiple tone options to match your writing style",
+          " Keyword integration for focused content",
+          " Ideal for academic essays, blog posts, or professional writing"
         ],
         faqs: [
           {
@@ -238,11 +238,11 @@ const AIContentGeneratorDetailed: React.FC = () => {
           "Click 'Generate Titles' to get multiple title options"
         ],
         features: [
-          "✅ Creates multiple title options for each request",
-          "✅ Offers various title styles from academic to creative",
-          "✅ Ensures titles are relevant to your specific essay topic",
-          "✅ Helps capture reader interest from the start",
-          "✅ Perfect for academic papers, blog posts, and articles"
+          " Creates multiple title options for each request",
+          " Offers various title styles from academic to creative",
+          " Ensures titles are relevant to your specific essay topic",
+          " Helps capture reader interest from the start",
+          " Perfect for academic papers, blog posts, and articles"
         ],
         faqs: [
           {
@@ -286,11 +286,11 @@ const AIContentGeneratorDetailed: React.FC = () => {
           "Click 'Generate Plot' to receive your custom story concept"
         ],
         features: [
-          "✅ Creates unique plot concepts across multiple genres",
-          "✅ Customizable level of detail from brief concepts to extended outlines",
-          "✅ Generates character motivations and conflict scenarios",
-          "✅ Provides plot twists and resolution ideas",
-          "✅ Perfect for novelists, screenwriters, game designers, and creative writing students"
+          " Creates unique plot concepts across multiple genres",
+          " Customizable level of detail from brief concepts to extended outlines",
+          " Generates character motivations and conflict scenarios",
+          " Provides plot twists and resolution ideas",
+          " Perfect for novelists, screenwriters, game designers, and creative writing students"
         ],
         faqs: [
           {
@@ -334,11 +334,11 @@ const AIContentGeneratorDetailed: React.FC = () => {
           "Click 'Generate Thesis' to receive multiple thesis statement options"
         ],
         features: [
-          "✅ Creates clear, concise thesis statements for any academic paper",
-          "✅ Offers multiple statement variations to choose from",
-          "✅ Adjusts complexity based on academic level",
-          "✅ Structures statements appropriate for different paper types",
-          "✅ Perfect for essays, research papers, and dissertations"
+          " Creates clear, concise thesis statements for any academic paper",
+          " Offers multiple statement variations to choose from",
+          " Adjusts complexity based on academic level",
+          " Structures statements appropriate for different paper types",
+          " Perfect for essays, research papers, and dissertations"
         ],
         faqs: [
           {
@@ -382,11 +382,11 @@ const AIContentGeneratorDetailed: React.FC = () => {
           "Click 'Generate Story' to create your unique narrative"
         ],
         features: [
-          "✅ Creates complete stories with beginning, middle, and end",
-          "✅ Multiple genre options from fantasy to mystery to romance",
-          "✅ Customizable story length from flash fiction to short stories",
-          "✅ Develops characters and dialogue to engage readers",
-          "✅ Perfect for creative inspiration or ready-to-read entertainment"
+          " Creates complete stories with beginning, middle, and end",
+          " Multiple genre options from fantasy to mystery to romance",
+          " Customizable story length from flash fiction to short stories",
+          " Develops characters and dialogue to engage readers",
+          " Perfect for creative inspiration or ready-to-read entertainment"
         ],
         faqs: [
           {
@@ -430,11 +430,11 @@ const AIContentGeneratorDetailed: React.FC = () => {
           "Click 'Generate Conclusion' to create your closing paragraph"
         ],
         features: [
-          "✅ Creates well-structured conclusions that effectively summarize content",
-          "✅ Reinforces your thesis and main arguments",
-          "✅ Offers appropriate closing statements across academic and professional contexts",
-          "✅ Customizable length and tone to match your document",
-          "✅ Perfect for essays, research papers, business reports, and blog articles"
+          " Creates well-structured conclusions that effectively summarize content",
+          " Reinforces your thesis and main arguments",
+          " Offers appropriate closing statements across academic and professional contexts",
+          " Customizable length and tone to match your document",
+          " Perfect for essays, research papers, business reports, and blog articles"
         ],
         faqs: [
           {
@@ -478,11 +478,11 @@ const AIContentGeneratorDetailed: React.FC = () => {
           "Click 'Generate Email' to create your customized message"
         ],
         features: [
-          "✅ Creates professionally structured emails with proper formatting",
-          "✅ Multiple email types for different business and personal scenarios",
-          "✅ Customizable tone from formal to friendly",
-          "✅ Includes appropriate salutations and closings",
-          "✅ Perfect for busy professionals, job seekers, and anyone needing effective communication"
+          " Creates professionally structured emails with proper formatting",
+          " Multiple email types for different business and personal scenarios",
+          " Customizable tone from formal to friendly",
+          " Includes appropriate salutations and closings",
+          " Perfect for busy professionals, job seekers, and anyone needing effective communication"
         ],
         faqs: [
           {
@@ -526,11 +526,11 @@ const AIContentGeneratorDetailed: React.FC = () => {
           "Click 'Generate Content' and get your results instantly"
         ],
         features: [
-          "✅ Creates high-quality content for multiple purposes and formats",
-          "✅ Customizable tone, length, and style options",
-          "✅ Adjustable creativity levels to match your needs",
-          "✅ Keyword integration for focused, relevant content",
-          "✅ User-friendly interface with instant results"
+          " Creates high-quality content for multiple purposes and formats",
+          " Customizable tone, length, and style options",
+          " Adjustable creativity levels to match your needs",
+          " Keyword integration for focused, relevant content",
+          " User-friendly interface with instant results"
         ],
         faqs: [
           {
@@ -572,10 +572,10 @@ const AIContentGeneratorDetailed: React.FC = () => {
     setTimeout(() => {
       const topicWords = topic.split(" ");
       const keywordWords = keywords ? keywords.split(",").map(k => k.trim()) : [];
-      
+
       try {
         let generatedText = "";
-        
+
         // Different generation logic based on content type
         switch (contentType) {
           case "writer":
@@ -607,7 +607,7 @@ const AIContentGeneratorDetailed: React.FC = () => {
           default:
             generatedText = generateGenericContent();
         }
-        
+
         setGeneratedContent(generatedText);
         setIsGenerating(false);
       } catch (e) {
@@ -621,22 +621,22 @@ const AIContentGeneratorDetailed: React.FC = () => {
   const generateGenericContent = () => {
     const paragraphCount = length === "short" ? 2 : length === "medium" ? 4 : 6;
     const topicWords = topic.split(" ");
-    
+
     let content = "";
-    
+
     // Introduction
     content += `# ${topic.charAt(0).toUpperCase() + topic.slice(1)}\n\n`;
-    
+
     // Generate paragraphs
     for (let i = 0; i < paragraphCount; i++) {
       // Randomize paragraph length between 3-6 sentences
       const sentenceCount = Math.floor(Math.random() * 4) + 3;
-      
+
       for (let j = 0; j < sentenceCount; j++) {
         // Create a random sentence related to the topic
         const sentenceLength = Math.floor(Math.random() * 15) + 5;
         let sentence = "";
-        
+
         for (let k = 0; k < sentenceLength; k++) {
           // 10% chance to include a keyword if available
           if (keywords && keywords.length > 0 && Math.random() < 0.1) {
@@ -647,33 +647,33 @@ const AIContentGeneratorDetailed: React.FC = () => {
             sentence += topicWords[Math.floor(Math.random() * topicWords.length)] + " ";
           }
         }
-        
+
         // Clean up and capitalize sentence
         sentence = sentence.trim();
         sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1) + ". ";
         content += sentence;
       }
-      
+
       content += "\n\n";
     }
-    
+
     // Add conclusion for longer content
     if (paragraphCount > 2) {
       content += "In conclusion, " + topicWords.join(" ") + " represents an important area that deserves attention and consideration. The points discussed highlight the significance and potential impact of this topic in various contexts.";
     }
-    
+
     return content;
   };
 
   const generateParagraphContent = () => {
     const sentenceCount = length === "short" ? 3 : length === "medium" ? 5 : 8;
     const topicWords = topic.split(" ");
-    
+
     let content = "";
-    
+
     // Topic sentence
     content += `${topic.charAt(0).toUpperCase() + topic.slice(1)} is a subject of significant interest and importance. `;
-    
+
     // Supporting sentences
     for (let i = 1; i < sentenceCount - 1; i++) {
       // Mix in keywords if available
@@ -685,108 +685,108 @@ const AIContentGeneratorDetailed: React.FC = () => {
         content += `It encompasses various aspects including ${topicWords[Math.floor(Math.random() * topicWords.length)]} and related considerations. `;
       }
     }
-    
+
     // Concluding sentence
     content += `Overall, this demonstrates the complexity and relevance of ${topic} in today's context.`;
-    
+
     return content;
   };
 
   const generateTitleContent = () => {
     const topicWords = topic.split(" ");
     const keywordArray = keywords ? keywords.split(",").map(k => k.trim()) : [];
-    
+
     // Generate 5 different title styles
     let titles = "## Essay Title Options\n\n";
-    
+
     // Standard academic title
     titles += `1. **The Impact of ${topic.charAt(0).toUpperCase() + topic.slice(1)} on Modern Society**\n\n`;
-    
+
     // Question-based title
     titles += `2. **How Does ${topic.charAt(0).toUpperCase() + topic.slice(1)} Shape Our Understanding of ${keywordArray.length > 0 ? keywordArray[0] : "Contemporary Issues"}?**\n\n`;
-    
+
     // Colon-based title
     titles += `3. **${topic.charAt(0).toUpperCase() + topic.slice(1)}: Analyzing Its Role in ${keywordArray.length > 0 ? keywordArray[Math.floor(Math.random() * keywordArray.length)] : "Today's World"}**\n\n`;
-    
+
     // Creative/metaphorical title
     titles += `4. **Beyond the Surface: Exploring the Depths of ${topic.charAt(0).toUpperCase() + topic.slice(1)}**\n\n`;
-    
+
     // Comparative title
     titles += `5. **Between Theory and Practice: ${topic.charAt(0).toUpperCase() + topic.slice(1)} in ${keywordArray.length > 0 ? keywordArray[Math.floor(Math.random() * keywordArray.length)] : "Contemporary Discourse"}**\n\n`;
-    
+
     return titles;
   };
 
   const generatePlotContent = () => {
     const plotLength = length === "short" ? "brief" : length === "medium" ? "moderate" : "detailed";
-    
+
     let content = `# ${topic.charAt(0).toUpperCase() + topic.slice(1)} - Plot Outline\n\n`;
-    
+
     // Introduction and setting
     content += `## Setting\nThe story takes place in a ${keywords ? keywords.split(",")[0] : "fascinating"} world where ${topic} is a central element of society. `;
-    
+
     // Characters
     content += `\n\n## Main Characters\n`;
     content += `- **Protagonist**: A determined individual with a deep connection to ${topic}\n`;
     content += `- **Antagonist**: Someone who opposes the protagonist's goals related to ${topic}\n`;
     content += `- **Supporting Character**: A wise mentor who guides the protagonist\n`;
-    
+
     // Plot structure
     content += `\n\n## Plot Structure\n`;
-    
+
     // Introduction
     content += `### Act 1: Introduction\nThe story begins with our protagonist discovering a unique aspect of ${topic} that changes their perspective. They decide to pursue this new understanding despite obstacles.\n\n`;
-    
+
     // Rising action and conflict
     content += `### Act 2: Rising Action\nAs the protagonist delves deeper into ${topic}, they encounter resistance from the antagonist who has contrary beliefs. The conflict intensifies as both sides gather supporters and resources.\n\n`;
-    
+
     // Only add more detailed middle sections for medium/long plots
     if (plotLength !== "brief") {
       content += `### Act 2.5: Complications\nUnexpected challenges arise when a revelation about ${topic} throws both the protagonist and antagonist's understanding into question. The protagonist must reevaluate their approach.\n\n`;
     }
-    
+
     // Climax
     content += `### Act 3: Climax\nThe conflict reaches its peak when the protagonist and antagonist face off in a decisive confrontation about ${topic}. The protagonist discovers a critical insight that gives them an advantage.\n\n`;
-    
+
     // Resolution
     content += `### Act 4: Resolution\nThrough their journey with ${topic}, the protagonist achieves a new understanding that brings resolution to the conflict. The world is changed as a result of their actions and discoveries.\n\n`;
-    
+
     // Additional details for longer plots
     if (plotLength === "detailed") {
       content += `## Themes\n- The nature of ${topic} and its impact on individuals\n- The conflict between traditional and progressive views\n- Personal growth through adversity\n- The importance of understanding different perspectives\n\n`;
-      
+
       content += `## Potential Plot Twists\n- A character believed to be an ally is revealed to be working with the antagonist\n- The protagonist discovers their understanding of ${topic} has been based on a fundamental misconception\n- A seemingly minor character becomes crucial to the resolution\n`;
     }
-    
+
     return content;
   };
 
   const generateThesisContent = () => {
     const topicWords = topic.split(" ");
     const keywordArray = keywords ? keywords.split(",").map(k => k.trim()) : [];
-    
+
     let content = "## Thesis Statement Options\n\n";
-    
+
     // Argumentative thesis
     content += "### Argumentative Thesis\n";
     content += `Despite common misconceptions, ${topic} significantly impacts ${keywordArray.length > 0 ? keywordArray[0] : "modern society"} through its influence on ${keywordArray.length > 1 ? keywordArray[1] : "key institutions"} and ${keywordArray.length > 2 ? keywordArray[2] : "cultural practices"}, requiring a reevaluation of current approaches and policies.\n\n`;
-    
+
     // Analytical thesis
     content += "### Analytical Thesis\n";
     content += `An examination of ${topic} reveals three critical components: ${keywordArray.length > 0 ? keywordArray[0] : "historical context"}, ${keywordArray.length > 1 ? keywordArray[1] : "contemporary applications"}, and ${keywordArray.length > 2 ? keywordArray[2] : "future implications"}, which together demonstrate its profound significance in ${keywordArray.length > 3 ? keywordArray[3] : "today's discourse"}.\n\n`;
-    
+
     // Expository thesis
     content += "### Expository Thesis\n";
     content += `${topic.charAt(0).toUpperCase() + topic.slice(1)} encompasses multiple dimensions including ${keywordArray.length > 0 ? keywordArray[0] : "social factors"}, ${keywordArray.length > 1 ? keywordArray[1] : "economic considerations"}, and ${keywordArray.length > 2 ? keywordArray[2] : "ethical implications"}, each contributing to its complex role in ${keywordArray.length > 3 ? keywordArray[3] : "modern society"}.\n\n`;
-    
+
     // Comparative thesis
     content += "### Comparative Thesis\n";
     content += `While traditional perspectives on ${topic} emphasize ${keywordArray.length > 0 ? keywordArray[0] : "conventional wisdom"}, contemporary approaches prioritize ${keywordArray.length > 1 ? keywordArray[1] : "innovative solutions"}, revealing a fundamental shift in understanding that has significant implications for ${keywordArray.length > 2 ? keywordArray[2] : "future developments"}.\n\n`;
-    
+
     // Cause-effect thesis
     content += "### Cause-Effect Thesis\n";
     content += `The evolution of ${topic} has been primarily driven by ${keywordArray.length > 0 ? keywordArray[0] : "technological advancements"}, ${keywordArray.length > 1 ? keywordArray[1] : "social changes"}, and ${keywordArray.length > 2 ? keywordArray[2] : "economic factors"}, resulting in profound transformations that continue to shape ${keywordArray.length > 3 ? keywordArray[3] : "contemporary society"}.`;
-    
+
     return content;
   };
 
@@ -794,134 +794,134 @@ const AIContentGeneratorDetailed: React.FC = () => {
     const storyLength = length === "short" ? "brief" : length === "medium" ? "moderate" : "detailed";
     const topicWords = topic.split(" ");
     const keywordArray = keywords ? keywords.split(",").map(k => k.trim()) : [];
-    
+
     let content = `# ${topic.charAt(0).toUpperCase() + topic.slice(1)}\n\n`;
-    
+
     // Introduction
     content += `Once upon a time in a world where ${topic} was central to everyone's lives, there lived a ${keywordArray.length > 0 ? keywordArray[0] : "determined individual"} named Alex. `;
     content += `Alex had always been fascinated by the mysteries of ${topic}, spending countless hours studying and exploring its nuances.\n\n`;
-    
+
     // Rising action
     content += `One ordinary day, as Alex was ${keywordArray.length > 1 ? `exploring the realm of ${keywordArray[1]}` : `going about their usual routine`}, `;
     content += `they discovered something extraordinary about ${topic} that no one had noticed before. `;
     content += `This discovery set Alex on an unexpected journey filled with adventure and challenges.\n\n`;
-    
+
     // Add more details for medium/long stories
     if (storyLength !== "brief") {
       content += `As word of Alex's discovery spread, it caught the attention of ${keywordArray.length > 2 ? keywordArray[2] : "powerful figures"} who had different plans for ${topic}. `;
       content += `They sought to control and manipulate this knowledge for their own benefit. `;
       content += `Alex soon found themselves pursued by these forces while trying to protect what they had learned.\n\n`;
-      
+
       content += `Along the way, Alex met ${keywordArray.length > 3 ? keywordArray[3] : "a wise mentor"} who had been studying ${topic} for decades. `;
       content += `This mentor shared ancient wisdom that helped Alex understand the true significance of their discovery. `;
       content += `Together, they formulated a plan to ensure that the knowledge of ${topic} would benefit everyone, not just a select few.\n\n`;
     }
-    
+
     // Climax
     content += `The confrontation came during ${tone === "formal" ? "a significant assembly" : tone === "casual" ? "a big showdown" : "a crucial moment"} `;
     content += `when Alex had to demonstrate the true nature of ${topic} in front of skeptics and believers alike. `;
     content += `Using everything they had learned, Alex presented a compelling case that ${tone === "formal" ? "elucidated" : tone === "casual" ? "showed" : "revealed"} `;
     content += `the profound importance of ${topic} in ways no one had imagined.\n\n`;
-    
+
     // Resolution
     content += `In the end, Alex's journey transformed not only their own understanding of ${topic} but changed how everyone perceived it. `;
     content += `The discovery became a catalyst for positive change throughout society, inspiring a new generation of explorers and thinkers. `;
     content += `As for Alex, they continued their studies, knowing there was still much more to learn about the fascinating world of ${topic}.\n\n`;
-    
+
     // More detailed ending for long stories
     if (storyLength === "detailed") {
       content += `Years later, Alex established an academy dedicated to the study of ${topic}, where people from all walks of life could come to learn and contribute their own insights. `;
       content += `The legacy of that initial discovery continued to grow and evolve, touching countless lives and opening new frontiers of understanding. `;
       content += `And sometimes, on quiet evenings, Alex would smile remembering that ordinary day that had started an extraordinary journey.`;
     }
-    
+
     return content;
   };
 
   const generateConclusionContent = () => {
     const topicWords = topic.split(" ");
     const keywordArray = keywords ? keywords.split(",").map(k => k.trim()) : [];
-    
+
     let content = "";
-    
+
     // Opening restatement of thesis
     content += `In conclusion, ${topic} represents a significant area of study with far-reaching implications. `;
-    
+
     // Summary of main points
     content += `As demonstrated throughout this ${tone === "formal" ? "paper" : tone === "casual" ? "discussion" : "analysis"}, `;
     content += `the key aspects of ${keywordArray.length > 0 ? keywordArray[0] : "this subject"}, `;
     content += `${keywordArray.length > 1 ? keywordArray[1] : "its applications"}, and `;
     content += `${keywordArray.length > 2 ? keywordArray[2] : "related factors"} `;
     content += `collectively illustrate the complexity and importance of this topic. `;
-    
+
     // Significance statement
     content += `The insights gained from examining ${topic} contribute to our understanding of `;
     content += `${keywordArray.length > 3 ? keywordArray[3] : "broader concepts"} and provide a foundation for future research. `;
-    
+
     // Add more for medium/long conclusions
     if (length !== "short") {
       content += `Moreover, the analysis of ${topic} reveals connections to ${keywordArray.length > 0 ? keywordArray[0] : "related fields"} `;
       content += `that merit further exploration. The implications extend beyond theoretical considerations to practical applications in `;
       content += `${keywordArray.length > 1 ? keywordArray[1] : "various contexts"}. `;
     }
-    
+
     // Closing thought or call to action
     content += `Moving forward, continued investigation into ${topic} will likely yield additional insights that could transform our approach to `;
     content += `${keywordArray.length > 2 ? keywordArray[2] : "contemporary challenges"}. `;
     content += `By building upon the foundation established here, future scholars and practitioners can develop more comprehensive frameworks that address the complexities inherent in this important subject.`;
-    
+
     return content;
   };
 
   const generateEmailContent = () => {
     const topicWords = topic.split(" ");
     const keywordArray = keywords ? keywords.split(",").map(k => k.trim()) : [];
-    
+
     let content = "";
-    
+
     // Email subject
     content += `**Subject:** ${topic.charAt(0).toUpperCase() + topic.slice(1)}\n\n`;
-    
+
     // Salutation
     content += tone === "formal" ? "Dear Recipient,\n\n" : tone === "casual" ? "Hi there,\n\n" : "Hello,\n\n";
-    
+
     // Introduction
     content += `I am writing to ${topic.toLowerCase().startsWith("request") || topic.toLowerCase().startsWith("inquire") ? topic : `discuss ${topic}`}. `;
-    
+
     // Main content
     if (keywordArray.length > 0) {
       content += `As you may know, ${keywordArray[0]} is a key consideration in this matter. `;
     }
-    
+
     content += `I would like to ${topic.toLowerCase().includes("request") ? "formally request" : topic.toLowerCase().includes("inform") ? "inform you" : "discuss with you"} `;
     content += `the details regarding ${topic} and explore potential next steps.\n\n`;
-    
+
     // Add more details for medium/long emails
     if (length !== "short") {
       content += `Specifically, I am interested in addressing the following points:\n\n`;
       content += `1. The current status of ${topic}\n`;
       content += `2. ${keywordArray.length > 1 ? `The implications of ${keywordArray[1]}` : `Potential opportunities for collaboration`}\n`;
       content += `3. ${keywordArray.length > 2 ? `Next steps regarding ${keywordArray[2]}` : `Timeline for implementation or discussion`}\n\n`;
-      
+
       content += `I believe that addressing these aspects will provide a solid foundation for our ${topic.toLowerCase().includes("proposal") ? "proposal" : "discussion"}. `;
       content += `Your insights on this matter would be greatly valued.\n\n`;
     }
-    
+
     // Request for action or response
     content += `I would appreciate your ${topic.toLowerCase().includes("meeting") ? "availability for a meeting" : "thoughts on this matter"} `;
     content += `at your earliest convenience. `;
-    
+
     if (length === "long") {
       content += `Please let me know if you require any additional information or clarification. `;
       content += `I am available to discuss this further and answer any questions you might have.\n\n`;
     }
-    
+
     // Closing
     content += `Thank you for your ${tone === "formal" ? "consideration" : tone === "casual" ? "help" : "attention"} to this matter.\n\n`;
-    
+
     // Signature
     content += tone === "formal" ? "Sincerely,\n\n[Your Name]\n[Your Title/Position]" : tone === "casual" ? "Thanks,\n\n[Your Name]" : "Best regards,\n\n[Your Name]";
-    
+
     return content;
   };
 
@@ -944,7 +944,7 @@ const AIContentGeneratorDetailed: React.FC = () => {
                 className="mt-1.5 min-h-[100px]"
               />
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {config.optionsConfig.toneSelector && (
                 <div>
@@ -967,7 +967,7 @@ const AIContentGeneratorDetailed: React.FC = () => {
                   </Select>
                 </div>
               )}
-              
+
               {config.optionsConfig.lengthSelector && (
                 <div>
                   <Label htmlFor="length">Length</Label>
@@ -986,7 +986,7 @@ const AIContentGeneratorDetailed: React.FC = () => {
                   </Select>
                 </div>
               )}
-              
+
               {config.optionsConfig.styleSelector && (
                 <div>
                   <Label htmlFor="style">Style</Label>
@@ -1007,7 +1007,7 @@ const AIContentGeneratorDetailed: React.FC = () => {
                   </Select>
                 </div>
               )}
-              
+
               {config.optionsConfig.additionalOptionsSelector && (
                 <div>
                   <Label htmlFor="additionalOptions">Additional Options</Label>
@@ -1029,7 +1029,7 @@ const AIContentGeneratorDetailed: React.FC = () => {
                 </div>
               )}
             </div>
-            
+
             {config.optionsConfig.keywordsInput && (
               <div>
                 <Label htmlFor="keywords">Keywords (Optional, separate with commas)</Label>
@@ -1042,7 +1042,7 @@ const AIContentGeneratorDetailed: React.FC = () => {
                 />
               </div>
             )}
-            
+
             <div>
               <Label>Creativity Level: {creativityLevel}%</Label>
               <Slider
@@ -1060,9 +1060,9 @@ const AIContentGeneratorDetailed: React.FC = () => {
               </div>
             </div>
 
-            <Button 
-              variant="default" 
-              onClick={generateContent} 
+            <Button
+              variant="default"
+              onClick={generateContent}
               className="w-full"
               disabled={isGenerating}
             >
@@ -1086,8 +1086,8 @@ const AIContentGeneratorDetailed: React.FC = () => {
                         ))}
                       </div>
                       <div className="flex justify-end mt-4">
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           onClick={() => {
                             navigator.clipboard.writeText(generatedContent);
                           }}
@@ -1111,7 +1111,7 @@ const AIContentGeneratorDetailed: React.FC = () => {
             <p>
               Our {config.title} helps you create high-quality content efficiently and effortlessly. Simply enter your topic, customize your preferences, and let our AI do the work.
             </p>
-            
+
             <div>
               <h4 className="font-medium mb-2">Common Uses:</h4>
               <ul className="list-disc pl-5 space-y-1">

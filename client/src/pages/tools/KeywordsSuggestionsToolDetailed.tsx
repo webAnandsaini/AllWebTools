@@ -8,8 +8,8 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { keywordsTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
-import { 
-  FaSearch, 
+import {
+  FaSearch,
   FaLightbulb,
   FaDownload,
   FaCheck,
@@ -21,7 +21,7 @@ import {
   FaCaretUp
 } from "react-icons/fa";
 import { Progress } from "@/components/ui/progress";
-import { 
+import {
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -48,7 +48,7 @@ const KeywordsSuggestionsToolDetailed = () => {
       max: 100
     },
     wordCount: {
-      min: 1, 
+      min: 1,
       max: 5
     }
   });
@@ -66,7 +66,7 @@ const KeywordsSuggestionsToolDetailed = () => {
     setIsGenerating(true);
     setGenerateProgress(0);
     setResults(null);
-    
+
     // Simulate the generation process
     let progress = 0;
     const interval = setInterval(() => {
@@ -74,22 +74,22 @@ const KeywordsSuggestionsToolDetailed = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         // Generate simulated results
         const categories = ["Questions", "Prepositions", "Comparisons", "Related", "Long-tail"];
-        
+
         // Create simulated suggestions
         const getRandomInt = (min: number, max: number) => {
           return Math.floor(Math.random() * (max - min + 1)) + min;
         };
-        
+
         const generateSuggestions = (category: string, count: number) => {
           const suggestions = [];
-          
+
           // Different prefixes/suffixes based on category
           let prefixes: string[] = [];
           let suffixes: string[] = [];
-          
+
           switch(category) {
             case "Questions":
               prefixes = ["how to", "what is", "why", "when to", "where to", "which", "who"];
@@ -109,28 +109,28 @@ const KeywordsSuggestionsToolDetailed = () => {
               suffixes = ["for beginners", "for small business", "for free", "without paying", "in 2025"];
               break;
           }
-          
+
           for (let i = 0; i < count; i++) {
             const hasPrefix = category !== "Comparisons" && Math.random() > 0.3;
             const hasSuffix = category !== "Questions" && Math.random() > 0.3;
-            
+
             let suggestion = "";
-            
+
             if (hasPrefix) {
               suggestion += prefixes[Math.floor(Math.random() * prefixes.length)] + " ";
             }
-            
+
             suggestion += keyword;
-            
+
             if (hasSuffix) {
               suggestion += " " + suffixes[Math.floor(Math.random() * suffixes.length)];
             }
-            
+
             // Generate random metrics
             const searchVolume = getRandomInt(50, 10000);
             const competition = getRandomInt(10, 100);
             const cpc = (Math.random() * 4 + 0.1).toFixed(2);
-            
+
             suggestions.push({
               keyword: suggestion,
               searchVolume,
@@ -139,20 +139,20 @@ const KeywordsSuggestionsToolDetailed = () => {
               wordCount: suggestion.split(' ').length
             });
           }
-          
+
           return suggestions;
         };
-        
+
         const allSuggestions: Record<string, any[]> = {};
         categories.forEach(category => {
           allSuggestions[category] = generateSuggestions(category, getRandomInt(8, 15));
         });
-        
+
         setResults(allSuggestions);
         setIsGenerating(false);
-        
+
         const totalCount = Object.values(allSuggestions).reduce((sum, arr) => sum + arr.length, 0);
-        
+
         toast({
           title: "Suggestions generated",
           description: `Generated ${totalCount} keyword suggestions for "${keyword}".`,
@@ -164,16 +164,16 @@ const KeywordsSuggestionsToolDetailed = () => {
 
   const exportToCSV = () => {
     if (!results) return;
-    
+
     // Create CSV content
     let csv = 'Keyword,Search Volume,Competition,CPC,Word Count,Category\n';
-    
+
     Object.entries(results).forEach(([category, suggestions]) => {
       (suggestions as any[]).forEach(item => {
         csv += `"${item.keyword}",${item.searchVolume},${item.competition}%,$${item.cpc},${item.wordCount},"${category}"\n`;
       });
     });
-    
+
     // Create and download file
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
@@ -183,29 +183,29 @@ const KeywordsSuggestionsToolDetailed = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     toast({
       title: "Export complete",
       description: "Keyword suggestions exported to CSV file.",
     });
   };
 
-  const filteredResults = results ? 
+  const filteredResults = results ?
     Object.fromEntries(
       Object.entries(results).map(([category, items]) => [
-        category, 
-        (items as any[]).filter(item => 
-          item.searchVolume >= filters.searchVolume.min && 
+        category,
+        (items as any[]).filter(item =>
+          item.searchVolume >= filters.searchVolume.min &&
           item.searchVolume <= filters.searchVolume.max &&
-          item.competition >= filters.competition.min && 
+          item.competition >= filters.competition.min &&
           item.competition <= filters.competition.max &&
-          item.wordCount >= filters.wordCount.min && 
+          item.wordCount >= filters.wordCount.min &&
           item.wordCount <= filters.wordCount.max
         )
       ])
     ) : null;
-    
-  const totalSuggestions = filteredResults ? 
+
+  const totalSuggestions = filteredResults ?
     Object.values(filteredResults).reduce((sum, arr: any) => sum + arr.length, 0) : 0;
 
   const getSearchVolumeColor = (volume: number) => {
@@ -237,13 +237,13 @@ const KeywordsSuggestionsToolDetailed = () => {
   ];
 
   const features = [
-    "✅ Generate hundreds of keyword suggestions from a single seed term",
-    "✅ Organize suggestions into practical categories (questions, prepositions, comparisons)",
-    "✅ View essential metrics including search volume, competition, and CPC",
-    "✅ Filter results based on search volume, competition level, and word count",
-    "✅ Discover question-based keywords perfect for creating FAQ content",
-    "✅ Find long-tail variations with lower competition and higher conversion potential",
-    "✅ Export suggestions to CSV for use in your content planning or SEO tools"
+    " Generate hundreds of keyword suggestions from a single seed term",
+    " Organize suggestions into practical categories (questions, prepositions, comparisons)",
+    " View essential metrics including search volume, competition, and CPC",
+    " Filter results based on search volume, competition level, and word count",
+    " Discover question-based keywords perfect for creating FAQ content",
+    " Find long-tail variations with lower competition and higher conversion potential",
+    " Export suggestions to CSV for use in your content planning or SEO tools"
   ];
 
   const faqs = [
@@ -264,20 +264,20 @@ const KeywordsSuggestionsToolDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Keywords Suggestions Tool</h3>
-      
+
       <div className="space-y-5">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="md:col-span-2">
             <Label htmlFor="keyword" className="block mb-2">Seed Keyword</Label>
             <div className="flex">
-              <Input 
-                id="keyword" 
-                placeholder="Enter a keyword..." 
+              <Input
+                id="keyword"
+                placeholder="Enter a keyword..."
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 className="rounded-r-none"
               />
-              <Button 
+              <Button
                 onClick={handleGenerate}
                 className="rounded-l-none bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
                 disabled={isGenerating}
@@ -286,7 +286,7 @@ const KeywordsSuggestionsToolDetailed = () => {
                   <>Generating...</>
                 ) : (
                   <>
-                    <FaLightbulb className="mr-2" /> 
+                    <FaLightbulb className="mr-2" />
                     Generate
                   </>
                 )}
@@ -294,10 +294,10 @@ const KeywordsSuggestionsToolDetailed = () => {
             </div>
             <p className="text-xs text-gray-500 mt-1">Enter a keyword relevant to your business or content</p>
           </div>
-          
+
           <div>
             <Label className="block mb-2">Country</Label>
-            <select 
+            <select
               className="w-full p-2 border rounded-md"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
@@ -311,20 +311,20 @@ const KeywordsSuggestionsToolDetailed = () => {
             </select>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <Label className="block mb-2">Suggestion Type</Label>
-            <RadioGroup 
-              defaultValue="related" 
+            <RadioGroup
+              defaultValue="related"
               value={searchType}
               onValueChange={setSearchType}
               className="flex flex-wrap gap-2"
             >
               <div className="flex items-center">
                 <RadioGroupItem value="related" id="related" className="peer sr-only" />
-                <Label 
-                  htmlFor="related" 
+                <Label
+                  htmlFor="related"
                   className="cursor-pointer rounded-md border bg-white px-3 py-1.5 text-sm peer-data-[state=checked]:border-blue-500 peer-data-[state=checked]:bg-blue-50 peer-data-[state=checked]:text-blue-600"
                 >
                   All Suggestions
@@ -332,8 +332,8 @@ const KeywordsSuggestionsToolDetailed = () => {
               </div>
               <div className="flex items-center">
                 <RadioGroupItem value="questions" id="questions" className="peer sr-only" />
-                <Label 
-                  htmlFor="questions" 
+                <Label
+                  htmlFor="questions"
                   className="cursor-pointer rounded-md border bg-white px-3 py-1.5 text-sm peer-data-[state=checked]:border-blue-500 peer-data-[state=checked]:bg-blue-50 peer-data-[state=checked]:text-blue-600"
                 >
                   Questions
@@ -341,8 +341,8 @@ const KeywordsSuggestionsToolDetailed = () => {
               </div>
               <div className="flex items-center">
                 <RadioGroupItem value="longtail" id="longtail" className="peer sr-only" />
-                <Label 
-                  htmlFor="longtail" 
+                <Label
+                  htmlFor="longtail"
                   className="cursor-pointer rounded-md border bg-white px-3 py-1.5 text-sm peer-data-[state=checked]:border-blue-500 peer-data-[state=checked]:bg-blue-50 peer-data-[state=checked]:text-blue-600"
                 >
                   Long-tail
@@ -350,22 +350,22 @@ const KeywordsSuggestionsToolDetailed = () => {
               </div>
             </RadioGroup>
           </div>
-          
+
           <div className="flex items-center">
-            <Checkbox 
-              id="include-metrics" 
+            <Checkbox
+              id="include-metrics"
               checked={includeMetrics}
               onCheckedChange={() => setIncludeMetrics(!includeMetrics)}
             />
-            <Label 
-              htmlFor="include-metrics" 
+            <Label
+              htmlFor="include-metrics"
               className="ml-2 cursor-pointer"
             >
               Include search volume and competition metrics
             </Label>
           </div>
         </div>
-        
+
         {isGenerating && (
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
@@ -375,7 +375,7 @@ const KeywordsSuggestionsToolDetailed = () => {
             <Progress value={generateProgress} />
           </div>
         )}
-        
+
         {filteredResults && (
           <div className="space-y-5 pt-2">
             <div className="flex flex-wrap justify-between items-center">
@@ -386,9 +386,9 @@ const KeywordsSuggestionsToolDetailed = () => {
                   {totalSuggestions} found
                 </span>
               </h4>
-              
-              <Button 
-                variant="outline" 
+
+              <Button
+                variant="outline"
                 size="sm"
                 onClick={exportToCSV}
                 disabled={totalSuggestions === 0}
@@ -397,11 +397,11 @@ const KeywordsSuggestionsToolDetailed = () => {
                 Export to CSV
               </Button>
             </div>
-            
+
             <div className="border rounded-lg overflow-hidden">
               <div className="bg-gray-50 p-3 border-b">
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   size="sm"
                   onClick={() => {
                     document.getElementById('filters-section')?.classList.toggle('hidden');
@@ -419,16 +419,16 @@ const KeywordsSuggestionsToolDetailed = () => {
                     <FaCaretUp id="filters-icon-up" className="hidden" />
                   </span>
                 </Button>
-                
+
                 <div id="filters-section" className="hidden pt-3 space-y-4">
                   <div>
                     <Label className="text-sm mb-2 block">Search Volume</Label>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <Label htmlFor="min-volume" className="text-xs">Min</Label>
-                        <Input 
-                          id="min-volume" 
-                          type="number" 
+                        <Input
+                          id="min-volume"
+                          type="number"
                           placeholder="Min volume"
                           value={filters.searchVolume.min}
                           onChange={(e) => setFilters({
@@ -443,9 +443,9 @@ const KeywordsSuggestionsToolDetailed = () => {
                       </div>
                       <div>
                         <Label htmlFor="max-volume" className="text-xs">Max</Label>
-                        <Input 
-                          id="max-volume" 
-                          type="number" 
+                        <Input
+                          id="max-volume"
+                          type="number"
                           placeholder="Max volume"
                           value={filters.searchVolume.max}
                           onChange={(e) => setFilters({
@@ -460,15 +460,15 @@ const KeywordsSuggestionsToolDetailed = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div>
                     <Label className="text-sm mb-2 block">Competition (%)</Label>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <Label htmlFor="min-competition" className="text-xs">Min</Label>
-                        <Input 
-                          id="min-competition" 
-                          type="number" 
+                        <Input
+                          id="min-competition"
+                          type="number"
                           placeholder="Min competition"
                           value={filters.competition.min}
                           onChange={(e) => setFilters({
@@ -483,9 +483,9 @@ const KeywordsSuggestionsToolDetailed = () => {
                       </div>
                       <div>
                         <Label htmlFor="max-competition" className="text-xs">Max</Label>
-                        <Input 
-                          id="max-competition" 
-                          type="number" 
+                        <Input
+                          id="max-competition"
+                          type="number"
                           placeholder="Max competition"
                           value={filters.competition.max}
                           onChange={(e) => setFilters({
@@ -500,15 +500,15 @@ const KeywordsSuggestionsToolDetailed = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div>
                     <Label className="text-sm mb-2 block">Word Count</Label>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <Label htmlFor="min-words" className="text-xs">Min</Label>
-                        <Input 
-                          id="min-words" 
-                          type="number" 
+                        <Input
+                          id="min-words"
+                          type="number"
                           placeholder="Min words"
                           value={filters.wordCount.min}
                           onChange={(e) => setFilters({
@@ -523,9 +523,9 @@ const KeywordsSuggestionsToolDetailed = () => {
                       </div>
                       <div>
                         <Label htmlFor="max-words" className="text-xs">Max</Label>
-                        <Input 
-                          id="max-words" 
-                          type="number" 
+                        <Input
+                          id="max-words"
+                          type="number"
                           placeholder="Max words"
                           value={filters.wordCount.max}
                           onChange={(e) => setFilters({
@@ -542,15 +542,15 @@ const KeywordsSuggestionsToolDetailed = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="p-0">
                 <Accordion type="multiple" defaultValue={["Questions", "Prepositions", "Comparisons", "Related", "Long-tail"]}>
                   {Object.entries(filteredResults).map(([category, suggestions]) => {
                     if ((suggestions as any[]).length === 0) return null;
-                    
+
                     // Filter by search type if needed
                     if (searchType !== "related" && searchType !== category.toLowerCase()) return null;
-                    
+
                     return (
                       <AccordionItem value={category} key={category}>
                         <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-gray-50">
@@ -588,7 +588,7 @@ const KeywordsSuggestionsToolDetailed = () => {
                                         <>
                                           <td className="p-2 text-right">
                                             <span className={getSearchVolumeColor(item.searchVolume)}>
-                                              {item.searchVolume >= 1000 
+                                              {item.searchVolume >= 1000
                                                 ? `${(item.searchVolume / 1000).toFixed(1)}K`
                                                 : item.searchVolume
                                               }
@@ -617,7 +617,7 @@ const KeywordsSuggestionsToolDetailed = () => {
                 </Accordion>
               </div>
             </div>
-            
+
             <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg text-sm">
               <h5 className="font-medium text-blue-700 mb-2">Choosing the Right Keywords</h5>
               <ul className="space-y-1 text-blue-700">

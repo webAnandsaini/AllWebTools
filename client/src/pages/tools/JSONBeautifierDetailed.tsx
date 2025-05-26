@@ -22,7 +22,7 @@ const JSONBeautifierDetailed = () => {
   // Extract the actual tool slug without the "-detailed" suffix
   const pathSegments = window.location.pathname.split('/');
   let toolSlug = pathSegments[pathSegments.length - 1].replace('-detailed', '');
-  
+
   // Handle direct routes without /tools/ prefix
   if (pathSegments.length === 2) {
     toolSlug = pathSegments[1].replace('-detailed', '');
@@ -48,18 +48,18 @@ const JSONBeautifierDetailed = () => {
       const cleanedInput = jsonInput
         .replace(/\/\/.*$/gm, '') // Remove single-line comments
         .replace(/\/\*[\s\S]*?\*\//g, ''); // Remove multi-line comments
-      
+
       let parsedJSON = JSON.parse(cleanedInput);
-      
+
       // Sort keys if option is selected
       if (sortKeys) {
         parsedJSON = sortJSONKeys(parsedJSON);
       }
-      
+
       // Format with proper indentation
       const beautified = JSON.stringify(parsedJSON, null, indentSize);
       setBeautifiedJSON(beautified);
-      
+
       toast({
         title: "Success",
         description: "JSON beautified successfully",
@@ -84,11 +84,11 @@ const JSONBeautifierDetailed = () => {
 
     const sortedKeys = Object.keys(obj).sort();
     const sortedObj: Record<string, any> = {};
-    
+
     for (const key of sortedKeys) {
       sortedObj[key] = sortJSONKeys(obj[key]);
     }
-    
+
     return sortedObj;
   };
 
@@ -123,11 +123,11 @@ const JSONBeautifierDetailed = () => {
       const cleanedInput = jsonInput
         .replace(/\/\/.*$/gm, '')
         .replace(/\/\*[\s\S]*?\*\//g, '');
-      
+
       const parsedJSON = JSON.parse(cleanedInput);
       const minified = JSON.stringify(parsedJSON);
       setBeautifiedJSON(minified);
-      
+
       toast({
         title: "Success",
         description: "JSON minified successfully",
@@ -148,7 +148,7 @@ const JSONBeautifierDetailed = () => {
       introduction: "Transform messy JSON into beautifully formatted, readable code.",
       description: "Our JSON Beautifier converts unformatted, minified, or poorly structured JSON data into a clean, properly indented format that's easy to read and understand. With customizable indentation, sorting options, and automatic validation, this tool helps you transform compact JSON into a well-organized structure that improves readability and makes debugging easier. Perfect for working with API responses, configuration files, or any JSON data that needs beautification.",
       howToUse: [
-        "Enter or paste your JSON data in the input field",
+        "‎Enter or paste your JSON data in the input field",
         "Adjust beautification options as needed (indentation size, key sorting)",
         "Click 'Beautify JSON' to transform your code",
         "View the beautified result with proper structure",
@@ -213,7 +213,7 @@ const JSONBeautifierDetailed = () => {
                   <p className="text-xs text-gray-500">Number of spaces (0-8)</p>
                 </div>
               </div>
-              
+
               <div className="space-y-3 flex items-center">
                 <div className="flex items-center space-x-2">
                   <Checkbox
@@ -225,7 +225,7 @@ const JSONBeautifierDetailed = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="jsonInput">Input JSON</Label>
@@ -248,7 +248,7 @@ const JSONBeautifierDetailed = () => {
                   </Button>
                 </div>
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <Label htmlFor="beautifiedJSON">Output (Beautified JSON)</Label>
@@ -258,7 +258,7 @@ const JSONBeautifierDetailed = () => {
                     </Button>
                   )}
                 </div>
-                
+
                 {error ? (
                   <Alert variant="destructive" className="min-h-[250px] flex items-start">
                     <AlertDescription>
@@ -278,7 +278,7 @@ const JSONBeautifierDetailed = () => {
             </div>
           </CardContent>
         </Card>
-        
+
         <div className="text-sm text-gray-500 px-1">
           <p>The JSON Beautifier transforms your compact or poorly formatted JSON into a clean, readable format with proper indentation and line breaks. Perfect for making complex JSON structures easier to understand and debug.</p>
         </div>

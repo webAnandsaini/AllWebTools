@@ -7,10 +7,10 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { imageEditingTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
-import { 
-  FaUpload, 
-  FaDownload, 
-  FaImage, 
+import {
+  FaUpload,
+  FaDownload,
+  FaImage,
   FaCheck,
   FaGlobe
 } from "react-icons/fa";
@@ -36,7 +36,7 @@ const FaviconGeneratorDetailed = () => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
       const fileType = selectedFile.type;
-      
+
       // Check if file is an image
       if (!fileType.startsWith('image/')) {
         toast({
@@ -46,12 +46,12 @@ const FaviconGeneratorDetailed = () => {
         });
         return;
       }
-      
+
       setFile(selectedFile);
       const objectUrl = URL.createObjectURL(selectedFile);
       setPreviewUrl(objectUrl);
       setGeneratedFavicons([]);
-      
+
       return () => {
         if (previewUrl) {
           URL.revokeObjectURL(previewUrl);
@@ -73,7 +73,7 @@ const FaviconGeneratorDetailed = () => {
     setIsGenerating(true);
     setGenerateProgress(0);
     setGeneratedFavicons([]);
-    
+
     // Simulate favicon generation process
     let progress = 0;
     const interval = setInterval(() => {
@@ -81,17 +81,17 @@ const FaviconGeneratorDetailed = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
-        // Simulate generated favicons 
+
+        // Simulate generated favicons
         const results = faviconSizes.map(size => ({
           url: previewUrl || "",
           size,
           format: selectedFormat
         }));
-        
+
         setGeneratedFavicons(results);
         setIsGenerating(false);
-        
+
         toast({
           title: "Favicons generated",
           description: `Generated ${results.length} favicon sizes in ${selectedFormat.toUpperCase()} format.`,
@@ -103,7 +103,7 @@ const FaviconGeneratorDetailed = () => {
 
   const handleDownload = (index: number) => {
     if (!generatedFavicons[index]) return;
-    
+
     // Create a download link
     const a = document.createElement('a');
     a.href = generatedFavicons[index].url;
@@ -113,7 +113,7 @@ const FaviconGeneratorDetailed = () => {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    
+
     toast({
       title: "Download started",
       description: `Your favicon (${generatedFavicons[index].size}) is being downloaded.`,
@@ -122,12 +122,12 @@ const FaviconGeneratorDetailed = () => {
 
   const handleDownloadAll = () => {
     if (generatedFavicons.length === 0) return;
-    
+
     toast({
       title: "Preparing download",
       description: "All favicon sizes will be downloaded in a few moments.",
     });
-    
+
     // In a real implementation, this would create a zip file with all favicons
     // For this demo, we'll just download them one by one with a delay
     generatedFavicons.forEach((_, index) => {
@@ -167,13 +167,13 @@ const FaviconGeneratorDetailed = () => {
   ];
 
   const features = [
-    "✅ Generate favicons in multiple standard sizes (16x16, 32x32, 48x48, 64x64)",
-    "✅ Support for ICO, PNG, and JPEG formats",
-    "✅ Automatic image optimization for each size",
-    "✅ Preview favicons before downloading",
-    "✅ Batch download all sizes at once",
-    "✅ Works with any image format as input (JPG, PNG, GIF, etc.)",
-    "✅ No watermarks on generated favicons"
+    " Generate favicons in multiple standard sizes (16x16, 32x32, 48x48, 64x64)",
+    " Support for ICO, PNG, and JPEG formats",
+    " Automatic image optimization for each size",
+    " Preview favicons before downloading",
+    " Batch download all sizes at once",
+    " Works with any image format as input (JPG, PNG, GIF, etc.)",
+    " No watermarks on generated favicons"
   ];
 
   const faqs = [
@@ -194,7 +194,7 @@ const FaviconGeneratorDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Favicon Generator</h3>
-      
+
       <div className="space-y-6">
         {!previewUrl ? (
           <div className="border-2 border-dashed rounded-lg p-4 text-center">
@@ -220,10 +220,10 @@ const FaviconGeneratorDetailed = () => {
         ) : (
           <div className="space-y-4">
             <div className="relative w-full max-w-xs mx-auto aspect-square rounded-lg overflow-hidden bg-slate-100 border">
-              <img 
-                src={previewUrl} 
-                alt="Preview" 
-                className="object-contain w-full h-full" 
+              <img
+                src={previewUrl}
+                alt="Preview"
+                className="object-contain w-full h-full"
               />
               <Button
                 variant="outline"
@@ -234,16 +234,16 @@ const FaviconGeneratorDetailed = () => {
                 ×
               </Button>
             </div>
-            
+
             <p className="text-sm text-gray-600 text-center">
               {file?.name} ({(file?.size ? (file.size / 1024 / 1024).toFixed(2) : '0')} MB)
             </p>
-            
+
             <div className="space-y-4 border rounded-lg p-4 bg-gray-50">
               <div>
                 <Label className="font-medium mb-2 block">Favicon Format</Label>
-                <RadioGroup 
-                  defaultValue="ico" 
+                <RadioGroup
+                  defaultValue="ico"
                   className="flex space-x-4"
                   value={selectedFormat}
                   onValueChange={setSelectedFormat}
@@ -262,15 +262,15 @@ const FaviconGeneratorDetailed = () => {
                   </div>
                 </RadioGroup>
               </div>
-              
+
               <div>
                 <Label className="font-medium mb-2 block">Favicon Sizes</Label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {["16x16", "32x32", "48x48", "64x64", "128x128", "152x152", "180x180", "192x192"].map(size => (
                     <div key={size} className="flex items-center">
-                      <input 
-                        type="checkbox" 
-                        id={`size-${size}`} 
+                      <input
+                        type="checkbox"
+                        id={`size-${size}`}
                         className="mr-2"
                         checked={faviconSizes.includes(size)}
                         onChange={() => toggleFaviconSize(size)}
@@ -281,8 +281,8 @@ const FaviconGeneratorDetailed = () => {
                 </div>
               </div>
             </div>
-            
-            <Button 
+
+            <Button
               onClick={handleGenerate}
               className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
               disabled={isGenerating || faviconSizes.length === 0}
@@ -291,14 +291,14 @@ const FaviconGeneratorDetailed = () => {
                 <>Generating Favicons...</>
               ) : (
                 <>
-                  <FaGlobe className="mr-2" /> 
+                  <FaGlobe className="mr-2" />
                   Generate Favicons
                 </>
               )}
             </Button>
           </div>
         )}
-        
+
         {isGenerating && (
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
@@ -308,11 +308,11 @@ const FaviconGeneratorDetailed = () => {
             <Progress value={generateProgress} />
           </div>
         )}
-        
+
         {generatedFavicons.length > 0 && (
           <div className="space-y-4">
             <h4 className="font-medium">Generated Favicons</h4>
-            
+
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {generatedFavicons.map((favicon, index) => (
                 <div key={index} className="border rounded-lg p-3 flex flex-col items-center text-center">
@@ -321,8 +321,8 @@ const FaviconGeneratorDetailed = () => {
                   </div>
                   <p className="text-sm font-medium mb-1">{favicon.size}</p>
                   <p className="text-xs text-gray-500 mb-2">.{favicon.format}</p>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
                     className="text-blue-600 w-full"
                     onClick={() => handleDownload(index)}
@@ -333,13 +333,13 @@ const FaviconGeneratorDetailed = () => {
                 </div>
               ))}
             </div>
-            
-            <Button 
+
+            <Button
               variant="default"
               className="w-full mt-2"
               onClick={handleDownloadAll}
             >
-              <FaDownload className="mr-2" /> 
+              <FaDownload className="mr-2" />
               Download All Favicons
             </Button>
           </div>

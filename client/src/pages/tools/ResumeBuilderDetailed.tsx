@@ -74,7 +74,7 @@ const ResumeBuilderDetailed = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [resumeGenerated, setResumeGenerated] = useState(false);
   const [progress, setProgress] = useState(0);
-  
+
   const [resumeData, setResumeData] = useState<ResumeData>({
     personalInfo: {
       fullName: "",
@@ -94,7 +94,7 @@ const ResumeBuilderDetailed = () => {
     experience: [],
     skills: []
   });
-  
+
   const { toast } = useToast();
 
   const addEducation = () => {
@@ -107,7 +107,7 @@ const ResumeBuilderDetailed = () => {
       endDate: "",
       description: ""
     };
-    
+
     setResumeData({
       ...resumeData,
       education: [...resumeData.education, newEducation]
@@ -117,7 +117,7 @@ const ResumeBuilderDetailed = () => {
   const updateEducation = (id: string, field: keyof Education, value: string) => {
     setResumeData({
       ...resumeData,
-      education: resumeData.education.map(edu => 
+      education: resumeData.education.map(edu =>
         edu.id === id ? { ...edu, [field]: value } : edu
       )
     });
@@ -141,7 +141,7 @@ const ResumeBuilderDetailed = () => {
       current: false,
       description: ""
     };
-    
+
     setResumeData({
       ...resumeData,
       experience: [...resumeData.experience, newExperience]
@@ -151,7 +151,7 @@ const ResumeBuilderDetailed = () => {
   const updateExperience = (id: string, field: keyof Experience, value: any) => {
     setResumeData({
       ...resumeData,
-      experience: resumeData.experience.map(exp => 
+      experience: resumeData.experience.map(exp =>
         exp.id === id ? { ...exp, [field]: value } : exp
       )
     });
@@ -170,7 +170,7 @@ const ResumeBuilderDetailed = () => {
       name: "",
       level: "Intermediate"
     };
-    
+
     setResumeData({
       ...resumeData,
       skills: [...resumeData.skills, newSkill]
@@ -180,7 +180,7 @@ const ResumeBuilderDetailed = () => {
   const updateSkill = (id: string, field: keyof Skill, value: any) => {
     setResumeData({
       ...resumeData,
-      skills: resumeData.skills.map(skill => 
+      skills: resumeData.skills.map(skill =>
         skill.id === id ? { ...skill, [field]: value } : skill
       )
     });
@@ -213,10 +213,10 @@ const ResumeBuilderDetailed = () => {
       });
       return;
     }
-    
+
     setIsGenerating(true);
     setProgress(0);
-    
+
     // Simulate resume generation process
     const interval = setInterval(() => {
       setProgress(prev => {
@@ -224,12 +224,12 @@ const ResumeBuilderDetailed = () => {
           clearInterval(interval);
           setIsGenerating(false);
           setResumeGenerated(true);
-          
+
           toast({
             title: "Resume generated",
             description: "Your resume has been created successfully!",
           });
-          
+
           return 100;
         }
         return prev + 5;
@@ -264,9 +264,9 @@ const ResumeBuilderDetailed = () => {
       experience: [],
       skills: []
     });
-    
+
     setResumeGenerated(false);
-    
+
     toast({
       title: "Form cleared",
       description: "All resume information has been cleared.",
@@ -275,9 +275,9 @@ const ResumeBuilderDetailed = () => {
 
   const toolInterface = (
     <div className="space-y-6">
-      <Tabs 
-        defaultValue="editor" 
-        value={activeTab} 
+      <Tabs
+        defaultValue="editor"
+        value={activeTab}
         onValueChange={setActiveTab}
         className="w-full"
       >
@@ -286,7 +286,7 @@ const ResumeBuilderDetailed = () => {
           <TabsTrigger value="templates">Templates</TabsTrigger>
           <TabsTrigger value="tips">Resume Tips</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="editor" className="space-y-6 mt-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div className="lg:col-span-4">
@@ -294,36 +294,36 @@ const ResumeBuilderDetailed = () => {
                 <CardContent className="p-6">
                   <h3 className="font-medium text-lg mb-4">Resume Sections</h3>
                   <div className="space-y-2">
-                    <Button 
-                      variant={activeSection === "personal-info" ? "default" : "outline"} 
+                    <Button
+                      variant={activeSection === "personal-info" ? "default" : "outline"}
                       className="w-full justify-start"
                       onClick={() => setActiveSection("personal-info")}
                     >
                       Personal Information
                     </Button>
-                    <Button 
-                      variant={activeSection === "experience" ? "default" : "outline"} 
+                    <Button
+                      variant={activeSection === "experience" ? "default" : "outline"}
                       className="w-full justify-start"
                       onClick={() => setActiveSection("experience")}
                     >
                       Work Experience ({resumeData.experience.length})
                     </Button>
-                    <Button 
-                      variant={activeSection === "education" ? "default" : "outline"} 
+                    <Button
+                      variant={activeSection === "education" ? "default" : "outline"}
                       className="w-full justify-start"
                       onClick={() => setActiveSection("education")}
                     >
                       Education ({resumeData.education.length})
                     </Button>
-                    <Button 
-                      variant={activeSection === "skills" ? "default" : "outline"} 
+                    <Button
+                      variant={activeSection === "skills" ? "default" : "outline"}
                       className="w-full justify-start"
                       onClick={() => setActiveSection("skills")}
                     >
                       Skills ({resumeData.skills.length})
                     </Button>
                   </div>
-                  
+
                   <div className="mt-6 space-y-4">
                     <h3 className="font-medium text-lg">Template Options</h3>
                     <div className="space-y-2">
@@ -345,17 +345,17 @@ const ResumeBuilderDetailed = () => {
                       </Select>
                     </div>
                   </div>
-                  
+
                   <div className="mt-6 space-y-4">
                     <div className="flex justify-between">
-                      <Button 
+                      <Button
                         onClick={generateResume}
                         disabled={isGenerating}
                         className="bg-primary hover:bg-primary/90"
                       >
                         {isGenerating ? "Generating..." : resumeGenerated ? "Update Resume" : "Generate Resume"}
                       </Button>
-                      
+
                       <Button
                         onClick={clearForm}
                         variant="outline"
@@ -363,7 +363,7 @@ const ResumeBuilderDetailed = () => {
                         Clear All
                       </Button>
                     </div>
-                    
+
                     {isGenerating && (
                       <div className="space-y-2">
                         <Progress value={progress} className="h-2" />
@@ -376,7 +376,7 @@ const ResumeBuilderDetailed = () => {
                 </CardContent>
               </Card>
             </div>
-            
+
             <div className="lg:col-span-8">
               {activeSection === "personal-info" && (
                 <Card>
@@ -385,118 +385,118 @@ const ResumeBuilderDetailed = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="full-name">Full Name*</Label>
-                        <Input 
-                          id="full-name" 
+                        <Input
+                          id="full-name"
                           value={resumeData.personalInfo.fullName}
                           onChange={(e) => updatePersonalInfo('fullName', e.target.value)}
                           placeholder="John Doe"
                         />
                       </div>
-                      
+
                       <div className="space-y-2">
                         <Label htmlFor="title">Professional Title</Label>
-                        <Input 
+                        <Input
                           id="title"
                           value={resumeData.personalInfo.title}
                           onChange={(e) => updatePersonalInfo('title', e.target.value)}
                           placeholder="Software Engineer"
                         />
                       </div>
-                      
+
                       <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input 
-                          id="email" 
+                        <Input
+                          id="email"
                           type="email"
                           value={resumeData.personalInfo.email}
                           onChange={(e) => updatePersonalInfo('email', e.target.value)}
                           placeholder="johndoe@example.com"
                         />
                       </div>
-                      
+
                       <div className="space-y-2">
                         <Label htmlFor="phone">Phone</Label>
-                        <Input 
+                        <Input
                           id="phone"
                           value={resumeData.personalInfo.phone}
                           onChange={(e) => updatePersonalInfo('phone', e.target.value)}
                           placeholder="(123) 456-7890"
                         />
                       </div>
-                      
+
                       <div className="space-y-2">
                         <Label htmlFor="website">Website (Optional)</Label>
-                        <Input 
+                        <Input
                           id="website"
                           value={resumeData.personalInfo.website}
                           onChange={(e) => updatePersonalInfo('website', e.target.value)}
                           placeholder="www.johndoe.com"
                         />
                       </div>
-                      
+
                       <div className="space-y-2">
                         <Label htmlFor="linkedin">LinkedIn (Optional)</Label>
-                        <Input 
+                        <Input
                           id="linkedin"
                           value={resumeData.personalInfo.linkedin}
                           onChange={(e) => updatePersonalInfo('linkedin', e.target.value)}
                           placeholder="linkedin.com/in/johndoe"
                         />
                       </div>
-                      
+
                       <div className="space-y-2 md:col-span-2">
                         <Label htmlFor="address">Address (Optional)</Label>
-                        <Input 
+                        <Input
                           id="address"
                           value={resumeData.personalInfo.address}
                           onChange={(e) => updatePersonalInfo('address', e.target.value)}
                           placeholder="123 Main St"
                         />
                       </div>
-                      
+
                       <div className="space-y-2">
                         <Label htmlFor="city">City (Optional)</Label>
-                        <Input 
+                        <Input
                           id="city"
                           value={resumeData.personalInfo.city}
                           onChange={(e) => updatePersonalInfo('city', e.target.value)}
                           placeholder="San Francisco"
                         />
                       </div>
-                      
+
                       <div className="space-y-2">
                         <Label htmlFor="state">State (Optional)</Label>
-                        <Input 
+                        <Input
                           id="state"
                           value={resumeData.personalInfo.state}
                           onChange={(e) => updatePersonalInfo('state', e.target.value)}
                           placeholder="CA"
                         />
                       </div>
-                      
+
                       <div className="space-y-2">
                         <Label htmlFor="zip-code">Zip Code (Optional)</Label>
-                        <Input 
+                        <Input
                           id="zip-code"
                           value={resumeData.personalInfo.zipCode}
                           onChange={(e) => updatePersonalInfo('zipCode', e.target.value)}
                           placeholder="94105"
                         />
                       </div>
-                      
+
                       <div className="space-y-2">
                         <Label htmlFor="country">Country (Optional)</Label>
-                        <Input 
+                        <Input
                           id="country"
                           value={resumeData.personalInfo.country}
                           onChange={(e) => updatePersonalInfo('country', e.target.value)}
                           placeholder="United States"
                         />
                       </div>
-                      
+
                       <div className="space-y-2 md:col-span-2">
                         <Label htmlFor="summary">Professional Summary</Label>
-                        <Textarea 
+                        <Textarea
                           id="summary"
                           value={resumeData.personalInfo.summary}
                           onChange={(e) => updatePersonalInfo('summary', e.target.value)}
@@ -508,7 +508,7 @@ const ResumeBuilderDetailed = () => {
                   </CardContent>
                 </Card>
               )}
-              
+
               {activeSection === "experience" && (
                 <Card>
                   <CardContent className="p-6">
@@ -521,7 +521,7 @@ const ResumeBuilderDetailed = () => {
                         Add Experience
                       </Button>
                     </div>
-                    
+
                     {resumeData.experience.length === 0 ? (
                       <div className="text-center py-6 text-gray-500">
                         <p>No work experience added yet.</p>
@@ -542,43 +542,43 @@ const ResumeBuilderDetailed = () => {
                                 Remove
                               </Button>
                             </div>
-                            
+
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div className="space-y-2">
                                 <Label htmlFor={`company-${exp.id}`}>Company</Label>
-                                <Input 
+                                <Input
                                   id={`company-${exp.id}`}
                                   value={exp.company}
                                   onChange={(e) => updateExperience(exp.id, 'company', e.target.value)}
                                   placeholder="Company Name"
                                 />
                               </div>
-                              
+
                               <div className="space-y-2">
                                 <Label htmlFor={`position-${exp.id}`}>Position</Label>
-                                <Input 
+                                <Input
                                   id={`position-${exp.id}`}
                                   value={exp.position}
                                   onChange={(e) => updateExperience(exp.id, 'position', e.target.value)}
                                   placeholder="Job Title"
                                 />
                               </div>
-                              
+
                               <div className="space-y-2">
                                 <Label htmlFor={`location-${exp.id}`}>Location (Optional)</Label>
-                                <Input 
+                                <Input
                                   id={`location-${exp.id}`}
                                   value={exp.location}
                                   onChange={(e) => updateExperience(exp.id, 'location', e.target.value)}
                                   placeholder="City, State"
                                 />
                               </div>
-                              
+
                               <div className="flex items-center space-x-2 mt-6">
-                                <Checkbox 
+                                <Checkbox
                                   id={`current-${exp.id}`}
                                   checked={exp.current}
-                                  onCheckedChange={(checked) => 
+                                  onCheckedChange={(checked) =>
                                     updateExperience(exp.id, 'current', checked === true)
                                   }
                                 />
@@ -586,10 +586,10 @@ const ResumeBuilderDetailed = () => {
                                   I currently work here
                                 </Label>
                               </div>
-                              
+
                               <div className="space-y-2">
                                 <Label htmlFor={`start-date-${exp.id}`}>Start Date</Label>
-                                <Input 
+                                <Input
                                   id={`start-date-${exp.id}`}
                                   type="month"
                                   value={exp.startDate}
@@ -597,10 +597,10 @@ const ResumeBuilderDetailed = () => {
                                   placeholder="MM/YYYY"
                                 />
                               </div>
-                              
+
                               <div className="space-y-2">
                                 <Label htmlFor={`end-date-${exp.id}`}>End Date</Label>
-                                <Input 
+                                <Input
                                   id={`end-date-${exp.id}`}
                                   type="month"
                                   value={exp.endDate}
@@ -609,10 +609,10 @@ const ResumeBuilderDetailed = () => {
                                   disabled={exp.current}
                                 />
                               </div>
-                              
+
                               <div className="space-y-2 md:col-span-2">
                                 <Label htmlFor={`description-${exp.id}`}>Description</Label>
-                                <Textarea 
+                                <Textarea
                                   id={`description-${exp.id}`}
                                   value={exp.description}
                                   onChange={(e) => updateExperience(exp.id, 'description', e.target.value)}
@@ -628,7 +628,7 @@ const ResumeBuilderDetailed = () => {
                   </CardContent>
                 </Card>
               )}
-              
+
               {activeSection === "education" && (
                 <Card>
                   <CardContent className="p-6">
@@ -641,7 +641,7 @@ const ResumeBuilderDetailed = () => {
                         Add Education
                       </Button>
                     </div>
-                    
+
                     {resumeData.education.length === 0 ? (
                       <div className="text-center py-6 text-gray-500">
                         <p>No education added yet.</p>
@@ -662,41 +662,41 @@ const ResumeBuilderDetailed = () => {
                                 Remove
                               </Button>
                             </div>
-                            
+
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div className="space-y-2">
                                 <Label htmlFor={`school-${edu.id}`}>School/University</Label>
-                                <Input 
+                                <Input
                                   id={`school-${edu.id}`}
                                   value={edu.school}
                                   onChange={(e) => updateEducation(edu.id, 'school', e.target.value)}
                                   placeholder="University Name"
                                 />
                               </div>
-                              
+
                               <div className="space-y-2">
                                 <Label htmlFor={`degree-${edu.id}`}>Degree</Label>
-                                <Input 
+                                <Input
                                   id={`degree-${edu.id}`}
                                   value={edu.degree}
                                   onChange={(e) => updateEducation(edu.id, 'degree', e.target.value)}
                                   placeholder="Bachelor of Science"
                                 />
                               </div>
-                              
+
                               <div className="space-y-2">
                                 <Label htmlFor={`field-${edu.id}`}>Field of Study</Label>
-                                <Input 
+                                <Input
                                   id={`field-${edu.id}`}
                                   value={edu.fieldOfStudy}
                                   onChange={(e) => updateEducation(edu.id, 'fieldOfStudy', e.target.value)}
                                   placeholder="Computer Science"
                                 />
                               </div>
-                              
+
                               <div className="space-y-2">
                                 <Label htmlFor={`edu-start-date-${edu.id}`}>Start Date</Label>
-                                <Input 
+                                <Input
                                   id={`edu-start-date-${edu.id}`}
                                   type="month"
                                   value={edu.startDate}
@@ -704,10 +704,10 @@ const ResumeBuilderDetailed = () => {
                                   placeholder="MM/YYYY"
                                 />
                               </div>
-                              
+
                               <div className="space-y-2">
                                 <Label htmlFor={`edu-end-date-${edu.id}`}>End Date (or Expected)</Label>
-                                <Input 
+                                <Input
                                   id={`edu-end-date-${edu.id}`}
                                   type="month"
                                   value={edu.endDate}
@@ -715,10 +715,10 @@ const ResumeBuilderDetailed = () => {
                                   placeholder="MM/YYYY"
                                 />
                               </div>
-                              
+
                               <div className="space-y-2 md:col-span-2">
                                 <Label htmlFor={`edu-description-${edu.id}`}>Description (Optional)</Label>
-                                <Textarea 
+                                <Textarea
                                   id={`edu-description-${edu.id}`}
                                   value={edu.description}
                                   onChange={(e) => updateEducation(edu.id, 'description', e.target.value)}
@@ -734,7 +734,7 @@ const ResumeBuilderDetailed = () => {
                   </CardContent>
                 </Card>
               )}
-              
+
               {activeSection === "skills" && (
                 <Card>
                   <CardContent className="p-6">
@@ -747,7 +747,7 @@ const ResumeBuilderDetailed = () => {
                         Add Skill
                       </Button>
                     </div>
-                    
+
                     {resumeData.skills.length === 0 ? (
                       <div className="text-center py-6 text-gray-500">
                         <p>No skills added yet.</p>
@@ -758,13 +758,13 @@ const ResumeBuilderDetailed = () => {
                         {resumeData.skills.map((skill) => (
                           <div key={skill.id} className="flex items-center space-x-3">
                             <div className="flex-grow">
-                              <Input 
+                              <Input
                                 value={skill.name}
                                 onChange={(e) => updateSkill(skill.id, 'name', e.target.value)}
                                 placeholder="Skill name (e.g. JavaScript, Project Management)"
                               />
                             </div>
-                            
+
                             <div className="w-48">
                               <Select
                                 value={skill.level}
@@ -781,7 +781,7 @@ const ResumeBuilderDetailed = () => {
                                 </SelectContent>
                               </Select>
                             </div>
-                            
+
                             <Button
                               variant="ghost"
                               size="sm"
@@ -799,7 +799,7 @@ const ResumeBuilderDetailed = () => {
               )}
             </div>
           </div>
-          
+
           {resumeGenerated && (
             <Card>
               <CardContent className="p-6">
@@ -822,13 +822,13 @@ const ResumeBuilderDetailed = () => {
                     </Button>
                   </div>
                 </div>
-                
+
                 <div className="border rounded-md bg-gray-50 p-8 min-h-[600px] flex flex-col items-center justify-center">
                   <div className="w-full max-w-2xl bg-white shadow-md p-8 rounded-sm">
                     <div className="text-center mb-6">
                       <h2 className="text-2xl font-bold">{resumeData.personalInfo.fullName || "Your Name"}</h2>
                       <p className="text-gray-600">{resumeData.personalInfo.title || "Professional Title"}</p>
-                      
+
                       <div className="flex justify-center space-x-4 mt-2 text-sm text-gray-500">
                         {resumeData.personalInfo.email && (
                           <span>{resumeData.personalInfo.email}</span>
@@ -837,7 +837,7 @@ const ResumeBuilderDetailed = () => {
                           <span>{resumeData.personalInfo.phone}</span>
                         )}
                       </div>
-                      
+
                       <div className="flex justify-center space-x-4 mt-1 text-sm text-gray-500">
                         {resumeData.personalInfo.city && resumeData.personalInfo.state && (
                           <span>{resumeData.personalInfo.city}, {resumeData.personalInfo.state}</span>
@@ -847,14 +847,14 @@ const ResumeBuilderDetailed = () => {
                         )}
                       </div>
                     </div>
-                    
+
                     {resumeData.personalInfo.summary && (
                       <div className="mb-6">
                         <h3 className="text-lg font-semibold border-b pb-1 mb-2">Summary</h3>
                         <p className="text-sm text-gray-700">{resumeData.personalInfo.summary}</p>
                       </div>
                     )}
-                    
+
                     {resumeData.experience.length > 0 && (
                       <div className="mb-6">
                         <h3 className="text-lg font-semibold border-b pb-1 mb-2">Experience</h3>
@@ -877,7 +877,7 @@ const ResumeBuilderDetailed = () => {
                         </div>
                       </div>
                     )}
-                    
+
                     {resumeData.education.length > 0 && (
                       <div className="mb-6">
                         <h3 className="text-lg font-semibold border-b pb-1 mb-2">Education</h3>
@@ -901,7 +901,7 @@ const ResumeBuilderDetailed = () => {
                         </div>
                       </div>
                     )}
-                    
+
                     {resumeData.skills.length > 0 && (
                       <div>
                         <h3 className="text-lg font-semibold border-b pb-1 mb-2">Skills</h3>
@@ -920,7 +920,7 @@ const ResumeBuilderDetailed = () => {
             </Card>
           )}
         </TabsContent>
-        
+
         <TabsContent value="templates" className="space-y-6 mt-6">
           <Card>
             <CardContent className="p-6">
@@ -948,7 +948,7 @@ const ResumeBuilderDetailed = () => {
                   </div>
                   <h4 className="font-medium text-center">Modern</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-4 cursor-pointer hover:border-primary ${templateStyle === 'professional' ? 'border-primary bg-blue-50' : ''}`} onClick={() => setTemplateStyle('professional')}>
                   <div className="aspect-[8.5/11] bg-white border shadow-sm mb-2 p-4">
                     <div className="w-full flex justify-between mb-4">
@@ -973,7 +973,7 @@ const ResumeBuilderDetailed = () => {
                   </div>
                   <h4 className="font-medium text-center">Professional</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-4 cursor-pointer hover:border-primary ${templateStyle === 'creative' ? 'border-primary bg-blue-50' : ''}`} onClick={() => setTemplateStyle('creative')}>
                   <div className="aspect-[8.5/11] bg-white border shadow-sm mb-2 p-4">
                     <div className="flex mb-4">
@@ -1000,7 +1000,7 @@ const ResumeBuilderDetailed = () => {
                   </div>
                   <h4 className="font-medium text-center">Creative</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-4 cursor-pointer hover:border-primary ${templateStyle === 'minimalist' ? 'border-primary bg-blue-50' : ''}`} onClick={() => setTemplateStyle('minimalist')}>
                   <div className="aspect-[8.5/11] bg-white border shadow-sm mb-2 p-4">
                     <div className="w-2/3 h-6 bg-gray-900 mx-auto mb-4"></div>
@@ -1024,7 +1024,7 @@ const ResumeBuilderDetailed = () => {
                   </div>
                   <h4 className="font-medium text-center">Minimalist</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-4 cursor-pointer hover:border-primary ${templateStyle === 'executive' ? 'border-primary bg-blue-50' : ''}`} onClick={() => setTemplateStyle('executive')}>
                   <div className="aspect-[8.5/11] bg-white border shadow-sm mb-2 p-4">
                     <div className="border-b-2 border-black pb-2 mb-4">
@@ -1053,7 +1053,7 @@ const ResumeBuilderDetailed = () => {
             </CardContent>
           </Card>
         </TabsContent>
-        
+
         <TabsContent value="tips" className="space-y-6 mt-6">
           <Card>
             <CardContent className="p-6">
@@ -1065,42 +1065,42 @@ const ResumeBuilderDetailed = () => {
                     Customize your resume for each position by highlighting relevant skills and experience that match the job description. Use keywords from the job posting to help your resume pass through Applicant Tracking Systems (ATS).
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">2. Use Action Verbs</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Begin bullet points with strong action verbs like "achieved," "implemented," "managed," or "developed" to emphasize your accomplishments rather than just listing responsibilities.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">3. Quantify Achievements</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Include specific numbers, percentages, and metrics whenever possible to demonstrate the impact of your work. For example, "Increased sales by 20%" or "Managed a team of 15 people."
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">4. Keep It Concise</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Aim for a one-page resume if you have less than 10 years of experience. Use bullet points, concise language, and focus on the most relevant information to keep your resume reader-friendly.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">5. Proofread Carefully</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Typos and grammatical errors can significantly hurt your chances. Proofread multiple times and ask someone else to review your resume before submitting it.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">6. Include Relevant Skills</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Feature both hard skills (technical abilities) and soft skills (interpersonal traits) that are relevant to the position. Prioritize skills mentioned in the job description.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">7. Use a Clean, Professional Design</h4>
                   <p className="text-sm text-gray-700 mt-1">
@@ -1110,7 +1110,7 @@ const ResumeBuilderDetailed = () => {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <h3 className="font-medium text-lg mb-4">Common Resume Mistakes to Avoid</h3>
@@ -1121,28 +1121,28 @@ const ResumeBuilderDetailed = () => {
                     Objective statements are outdated. Instead, use a professional summary that highlights your experience and value.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">2. Using a Generic Resume</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Sending the same resume to every job application significantly reduces your chances. Customize each resume for the specific position.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">3. Including Irrelevant Information</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Remove information that doesn't support your candidacy for the specific role, including irrelevant jobs, outdated skills, or unrelated hobbies.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">4. Focusing on Duties Instead of Achievements</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Don't just list your job responsibilities. Emphasize what you accomplished in each role and how you added value to the organization.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">5. Using Unprofessional Contact Information</h4>
                   <p className="text-sm text-gray-700 mt-1">
@@ -1154,7 +1154,7 @@ const ResumeBuilderDetailed = () => {
           </Card>
         </TabsContent>
       </Tabs>
-      
+
       <Card>
         <CardContent className="p-6">
           <h3 className="font-medium text-lg mb-4">Related Design Tools</h3>
@@ -1193,14 +1193,14 @@ const ResumeBuilderDetailed = () => {
   );
 
   const introduction = "Create a professional, customized resume in minutes with our intuitive builder and ATS-friendly templates.";
-  
+
   const description = `
     Our Resume Builder is a comprehensive tool designed to help job seekers create polished, professional resumes that stand out to employers and pass through Applicant Tracking Systems (ATS). This powerful yet user-friendly resume creation platform combines intuitive design features with expert-backed templates to help you craft an impressive resume regardless of your industry, experience level, or design skills.
-    
+
     The builder offers a step-by-step approach to resume creation, guiding you through each section with helpful tips and examples tailored to various professions. You can easily input your personal information, work experience, education, skills, and other relevant details through our clean, organized interface. As you build your resume, you'll receive real-time feedback and suggestions to improve content quality and optimize for ATS systems that many employers use to screen applicants.
-    
+
     Choose from multiple professionally designed templates, each carefully crafted to meet industry standards while offering distinct visual styles ranging from conservative and traditional to modern and creative. All templates are fully customizable, allowing you to adjust colors, fonts, spacing, and section layouts to match your personal preferences or industry expectations. The built-in preview function lets you see exactly how your resume will appear to employers as you make changes.
-    
+
     Once complete, your resume can be downloaded in multiple formats including PDF and Word document, ensuring compatibility with various application systems. The tool also includes helpful resume writing tips, examples of effective bullet points for different roles, and guidance on resume best practices to maximize your chances of landing interviews. Whether you're creating your first resume, updating an existing one, or completely rebranding yourself for a career change, our Resume Builder provides everything you need to create a professional, effective document that showcases your qualifications.
   `;
 
@@ -1216,13 +1216,13 @@ const ResumeBuilderDetailed = () => {
   ];
 
   const features = [
-    "✅ Professional ATS-friendly templates designed by career experts for higher success rates with application systems",
-    "✅ Intuitive step-by-step builder with section-specific guidance and content suggestions for each part of your resume",
-    "✅ Real-time preview that shows exactly how your resume will appear to employers as you make edits",
-    "✅ Multiple export options including PDF and DOCX formats compatible with all job application systems",
-    "✅ Expert resume writing tips and examples tailored to different industries and experience levels",
-    "✅ Ability to create and save multiple resume versions for different job applications or career paths",
-    "✅ Keyword optimization assistance to help your resume pass through Applicant Tracking Systems (ATS)"
+    " Professional ATS-friendly templates designed by career experts for higher success rates with application systems",
+    " Intuitive step-by-step builder with section-specific guidance and content suggestions for each part of your resume",
+    " Real-time preview that shows exactly how your resume will appear to employers as you make edits",
+    " Multiple export options including PDF and DOCX formats compatible with all job application systems",
+    " Expert resume writing tips and examples tailored to different industries and experience levels",
+    " Ability to create and save multiple resume versions for different job applications or career paths",
+    " Keyword optimization assistance to help your resume pass through Applicant Tracking Systems (ATS)"
   ];
 
   const faqs = [

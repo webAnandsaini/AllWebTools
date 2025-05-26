@@ -49,7 +49,7 @@ const FakeNameGeneratorDetailed: React.FC = () => {
 
   // Email domains
   const emailDomains = [
-    "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com", 
+    "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com",
     "icloud.com", "mail.com", "protonmail.com", "example.com", "test.com"
   ];
 
@@ -72,7 +72,7 @@ const FakeNameGeneratorDetailed: React.FC = () => {
       `${firstName.toLowerCase()}.${lastName.toLowerCase()}`,
       `${firstName.toLowerCase()}_${getRandomInt(1, 999)}`
     ];
-    
+
     return getRandomElement(options);
   };
 
@@ -84,24 +84,24 @@ const FakeNameGeneratorDetailed: React.FC = () => {
       `${firstName.toLowerCase()}${getRandomInt(1, 999)}@${getRandomElement(emailDomains)}`,
       `${lastName.toLowerCase()}${firstName[0].toLowerCase()}@${getRandomElement(emailDomains)}`
     ];
-    
+
     return getRandomElement(options);
   };
 
   // Generate a single fake name with associated info
   const generateFakeName = (): GeneratedName => {
-    const chosenGender = gender === "any" 
-      ? (Math.random() > 0.5 ? "male" : "female") 
+    const chosenGender = gender === "any"
+      ? (Math.random() > 0.5 ? "male" : "female")
       : gender;
-    
-    const firstName = chosenGender === "male" 
-      ? getRandomElement(maleFirstNames) 
+
+    const firstName = chosenGender === "male"
+      ? getRandomElement(maleFirstNames)
       : getRandomElement(femaleFirstNames);
-    
+
     const lastName = getRandomElement(lastNames);
     const username = generateUsername(firstName, lastName);
     const email = generateEmail(firstName, lastName);
-    
+
     return {
       firstName,
       lastName,
@@ -115,18 +115,18 @@ const FakeNameGeneratorDetailed: React.FC = () => {
   const handleGenerate = () => {
     try {
       const count = parseInt(quantity);
-      
+
       if (isNaN(count) || count < 1 || count > 20) {
         setError("Please enter a valid quantity between 1 and 20");
         return;
       }
-      
+
       const names: GeneratedName[] = [];
-      
+
       for (let i = 0; i < count; i++) {
         names.push(generateFakeName());
       }
-      
+
       setGeneratedNames(names);
       setError("");
     } catch (error: any) {
@@ -155,7 +155,7 @@ const FakeNameGeneratorDetailed: React.FC = () => {
                 </SelectContent>
               </Select>
             </div>
-            
+
             <div>
               <Label htmlFor="quantity">Quantity (1-20)</Label>
               <Input
@@ -207,8 +207,8 @@ const FakeNameGeneratorDetailed: React.FC = () => {
                   </table>
                 </div>
                 <div className="flex justify-end">
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     onClick={() => {
                       const csvContent = [
                         ["First Name", "Last Name", "Gender", "Username", "Email"].join(","),
@@ -220,7 +220,7 @@ const FakeNameGeneratorDetailed: React.FC = () => {
                           name.email
                         ].join(","))
                       ].join("\n");
-                      
+
                       navigator.clipboard.writeText(csvContent);
                     }}
                   >
@@ -240,7 +240,7 @@ const FakeNameGeneratorDetailed: React.FC = () => {
             <p>
               Our Fake Name Generator creates realistic-looking random names for various testing, development, and creative purposes.
             </p>
-            
+
             <div>
               <h4 className="font-medium mb-2">Common Uses:</h4>
               <ul className="list-disc pl-5 space-y-1">
@@ -262,9 +262,9 @@ const FakeNameGeneratorDetailed: React.FC = () => {
   );
 
   const introduction = "Generate realistic fake names complete with usernames and emails for testing and development.";
-  
+
   const description = "Our Fake Name Generator creates realistic random names that can be used for testing applications, populating databases, creating sample user accounts, or developing creative content. Each generated entry includes a first name, last name, gender, username, and email address that follows common naming patterns. You can customize the output by selecting a specific gender and generating up to 20 names at once. This tool is perfect for developers, testers, writers, and anyone who needs placeholder identity data that looks authentic but doesn't represent real individuals.";
-  
+
   const howToUse = [
     "Select your preferred gender option (Any, Male, or Female)",
     "Choose how many names you want to generate (1-20)",
@@ -272,15 +272,15 @@ const FakeNameGeneratorDetailed: React.FC = () => {
     "View the generated names including first name, last name, gender, username, and email",
     "Use the 'Copy as CSV' button to export the data in a format suitable for spreadsheets or databases"
   ];
-  
+
   const features = [
-    "✅ Generates realistic first and last name combinations",
-    "✅ Creates matching usernames and email addresses",
-    "✅ Customizable gender selection",
-    "✅ Generate up to 20 names in a single batch",
-    "✅ Export results in CSV format with one click"
+    " Generates realistic first and last name combinations",
+    " Creates matching usernames and email addresses",
+    " Customizable gender selection",
+    " Generate up to 20 names in a single batch",
+    " Export results in CSV format with one click"
   ];
-  
+
   const faqs = [
     {
       question: "Are these generated names of real people?",

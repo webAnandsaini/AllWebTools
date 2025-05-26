@@ -41,7 +41,7 @@ const IPLocationDetailed = () => {
   const [searchInput, setSearchInput] = useState("");
   const [activeTab, setActiveTab] = useState("search");
   const [mapUrl, setMapUrl] = useState("");
-  
+
   const { toast } = useToast();
 
   // Load search history on component mount
@@ -60,7 +60,7 @@ const IPLocationDetailed = () => {
       });
       return;
     }
-    
+
     // Basic IP validation
     const ipPattern = /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
     if (!ipPattern.test(searchInput)) {
@@ -71,14 +71,14 @@ const IPLocationDetailed = () => {
       });
       return;
     }
-    
+
     fetchLocationDetails(searchInput);
   };
 
   // Fetch location details for an IP
   const fetchLocationDetails = async (ip: string) => {
     setIsLoading(true);
-    
+
     try {
       // In a real implementation, this would call an actual IP geolocation service
       // For demonstration, we'll simulate a network call
@@ -99,14 +99,14 @@ const IPLocationDetailed = () => {
           as: "AS" + Math.floor(Math.random() * 10000),
           asn: Math.floor(Math.random() * 10000)
         };
-        
+
         setLocationDetails(mockLocation);
         addSearchToHistory(ip, mockLocation.country);
-        
+
         // Generate Google Maps URL for the coordinates
         const mapUrl = `https://www.google.com/maps?q=${mockLocation.latitude},${mockLocation.longitude}&z=8`;
         setMapUrl(mapUrl);
-        
+
         setIsLoading(false);
       }, 1500);
     } catch (error) {
@@ -125,16 +125,16 @@ const IPLocationDetailed = () => {
     const cities = ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose"];
     return cities[Math.floor(Math.random() * cities.length)];
   };
-  
+
   const getRandomRegion = () => {
     const regions = ["California", "Texas", "Florida", "New York", "Pennsylvania", "Illinois", "Ohio", "Georgia", "North Carolina", "Michigan"];
     return regions[Math.floor(Math.random() * regions.length)];
   };
-  
+
   const getRandomCountry = () => {
     return "United States";
   };
-  
+
   const getRandomCountryCode = () => {
     return "US";
   };
@@ -146,9 +146,9 @@ const IPLocationDetailed = () => {
       ip: ip,
       country: country
     };
-    
+
     const history = loadSearchHistory();
-    
+
     // Check if this IP is already the most recent in history
     if (history.length === 0 || history[0].ip !== ip) {
       // Add to beginning of array
@@ -202,9 +202,9 @@ const IPLocationDetailed = () => {
 
   const toolInterface = (
     <div className="space-y-6">
-      <Tabs 
-        defaultValue="search" 
-        value={activeTab} 
+      <Tabs
+        defaultValue="search"
+        value={activeTab}
         onValueChange={setActiveTab}
         className="w-full"
       >
@@ -212,12 +212,12 @@ const IPLocationDetailed = () => {
           <TabsTrigger value="search">IP Location Search</TabsTrigger>
           <TabsTrigger value="history">Search History</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="search" className="space-y-6 mt-6">
           <Card>
             <CardContent className="p-6">
               <h3 className="font-medium text-lg mb-4">Find IP Location</h3>
-              
+
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="ip-address">Enter IP Address</Label>
@@ -229,7 +229,7 @@ const IPLocationDetailed = () => {
                       onChange={(e) => setSearchInput(e.target.value)}
                       disabled={isLoading}
                     />
-                    <Button 
+                    <Button
                       onClick={handleSearch}
                       disabled={isLoading || !searchInput.trim()}
                     >
@@ -237,7 +237,7 @@ const IPLocationDetailed = () => {
                     </Button>
                   </div>
                 </div>
-                
+
                 <div>
                   <p className="text-sm text-gray-500">
                     Enter a valid IPv4 address to find its geographical location and network information.
@@ -246,7 +246,7 @@ const IPLocationDetailed = () => {
               </div>
             </CardContent>
           </Card>
-          
+
           {isLoading ? (
             <Card>
               <CardContent className="p-6">
@@ -266,7 +266,7 @@ const IPLocationDetailed = () => {
                       {locationDetails.country_code}
                     </Badge>
                   </div>
-                  
+
                   <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-lg mb-6">
                     <div className="text-xl font-medium text-gray-800 mb-1">
                       {locationDetails.ip}
@@ -278,7 +278,7 @@ const IPLocationDetailed = () => {
                       {locationDetails.country}
                     </div>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                       <div>
@@ -300,7 +300,7 @@ const IPLocationDetailed = () => {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div>
                         <h4 className="text-sm font-medium text-gray-500">Network Information</h4>
                         <div className="space-y-2 mt-2">
@@ -319,12 +319,12 @@ const IPLocationDetailed = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="min-h-[200px] bg-gray-100 rounded-lg flex items-center justify-center">
                       <div className="text-center p-4">
                         <p className="text-gray-700 mb-2">Map Preview</p>
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="sm"
                           onClick={() => window.open(mapUrl, '_blank')}
                         >
@@ -335,7 +335,7 @@ const IPLocationDetailed = () => {
                   </div>
                 </CardContent>
               </Card>
-              
+
               <Card>
                 <CardContent className="p-6">
                   <h3 className="font-medium text-lg mb-4">What This Means</h3>
@@ -366,28 +366,28 @@ const IPLocationDetailed = () => {
             </>
           ) : null}
         </TabsContent>
-        
+
         <TabsContent value="history" className="space-y-6 mt-6">
           <Card>
             <CardContent className="p-6">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="font-medium text-lg">Search History</h3>
                 {searchHistory.length > 0 && (
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
+                  <Button
+                    size="sm"
+                    variant="outline"
                     onClick={clearSearchHistory}
                   >
                     Clear History
                   </Button>
                 )}
               </div>
-              
+
               {searchHistory.length > 0 ? (
                 <div className="space-y-3">
                   {searchHistory.map((entry, index) => (
-                    <div 
-                      key={index} 
+                    <div
+                      key={index}
                       className="flex justify-between items-center p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors"
                       onClick={() => handleHistoryItemClick(entry.ip)}
                     >
@@ -407,7 +407,7 @@ const IPLocationDetailed = () => {
               )}
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <h3 className="font-medium text-lg mb-4">About Search History</h3>
@@ -433,7 +433,7 @@ const IPLocationDetailed = () => {
           </Card>
         </TabsContent>
       </Tabs>
-      
+
       <Card>
         <CardContent className="p-6">
           <h3 className="font-medium text-lg mb-4">Related Tools</h3>
@@ -463,14 +463,14 @@ const IPLocationDetailed = () => {
   );
 
   const introduction = "Find the geographical location and network details of any IP address with precise, comprehensive results.";
-  
+
   const description = `
     Our IP Location tool provides accurate geographical and network information for any IPv4 address, enabling you to pinpoint the physical location and technical details associated with specific internet connections. This powerful geolocation service delivers comprehensive insights about IP addresses, including city, region, country, exact coordinates, and critical network information.
-    
+
     When you enter an IP address into our search tool, our system queries multiple reliable geolocation databases to retrieve the most accurate and up-to-date information possible. The results reveal not just the physical location associated with the IP address, but also technical details such as the Internet Service Provider (ISP), organization, Autonomous System Number (ASN), timezone, and continent.
-    
+
     IP geolocation data serves numerous practical purposes across various technical and business scenarios. Network administrators use this information for security monitoring, detecting suspicious access attempts from unexpected locations, and troubleshooting regional connectivity issues. Businesses leverage IP location data for targeted content delivery, regional marketing, and compliance with geographic restrictions on services. For individual users, this tool helps verify VPN functionality, check the location of specific servers, or investigate the source of suspicious online activities.
-    
+
     Our tool maintains a local history of your IP address searches on your device, allowing you to quickly revisit previous queries without sending this usage data to our servers. The search process is instantaneous, with results typically delivered in under a second, providing you with immediate access to essential location and network insights for any IP address you need to investigate.
   `;
 
@@ -486,13 +486,13 @@ const IPLocationDetailed = () => {
   ];
 
   const features = [
-    "✅ Accurate geolocation data showing city, region, country, and continent for any IPv4 address",
-    "✅ Precise latitude and longitude coordinates with Google Maps integration for visual reference",
-    "✅ Comprehensive network information including ISP, organization, and ASN details",
-    "✅ Fast lookup process delivering results in seconds with a clean, easy-to-understand interface",
-    "✅ Local search history tracking that preserves your previous searches for quick reference",
-    "✅ Privacy-focused implementation that processes IP data without storing it on our servers",
-    "✅ Compatible with all modern browsers and devices without requiring any installations or plugins"
+    "Accurate geolocation data showing city, region, country, and continent for any IPv4 address",
+    "Precise latitude and longitude coordinates with Google Maps integration for visual reference",
+    "Comprehensive network information including ISP, organization, and ASN details",
+    "Fast lookup process delivering results in seconds with a clean, easy-to-understand interface",
+    "Local search history tracking that preserves your previous searches for quick reference",
+    "Privacy-focused implementation that processes IP data without storing it on our servers",
+    "Compatible with all modern browsers and devices without requiring any installations or plugins"
   ];
 
   const faqs = [

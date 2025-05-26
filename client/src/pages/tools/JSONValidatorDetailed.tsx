@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Label } from "@/components/ui/label";
+import stripJsonComments from 'strip-json-comments';
 
 const JSONValidatorDetailed = () => {
   const [jsonInput, setJsonInput] = useState<string>("");
@@ -20,7 +21,7 @@ const JSONValidatorDetailed = () => {
   // Extract the actual tool slug without the "-detailed" suffix
   const pathSegments = window.location.pathname.split('/');
   let toolSlug = pathSegments[pathSegments.length - 1].replace('-detailed', '');
-  
+
   // Handle direct routes without /tools/ prefix
   if (pathSegments.length === 2) {
     toolSlug = pathSegments[1].replace('-detailed', '');
@@ -37,15 +38,13 @@ const JSONValidatorDetailed = () => {
     }
 
     setLoading(true);
-    
+
     try {
-      // Clean comments to handle commented JSON
-      const cleanedInput = jsonInput
-        .replace(/\/\/.*$/gm, '') // Remove single-line comments
-        .replace(/\/\*[\s\S]*?\*\//g, ''); // Remove multi-line comments
-      
+
+      let cleanedInput = stripJsonComments(jsonInput);
+      cleanedInput = cleanedInput.replace(/,\s*([}\]])/g, '$1');
       JSON.parse(cleanedInput);
-      
+
       setValidationResult({ isValid: true });
       toast({
         title: "Valid JSON",
@@ -55,28 +54,28 @@ const JSONValidatorDetailed = () => {
       // Extract line and column information from error message if available
       const errorMessage = err.message;
       const positionMatch = errorMessage.match(/position (\d+)/);
-      
-      let errorInfo: { 
-        message: string; 
-        line?: number; 
-        column?: number 
+
+      let errorInfo: {
+        message: string;
+        line?: number;
+        column?: number
       } = {
         message: errorMessage,
       };
-      
+
       if (positionMatch && positionMatch[1]) {
         const position = parseInt(positionMatch[1]);
         const lines = jsonInput.substring(0, position).split('\n');
         const line = lines.length;
         const column = lines[lines.length - 1].length + 1;
-        
+
         errorInfo = {
           ...errorInfo,
           line,
           column
         };
       }
-      
+
       setValidationResult({ isValid: false, error: errorInfo });
       toast({
         title: "Invalid JSON",
@@ -144,15 +143,22 @@ const JSONValidatorDetailed = () => {
           <CardContent className="pt-6 space-y-4">
             <div className="space-y-2">
               <Label htmlFor="jsonInput">Enter JSON</Label>
-              <Textarea
-                id="jsonInput"
-                value={jsonInput}
-                onChange={(e) => setJsonInput(e.target.value)}
-                placeholder='{\n  "example": "Paste your JSON here",\n  "items": [1, 2, 3]\n}'
-                className="font-mono min-h-[200px]"
-              />
+              <div className="relative flex">
+                <div className="text-right pr-2 text-sm text-gray-400 bg-gray-100 pt-2 font-mono leading-[1.4] select-none w-10">
+                  {jsonInput.split('\n').map((_, i) => (
+                    <div key={i}>{i + 1}</div>
+                  ))}
+                </div>
+                <Textarea
+                  id="jsonInput"
+                  value={jsonInput}
+                  onChange={(e) => setJsonInput(e.target.value)}
+                  placeholder='{\n  "example": "Paste your JSON here"\n}'
+                  className="font-mono min-h-[200px] w-full pl-2"
+                />
+              </div>
             </div>
-            
+
             <div className="flex flex-wrap gap-2">
               <Button onClick={validateJSON} disabled={loading}>
                 {loading ? "Validating..." : "Validate JSON"}
@@ -161,7 +167,7 @@ const JSONValidatorDetailed = () => {
                 Clear
               </Button>
             </div>
-            
+
             {validationResult && (
               <div className="mt-4">
                 {validationResult.isValid ? (
@@ -192,7 +198,7 @@ const JSONValidatorDetailed = () => {
             )}
           </CardContent>
         </Card>
-        
+
         <div className="text-sm text-gray-500 px-1">
           <p>This tool validates JSON syntax according to the JSON specification. It checks for properly paired braces, quoted strings, correct use of commas, and valid values.</p>
         </div>

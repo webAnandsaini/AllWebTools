@@ -31,13 +31,13 @@ const WhatIsMyIPDetailed = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("ip-info");
   const [copySuccess, setCopySuccess] = useState(false);
-  
+
   const { toast } = useToast();
 
   // Fetch IP details on component mount
   useEffect(() => {
     fetchIPDetails();
-    
+
     // Load IP history from localStorage
     const history = loadIPHistory();
     setIpHistory(history);
@@ -46,7 +46,7 @@ const WhatIsMyIPDetailed = () => {
   // Fetch IP details from a service
   const fetchIPDetails = async () => {
     setIsLoading(true);
-    
+
     try {
       // In a real implementation, this would call an actual IP detection service
       // For demonstration, we'll simulate a network call
@@ -61,7 +61,7 @@ const WhatIsMyIPDetailed = () => {
           isp: "Example Internet Service Provider",
           last_checked: new Date().toISOString()
         };
-        
+
         setIpDetails(mockIPDetails);
         addIPToHistory(mockIPDetails.ip);
         setIsLoading(false);
@@ -83,9 +83,9 @@ const WhatIsMyIPDetailed = () => {
       timestamp: new Date().toISOString(),
       ip: ip
     };
-    
+
     const history = loadIPHistory();
-    
+
     // Check if this IP is already the most recent in history
     if (history.length === 0 || history[0].ip !== ip) {
       // Add to beginning of array
@@ -126,15 +126,15 @@ const WhatIsMyIPDetailed = () => {
   // Copy IP to clipboard
   const copyToClipboard = () => {
     if (!ipDetails) return;
-    
+
     navigator.clipboard.writeText(ipDetails.ip);
     setCopySuccess(true);
-    
+
     toast({
       title: "IP Copied",
       description: "Your IP address has been copied to clipboard."
     });
-    
+
     setTimeout(() => setCopySuccess(false), 2000);
   };
 
@@ -152,9 +152,9 @@ const WhatIsMyIPDetailed = () => {
 
   const toolInterface = (
     <div className="space-y-6">
-      <Tabs 
-        defaultValue="ip-info" 
-        value={activeTab} 
+      <Tabs
+        defaultValue="ip-info"
+        value={activeTab}
         onValueChange={setActiveTab}
         className="w-full"
       >
@@ -162,22 +162,22 @@ const WhatIsMyIPDetailed = () => {
           <TabsTrigger value="ip-info">IP Information</TabsTrigger>
           <TabsTrigger value="history">IP History</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="ip-info" className="space-y-6 mt-6">
           <Card>
             <CardContent className="p-6">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="font-medium text-lg">Your Current IP Address</h3>
-                <Button 
-                  size="sm" 
-                  variant="outline" 
+                <Button
+                  size="sm"
+                  variant="outline"
                   onClick={handleRefreshIP}
                   disabled={isLoading}
                 >
                   {isLoading ? "Refreshing..." : "Refresh"}
                 </Button>
               </div>
-              
+
               {isLoading ? (
                 <div className="py-12 space-y-4">
                   <Progress value={65} className="w-full h-2" />
@@ -199,16 +199,16 @@ const WhatIsMyIPDetailed = () => {
                         </Badge>
                       )}
                     </div>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      onClick={copyToClipboard} 
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={copyToClipboard}
                       className="mt-4"
                     >
                       {copySuccess ? "Copied!" : "Copy to Clipboard"}
                     </Button>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-3">
                       <div>
@@ -254,7 +254,7 @@ const WhatIsMyIPDetailed = () => {
               )}
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <h3 className="font-medium text-lg mb-4">What This Means</h3>
@@ -281,23 +281,23 @@ const WhatIsMyIPDetailed = () => {
             </CardContent>
           </Card>
         </TabsContent>
-        
+
         <TabsContent value="history" className="space-y-6 mt-6">
           <Card>
             <CardContent className="p-6">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="font-medium text-lg">IP Address History</h3>
                 {ipHistory.length > 0 && (
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
+                  <Button
+                    size="sm"
+                    variant="outline"
                     onClick={clearIPHistory}
                   >
                     Clear History
                   </Button>
                 )}
               </div>
-              
+
               {ipHistory.length > 0 ? (
                 <div className="space-y-3">
                   {ipHistory.map((entry, index) => (
@@ -315,7 +315,7 @@ const WhatIsMyIPDetailed = () => {
               )}
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <h3 className="font-medium text-lg mb-4">About IP History</h3>
@@ -340,7 +340,7 @@ const WhatIsMyIPDetailed = () => {
           </Card>
         </TabsContent>
       </Tabs>
-      
+
       <Card>
         <CardContent className="p-6">
           <h3 className="font-medium text-lg mb-4">Related Tools</h3>
@@ -370,14 +370,14 @@ const WhatIsMyIPDetailed = () => {
   );
 
   const introduction = "Instantly detect and display your current public IP address and detailed network information.";
-  
+
   const description = `
     Our "What is My IP" tool provides a fast, reliable way to identify your current public IP address and view detailed information about your internet connection. This essential networking tool instantly detects the unique numerical identifier that online services use to recognize your device on the internet, giving you valuable insights into your digital presence.
-    
+
     When you connect to the internet through your Internet Service Provider (ISP), you're assigned either an IPv4 address (like 192.168.1.1) or the newer IPv6 address format. Our tool automatically detects which version you're using and displays it prominently along with related technical details such as your hostname, Autonomous System Number (ASN), and the name of your Internet Service Provider.
-    
+
     Understanding your IP address is crucial for various technical tasks and digital privacy considerations. Network administrators use this information for troubleshooting connectivity issues, configuring firewalls, and setting up remote access. For everyday users, knowing your IP address helps when setting up home networks, connecting to online gaming services, or verifying that your VPN (Virtual Private Network) is functioning correctly by confirming your IP address has changed.
-    
+
     Our tool maintains a local history of previously detected IP addresses on your device, allowing you to track changes over time without sending this sensitive data to our servers. This feature is particularly useful for monitoring when your ISP assigns you a new dynamic IP address or for verifying that your privacy tools are working correctly. The entire process happens instantly, with no need to create an account or provide any personal information.
   `;
 
@@ -392,13 +392,13 @@ const WhatIsMyIPDetailed = () => {
   ];
 
   const features = [
-    "✅ Instant detection and display of your current public IPv4 or IPv6 address",
-    "✅ Detailed technical information including IP version, hostname, ASN, and Internet Service Provider",
-    "✅ Local IP address history tracking to monitor changes in your IP address over time",
-    "✅ One-click copy to clipboard functionality for easy sharing and usage",
-    "✅ Privacy-focused implementation that processes your IP data without storing it on our servers",
-    "✅ Works with both standard connections and when using VPNs or proxy servers",
-    "✅ Compatible with all modern browsers and devices without requiring any installations or plugins"
+    " Instant detection and display of your current public IPv4 or IPv6 address",
+    " Detailed technical information including IP version, hostname, ASN, and Internet Service Provider",
+    " Local IP address history tracking to monitor changes in your IP address over time",
+    " One-click copy to clipboard functionality for easy sharing and usage",
+    " Privacy-focused implementation that processes your IP data without storing it on our servers",
+    " Works with both standard connections and when using VPNs or proxy servers",
+    " Compatible with all modern browsers and devices without requiring any installations or plugins"
   ];
 
   const faqs = [

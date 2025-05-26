@@ -73,7 +73,7 @@ const DesignStudioDetailed: React.FC = () => {
   const [generatedDesign, setGeneratedDesign] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [config, setConfig] = useState<DesignConfig | null>(null);
-  
+
   const canvasRef = useRef<HTMLDivElement>(null);
 
   // Set the design type based on the current URL
@@ -115,11 +115,11 @@ const DesignStudioDetailed: React.FC = () => {
           "Generate your logo and download it in multiple formats (PNG, JPG, SVG)"
         ],
         features: [
-          "✅ Hundreds of professionally designed templates across multiple industries",
-          "✅ Wide variety of fonts, icons, and design elements to choose from",
-          "✅ Customizable color schemes with professional combinations",
-          "✅ High-resolution output in multiple file formats",
-          "✅ Simple drag-and-drop editor with no design experience required"
+          " Hundreds of professionally designed templates across multiple industries",
+          " Wide variety of fonts, icons, and design elements to choose from",
+          " Customizable color schemes with professional combinations",
+          " High-resolution output in multiple file formats",
+          " Simple drag-and-drop editor with no design experience required"
         ],
         faqs: [
           {
@@ -140,7 +140,7 @@ const DesignStudioDetailed: React.FC = () => {
           }
         ],
         templateCategories: [
-          "Business & Consulting", "Technology", "Food & Restaurant", "Retail & Fashion", 
+          "Business & Consulting", "Technology", "Food & Restaurant", "Retail & Fashion",
           "Health & Wellness", "Education", "Arts & Entertainment", "Sports & Fitness"
         ],
         defaultFormFields: {
@@ -203,11 +203,11 @@ const DesignStudioDetailed: React.FC = () => {
           "Preview your resume and download it in your preferred format (PDF, DOCX)"
         ],
         features: [
-          "✅ ATS-friendly templates designed by career experts",
-          "✅ Expert-written content suggestions for different industries",
-          "✅ Real-time preview of your resume as you build it",
-          "✅ Multiple formatting options with customizable sections",
-          "✅ Downloadable in multiple file formats (PDF, DOCX, TXT)"
+          " ATS-friendly templates designed by career experts",
+          " Expert-written content suggestions for different industries",
+          " Real-time preview of your resume as you build it",
+          " Multiple formatting options with customizable sections",
+          " Downloadable in multiple file formats (PDF, DOCX, TXT)"
         ],
         faqs: [
           {
@@ -228,7 +228,7 @@ const DesignStudioDetailed: React.FC = () => {
           }
         ],
         templateCategories: [
-          "Professional", "Modern", "Creative", "Simple", "Executive", 
+          "Professional", "Modern", "Creative", "Simple", "Executive",
           "Entry-Level", "Technical", "Academic"
         ],
         defaultFormFields: {
@@ -296,11 +296,11 @@ const DesignStudioDetailed: React.FC = () => {
           "Download your finished flyer in high-resolution format ready for printing or digital sharing"
         ],
         features: [
-          "✅ Hundreds of professionally designed templates for various purposes",
-          "✅ Easy customization of text, images, colors, and layout",
-          "✅ High-quality stock image library if you don't have your own photos",
-          "✅ Print-ready output in multiple formats (PDF, JPG, PNG)",
-          "✅ Preset dimensions for standard flyer sizes (8.5×11, 5×7, 4×6, etc.)"
+          " Hundreds of professionally designed templates for various purposes",
+          " Easy customization of text, images, colors, and layout",
+          " High-quality stock image library if you don't have your own photos",
+          " Print-ready output in multiple formats (PDF, JPG, PNG)",
+          " Preset dimensions for standard flyer sizes (8.5×11, 5×7, 4×6, etc.)"
         ],
         faqs: [
           {
@@ -321,7 +321,7 @@ const DesignStudioDetailed: React.FC = () => {
           }
         ],
         templateCategories: [
-          "Event", "Business", "Sale & Promotion", "Real Estate", "Food & Restaurant", 
+          "Event", "Business", "Sale & Promotion", "Real Estate", "Food & Restaurant",
           "Education", "Community", "Holiday & Seasonal"
         ],
         defaultFormFields: {
@@ -388,11 +388,11 @@ const DesignStudioDetailed: React.FC = () => {
           "Preview your design and download in high-resolution format ready for printing"
         ],
         features: [
-          "✅ Multiple poster size options (standard and custom dimensions)",
-          "✅ Hundreds of professionally designed templates for various purposes",
-          "✅ Easy image upload and positioning with smart alignment tools",
-          "✅ Typography controls with access to hundreds of fonts",
-          "✅ High-resolution output perfect for large-format printing"
+          " Multiple poster size options (standard and custom dimensions)",
+          " Hundreds of professionally designed templates for various purposes",
+          " Easy image upload and positioning with smart alignment tools",
+          " Typography controls with access to hundreds of fonts",
+          " High-resolution output perfect for large-format printing"
         ],
         faqs: [
           {
@@ -413,7 +413,7 @@ const DesignStudioDetailed: React.FC = () => {
           }
         ],
         templateCategories: [
-          "Event", "Movie", "Educational", "Business", "Motivational", 
+          "Event", "Movie", "Educational", "Business", "Motivational",
           "Retail", "Political", "Art & Exhibition"
         ],
         defaultFormFields: {
@@ -480,11 +480,11 @@ const DesignStudioDetailed: React.FC = () => {
           "Preview your design and download in your preferred format for printing or digital sharing"
         ],
         features: [
-          "✅ Hundreds of templates for all types of events and occasions",
-          "✅ Easy customization of text, colors, images, and layout",
-          "✅ RSVP card design options for formal events",
-          "✅ Digital sharing options for eco-friendly electronic invitations",
-          "✅ Print-ready output in multiple formats and standard invitation sizes"
+          " Hundreds of templates for all types of events and occasions",
+          " Easy customization of text, colors, images, and layout",
+          " RSVP card design options for formal events",
+          " Digital sharing options for eco-friendly electronic invitations",
+          " Print-ready output in multiple formats and standard invitation sizes"
         ],
         faqs: [
           {
@@ -505,7 +505,7 @@ const DesignStudioDetailed: React.FC = () => {
           }
         ],
         templateCategories: [
-          "Wedding", "Birthday", "Baby Shower", "Graduation", "Corporate", 
+          "Wedding", "Birthday", "Baby Shower", "Graduation", "Corporate",
           "Holiday Party", "Dinner Party", "Retirement"
         ],
         defaultFormFields: {
@@ -571,11 +571,11 @@ const DesignStudioDetailed: React.FC = () => {
           "Preview both sides of your card and download in print-ready format"
         ],
         features: [
-          "✅ Hundreds of professionally designed templates across industries",
-          "✅ Standard business card sizing (3.5×2 inches in US, 85×55mm international)",
-          "✅ Double-sided design options with front and back customization",
-          "✅ Logo uploading and positioning tools",
-          "✅ Print-ready output in high resolution (300 DPI) PDF or PNG formats"
+          " Hundreds of professionally designed templates across industries",
+          " Standard business card sizing (3.5×2 inches in US, 85×55mm international)",
+          " Double-sided design options with front and back customization",
+          " Logo uploading and positioning tools",
+          " Print-ready output in high resolution (300 DPI) PDF or PNG formats"
         ],
         faqs: [
           {
@@ -596,7 +596,7 @@ const DesignStudioDetailed: React.FC = () => {
           }
         ],
         templateCategories: [
-          "Corporate", "Creative", "Minimalist", "Modern", "Traditional", 
+          "Corporate", "Creative", "Minimalist", "Modern", "Traditional",
           "Real Estate", "Medical", "Technology"
         ],
         defaultFormFields: {
@@ -664,11 +664,11 @@ const DesignStudioDetailed: React.FC = () => {
           "Download your meme or share directly to social media platforms"
         ],
         features: [
-          "✅ Hundreds of popular and trending meme templates always updated",
-          "✅ Custom text positioning, fonts, and styling options",
-          "✅ Image upload capability for creating unique memes",
-          "✅ One-click social media sharing to all major platforms",
-          "✅ High-quality output optimized for digital sharing"
+          " Hundreds of popular and trending meme templates always updated",
+          " Custom text positioning, fonts, and styling options",
+          " Image upload capability for creating unique memes",
+          " One-click social media sharing to all major platforms",
+          " High-quality output optimized for digital sharing"
         ],
         faqs: [
           {
@@ -689,7 +689,7 @@ const DesignStudioDetailed: React.FC = () => {
           }
         ],
         templateCategories: [
-          "Classic Memes", "Trending", "Reaction Images", "Animal Memes", 
+          "Classic Memes", "Trending", "Reaction Images", "Animal Memes",
           "TV/Movie Memes", "Wholesome Memes", "Political", "Sports"
         ],
         defaultFormFields: {
@@ -752,11 +752,11 @@ const DesignStudioDetailed: React.FC = () => {
           "Create and save custom emoji combinations for quick access"
         ],
         features: [
-          "✅ Complete library of Unicode-standard emojis constantly updated",
-          "✅ One-click copy functionality for instant use",
-          "✅ Detailed emoji search with keywords and descriptions",
-          "✅ Platform compatibility information for each emoji",
-          "✅ Recently used and favorite emoji sections for quick access"
+          " Complete library of Unicode-standard emojis constantly updated",
+          " One-click copy functionality for instant use",
+          " Detailed emoji search with keywords and descriptions",
+          " Platform compatibility information for each emoji",
+          " Recently used and favorite emoji sections for quick access"
         ],
         faqs: [
           {
@@ -777,7 +777,7 @@ const DesignStudioDetailed: React.FC = () => {
           }
         ],
         templateCategories: [
-          "Smileys & Emotion", "People & Body", "Animals & Nature", "Food & Drink", 
+          "Smileys & Emotion", "People & Body", "Animals & Nature", "Food & Drink",
           "Travel & Places", "Activities", "Objects", "Symbols", "Flags"
         ],
         defaultFormFields: {
@@ -839,11 +839,11 @@ const DesignStudioDetailed: React.FC = () => {
           "Download your finished design in your preferred file format"
         ],
         features: [
-          "✅ Comprehensive suite of design tools for multiple purposes",
-          "✅ Hundreds of professionally designed templates",
-          "✅ Easy customization with intuitive drag-and-drop interface",
-          "✅ High-quality downloads in multiple formats (PNG, JPG, PDF, SVG)",
-          "✅ No design experience necessary to create professional results"
+          " Comprehensive suite of design tools for multiple purposes",
+          " Hundreds of professionally designed templates",
+          " Easy customization with intuitive drag-and-drop interface",
+          " High-quality downloads in multiple formats (PNG, JPG, PDF, SVG)",
+          " No design experience necessary to create professional results"
         ],
         faqs: [
           {
@@ -864,7 +864,7 @@ const DesignStudioDetailed: React.FC = () => {
           }
         ],
         templateCategories: [
-          "Business", "Marketing", "Social Media", "Events", "Personal", 
+          "Business", "Marketing", "Social Media", "Events", "Personal",
           "Education", "Non-Profit", "Holiday"
         ],
         defaultFormFields: {
@@ -931,11 +931,11 @@ const DesignStudioDetailed: React.FC = () => {
       {id: 5, name: "Elegant", category: "Wedding", thumbnail: "elegant-template.jpg"},
       {id: 6, name: "Playful", category: "Birthday", thumbnail: "playful-template.jpg"},
     ];
-    
+
     if (selectedCategory === "all") {
       return allTemplates;
     }
-    
+
     return allTemplates.filter(template => template.category === selectedCategory);
   };
 
@@ -944,7 +944,7 @@ const DesignStudioDetailed: React.FC = () => {
     const file = e.target.files?.[0];
     if (file) {
       setUploadedImage(file);
-      
+
       // Create preview URL
       const reader = new FileReader();
       reader.onload = () => {
@@ -958,47 +958,47 @@ const DesignStudioDetailed: React.FC = () => {
   const handleGenerate = () => {
     setIsGenerating(true);
     setError("");
-    
+
     // Basic validation based on design type
     if (designType === "logo" && !logoText) {
       setError("Please enter your company or brand name");
       setIsGenerating(false);
       return;
     }
-    
+
     if ((designType === "flyer" || designType === "poster" || designType === "invitation") && !title) {
       setError("Please enter a title for your " + designType);
       setIsGenerating(false);
       return;
     }
-    
+
     if (designType === "resume" && (!name || !position)) {
       setError("Please enter your name and professional title");
       setIsGenerating(false);
       return;
     }
-    
+
     if (designType === "business-card" && (!name || !company)) {
       setError("Please enter your name and company name");
       setIsGenerating(false);
       return;
     }
-    
+
     if (designType === "meme" && (!title || !uploadedImage)) {
       setError("Please enter text and upload or select an image");
       setIsGenerating(false);
       return;
     }
-    
+
     // For this demo, we'll simulate design generation with a timeout
     setTimeout(() => {
       // In a real implementation, this would generate an actual design
       // For now, we'll just provide a success message and mock preview
       setGeneratedDesign("Your design has been generated successfully!");
-      
+
       // Render a basic preview in the canvas
       renderDesignPreview();
-      
+
       setIsGenerating(false);
     }, 1500);
   };
@@ -1006,14 +1006,14 @@ const DesignStudioDetailed: React.FC = () => {
   // Render a basic design preview in the canvas
   const renderDesignPreview = () => {
     if (!canvasRef.current) return;
-    
+
     const canvas = canvasRef.current;
     canvas.innerHTML = ""; // Clear previous content
-    
+
     // Get selected color scheme
-    const colorScheme = config?.colorSchemes.find(scheme => scheme.name.toLowerCase() === selectedColorScheme.toLowerCase()) 
+    const colorScheme = config?.colorSchemes.find(scheme => scheme.name.toLowerCase() === selectedColorScheme.toLowerCase())
       || config?.colorSchemes[0];
-    
+
     // Create the preview container
     const previewContainer = document.createElement("div");
     previewContainer.style.width = "100%";
@@ -1024,7 +1024,7 @@ const DesignStudioDetailed: React.FC = () => {
     previewContainer.style.fontFamily = "'Inter', sans-serif";
     previewContainer.style.borderRadius = "8px";
     previewContainer.style.boxShadow = "0 4px 10px rgba(0,0,0,0.1)";
-    
+
     // Create and style design content based on design type
     switch (designType) {
       case "logo":
@@ -1052,7 +1052,7 @@ const DesignStudioDetailed: React.FC = () => {
       default:
         createGenericPreview(previewContainer, colorScheme);
     }
-    
+
     canvas.appendChild(previewContainer);
   };
 
@@ -1060,7 +1060,7 @@ const DesignStudioDetailed: React.FC = () => {
   const createLogoPreview = (container: HTMLDivElement, colorScheme: any) => {
     container.style.textAlign = "center";
     container.style.padding = "40px 20px";
-    
+
     if (uploadedImageUrl) {
       const logoImg = document.createElement("img");
       logoImg.src = uploadedImageUrl;
@@ -1076,7 +1076,7 @@ const DesignStudioDetailed: React.FC = () => {
       logoSymbol.style.margin = "0 auto 15px";
       container.appendChild(logoSymbol);
     }
-    
+
     const logoName = document.createElement("h1");
     logoName.textContent = logoText || "Company Name";
     logoName.style.color = colorScheme.primary;
@@ -1085,7 +1085,7 @@ const DesignStudioDetailed: React.FC = () => {
     logoName.style.fontWeight = "bold";
     logoName.style.letterSpacing = "0.5px";
     container.appendChild(logoName);
-    
+
     if (tagline) {
       const logoTagline = document.createElement("p");
       logoTagline.textContent = tagline;
@@ -1099,31 +1099,31 @@ const DesignStudioDetailed: React.FC = () => {
   // Create resume preview
   const createResumePreview = (container: HTMLDivElement, colorScheme: any) => {
     container.style.padding = "30px";
-    
+
     // Header with name and title
     const header = document.createElement("div");
     header.style.borderBottom = `2px solid ${colorScheme.primary}`;
     header.style.paddingBottom = "15px";
     header.style.marginBottom = "20px";
-    
+
     const personName = document.createElement("h1");
     personName.textContent = name || "Your Name";
     personName.style.color = colorScheme.primary;
     personName.style.margin = "0 0 5px";
     personName.style.fontSize = "26px";
     personName.style.fontWeight = "bold";
-    
+
     const personTitle = document.createElement("h2");
     personTitle.textContent = position || "Professional Title";
     personTitle.style.color = colorScheme.secondary;
     personTitle.style.margin = "0";
     personTitle.style.fontSize = "18px";
     personTitle.style.fontWeight = "normal";
-    
+
     header.appendChild(personName);
     header.appendChild(personTitle);
     container.appendChild(header);
-    
+
     // Contact information
     const contactSection = document.createElement("div");
     contactSection.style.marginBottom = "20px";
@@ -1131,67 +1131,67 @@ const DesignStudioDetailed: React.FC = () => {
     contactSection.style.justifyContent = "space-between";
     contactSection.style.flexWrap = "wrap";
     contactSection.style.fontSize = "14px";
-    
+
     if (email) {
       const emailDiv = document.createElement("div");
       emailDiv.textContent = email;
       contactSection.appendChild(emailDiv);
     }
-    
+
     if (phone) {
       const phoneDiv = document.createElement("div");
       phoneDiv.textContent = phone;
       contactSection.appendChild(phoneDiv);
     }
-    
+
     if (location_) {
       const locationDiv = document.createElement("div");
       locationDiv.textContent = location_;
       contactSection.appendChild(locationDiv);
     }
-    
+
     container.appendChild(contactSection);
-    
+
     // Summary section
     if (description) {
       const summarySection = document.createElement("div");
       summarySection.style.marginBottom = "20px";
-      
+
       const summaryTitle = document.createElement("h3");
       summaryTitle.textContent = "Professional Summary";
       summaryTitle.style.color = colorScheme.primary;
       summaryTitle.style.fontSize = "16px";
       summaryTitle.style.marginBottom = "10px";
-      
+
       const summaryText = document.createElement("p");
       summaryText.textContent = description;
       summaryText.style.margin = "0";
       summaryText.style.fontSize = "14px";
       summaryText.style.lineHeight = "1.5";
-      
+
       summarySection.appendChild(summaryTitle);
       summarySection.appendChild(summaryText);
       container.appendChild(summarySection);
     }
-    
+
     // Placeholder sections for a complete resume look
     const sections = ["Experience", "Education", "Skills"];
     sections.forEach(sectionName => {
       const section = document.createElement("div");
       section.style.marginBottom = "20px";
-      
+
       const sectionTitle = document.createElement("h3");
       sectionTitle.textContent = sectionName;
       sectionTitle.style.color = colorScheme.primary;
       sectionTitle.style.fontSize = "16px";
       sectionTitle.style.marginBottom = "10px";
-      
+
       const placeholderText = document.createElement("p");
       placeholderText.textContent = `[Your ${sectionName} information will appear here]`;
       placeholderText.style.color = "#888";
       placeholderText.style.fontStyle = "italic";
       placeholderText.style.fontSize = "14px";
-      
+
       section.appendChild(sectionTitle);
       section.appendChild(placeholderText);
       container.appendChild(section);
@@ -1202,7 +1202,7 @@ const DesignStudioDetailed: React.FC = () => {
   const createPosterFlyerPreview = (container: HTMLDivElement, colorScheme: any) => {
     container.style.textAlign = "center";
     container.style.padding = "30px";
-    
+
     // Header/Title
     const mainTitle = document.createElement("h1");
     mainTitle.textContent = title || `${designType.charAt(0).toUpperCase() + designType.slice(1)} Title`;
@@ -1212,7 +1212,7 @@ const DesignStudioDetailed: React.FC = () => {
     mainTitle.style.fontWeight = "bold";
     mainTitle.style.letterSpacing = "0.5px";
     container.appendChild(mainTitle);
-    
+
     // Subtitle if available
     if (subtitle) {
       const subtitleElem = document.createElement("h2");
@@ -1223,14 +1223,14 @@ const DesignStudioDetailed: React.FC = () => {
       subtitleElem.style.fontWeight = "normal";
       container.appendChild(subtitleElem);
     }
-    
+
     // Image placeholder or uploaded image
     const imageContainer = document.createElement("div");
     imageContainer.style.margin = "20px 0";
     imageContainer.style.padding = "10px";
     imageContainer.style.backgroundColor = "#f5f5f5";
     imageContainer.style.borderRadius = "4px";
-    
+
     if (uploadedImageUrl) {
       const img = document.createElement("img");
       img.src = uploadedImageUrl;
@@ -1248,9 +1248,9 @@ const DesignStudioDetailed: React.FC = () => {
       placeholderText.style.color = "#888";
       imageContainer.appendChild(placeholderText);
     }
-    
+
     container.appendChild(imageContainer);
-    
+
     // Description text
     if (description) {
       const descriptionElem = document.createElement("p");
@@ -1260,14 +1260,14 @@ const DesignStudioDetailed: React.FC = () => {
       descriptionElem.style.lineHeight = "1.5";
       container.appendChild(descriptionElem);
     }
-    
+
     // Date, Location, Contact Info
     const detailsContainer = document.createElement("div");
     detailsContainer.style.marginTop = "30px";
     detailsContainer.style.padding = "15px";
     detailsContainer.style.backgroundColor = colorScheme.secondary + "30"; // 30% opacity
     detailsContainer.style.borderRadius = "4px";
-    
+
     if (date) {
       const dateElem = document.createElement("p");
       dateElem.textContent = `📅 ${date}`;
@@ -1275,21 +1275,21 @@ const DesignStudioDetailed: React.FC = () => {
       dateElem.style.fontWeight = "bold";
       detailsContainer.appendChild(dateElem);
     }
-    
+
     if (location_) {
       const locationElem = document.createElement("p");
       locationElem.textContent = `📍 ${location_}`;
       locationElem.style.margin = "5px 0";
       detailsContainer.appendChild(locationElem);
     }
-    
+
     if (contactInfo) {
       const contactElem = document.createElement("p");
       contactElem.textContent = `📞 ${contactInfo}`;
       contactElem.style.margin = "5px 0";
       detailsContainer.appendChild(contactElem);
     }
-    
+
     container.appendChild(detailsContainer);
   };
 
@@ -1299,7 +1299,7 @@ const DesignStudioDetailed: React.FC = () => {
     container.style.padding = "30px";
     container.style.borderRadius = "8px";
     container.style.boxShadow = "0 4px 15px rgba(0,0,0,0.1)";
-    
+
     // Header decoration
     const decoration = document.createElement("div");
     decoration.style.height = "5px";
@@ -1308,7 +1308,7 @@ const DesignStudioDetailed: React.FC = () => {
     decoration.style.background = `linear-gradient(to right, ${colorScheme.primary}, ${colorScheme.accent})`;
     decoration.style.borderRadius = "3px";
     container.appendChild(decoration);
-    
+
     // Title - "You're Invited" or custom title
     const inviteTitle = document.createElement("h1");
     inviteTitle.textContent = title || "You're Invited";
@@ -1318,7 +1318,7 @@ const DesignStudioDetailed: React.FC = () => {
     inviteTitle.style.fontWeight = "bold";
     inviteTitle.style.letterSpacing = "1px";
     container.appendChild(inviteTitle);
-    
+
     // Description or event details
     if (description) {
       const descriptionElem = document.createElement("p");
@@ -1328,49 +1328,49 @@ const DesignStudioDetailed: React.FC = () => {
       descriptionElem.style.lineHeight = "1.5";
       container.appendChild(descriptionElem);
     }
-    
+
     // Date and time
     if (date) {
       const dateContainer = document.createElement("div");
       dateContainer.style.margin = "25px 0";
-      
+
       const dateLabel = document.createElement("span");
       dateLabel.textContent = "When:";
       dateLabel.style.fontWeight = "bold";
       dateLabel.style.color = colorScheme.secondary;
       dateLabel.style.display = "block";
       dateLabel.style.marginBottom = "5px";
-      
+
       const dateValue = document.createElement("span");
       dateValue.textContent = date;
       dateValue.style.fontSize = "18px";
-      
+
       dateContainer.appendChild(dateLabel);
       dateContainer.appendChild(dateValue);
       container.appendChild(dateContainer);
     }
-    
+
     // Location
     if (location_) {
       const locationContainer = document.createElement("div");
       locationContainer.style.margin = "25px 0";
-      
+
       const locationLabel = document.createElement("span");
       locationLabel.textContent = "Where:";
       locationLabel.style.fontWeight = "bold";
       locationLabel.style.color = colorScheme.secondary;
       locationLabel.style.display = "block";
       locationLabel.style.marginBottom = "5px";
-      
+
       const locationValue = document.createElement("span");
       locationValue.textContent = location_;
       locationValue.style.fontSize = "18px";
-      
+
       locationContainer.appendChild(locationLabel);
       locationContainer.appendChild(locationValue);
       container.appendChild(locationContainer);
     }
-    
+
     // RSVP information
     if (contactInfo) {
       const rsvpContainer = document.createElement("div");
@@ -1378,22 +1378,22 @@ const DesignStudioDetailed: React.FC = () => {
       rsvpContainer.style.padding = "10px";
       rsvpContainer.style.border = `1px solid ${colorScheme.accent}`;
       rsvpContainer.style.borderRadius = "4px";
-      
+
       const rsvpLabel = document.createElement("span");
       rsvpLabel.textContent = "RSVP:";
       rsvpLabel.style.fontWeight = "bold";
       rsvpLabel.style.color = colorScheme.accent;
       rsvpLabel.style.display = "block";
       rsvpLabel.style.marginBottom = "5px";
-      
+
       const rsvpValue = document.createElement("span");
       rsvpValue.textContent = contactInfo;
-      
+
       rsvpContainer.appendChild(rsvpLabel);
       rsvpContainer.appendChild(rsvpValue);
       container.appendChild(rsvpContainer);
     }
-    
+
     // Bottom decoration
     const bottomDecoration = document.createElement("div");
     bottomDecoration.style.height = "5px";
@@ -1416,7 +1416,7 @@ const DesignStudioDetailed: React.FC = () => {
     container.style.justifyContent = "space-between";
     container.style.position = "relative";
     container.style.overflow = "hidden";
-    
+
     // Add a decorative element based on template
     if (selectedTemplate === "modern") {
       const decoration = document.createElement("div");
@@ -1431,11 +1431,11 @@ const DesignStudioDetailed: React.FC = () => {
       decoration.style.zIndex = "0";
       container.appendChild(decoration);
     }
-    
+
     // Logo/Company area
     const topSection = document.createElement("div");
     topSection.style.zIndex = "1";
-    
+
     if (uploadedImageUrl) {
       const logoImg = document.createElement("img");
       logoImg.src = uploadedImageUrl;
@@ -1444,7 +1444,7 @@ const DesignStudioDetailed: React.FC = () => {
       logoImg.style.marginBottom = "5px";
       topSection.appendChild(logoImg);
     }
-    
+
     const companyName = document.createElement("h2");
     companyName.textContent = company || "Company Name";
     companyName.style.color = colorScheme.primary;
@@ -1452,13 +1452,13 @@ const DesignStudioDetailed: React.FC = () => {
     companyName.style.fontSize = "18px";
     companyName.style.fontWeight = "bold";
     topSection.appendChild(companyName);
-    
+
     container.appendChild(topSection);
-    
+
     // Personal info area
     const middleSection = document.createElement("div");
     middleSection.style.zIndex = "1";
-    
+
     const personName = document.createElement("h1");
     personName.textContent = name || "Your Name";
     personName.style.color = colorScheme.text;
@@ -1466,7 +1466,7 @@ const DesignStudioDetailed: React.FC = () => {
     personName.style.fontSize = "22px";
     personName.style.fontWeight = "bold";
     middleSection.appendChild(personName);
-    
+
     if (position) {
       const personTitle = document.createElement("p");
       personTitle.textContent = position;
@@ -1475,35 +1475,35 @@ const DesignStudioDetailed: React.FC = () => {
       personTitle.style.fontSize = "14px";
       middleSection.appendChild(personTitle);
     }
-    
+
     container.appendChild(middleSection);
-    
+
     // Contact details area
     const bottomSection = document.createElement("div");
     bottomSection.style.zIndex = "1";
     bottomSection.style.fontSize = "12px";
-    
+
     if (phone) {
       const phoneElem = document.createElement("p");
       phoneElem.textContent = `📱 ${phone}`;
       phoneElem.style.margin = "3px 0";
       bottomSection.appendChild(phoneElem);
     }
-    
+
     if (email) {
       const emailElem = document.createElement("p");
       emailElem.textContent = `✉️ ${email}`;
       emailElem.style.margin = "3px 0";
       bottomSection.appendChild(emailElem);
     }
-    
+
     if (website) {
       const websiteElem = document.createElement("p");
       websiteElem.textContent = `🌐 ${website}`;
       websiteElem.style.margin = "3px 0";
       bottomSection.appendChild(websiteElem);
     }
-    
+
     container.appendChild(bottomSection);
   };
 
@@ -1514,7 +1514,7 @@ const DesignStudioDetailed: React.FC = () => {
     container.style.position = "relative";
     container.style.maxWidth = "400px";
     container.style.margin = "0 auto";
-    
+
     // Image container
     const imageContainer = document.createElement("div");
     imageContainer.style.position = "relative";
@@ -1522,7 +1522,7 @@ const DesignStudioDetailed: React.FC = () => {
     imageContainer.style.paddingBottom = "75%"; // 4:3 aspect ratio
     imageContainer.style.backgroundColor = "#000";
     imageContainer.style.overflow = "hidden";
-    
+
     if (uploadedImageUrl) {
       const img = document.createElement("img");
       img.src = uploadedImageUrl;
@@ -1548,7 +1548,7 @@ const DesignStudioDetailed: React.FC = () => {
       placeholderText.style.backgroundColor = "#444";
       imageContainer.appendChild(placeholderText);
     }
-    
+
     // Top text
     const topText = document.createElement("div");
     topText.textContent = title || "TOP TEXT";
@@ -1564,7 +1564,7 @@ const DesignStudioDetailed: React.FC = () => {
     topText.style.textTransform = "uppercase";
     topText.style.letterSpacing = "1px";
     imageContainer.appendChild(topText);
-    
+
     // Bottom text
     const bottomText = document.createElement("div");
     bottomText.textContent = subtitle || "BOTTOM TEXT";
@@ -1580,31 +1580,31 @@ const DesignStudioDetailed: React.FC = () => {
     bottomText.style.textTransform = "uppercase";
     bottomText.style.letterSpacing = "1px";
     imageContainer.appendChild(bottomText);
-    
+
     container.appendChild(imageContainer);
   };
 
   // Create emoji preview
   const createEmojiPreview = (container: HTMLDivElement) => {
     container.style.padding = "20px";
-    
+
     // Search result title
     const resultTitle = document.createElement("h3");
     resultTitle.textContent = title ? `Search results for "${title}"` : "Popular Emojis";
     resultTitle.style.marginBottom = "20px";
     resultTitle.style.fontSize = "18px";
     container.appendChild(resultTitle);
-    
+
     // Emoji grid
     const emojiGrid = document.createElement("div");
     emojiGrid.style.display = "grid";
     emojiGrid.style.gridTemplateColumns = "repeat(auto-fill, minmax(45px, 1fr))";
     emojiGrid.style.gap = "15px";
     emojiGrid.style.textAlign = "center";
-    
+
     // Sample emojis
     const sampleEmojis = ["😀", "😂", "😍", "🤔", "👍", "❤️", "🎉", "👏", "🔥", "✨", "🌟", "💯", "🙏", "🌈", "🍕", "🚀"];
-    
+
     sampleEmojis.forEach(emoji => {
       const emojiContainer = document.createElement("div");
       emojiContainer.style.fontSize = "28px";
@@ -1614,21 +1614,21 @@ const DesignStudioDetailed: React.FC = () => {
       emojiContainer.style.transition = "background-color 0.2s";
       emojiContainer.style.userSelect = "none";
       emojiContainer.textContent = emoji;
-      
+
       // Hover effect
       emojiContainer.addEventListener("mouseover", () => {
         emojiContainer.style.backgroundColor = "#f0f0f0";
       });
-      
+
       emojiContainer.addEventListener("mouseout", () => {
         emojiContainer.style.backgroundColor = "transparent";
       });
-      
+
       emojiGrid.appendChild(emojiContainer);
     });
-    
+
     container.appendChild(emojiGrid);
-    
+
     // Category tabs
     const categoryTabs = document.createElement("div");
     categoryTabs.style.marginTop = "25px";
@@ -1637,9 +1637,9 @@ const DesignStudioDetailed: React.FC = () => {
     categoryTabs.style.display = "flex";
     categoryTabs.style.overflowX = "auto";
     categoryTabs.style.gap = "10px";
-    
+
     const categories = ["Smileys", "People", "Animals", "Food", "Activities", "Travel", "Objects", "Symbols", "Flags"];
-    
+
     categories.forEach(category => {
       const tab = document.createElement("div");
       tab.textContent = category;
@@ -1651,7 +1651,7 @@ const DesignStudioDetailed: React.FC = () => {
       tab.style.cursor = "pointer";
       categoryTabs.appendChild(tab);
     });
-    
+
     container.appendChild(categoryTabs);
   };
 
@@ -1659,7 +1659,7 @@ const DesignStudioDetailed: React.FC = () => {
   const createGenericPreview = (container: HTMLDivElement, colorScheme: any) => {
     container.style.textAlign = "center";
     container.style.padding = "25px";
-    
+
     // Title
     const designTitle = document.createElement("h2");
     designTitle.textContent = title || "Your Design Title";
@@ -1667,7 +1667,7 @@ const DesignStudioDetailed: React.FC = () => {
     designTitle.style.margin = "0 0 15px";
     designTitle.style.fontSize = "24px";
     container.appendChild(designTitle);
-    
+
     if (subtitle) {
       const designSubtitle = document.createElement("h3");
       designSubtitle.textContent = subtitle;
@@ -1677,11 +1677,11 @@ const DesignStudioDetailed: React.FC = () => {
       designSubtitle.style.fontWeight = "normal";
       container.appendChild(designSubtitle);
     }
-    
+
     // Image or placeholder
     const imageContainer = document.createElement("div");
     imageContainer.style.margin = "20px 0";
-    
+
     if (uploadedImageUrl) {
       const img = document.createElement("img");
       img.src = uploadedImageUrl;
@@ -1702,9 +1702,9 @@ const DesignStudioDetailed: React.FC = () => {
       placeholderBox.style.color = colorScheme.secondary;
       imageContainer.appendChild(placeholderBox);
     }
-    
+
     container.appendChild(imageContainer);
-    
+
     // Description text if available
     if (description) {
       const descText = document.createElement("p");
@@ -1713,7 +1713,7 @@ const DesignStudioDetailed: React.FC = () => {
       descText.style.lineHeight = "1.5";
       container.appendChild(descText);
     }
-    
+
     // Action button
     const actionButton = document.createElement("button");
     actionButton.textContent = "View Details";
@@ -1735,47 +1735,47 @@ const DesignStudioDetailed: React.FC = () => {
       if (config.defaultFormFields.title && !title) {
         setTitle(config.defaultFormFields.title);
       }
-      
+
       if (config.defaultFormFields.subtitle && !subtitle) {
         setSubtitle(config.defaultFormFields.subtitle);
       }
-      
+
       if (config.defaultFormFields.description && !description) {
         setDescription(config.defaultFormFields.description);
       }
-      
+
       if (config.defaultFormFields.contactInfo && !contactInfo) {
         setContactInfo(config.defaultFormFields.contactInfo);
       }
-      
+
       if (config.defaultFormFields.name && !name) {
         setName(config.defaultFormFields.name);
       }
-      
+
       if (config.defaultFormFields.position && !position) {
         setPosition(config.defaultFormFields.position);
       }
-      
+
       if (config.defaultFormFields.company && !company) {
         setCompany(config.defaultFormFields.company);
       }
-      
+
       if (config.defaultFormFields.date && !date) {
         setDate(config.defaultFormFields.date);
       }
-      
+
       if (config.defaultFormFields.location && !location_) {
         setLocation_(config.defaultFormFields.location);
       }
-      
+
       if (config.defaultFormFields.website && !website) {
         setWebsite(config.defaultFormFields.website);
       }
-      
+
       if (config.defaultFormFields.email && !email) {
         setEmail(config.defaultFormFields.email);
       }
-      
+
       if (config.defaultFormFields.phone && !phone) {
         setPhone(config.defaultFormFields.phone);
       }
@@ -1816,7 +1816,7 @@ const DesignStudioDetailed: React.FC = () => {
             </div>
           </>
         );
-        
+
       case "resume":
         return (
           <>
@@ -1895,7 +1895,7 @@ const DesignStudioDetailed: React.FC = () => {
             </div>
           </>
         );
-        
+
       case "flyer":
       case "poster":
         return (
@@ -1966,7 +1966,7 @@ const DesignStudioDetailed: React.FC = () => {
             </div>
           </>
         );
-        
+
       case "invitation":
         return (
           <>
@@ -2026,7 +2026,7 @@ const DesignStudioDetailed: React.FC = () => {
             </div>
           </>
         );
-        
+
       case "business-card":
         return (
           <>
@@ -2095,7 +2095,7 @@ const DesignStudioDetailed: React.FC = () => {
             </div>
           </>
         );
-        
+
       case "meme":
         return (
           <>
@@ -2123,7 +2123,7 @@ const DesignStudioDetailed: React.FC = () => {
             </div>
           </>
         );
-        
+
       case "emoji":
         return (
           <>
@@ -2139,7 +2139,7 @@ const DesignStudioDetailed: React.FC = () => {
             </div>
           </>
         );
-        
+
       default:
         return (
           <>
@@ -2187,14 +2187,14 @@ const DesignStudioDetailed: React.FC = () => {
           <TabsTrigger value="design">Content</TabsTrigger>
           <TabsTrigger value="style">Style & Layout</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="design" className="space-y-6 pt-4">
           <Card>
             <CardContent className="pt-6">
               {renderFormFields()}
-              
+
               {/* File upload - shown for relevant design types */}
-              {(designType === "logo" || designType === "meme" || 
+              {(designType === "logo" || designType === "meme" ||
                 designType === "flyer" || designType === "poster") && (
                 <div className="mt-6">
                   <Label htmlFor="image">Upload Image {designType === "meme" ? "(Required)" : "(Optional)"}</Label>
@@ -2205,14 +2205,14 @@ const DesignStudioDetailed: React.FC = () => {
                     className="mt-1.5"
                     accept="image/*"
                   />
-                  
+
                   {uploadedImageUrl && (
                     <div className="mt-3">
                       <p className="text-sm text-gray-500 mb-2">Preview:</p>
-                      <img 
-                        src={uploadedImageUrl} 
-                        alt="Preview" 
-                        className="max-h-[150px] max-w-full rounded border border-gray-200" 
+                      <img
+                        src={uploadedImageUrl}
+                        alt="Preview"
+                        className="max-h-[150px] max-w-full rounded border border-gray-200"
                       />
                     </div>
                   )}
@@ -2221,7 +2221,7 @@ const DesignStudioDetailed: React.FC = () => {
             </CardContent>
           </Card>
         </TabsContent>
-        
+
         <TabsContent value="style" className="space-y-6 pt-4">
           <Card>
             <CardContent className="pt-6">
@@ -2244,13 +2244,13 @@ const DesignStudioDetailed: React.FC = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                
+
                 {/* Template grid */}
                 <div>
                   <Label className="block mb-3">Select Template</Label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {getTemplates().map((template) => (
-                      <div 
+                      <div
                         key={template.id}
                         className={`p-2 border rounded-md cursor-pointer transition-colors ${
                           selectedTemplate === template.name.toLowerCase()
@@ -2267,13 +2267,13 @@ const DesignStudioDetailed: React.FC = () => {
                     ))}
                   </div>
                 </div>
-                
+
                 {/* Color scheme selection */}
                 <div>
                   <Label className="block mb-3">Color Scheme</Label>
                   <div className="grid grid-cols-1 gap-3">
                     {config.colorSchemes.map((scheme) => (
-                      <div 
+                      <div
                         key={scheme.name}
                         className={`p-2 border rounded-md cursor-pointer transition-colors flex items-center ${
                           selectedColorScheme === scheme.name.toLowerCase()
@@ -2283,16 +2283,16 @@ const DesignStudioDetailed: React.FC = () => {
                         onClick={() => setSelectedColorScheme(scheme.name.toLowerCase())}
                       >
                         <div className="flex gap-1.5 mr-3">
-                          <div 
-                            className="w-5 h-5 rounded-full" 
+                          <div
+                            className="w-5 h-5 rounded-full"
                             style={{ backgroundColor: scheme.primary }}
                           ></div>
-                          <div 
-                            className="w-5 h-5 rounded-full" 
+                          <div
+                            className="w-5 h-5 rounded-full"
                             style={{ backgroundColor: scheme.secondary }}
                           ></div>
-                          <div 
-                            className="w-5 h-5 rounded-full" 
+                          <div
+                            className="w-5 h-5 rounded-full"
                             style={{ backgroundColor: scheme.accent }}
                           ></div>
                         </div>
@@ -2306,10 +2306,10 @@ const DesignStudioDetailed: React.FC = () => {
           </Card>
         </TabsContent>
       </Tabs>
-      
-      <Button 
-        variant="default" 
-        onClick={handleGenerate} 
+
+      <Button
+        variant="default"
+        onClick={handleGenerate}
         className="w-full"
         disabled={isGenerating}
       >
@@ -2327,8 +2327,8 @@ const DesignStudioDetailed: React.FC = () => {
           <CardContent className="pt-6">
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Your Design Preview</h3>
-              <div 
-                ref={canvasRef} 
+              <div
+                ref={canvasRef}
                 className="min-h-[200px] rounded-lg overflow-hidden border border-gray-200"
               ></div>
               <div className="flex justify-end gap-2">

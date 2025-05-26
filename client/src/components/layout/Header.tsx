@@ -86,7 +86,7 @@ const Header = () => {
           </nav>
 
           {/* Search Bar - Desktop */}
-          <div className="hidden md:block lg:block flex-grow max-w-lg ml-6">
+          <div className="hidden md:block flex-grow max-w-lg ml-6">
             <SearchBar />
           </div>
 
@@ -102,7 +102,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none"
+            className="lg:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
@@ -117,7 +117,7 @@ const Header = () => {
       </div>
 
       {/* Mega Menu - Desktop Only */}
-      <div className="hidden md:block relative">
+      <div className="hidden lg:block relative">
         <MegaMenu
           isOpen={megaMenuOpen === 'categories'}
           type="categories"

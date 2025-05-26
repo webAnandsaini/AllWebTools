@@ -22,7 +22,7 @@ const CreditCardGeneratorDetailed: React.FC = () => {
   // Function to format credit card number with spaces
   const formatCardNumber = (number: string, type: string): string => {
     let formatted = "";
-    
+
     // Different card types have different grouping patterns
     if (type === "amex") {
       // American Express: 4-6-5 grouping
@@ -31,7 +31,7 @@ const CreditCardGeneratorDetailed: React.FC = () => {
       // Most cards: 4-4-4-4 grouping
       formatted = number.replace(/(\d{4})(?=\d)/g, "$1 ");
     }
-    
+
     return formatted.trim();
   };
 
@@ -45,20 +45,20 @@ const CreditCardGeneratorDetailed: React.FC = () => {
     const digits = partialNumber.split("").map(Number);
     let sum = 0;
     let shouldDouble = false;
-    
+
     // Loop through digits in reverse
     for (let i = digits.length - 1; i >= 0; i--) {
       let digit = digits[i];
-      
+
       if (shouldDouble) {
         digit *= 2;
         if (digit > 9) digit -= 9;
       }
-      
+
       sum += digit;
       shouldDouble = !shouldDouble;
     }
-    
+
     const remainder = sum % 10;
     return remainder === 0 ? "0" : String(10 - remainder);
   };
@@ -67,7 +67,7 @@ const CreditCardGeneratorDetailed: React.FC = () => {
   const generateCardNumber = (type: string): string => {
     let prefix = "";
     let length = 16;
-    
+
     switch (type) {
       case "visa":
         prefix = "4";
@@ -75,7 +75,7 @@ const CreditCardGeneratorDetailed: React.FC = () => {
         break;
       case "mastercard":
         // Mastercard starts with 51-55 or 2221-2720
-        prefix = Math.random() > 0.5 
+        prefix = Math.random() > 0.5
           ? String(getRandomNumber(51, 55))
           : String(getRandomNumber(2221, 2720));
         length = 16;
@@ -87,10 +87,10 @@ const CreditCardGeneratorDetailed: React.FC = () => {
         break;
       case "discover":
         // Discover starts with 6011, 644-649, or 65
-        prefix = Math.random() > 0.5 
-          ? "6011" 
-          : (Math.random() > 0.5 
-            ? String(getRandomNumber(644, 649)) 
+        prefix = Math.random() > 0.5
+          ? "6011"
+          : (Math.random() > 0.5
+            ? String(getRandomNumber(644, 649))
             : "65");
         length = 16;
         break;
@@ -98,18 +98,18 @@ const CreditCardGeneratorDetailed: React.FC = () => {
         prefix = "4";
         length = 16;
     }
-    
+
     // Generate random digits for the remaining length
     const remainingLength = length - prefix.length - 1; // -1 for check digit
     let partialNumber = prefix;
-    
+
     for (let i = 0; i < remainingLength; i++) {
       partialNumber += String(getRandomNumber(0, 9));
     }
-    
+
     // Generate check digit using Luhn algorithm
     const checkDigit = generateCheckDigit(partialNumber);
-    
+
     return partialNumber + checkDigit;
   };
 
@@ -117,30 +117,30 @@ const CreditCardGeneratorDetailed: React.FC = () => {
   const handleGenerate = () => {
     try {
       const count = parseInt(quantity);
-      
+
       if (isNaN(count) || count < 1 || count > 10) {
         setError("Please enter a valid quantity between 1 and 10");
         return;
       }
-      
+
       const cards: GeneratedCard[] = [];
-      
+
       for (let i = 0; i < count; i++) {
         const number = generateCardNumber(cardType);
         const formatted = formatCardNumber(number, cardType);
-        const displayType = 
+        const displayType =
           cardType === "visa" ? "Visa" :
           cardType === "mastercard" ? "Mastercard" :
           cardType === "amex" ? "American Express" :
           cardType === "discover" ? "Discover" : "Credit Card";
-        
+
         cards.push({
           number,
           type: displayType,
           formatted
         });
       }
-      
+
       setGeneratedCards(cards);
       setError("");
     } catch (error: any) {
@@ -170,7 +170,7 @@ const CreditCardGeneratorDetailed: React.FC = () => {
                 </SelectContent>
               </Select>
             </div>
-            
+
             <div>
               <Label htmlFor="quantity">Quantity (1-10)</Label>
               <Input
@@ -203,8 +203,8 @@ const CreditCardGeneratorDetailed: React.FC = () => {
                       <p className="text-sm mb-1"><span className="font-medium">Type:</span> {card.type}</p>
                       <p className="text-sm mb-1"><span className="font-medium">Number:</span> {card.formatted}</p>
                       <div className="flex justify-end mt-2">
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="sm"
                           onClick={() => {
                             navigator.clipboard.writeText(card.formatted);
@@ -232,7 +232,7 @@ const CreditCardGeneratorDetailed: React.FC = () => {
             <p>
               Our Credit Card Generator creates valid test credit card numbers that pass the Luhn algorithm check but are not connected to real accounts.
             </p>
-            
+
             <div>
               <h4 className="font-medium mb-2">Common Uses:</h4>
               <ul className="list-disc pl-5 space-y-1">
@@ -254,9 +254,9 @@ const CreditCardGeneratorDetailed: React.FC = () => {
   );
 
   const introduction = "Generate valid test credit card numbers for development and testing purposes.";
-  
+
   const description = "Our Credit Card Generator creates validly formatted test credit card numbers that pass the Luhn algorithm check. These test numbers are perfect for developers testing payment systems, QA engineers validating checkout processes, or anyone who needs to test credit card functionality without using real card data. The generator supports multiple card types including Visa, Mastercard, American Express, and Discover, and allows you to generate multiple test cards at once. All generated numbers follow the proper format for each card type but are not connected to real accounts.";
-  
+
   const howToUse = [
     "Select the credit card type you want to generate (Visa, Mastercard, American Express, or Discover)",
     "Choose how many test cards you want to generate (1-10)",
@@ -264,15 +264,15 @@ const CreditCardGeneratorDetailed: React.FC = () => {
     "View the generated card information including type and number",
     "Use the 'Copy' button to easily copy a card number for testing purposes"
   ];
-  
+
   const features = [
-    "✅ Generates valid credit card numbers that pass Luhn validation",
-    "✅ Supports multiple card types (Visa, Mastercard, Amex, Discover)",
-    "✅ Create up to 10 test cards simultaneously",
-    "✅ Properly formatted numbers with spaces for easy readability",
-    "✅ One-click copying for easy use in testing environments"
+    " Generates valid credit card numbers that pass Luhn validation",
+    " Supports multiple card types (Visa, Mastercard, Amex, Discover)",
+    " Create up to 10 test cards simultaneously",
+    " Properly formatted numbers with spaces for easy readability",
+    " One-click copying for easy use in testing environments"
   ];
-  
+
   const faqs = [
     {
       question: "Are these real credit card numbers?",

@@ -9,8 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { keywordsTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
-import { 
-  FaPercent, 
+import {
+  FaPercent,
   FaSearch,
   FaFileAlt,
   FaLink,
@@ -64,7 +64,7 @@ const KeywordsDensityCheckerDetailed = () => {
     setIsAnalyzing(true);
     setAnalyzeProgress(0);
     setResults(null);
-    
+
     // Simulate the analyzing process
     let progress = 0;
     const interval = setInterval(() => {
@@ -72,16 +72,16 @@ const KeywordsDensityCheckerDetailed = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         // Analyze text content or simulated webpage content
-        const content = activeTab === "text" ? textContent : 
+        const content = activeTab === "text" ? textContent :
           "This is simulated webpage content from the URL. It would normally contain the actual HTML content parsed from the webpage. For this demo, we're using sample text to analyze keyword density patterns. SEO optimization requires careful attention to keyword density. Too many keywords can trigger spam filters, while too few may not signal relevance to search engines. Finding the right keyword density balance is crucial for effective SEO strategy. Most SEO experts recommend a keyword density between 1-2% for primary keywords and slightly lower for secondary keywords. This helps ensure content remains natural and reader-friendly while still being optimized for search engines. Always prioritize creating valuable, informative content over keyword stuffing.";
-        
+
         // Calculate word count
         const words = content.match(/\b\w+\b/g) || [];
         const totalWords = words.length;
         setWordCount(totalWords);
-        
+
         // Create word frequency map
         const wordMap = words.reduce((acc, word) => {
           const lowerWord = word.toLowerCase();
@@ -90,7 +90,7 @@ const KeywordsDensityCheckerDetailed = () => {
           }
           return acc;
         }, {});
-        
+
         // Create density results sorted by frequency
         const densityResults = Object.entries(wordMap)
           .map(([word, count]) => ({
@@ -100,7 +100,7 @@ const KeywordsDensityCheckerDetailed = () => {
           }))
           .sort((a, b) => b.count - a.count)
           .slice(0, 20); // Take top 20 words
-        
+
         // Find 2-word phrases (bigrams)
         const phrases: {[key: string]: number} = {};
         for (let i = 0; i < words.length - 1; i++) {
@@ -109,7 +109,7 @@ const KeywordsDensityCheckerDetailed = () => {
             phrases[phrase] = (phrases[phrase] || 0) + 1;
           }
         }
-        
+
         // Get top phrases
         const phraseResults = Object.entries(phrases)
           .map(([phrase, count]) => ({
@@ -119,16 +119,16 @@ const KeywordsDensityCheckerDetailed = () => {
           }))
           .sort((a, b) => b.count - a.count)
           .slice(0, 10); // Take top 10 phrases
-        
+
         setResults({
           wordCount: totalWords,
           words: densityResults,
           phrases: phraseResults,
           source: activeTab === "url" ? url : "Text input"
         });
-        
+
         setIsAnalyzing(false);
-        
+
         toast({
           title: "Analysis complete",
           description: `Analyzed ${totalWords} words.`,
@@ -166,13 +166,13 @@ const KeywordsDensityCheckerDetailed = () => {
   ];
 
   const features = [
-    "✅ Analyze both webpage URLs and direct text input",
-    "✅ Calculate keyword density percentages for individual words and phrases",
-    "✅ Identify optimal, low, and over-optimized keyword frequencies",
-    "✅ Discover commonly used phrases for potential keyword targeting",
-    "✅ Compare keyword distribution across different content sections",
-    "✅ Get recommendations for improving keyword balance",
-    "✅ Review total word count and content statistics"
+    " Analyze both webpage URLs and direct text input",
+    " Calculate keyword density percentages for individual words and phrases",
+    " Identify optimal, low, and over-optimized keyword frequencies",
+    " Discover commonly used phrases for potential keyword targeting",
+    " Compare keyword distribution across different content sections",
+    " Get recommendations for improving keyword balance",
+    " Review total word count and content statistics"
   ];
 
   const faqs = [
@@ -193,7 +193,7 @@ const KeywordsDensityCheckerDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Keywords Density Checker</h3>
-      
+
       <div className="space-y-5">
         <Tabs defaultValue="url" value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="grid w-full grid-cols-2">
@@ -206,26 +206,26 @@ const KeywordsDensityCheckerDetailed = () => {
               Analyze Text
             </TabsTrigger>
           </TabsList>
-          
+
           <TabsContent value="url" className="mt-4">
             <div>
               <Label htmlFor="webpage-url" className="block mb-2">Website URL</Label>
-              <Input 
-                id="webpage-url" 
-                placeholder="https://example.com" 
+              <Input
+                id="webpage-url"
+                placeholder="https://example.com"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
               />
               <p className="text-xs text-gray-500 mt-1">Enter the full URL including http:// or https://</p>
             </div>
           </TabsContent>
-          
+
           <TabsContent value="text" className="mt-4">
             <div>
               <Label htmlFor="content-text" className="block mb-2">Content Text</Label>
-              <Textarea 
-                id="content-text" 
-                placeholder="Paste your content here to analyze keyword density" 
+              <Textarea
+                id="content-text"
+                placeholder="Paste your content here to analyze keyword density"
                 value={textContent}
                 onChange={(e) => setTextContent(e.target.value)}
                 rows={8}
@@ -234,8 +234,8 @@ const KeywordsDensityCheckerDetailed = () => {
             </div>
           </TabsContent>
         </Tabs>
-        
-        <Button 
+
+        <Button
           onClick={handleAnalyze}
           className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
           disabled={isAnalyzing}
@@ -244,12 +244,12 @@ const KeywordsDensityCheckerDetailed = () => {
             <>Analyzing Content...</>
           ) : (
             <>
-              <FaPercent className="mr-2" /> 
+              <FaPercent className="mr-2" />
               Analyze Density
             </>
           )}
         </Button>
-        
+
         {isAnalyzing && (
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
@@ -259,7 +259,7 @@ const KeywordsDensityCheckerDetailed = () => {
             <Progress value={analyzeProgress} />
           </div>
         )}
-        
+
         {results && (
           <div className="space-y-6 mt-4">
             <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
@@ -275,13 +275,13 @@ const KeywordsDensityCheckerDetailed = () => {
                 </div>
               </div>
             </div>
-            
+
             <div>
               <h4 className="font-medium text-lg flex items-center mb-3">
                 <FaChartBar className="mr-2 text-blue-600" />
                 Keyword Density Analysis
               </h4>
-              
+
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
@@ -318,13 +318,13 @@ const KeywordsDensityCheckerDetailed = () => {
                 </table>
               </div>
             </div>
-            
+
             <div>
               <h4 className="font-medium text-lg flex items-center mb-3">
                 <FaChartBar className="mr-2 text-blue-600" />
                 Phrase Density Analysis
               </h4>
-              
+
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
@@ -350,7 +350,7 @@ const KeywordsDensityCheckerDetailed = () => {
                 </table>
               </div>
             </div>
-            
+
             <div className="p-4 bg-gray-50 border border-gray-200 rounded-lg text-sm">
               <div className="flex items-start">
                 <FaInfoCircle className="text-blue-600 mt-0.5 mr-2 flex-shrink-0" />

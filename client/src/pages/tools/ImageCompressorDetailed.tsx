@@ -7,9 +7,9 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { imageEditingTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
-import { 
-  FaUpload, 
-  FaDownload, 
+import {
+  FaUpload,
+  FaDownload,
   FaCompress,
   FaCheck,
   FaTrash
@@ -28,10 +28,10 @@ const ImageCompressorDetailed = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const selectedFiles = Array.from(e.target.files).filter(file => 
+      const selectedFiles = Array.from(e.target.files).filter(file =>
         file.type.startsWith('image/')
       );
-      
+
       if (selectedFiles.length !== e.target.files.length) {
         toast({
           title: "Invalid files",
@@ -39,18 +39,18 @@ const ImageCompressorDetailed = () => {
           variant: "destructive",
         });
       }
-      
+
       if (selectedFiles.length > 0) {
         setFiles([...files, ...selectedFiles]);
-        
+
         // Store original file sizes
         const sizes = selectedFiles.map(file => file.size);
         setOriginalSizes([...originalSizes, ...sizes]);
-        
+
         // Create preview URLs for each file
         const urls = selectedFiles.map(file => URL.createObjectURL(file));
         setPreviewUrls([...previewUrls, ...urls]);
-        
+
         // Reset results
         setResultUrls([]);
         setCompressedSizes([]);
@@ -63,28 +63,28 @@ const ImageCompressorDetailed = () => {
     const newFiles = [...files];
     const newPreviewUrls = [...previewUrls];
     const newOriginalSizes = [...originalSizes];
-    
+
     // Revoke object URL to prevent memory leaks
     URL.revokeObjectURL(newPreviewUrls[index]);
-    
+
     newFiles.splice(index, 1);
     newPreviewUrls.splice(index, 1);
     newOriginalSizes.splice(index, 1);
-    
+
     setFiles(newFiles);
     setPreviewUrls(newPreviewUrls);
     setOriginalSizes(newOriginalSizes);
-    
+
     // Also remove compressed results if they exist
     if (resultUrls.length > 0) {
       const newResultUrls = [...resultUrls];
       const newCompressedSizes = [...compressedSizes];
-      
+
       if (index < newResultUrls.length) {
         URL.revokeObjectURL(newResultUrls[index]);
         newResultUrls.splice(index, 1);
         newCompressedSizes.splice(index, 1);
-        
+
         setResultUrls(newResultUrls);
         setCompressedSizes(newCompressedSizes);
       }
@@ -95,7 +95,7 @@ const ImageCompressorDetailed = () => {
     // Revoke all object URLs
     previewUrls.forEach(url => URL.revokeObjectURL(url));
     resultUrls.forEach(url => URL.revokeObjectURL(url));
-    
+
     setFiles([]);
     setPreviewUrls([]);
     setOriginalSizes([]);
@@ -118,7 +118,7 @@ const ImageCompressorDetailed = () => {
     setCompressProgress(0);
     setResultUrls([]);
     setCompressedSizes([]);
-    
+
     // Simulate compression process
     let progress = 0;
     const interval = setInterval(() => {
@@ -126,19 +126,19 @@ const ImageCompressorDetailed = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         // Simulate compressed results - in a real implementation, this would be the actual compressed images
         const results = previewUrls.map(url => url);
-        
+
         // Simulate file size reduction based on quality setting
         // The lower the quality, the smaller the file size
         const compressionRatio = (100 - quality) * 0.008 + 0.2; // Between 0.2 and 1.0
         const sizes = originalSizes.map(size => Math.floor(size * (1 - compressionRatio)));
-        
+
         setResultUrls(results);
         setCompressedSizes(sizes);
         setIsCompressing(false);
-        
+
         toast({
           title: "Compression complete",
           description: `Compressed ${files.length} ${files.length === 1 ? 'image' : 'images'}.`,
@@ -150,7 +150,7 @@ const ImageCompressorDetailed = () => {
 
   const handleDownload = (index: number) => {
     if (!resultUrls[index]) return;
-    
+
     // Create a download link
     const a = document.createElement('a');
     a.href = resultUrls[index];
@@ -162,7 +162,7 @@ const ImageCompressorDetailed = () => {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    
+
     toast({
       title: "Download started",
       description: "Your compressed image is being downloaded.",
@@ -171,12 +171,12 @@ const ImageCompressorDetailed = () => {
 
   const handleDownloadAll = () => {
     if (resultUrls.length === 0) return;
-    
+
     toast({
       title: "Preparing download",
       description: "All compressed images will be downloaded in a few moments.",
     });
-    
+
     // In a real implementation, this would create a zip file with all images
     // For this demo, we'll just download them one by one with a delay
     resultUrls.forEach((_, index) => {
@@ -188,13 +188,13 @@ const ImageCompressorDetailed = () => {
 
   const formatBytes = (bytes: number, decimals = 2) => {
     if (bytes === 0) return '0 Bytes';
-    
+
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    
+
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    
+
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   };
 
@@ -217,13 +217,13 @@ const ImageCompressorDetailed = () => {
   ];
 
   const features = [
-    "✅ Compress images with adjustable quality settings",
-    "✅ Support for JPEG, PNG, GIF, and WebP formats",
-    "✅ Batch processing for compressing multiple images at once",
-    "✅ Visual comparison between original and compressed images",
-    "✅ Detailed file size reduction statistics",
-    "✅ Browser-based compression (no server uploads)",
-    "✅ No watermarks on compressed images"
+    " Compress images with adjustable quality settings",
+    " Support for JPEG, PNG, GIF, and WebP formats",
+    " Batch processing for compressing multiple images at once",
+    " Visual comparison between original and compressed images",
+    " Detailed file size reduction statistics",
+    " Browser-based compression (no server uploads)",
+    " No watermarks on compressed images"
   ];
 
   const faqs = [
@@ -244,7 +244,7 @@ const ImageCompressorDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Image Compressor</h3>
-      
+
       <div className="border-2 border-dashed rounded-lg p-4 text-center">
         <Label htmlFor="image-compressor-upload" className="cursor-pointer block">
           <div className="py-8 flex flex-col items-center">
@@ -266,13 +266,13 @@ const ImageCompressorDetailed = () => {
           />
         </Label>
       </div>
-      
+
       {files.length > 0 && (
         <div className="mt-6 space-y-5">
           <div className="flex justify-between items-center">
             <h4 className="font-medium">Images to Compress ({files.length})</h4>
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               size="sm"
               onClick={clearAll}
             >
@@ -280,7 +280,7 @@ const ImageCompressorDetailed = () => {
               Clear All
             </Button>
           </div>
-          
+
           <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
             {files.map((file, index) => (
               <div key={index} className="flex items-center justify-between border rounded-lg p-3 bg-gray-50">
@@ -292,7 +292,7 @@ const ImageCompressorDetailed = () => {
                     <p className="text-sm font-medium truncate w-40 sm:w-auto">{file.name}</p>
                     <div className="flex items-center text-xs text-gray-500">
                       <span>{formatBytes(originalSizes[index])}</span>
-                      
+
                       {compressedSizes[index] && (
                         <>
                           <span className="mx-1 text-gray-400">→</span>
@@ -307,8 +307,8 @@ const ImageCompressorDetailed = () => {
                 </div>
                 <div className="flex items-center">
                   {resultUrls[index] && (
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       size="sm"
                       className="text-blue-600 mr-2"
                       onClick={() => handleDownload(index)}
@@ -317,8 +317,8 @@ const ImageCompressorDetailed = () => {
                       Download
                     </Button>
                   )}
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     size="sm"
                     className="text-red-600"
                     onClick={() => removeFile(index)}
@@ -329,14 +329,14 @@ const ImageCompressorDetailed = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="space-y-4 pt-2">
             <div>
               <div className="flex justify-between items-center mb-1">
                 <Label htmlFor="quality-slider" className="font-medium">Compression Quality</Label>
                 <span className="text-sm">{quality}%</span>
               </div>
-              <Slider 
+              <Slider
                 id="quality-slider"
                 min={30}
                 max={95}
@@ -350,9 +350,9 @@ const ImageCompressorDetailed = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button 
+            <Button
               onClick={handleCompress}
               className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
               disabled={isCompressing || files.length === 0}
@@ -361,24 +361,24 @@ const ImageCompressorDetailed = () => {
                 <>Compressing...</>
               ) : (
                 <>
-                  <FaCompress className="mr-2" /> 
+                  <FaCompress className="mr-2" />
                   Compress Images
                 </>
               )}
             </Button>
-            
+
             {resultUrls.length > 0 && (
-              <Button 
+              <Button
                 onClick={handleDownloadAll}
                 variant="outline"
                 className="flex-1"
               >
-                <FaDownload className="mr-2" /> 
+                <FaDownload className="mr-2" />
                 Download All
               </Button>
             )}
           </div>
-          
+
           {isCompressing && (
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
@@ -388,12 +388,12 @@ const ImageCompressorDetailed = () => {
               <Progress value={compressProgress} />
             </div>
           )}
-          
+
           {resultUrls.length > 0 && files.length > 0 && (
             <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-800 flex items-center">
               <FaCheck className="mr-2 flex-shrink-0" />
               <span>
-                Successfully compressed {files.length} {files.length === 1 ? 'image' : 'images'}! 
+                Successfully compressed {files.length} {files.length === 1 ? 'image' : 'images'}!
                 Total savings: {calculateSavings(
                   originalSizes.reduce((a, b) => a + b, 0),
                   compressedSizes.reduce((a, b) => a + b, 0)

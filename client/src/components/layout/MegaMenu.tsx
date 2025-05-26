@@ -25,8 +25,8 @@ const MegaMenu: React.FC<MegaMenuProps> = ({
   };
 
   return (
-    <div 
-      className="absolute top-full left-0 right-0 bg-white shadow-xl z-50 py-8 border-t border-gray-100"
+    <div
+      className="absolute top-full left-0 right-0 shadow-xl z-50 bg-white py-8 border-t border-gray-100 max-h-screen overflow-y-scroll"
       onMouseLeave={onClose}
     >
       <div className="container mx-auto px-4">
@@ -39,11 +39,11 @@ const MegaMenu: React.FC<MegaMenuProps> = ({
                 <i className="fas fa-arrow-right ml-2 text-xs"></i>
               </Link>
             </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
               {categories.map((category) => (
                 <div key={category.id} className="mb-6">
-                  <Link 
+                  <Link
                     href={`/categories/${category.slug}`}
                     onClick={handleLinkClick}
                     className="flex flex-col hover:bg-gray-50 p-4 rounded-xl transition-all duration-300 hover:-translate-y-1 border border-transparent hover:border-gray-100 hover:shadow-sm group"
@@ -74,10 +74,10 @@ const MegaMenu: React.FC<MegaMenuProps> = ({
                 <i className="fas fa-arrow-right ml-2 text-xs"></i>
               </Link>
             </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 pb-10 xl:pb-0">
               {popularTools.map((tool) => (
-                <Link 
+                <Link
                   key={tool.id}
                   href={`/tools/${tool.slug}`}
                   onClick={handleLinkClick}

@@ -6,18 +6,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import { 
+import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -58,7 +58,7 @@ const ImageToolsDetailed: React.FC = () => {
   const [outputFileUrl, setOutputFileUrl] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [config, setConfig] = useState<ImageToolConfig | null>(null);
-  
+
   // Image options states
   const [quality, setQuality] = useState<number>(80);
   const [targetSize, setTargetSize] = useState<number>(100);
@@ -70,15 +70,15 @@ const ImageToolsDetailed: React.FC = () => {
   const [colorValue, setColorValue] = useState<string>("#FFFFFF");
   const [rgbValues, setRgbValues] = useState({ r: 255, g: 255, b: 255 });
   const [targetUnit, setTargetUnit] = useState<"kb" | "mb">("kb");
-  
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const cropCanvasRef = useRef<HTMLCanvasElement>(null);
-  
+
   // Set the tool type based on the current URL
   useEffect(() => {
     const currentPath = location.toLowerCase();
-    
+
     if (currentPath.includes("reverse-image-search")) {
       setToolType("reverse-image-search");
     } else if (currentPath.includes("face-search")) {
@@ -187,11 +187,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Use filters to refine results by size, type, or visual similarity"
         ],
         features: [
-          "✅ Searches billions of images across the internet for matches",
-          "✅ Finds visually similar images even when not exact matches",
-          "✅ Provides direct links to websites containing the image",
-          "✅ Supports all common image formats (JPG, PNG, WEBP, etc.)",
-          "✅ Fast results with powerful image recognition technology"
+          " Searches billions of images across the internet for matches",
+          " Finds visually similar images even when not exact matches",
+          " Provides direct links to websites containing the image",
+          " Supports all common image formats (JPG, PNG, WEBP, etc.)",
+          " Fast results with powerful image recognition technology"
         ],
         faqs: [
           {
@@ -236,11 +236,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Use the confidence score to determine the reliability of each match"
         ],
         features: [
-          "✅ Advanced facial recognition that works even with partial face visibility",
-          "✅ Multi-face detection capabilities for group photos",
-          "✅ Search results ranked by similarity confidence score",
-          "✅ Works with various image qualities and lighting conditions",
-          "✅ Ethical implementation with privacy safeguards"
+          " Advanced facial recognition that works even with partial face visibility",
+          " Multi-face detection capabilities for group photos",
+          " Search results ranked by similarity confidence score",
+          " Works with various image qualities and lighting conditions",
+          " Ethical implementation with privacy safeguards"
         ],
         faqs: [
           {
@@ -285,11 +285,11 @@ const ImageToolsDetailed: React.FC = () => {
           "For batch processing, use our premium version to compress multiple files at once"
         ],
         features: [
-          "✅ Reduces file size by up to 90% while maintaining visual quality",
-          "✅ Supports all major image formats (JPEG, PNG, WEBP, etc.)",
-          "✅ Adjustable compression levels to balance size and quality",
-          "✅ No watermarks or quality limitations in the free version",
-          "✅ Secure processing - all compression happens in your browser"
+          " Reduces file size by up to 90% while maintaining visual quality",
+          " Supports all major image formats (JPEG, PNG, WEBP, etc.)",
+          " Adjustable compression levels to balance size and quality",
+          " No watermarks or quality limitations in the free version",
+          " Secure processing - all compression happens in your browser"
         ],
         faqs: [
           {
@@ -334,11 +334,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Download your complete favicon package with all required sizes and formats"
         ],
         features: [
-          "✅ Generates all required favicon formats and sizes for complete browser compatibility",
-          "✅ Creates ICO files for classic browsers and PNG files for modern ones",
-          "✅ Includes Apple Touch icons for iOS devices and Android home screen icons",
-          "✅ Automatically generates the necessary HTML code to add to your website",
-          "✅ Options to customize background colors and padding"
+          " Generates all required favicon formats and sizes for complete browser compatibility",
+          " Creates ICO files for classic browsers and PNG files for modern ones",
+          " Includes Apple Touch icons for iOS devices and Android home screen icons",
+          " Automatically generates the necessary HTML code to add to your website",
+          " Options to customize background colors and padding"
         ],
         faqs: [
           {
@@ -383,11 +383,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Download your animated GIF ready for sharing"
         ],
         features: [
-          "✅ Converts videos up to 500MB in size to GIF format",
-          "✅ Customizable frame rate, dimensions, and quality settings",
-          "✅ Option to trim specific sections of your video",
-          "✅ Add custom text captions or watermarks",
-          "✅ Optimizes GIFs for the best balance of quality and file size"
+          " Converts videos up to 500MB in size to GIF format",
+          " Customizable frame rate, dimensions, and quality settings",
+          " Option to trim specific sections of your video",
+          " Add custom text captions or watermarks",
+          " Optimizes GIFs for the best balance of quality and file size"
         ],
         faqs: [
           {
@@ -432,11 +432,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Download the resized image in your preferred format"
         ],
         features: [
-          "✅ Resize by exact dimensions in pixels or percentages",
-          "✅ Maintain aspect ratio to prevent image distortion",
-          "✅ Smart scaling algorithms that preserve image quality and sharpness",
-          "✅ Support for all common image formats (JPG, PNG, WEBP, etc.)",
-          "✅ Option to optimize file size while resizing"
+          " Resize by exact dimensions in pixels or percentages",
+          " Maintain aspect ratio to prevent image distortion",
+          " Smart scaling algorithms that preserve image quality and sharpness",
+          " Support for all common image formats (JPG, PNG, WEBP, etc.)",
+          " Option to optimize file size while resizing"
         ],
         faqs: [
           {
@@ -481,11 +481,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Download your resized photo that matches your KB requirement"
         ],
         features: [
-          "✅ Resizes photos to an exact KB size you specify",
-          "✅ Smart algorithm balances dimension scaling and compression",
-          "✅ Maintains aspect ratio to prevent distortion",
-          "✅ Shows quality preview before downloading",
-          "✅ Perfect for meeting upload size requirements on various platforms"
+          " Resizes photos to an exact KB size you specify",
+          " Smart algorithm balances dimension scaling and compression",
+          " Maintains aspect ratio to prevent distortion",
+          " Shows quality preview before downloading",
+          " Perfect for meeting upload size requirements on various platforms"
         ],
         faqs: [
           {
@@ -530,11 +530,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Preview and download your perfectly cropped image"
         ],
         features: [
-          "✅ Interactive crop interface with real-time preview",
-          "✅ Preset aspect ratios for common uses (square, 16:9, 4:3, etc.)",
-          "✅ Rotation and straightening capabilities",
-          "✅ Fine-tuning controls for precise cropping",
-          "✅ Maintains original image quality in the cropped area"
+          " Interactive crop interface with real-time preview",
+          " Preset aspect ratios for common uses (square, 16:9, 4:3, etc.)",
+          " Rotation and straightening capabilities",
+          " Fine-tuning controls for precise cropping",
+          " Maintains original image quality in the cropped area"
         ],
         faqs: [
           {
@@ -579,11 +579,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Copy the converted values with one click"
         ],
         features: [
-          "✅ Instant bidirectional conversion between RGB and HEX formats",
-          "✅ Visual color picker for intuitive color selection",
-          "✅ Color preview showing your selected color",
-          "✅ Color history to save and compare multiple colors",
-          "✅ Support for RGB, RGBA, HEX, and HEXA (with alpha/transparency)"
+          " Instant bidirectional conversion between RGB and HEX formats",
+          " Visual color picker for intuitive color selection",
+          " Color preview showing your selected color",
+          " Color history to save and compare multiple colors",
+          " Support for RGB, RGBA, HEX, and HEXA (with alpha/transparency)"
         ],
         faqs: [
           {
@@ -628,11 +628,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Download your new JPG file"
         ],
         features: [
-          "✅ Converts PNG to JPG while maintaining visual quality",
-          "✅ Significantly reduces file size (typically 70-90% smaller)",
-          "✅ Customizable quality settings to balance size and appearance",
-          "✅ Options for handling transparent areas in PNG files",
-          "✅ Batch conversion available for multiple files"
+          " Converts PNG to JPG while maintaining visual quality",
+          " Significantly reduces file size (typically 70-90% smaller)",
+          " Customizable quality settings to balance size and appearance",
+          " Options for handling transparent areas in PNG files",
+          " Batch conversion available for multiple files"
         ],
         faqs: [
           {
@@ -677,11 +677,11 @@ const ImageToolsDetailed: React.FC = () => {
           "For batch conversion, use our premium version"
         ],
         features: [
-          "✅ Lossless conversion from JPG to PNG format",
-          "✅ Maintains or improves image quality in the conversion process",
-          "✅ Optional background removal tools for creating transparent PNGs",
-          "✅ No watermarks or quality limitations",
-          "✅ Secure browser-based processing - no files uploaded to servers"
+          " Lossless conversion from JPG to PNG format",
+          " Maintains or improves image quality in the conversion process",
+          " Optional background removal tools for creating transparent PNGs",
+          " No watermarks or quality limitations",
+          " Secure browser-based processing - no files uploaded to servers"
         ],
         faqs: [
           {
@@ -726,11 +726,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Download your optimized PNG with significant file size savings"
         ],
         features: [
-          "✅ Lossless PNG compression that maintains perfect image quality",
-          "✅ Preserves transparency and alpha channels completely",
-          "✅ Reduces file size by 25-80% depending on the image",
-          "✅ Specialized algorithms optimized specifically for PNG format",
-          "✅ Secure processing with all compression happening in your browser"
+          " Lossless PNG compression that maintains perfect image quality",
+          " Preserves transparency and alpha channels completely",
+          " Reduces file size by 25-80% depending on the image",
+          " Specialized algorithms optimized specifically for PNG format",
+          " Secure processing with all compression happening in your browser"
         ],
         faqs: [
           {
@@ -775,11 +775,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Download your optimized JPEG ready for web or other uses"
         ],
         features: [
-          "✅ Smart compression that maintains important image details",
-          "✅ Adjustable quality settings with real-time file size preview",
-          "✅ Removes unnecessary metadata to further reduce file size",
-          "✅ Specialized algorithms tuned specifically for JPEG format",
-          "✅ Secure processing with all optimization happening in your browser"
+          " Smart compression that maintains important image details",
+          " Adjustable quality settings with real-time file size preview",
+          " Removes unnecessary metadata to further reduce file size",
+          " Specialized algorithms tuned specifically for JPEG format",
+          " Secure processing with all optimization happening in your browser"
         ],
         faqs: [
           {
@@ -824,11 +824,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Download your new JPG file ready for universal compatibility"
         ],
         features: [
-          "✅ Converts cutting-edge AVIF format to universally supported JPG",
-          "✅ Maintains excellent image quality during conversion",
-          "✅ Adjustable quality settings to balance size and detail",
-          "✅ Simple one-click conversion process",
-          "✅ No software installation required - works entirely in your browser"
+          " Converts cutting-edge AVIF format to universally supported JPG",
+          " Maintains excellent image quality during conversion",
+          " Adjustable quality settings to balance size and detail",
+          " Simple one-click conversion process",
+          " No software installation required - works entirely in your browser"
         ],
         faqs: [
           {
@@ -873,11 +873,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Download your multi-resolution ICO file ready for website implementation"
         ],
         features: [
-          "✅ Creates standard favicon.ico files from PNG images",
-          "✅ Generates multiple resolutions in a single ICO file",
-          "✅ Preserves transparency from the original PNG",
-          "✅ Optimizes the ICO file for minimum file size",
-          "✅ Provides guidance on implementing the favicon on your website"
+          " Creates standard favicon.ico files from PNG images",
+          " Generates multiple resolutions in a single ICO file",
+          " Preserves transparency from the original PNG",
+          " Optimizes the ICO file for minimum file size",
+          " Provides guidance on implementing the favicon on your website"
         ],
         faqs: [
           {
@@ -922,11 +922,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Download your PNG file at your specified dimensions"
         ],
         features: [
-          "✅ Converts SVG vector graphics to PNG raster format",
-          "✅ Allows custom output dimensions at any resolution",
-          "✅ Preserves transparency from the original SVG",
-          "✅ Renders complex SVG elements with high fidelity",
-          "✅ Supports both simple icons and complex vector illustrations"
+          " Converts SVG vector graphics to PNG raster format",
+          " Allows custom output dimensions at any resolution",
+          " Preserves transparency from the original SVG",
+          " Renders complex SVG elements with high fidelity",
+          " Supports both simple icons and complex vector illustrations"
         ],
         faqs: [
           {
@@ -970,11 +970,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Download your new PNG file ready for use anywhere"
         ],
         features: [
-          "✅ Converts WebP images to universally compatible PNG format",
-          "✅ Preserves transparency and image quality during conversion",
-          "✅ Maintains original image dimensions perfectly",
-          "✅ Simple one-click conversion process",
-          "✅ Works with both lossy and lossless WebP types"
+          " Converts WebP images to universally compatible PNG format",
+          " Preserves transparency and image quality during conversion",
+          " Maintains original image dimensions perfectly",
+          " Simple one-click conversion process",
+          " Works with both lossy and lossless WebP types"
         ],
         faqs: [
           {
@@ -1019,11 +1019,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Download your new SVG file ready for infinite scaling"
         ],
         features: [
-          "✅ Converts raster JPEG images to scalable vector SVG format",
-          "✅ Adjustable detail levels for precise control over results",
-          "✅ Color simplification options for clean, professional vectors",
-          "✅ Path smoothing to create elegant curves from pixel data",
-          "✅ Perfect for creating logos, icons, and illustrations from photos"
+          " Converts raster JPEG images to scalable vector SVG format",
+          " Adjustable detail levels for precise control over results",
+          " Color simplification options for clean, professional vectors",
+          " Path smoothing to create elegant curves from pixel data",
+          " Perfect for creating logos, icons, and illustrations from photos"
         ],
         faqs: [
           {
@@ -1068,11 +1068,11 @@ const ImageToolsDetailed: React.FC = () => {
           "Click 'Convert' and download your animated GIF"
         ],
         features: [
-          "✅ Converts MP4 videos to widely-compatible GIF format",
-          "✅ Customizable frame rate for balancing quality and file size",
-          "✅ Adjustable dimensions to fit your specific needs",
-          "✅ Trim functionality to select exact portion of video",
-          "✅ Optional dithering to improve color appearance in GIFs"
+          " Converts MP4 videos to widely-compatible GIF format",
+          " Customizable frame rate for balancing quality and file size",
+          " Adjustable dimensions to fit your specific needs",
+          " Trim functionality to select exact portion of video",
+          " Optional dithering to improve color appearance in GIFs"
         ],
         faqs: [
           {
@@ -1108,26 +1108,26 @@ const ImageToolsDetailed: React.FC = () => {
 
     // For specific compression tools, use the image-compressor config but override certain properties
     const specificTargetSizes = [
-      "compress-image-to-10kb", "compress-image-to-20kb", "compress-image-to-50kb", 
+      "compress-image-to-10kb", "compress-image-to-20kb", "compress-image-to-50kb",
       "compress-jpeg-to-30kb", "compress-jpeg-to-100kb", "compress-jpeg-to-200kb",
       "compress-image-to-1mb", "compress-jpg", "resize-image-to-20kb",
       "resize-image-to-50kb", "resize-image-to-100kb", "reduce-image-size-in-kb"
     ];
-    
+
     if (specificTargetSizes.includes(toolType)) {
       let baseConfig = { ...configurations["image-compressor"] };
       let targetSizeStr = "";
       let sizeMatch = toolType.match(/\d+/);
-      
+
       if (sizeMatch) {
         let size = parseInt(sizeMatch[0]);
         let unit = toolType.includes("mb") ? "MB" : "KB";
         targetSizeStr = `${size}${unit}`;
-        
+
         baseConfig.title = `${targetSizeStr} Image Compressor`;
         baseConfig.slug = toolType;
         baseConfig.introduction = `Compress images to exactly ${targetSizeStr} while maintaining the best possible quality.`;
-        
+
         // Update description to be more specific
         baseConfig.description = baseConfig.description.replace(
           "Reduce file size while maintaining image quality",
@@ -1152,32 +1152,32 @@ const ImageToolsDetailed: React.FC = () => {
           "Intelligently reduce image file size to your exact KB requirements while preserving the highest possible quality"
         );
       }
-      
+
       setConfig(baseConfig);
-    } else if (toolType.startsWith("convert-") || 
-               toolType.includes("-to-") || 
+    } else if (toolType.startsWith("convert-") ||
+               toolType.includes("-to-") ||
                toolType.includes("-converter")) {
       // For conversion tools, determine what formats are involved
       let fromFormat = "";
       let toFormat = "";
-      
+
       if (toolType.includes("-to-")) {
         const parts = toolType.split("-to-");
         fromFormat = parts[0];
         toFormat = parts[1].replace("-converter", "").replace("-detailed", "");
       }
-      
+
       // If we have valid formats, create a conversion-specific config
       if ((fromFormat && toFormat) || toolType === "convert-to-jpg") {
         if (toolType === "convert-to-jpg") {
           fromFormat = "any";
           toFormat = "jpg";
         }
-        
+
         // Capitalize formats for display
         const fromFormatDisplay = fromFormat.toUpperCase();
         const toFormatDisplay = toFormat.toUpperCase();
-        
+
         const conversionConfig: ImageToolConfig = {
           title: `${fromFormatDisplay} to ${toFormatDisplay} Converter`,
           slug: toolType,
@@ -1191,11 +1191,11 @@ const ImageToolsDetailed: React.FC = () => {
             "For batch conversion, use our premium version"
           ],
           features: [
-            `✅ Fast and accurate ${fromFormatDisplay} to ${toFormatDisplay} conversion`,
-            "✅ Maintains highest possible image quality during conversion",
-            "✅ Customizable settings for optimal results",
-            "✅ No watermarks or quality limitations in free version",
-            "✅ Secure browser-based processing for complete privacy"
+            ` Fast and accurate ${fromFormatDisplay} to ${toFormatDisplay} conversion`,
+            " Maintains highest possible image quality during conversion",
+            " Customizable settings for optimal results",
+            " No watermarks or quality limitations in free version",
+            " Secure browser-based processing for complete privacy"
           ],
           faqs: [
             {
@@ -1227,7 +1227,7 @@ const ImageToolsDetailed: React.FC = () => {
             hasConversionOptions: true
           }
         };
-        
+
         setConfig(conversionConfig);
       } else {
         // Default to image compressor if we can't determine formats
@@ -1243,13 +1243,13 @@ const ImageToolsDetailed: React.FC = () => {
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    
+
     // Check file size
     if (config && file.size > config.maxFileSize * 1024 * 1024) {
       setErrorMessage(`File size exceeds the maximum allowed size of ${config.maxFileSize}MB.`);
       return;
     }
-    
+
     // Check file format if there are supported formats specified
     if (config && config.supportedFormats.length > 0) {
       const fileExtension = file.name.split('.').pop()?.toLowerCase() || '';
@@ -1258,19 +1258,19 @@ const ImageToolsDetailed: React.FC = () => {
         return;
       }
     }
-    
+
     setUploadedFile(file);
-    
+
     // Create preview URL
     const reader = new FileReader();
     reader.onload = () => {
       setUploadedFileUrl(reader.result as string);
-      
+
       // Reset states
       setProcessingState("idle");
       setOutputFileUrl("");
       setErrorMessage("");
-      
+
       // If it's an image, get dimensions
       if (file.type.startsWith('image/') && !file.type.includes('svg')) {
         const img = new Image();
@@ -1290,10 +1290,10 @@ const ImageToolsDetailed: React.FC = () => {
       setErrorMessage("Please upload a file first.");
       return;
     }
-    
+
     setProcessingState("processing");
     setErrorMessage("");
-    
+
     // Simulate processing with timeout (in a real implementation, this would be actual image processing)
     setTimeout(() => {
       try {
@@ -1304,7 +1304,7 @@ const ImageToolsDetailed: React.FC = () => {
             // These would typically make API calls to external services
             simulateSearchResults();
             break;
-          
+
           case "image-compressor":
           case "compress-png":
           case "compress-jpg":
@@ -1318,7 +1318,7 @@ const ImageToolsDetailed: React.FC = () => {
           case "reduce-image-size-in-kb":
             simulateImageCompression();
             break;
-          
+
           case "image-resizer":
           case "resize-image-to-50kb":
           case "resize-image-to-100kb":
@@ -1326,25 +1326,25 @@ const ImageToolsDetailed: React.FC = () => {
           case "photo-resizer-in-kb":
             simulateImageResize();
             break;
-          
+
           case "crop-image":
             simulateImageCrop();
             break;
-          
+
           case "favicon-generator":
             simulateFaviconGeneration();
             break;
-          
+
           case "video-to-gif-converter":
           case "mp4-to-gif-converter":
             simulateVideoToGifConversion();
             break;
-          
+
           case "rgb-to-hex":
             // This is handled directly in the UI without processing
             setProcessingState("success");
             break;
-          
+
           case "png-to-jpg":
           case "jpg-to-png":
           case "convert-to-jpg":
@@ -1359,7 +1359,7 @@ const ImageToolsDetailed: React.FC = () => {
           case "avif-to-jpg":
             simulateFormatConversion();
             break;
-          
+
           default:
             // Generic processing for other tools
             simulateGenericProcessing();
@@ -1376,36 +1376,36 @@ const ImageToolsDetailed: React.FC = () => {
   const simulateSearchResults = () => {
     // In a real implementation, this would call an API to search for similar images
     setProcessingState("success");
-    
+
     // Since we can't actually search the web, we'll just simulate a success message
     const resultMessage = toolType === "reverse-image-search"
       ? "Image analysis complete! We found 28 similar images across the web."
       : "Face detection complete! We found 5 images with similar faces.";
-    
+
     alert(resultMessage);
   };
 
   const simulateImageCompression = () => {
     // In a real implementation, this would use canvas or a library like compressorjs
     setProcessingState("success");
-    
+
     // Just use the same image for demo purposes
     setOutputFileUrl(uploadedFileUrl);
   };
 
   const simulateImageResize = () => {
     if (!uploadedFile || !uploadedFileUrl) return;
-    
+
     // In a real implementation, this would use canvas to resize the image
     if (canvasRef.current && width && height) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
-      
+
       // Calculate new dimensions
       let newWidth = width;
       let newHeight = height;
-      
+
       if (maintainAspectRatio) {
         const ratio = width / height;
         if (newWidth && !newHeight) {
@@ -1414,16 +1414,16 @@ const ImageToolsDetailed: React.FC = () => {
           newWidth = Math.round(newHeight * ratio);
         }
       }
-      
+
       // Set canvas dimensions
       canvas.width = newWidth;
       canvas.height = newHeight;
-      
+
       // Draw image onto canvas
       const img = new Image();
       img.onload = () => {
         ctx.drawImage(img, 0, 0, newWidth, newHeight);
-        
+
         // Convert canvas to data URL
         try {
           const dataUrl = canvas.toDataURL(uploadedFile.type);
@@ -1457,7 +1457,7 @@ const ImageToolsDetailed: React.FC = () => {
   const simulateVideoToGifConversion = () => {
     // In a real implementation, this would use a library to convert video to GIF
     setProcessingState("success");
-    
+
     // Since we can't actually convert a video in this demo, just show a message
     alert("Video converted to GIF successfully! In a real implementation, this would generate an actual GIF file.");
   };
@@ -1496,7 +1496,7 @@ const ImageToolsDetailed: React.FC = () => {
   }
 
   function getQualityAnswer(fromFormat: string, toFormat: string): string {
-    if ((fromFormat === 'png' || fromFormat === 'svg' || fromFormat === 'webp') && 
+    if ((fromFormat === 'png' || fromFormat === 'svg' || fromFormat === 'webp') &&
         (toFormat === 'jpg' || toFormat === 'jpeg')) {
       return 'There may be some quality loss when converting to JPG since it uses lossy compression and doesn\'t support transparency. However, our converter optimizes the process to maintain the best possible visual quality. For photographs, the difference is often minimal at high quality settings.';
     } else if (toFormat === 'png' || toFormat === 'webp') {
@@ -1521,7 +1521,7 @@ const ImageToolsDetailed: React.FC = () => {
   }
 
   function getLimitations(fromFormat: string, toFormat: string): string {
-    if ((fromFormat === 'png' || fromFormat === 'svg' || fromFormat === 'webp') && 
+    if ((fromFormat === 'png' || fromFormat === 'svg' || fromFormat === 'webp') &&
         (toFormat === 'jpg' || toFormat === 'jpeg')) {
       return 'The main limitation is that JPG doesn\'t support transparency. Any transparent areas in your original image will be filled with a background color (white by default, but you can select a different color). Additionally, JPG uses lossy compression which may introduce some very slight artifacts, especially around sharp edges and text.';
     } else if (fromFormat === 'jpg' && toFormat === 'png') {
@@ -1537,7 +1537,7 @@ const ImageToolsDetailed: React.FC = () => {
 
   const renderToolOptions = () => {
     if (!config || !config.options) return null;
-    
+
     return (
       <div className="space-y-6">
         {/* Quality slider for compression tools */}
@@ -1560,7 +1560,7 @@ const ImageToolsDetailed: React.FC = () => {
             </div>
           </div>
         )}
-        
+
         {/* Target size input for size-specific tools */}
         {config.options.hasTargetSize && (
           <div className="grid grid-cols-3 gap-4 items-center">
@@ -1592,7 +1592,7 @@ const ImageToolsDetailed: React.FC = () => {
             </div>
           </div>
         )}
-        
+
         {/* Dimension inputs for resizing tools */}
         {config.options.hasDimensionInputs && (
           <div className="space-y-4">
@@ -1607,7 +1607,7 @@ const ImageToolsDetailed: React.FC = () => {
                   onChange={(e) => {
                     const newWidth = parseInt(e.target.value) || 0;
                     setWidth(newWidth);
-                    
+
                     if (maintainAspectRatio && height && width) {
                       const ratio = width / height;
                       setHeight(Math.round(newWidth / ratio));
@@ -1626,7 +1626,7 @@ const ImageToolsDetailed: React.FC = () => {
                   onChange={(e) => {
                     const newHeight = parseInt(e.target.value) || 0;
                     setHeight(newHeight);
-                    
+
                     if (maintainAspectRatio && width && height) {
                       const ratio = width / height;
                       setWidth(Math.round(newHeight * ratio));
@@ -1636,7 +1636,7 @@ const ImageToolsDetailed: React.FC = () => {
                 />
               </div>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <Switch
                 id="maintainAspectRatio"
@@ -1647,7 +1647,7 @@ const ImageToolsDetailed: React.FC = () => {
             </div>
           </div>
         )}
-        
+
         {/* Format conversion options */}
         {config.options.hasConversionOptions && (
           <div>
@@ -1684,7 +1684,7 @@ const ImageToolsDetailed: React.FC = () => {
             </Select>
           </div>
         )}
-        
+
         {/* Color picker for transparent background */}
         {config.options.hasColorPicker && (
           <div className="space-y-4">
@@ -1764,7 +1764,7 @@ const ImageToolsDetailed: React.FC = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="hexColor">HEX Color Code</Label>
                   <div className="flex space-x-2 items-center">
@@ -1805,7 +1805,7 @@ const ImageToolsDetailed: React.FC = () => {
                       className="flex-1"
                     />
                   </div>
-                  
+
                   <div className="h-20 w-full mt-4 rounded border border-gray-200" style={{backgroundColor: colorValue}}>
                     <div className="h-full w-full flex items-center justify-center text-white text-shadow">
                       Color Preview
@@ -1816,7 +1816,7 @@ const ImageToolsDetailed: React.FC = () => {
             ) : null}
           </div>
         )}
-        
+
         {/* Crop options */}
         {config.options.hasCropOptions && (
           <div className="space-y-4">
@@ -1830,7 +1830,7 @@ const ImageToolsDetailed: React.FC = () => {
                 </div>
               )}
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <Select value="custom" onValueChange={() => {}}>
                 <SelectTrigger>
@@ -1844,7 +1844,7 @@ const ImageToolsDetailed: React.FC = () => {
                   <SelectItem value="2:3">2:3</SelectItem>
                 </SelectContent>
               </Select>
-              
+
               <Select value="0" onValueChange={() => {}}>
                 <SelectTrigger>
                   <SelectValue placeholder="Rotation" />
@@ -1874,7 +1874,7 @@ const ImageToolsDetailed: React.FC = () => {
         <Card className="mb-6">
           <CardContent className="pt-6">
             {renderToolOptions()}
-            
+
             <div className="mt-6">
               <Button className="w-full" onClick={() => processImage()}>
                 Convert Color
@@ -1884,7 +1884,7 @@ const ImageToolsDetailed: React.FC = () => {
         </Card>
       );
     }
-    
+
     // MB to KB converter is a simple calculator
     if (toolType === "mb-to-kb-converter") {
       return (
@@ -1915,12 +1915,12 @@ const ImageToolsDetailed: React.FC = () => {
                 />
               </div>
             </div>
-            
+
             <div className="p-4 bg-gray-50 rounded-md text-sm">
               <p className="font-medium mb-2">Conversion Formula:</p>
               <p>1 Megabyte (MB) = 1024 Kilobytes (KB)</p>
             </div>
-            
+
             <div className="text-sm text-gray-500">
               <h4 className="font-medium mb-1">Common Conversions:</h4>
               <ul className="grid grid-cols-2 gap-x-4 gap-y-1">
@@ -1936,7 +1936,7 @@ const ImageToolsDetailed: React.FC = () => {
         </Card>
       );
     }
-    
+
     // Standard interface for image processing tools
     return (
       <div className="space-y-6">
@@ -1957,7 +1957,7 @@ const ImageToolsDetailed: React.FC = () => {
                     <div className="text-center space-y-1">
                       <p className="text-sm font-medium">Click to upload or drag and drop</p>
                       <p className="text-xs text-gray-500">
-                        {config.supportedFormats.length > 0 
+                        {config.supportedFormats.length > 0
                           ? `Supported formats: ${config.supportedFormats.map(f => f.toUpperCase()).join(', ')}`
                           : "Upload your file to process"}
                       </p>
@@ -1974,15 +1974,15 @@ const ImageToolsDetailed: React.FC = () => {
                   />
                 </div>
               </div>
-              
+
               {uploadedFile && (
                 <div className="p-4 bg-gray-50 rounded-md flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <div className="w-12 h-12 bg-gray-200 rounded overflow-hidden flex-shrink-0">
                       {uploadedFileUrl && (
-                        <img 
-                          src={uploadedFileUrl} 
-                          alt="Preview" 
+                        <img
+                          src={uploadedFileUrl}
+                          alt="Preview"
                           className="w-full h-full object-cover"
                         />
                       )}
@@ -2011,15 +2011,15 @@ const ImageToolsDetailed: React.FC = () => {
                   </Button>
                 </div>
               )}
-              
+
               {errorMessage && (
                 <div className="p-3 bg-red-50 text-red-600 rounded-md text-sm">
                   {errorMessage}
                 </div>
               )}
-              
+
               {renderToolOptions()}
-              
+
               <Button
                 className="w-full"
                 disabled={!uploadedFile || processingState === "processing"}
@@ -2042,25 +2042,25 @@ const ImageToolsDetailed: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-        
+
         {/* Processing Canvas (hidden) */}
         <canvas ref={canvasRef} style={{display: 'none'}} />
         <canvas ref={cropCanvasRef} style={{display: 'none'}} />
-        
+
         {/* Results section */}
         {processingState === "success" && outputFileUrl && (
           <Card>
             <CardContent className="pt-6">
               <h3 className="text-lg font-medium mb-4">Processed Result</h3>
-              
+
               <div className="border rounded-md overflow-hidden mb-4">
-                <img 
-                  src={outputFileUrl} 
-                  alt="Processed" 
+                <img
+                  src={outputFileUrl}
+                  alt="Processed"
                   className="w-full h-auto"
                 />
               </div>
-              
+
               <div className="flex flex-col space-y-2">
                 <Button
                   className="w-full"
@@ -2074,7 +2074,7 @@ const ImageToolsDetailed: React.FC = () => {
                 >
                   Download Result
                 </Button>
-                
+
                 {/* Example for sharing options in a real implementation */}
                 <Button variant="outline" className="w-full">
                   Share Result
@@ -2090,7 +2090,7 @@ const ImageToolsDetailed: React.FC = () => {
   const toolInterface = (
     <div className="space-y-6">
       {renderInterface()}
-      
+
       <Card>
         <CardContent className="pt-6">
           <h3 className="text-lg font-medium mb-4">About {config.title}</h3>
@@ -2106,7 +2106,7 @@ const ImageToolsDetailed: React.FC = () => {
                 toolType.includes("video") ? "video" : "image"
               }, adjust your preferences, and let our tool handle the rest.
             </p>
-            
+
             <div>
               <h4 className="font-medium mb-2">Common Uses:</h4>
               <ul className="list-disc pl-5 space-y-1">

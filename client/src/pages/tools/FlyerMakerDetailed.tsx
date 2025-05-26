@@ -42,13 +42,13 @@ const FlyerMakerDetailed = () => {
   const [includeQRCode, setIncludeQRCode] = useState(false);
   const [logoText, setLogoText] = useState("");
   const [qrCodeData, setQrCodeData] = useState("");
-  
+
   // State for the editor
   const [activeTab, setActiveTab] = useState("editor");
   const [isGenerating, setIsGenerating] = useState(false);
   const [flyerGenerated, setFlyerGenerated] = useState(false);
   const [progress, setProgress] = useState(0);
-  
+
   const { toast } = useToast();
 
   // Handler for generating the flyer
@@ -61,10 +61,10 @@ const FlyerMakerDetailed = () => {
       });
       return;
     }
-    
+
     setIsGenerating(true);
     setProgress(0);
-    
+
     // Simulate flyer generation process
     const interval = setInterval(() => {
       setProgress(prev => {
@@ -72,12 +72,12 @@ const FlyerMakerDetailed = () => {
           clearInterval(interval);
           setIsGenerating(false);
           setFlyerGenerated(true);
-          
+
           toast({
             title: "Flyer generated",
             description: "Your flyer has been created successfully!",
           });
-          
+
           return 100;
         }
         return prev + 5;
@@ -110,9 +110,9 @@ const FlyerMakerDetailed = () => {
     setIncludeQRCode(false);
     setLogoText("");
     setQrCodeData("");
-    
+
     setFlyerGenerated(false);
-    
+
     toast({
       title: "Form cleared",
       description: "All flyer information has been cleared.",
@@ -122,7 +122,7 @@ const FlyerMakerDetailed = () => {
   // Get the dimensions for the preview based on the selected size and orientation
   const getPreviewDimensions = () => {
     let width, height;
-    
+
     switch (flyerSize) {
       case "a4":
         width = 210;
@@ -152,11 +152,11 @@ const FlyerMakerDetailed = () => {
         width = 210;
         height = 297;
     }
-    
+
     if (orientation === "landscape" && (flyerSize === "a4" || flyerSize === "a5" || flyerSize === "letter" || flyerSize === "custom")) {
       return { width: height, height: width };
     }
-    
+
     return { width, height };
   };
 
@@ -216,9 +216,9 @@ const FlyerMakerDetailed = () => {
 
   const toolInterface = (
     <div className="space-y-6">
-      <Tabs 
-        defaultValue="editor" 
-        value={activeTab} 
+      <Tabs
+        defaultValue="editor"
+        value={activeTab}
         onValueChange={setActiveTab}
         className="w-full"
       >
@@ -227,38 +227,38 @@ const FlyerMakerDetailed = () => {
           <TabsTrigger value="templates">Templates</TabsTrigger>
           <TabsTrigger value="tips">Design Tips</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="editor" className="space-y-6 mt-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div className="lg:col-span-5 space-y-4">
               <Card>
                 <CardContent className="p-6">
                   <h3 className="font-medium text-lg mb-4">Flyer Content</h3>
-                  
+
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="headline">Headline*</Label>
-                      <Input 
-                        id="headline" 
+                      <Input
+                        id="headline"
                         value={headline}
                         onChange={(e) => setHeadline(e.target.value)}
                         placeholder="E.g., 'SUMMER SALE' or 'GRAND OPENING'"
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="subheading">Subheading</Label>
-                      <Input 
+                      <Input
                         id="subheading"
                         value={subheading}
                         onChange={(e) => setSubheading(e.target.value)}
                         placeholder="E.g., 'Up to 50% off' or 'Join us on July 15th'"
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="description">Description</Label>
-                      <Textarea 
+                      <Textarea
                         id="description"
                         value={flyerDescription}
                         onChange={(e) => setFlyerDescription(e.target.value)}
@@ -266,10 +266,10 @@ const FlyerMakerDetailed = () => {
                         className="h-24"
                       />
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="contact-info">Contact Information</Label>
-                      <Textarea 
+                      <Textarea
                         id="contact-info"
                         value={contactInfo}
                         onChange={(e) => setContactInfo(e.target.value)}
@@ -280,11 +280,11 @@ const FlyerMakerDetailed = () => {
                   </div>
                 </CardContent>
               </Card>
-              
+
               <Card>
                 <CardContent className="p-6">
                   <h3 className="font-medium text-lg mb-4">Flyer Options</h3>
-                  
+
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="flyer-size">Flyer Size</Label>
@@ -305,13 +305,13 @@ const FlyerMakerDetailed = () => {
                         </SelectContent>
                       </Select>
                     </div>
-                    
+
                     {flyerSize === "custom" && (
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="custom-width">Width (mm)</Label>
-                          <Input 
-                            id="custom-width" 
+                          <Input
+                            id="custom-width"
                             type="number"
                             value={customWidth}
                             onChange={(e) => setCustomWidth(Number(e.target.value))}
@@ -321,8 +321,8 @@ const FlyerMakerDetailed = () => {
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="custom-height">Height (mm)</Label>
-                          <Input 
-                            id="custom-height" 
+                          <Input
+                            id="custom-height"
                             type="number"
                             value={customHeight}
                             onChange={(e) => setCustomHeight(Number(e.target.value))}
@@ -332,7 +332,7 @@ const FlyerMakerDetailed = () => {
                         </div>
                       </div>
                     )}
-                    
+
                     {(flyerSize === "a4" || flyerSize === "a5" || flyerSize === "letter" || flyerSize === "custom") && (
                       <div className="space-y-2">
                         <Label htmlFor="orientation">Orientation</Label>
@@ -350,7 +350,7 @@ const FlyerMakerDetailed = () => {
                         </Select>
                       </div>
                     )}
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="theme">Theme</Label>
                       <Select
@@ -372,7 +372,7 @@ const FlyerMakerDetailed = () => {
                         </SelectContent>
                       </Select>
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="template">Template</Label>
                       <Select
@@ -391,11 +391,11 @@ const FlyerMakerDetailed = () => {
                         </SelectContent>
                       </Select>
                     </div>
-                    
+
                     <div className="space-y-3 pt-2">
                       <div className="flex items-center space-x-2">
-                        <Checkbox 
-                          id="include-image" 
+                        <Checkbox
+                          id="include-image"
                           checked={includeImage}
                           onCheckedChange={(checked) => setIncludeImage(checked as boolean)}
                         />
@@ -403,10 +403,10 @@ const FlyerMakerDetailed = () => {
                           Include Background Image
                         </Label>
                       </div>
-                      
+
                       <div className="flex items-center space-x-2">
-                        <Checkbox 
-                          id="include-logo" 
+                        <Checkbox
+                          id="include-logo"
                           checked={includeLogo}
                           onCheckedChange={(checked) => setIncludeLogo(checked as boolean)}
                         />
@@ -414,22 +414,22 @@ const FlyerMakerDetailed = () => {
                           Include Logo
                         </Label>
                       </div>
-                      
+
                       {includeLogo && (
                         <div className="pl-6 space-y-2">
                           <Label htmlFor="logo-text" className="text-sm">Logo Text</Label>
-                          <Input 
-                            id="logo-text" 
+                          <Input
+                            id="logo-text"
                             value={logoText}
                             onChange={(e) => setLogoText(e.target.value)}
                             placeholder="Your company name"
                           />
                         </div>
                       )}
-                      
+
                       <div className="flex items-center space-x-2">
-                        <Checkbox 
-                          id="include-qr-code" 
+                        <Checkbox
+                          id="include-qr-code"
                           checked={includeQRCode}
                           onCheckedChange={(checked) => setIncludeQRCode(checked as boolean)}
                         />
@@ -437,12 +437,12 @@ const FlyerMakerDetailed = () => {
                           Include QR Code
                         </Label>
                       </div>
-                      
+
                       {includeQRCode && (
                         <div className="pl-6 space-y-2">
                           <Label htmlFor="qr-code-data" className="text-sm">QR Code Data</Label>
-                          <Input 
-                            id="qr-code-data" 
+                          <Input
+                            id="qr-code-data"
                             value={qrCodeData}
                             onChange={(e) => setQrCodeData(e.target.value)}
                             placeholder="Website URL or contact information"
@@ -450,16 +450,16 @@ const FlyerMakerDetailed = () => {
                         </div>
                       )}
                     </div>
-                    
+
                     <div className="pt-2 flex flex-wrap gap-3">
-                      <Button 
+                      <Button
                         onClick={handleGenerateFlyer}
                         disabled={isGenerating || !headline.trim()}
                         className="bg-primary hover:bg-primary/90"
                       >
                         {isGenerating ? "Generating..." : flyerGenerated ? "Update Flyer" : "Generate Flyer"}
                       </Button>
-                      
+
                       <Button
                         onClick={clearForm}
                         variant="outline"
@@ -467,7 +467,7 @@ const FlyerMakerDetailed = () => {
                         Clear All
                       </Button>
                     </div>
-                    
+
                     {isGenerating && (
                       <div className="space-y-2">
                         <Progress value={progress} className="h-2" />
@@ -480,13 +480,13 @@ const FlyerMakerDetailed = () => {
                 </CardContent>
               </Card>
             </div>
-            
+
             <div className="lg:col-span-7">
               <Card>
                 <CardContent className="p-6">
                   <div className="flex justify-between items-center mb-6">
                     <h3 className="font-medium text-lg">Flyer Preview</h3>
-                    
+
                     {flyerGenerated && (
                       <div className="flex space-x-2">
                         <Button
@@ -513,11 +513,11 @@ const FlyerMakerDetailed = () => {
                       </div>
                     )}
                   </div>
-                  
+
                   <div className={`mx-auto relative border shadow-sm mb-6 ${getThemeColor()}`} style={{
                     width: "100%",
-                    maxWidth: "400px", 
-                    paddingBottom: `${previewAspectRatio()}%`, 
+                    maxWidth: "400px",
+                    paddingBottom: `${previewAspectRatio()}%`,
                   }}>
                     {(headline || flyerGenerated) ? (
                       <div className="absolute inset-0 flex flex-col p-4 sm:p-6">
@@ -531,19 +531,19 @@ const FlyerMakerDetailed = () => {
                               </div>
                             </div>
                           )}
-                          
+
                           {/* Main Content */}
                           <div className="flex-1 flex flex-col justify-center items-center text-center p-2">
                             <h2 className="text-2xl sm:text-3xl font-bold mb-2">{headline}</h2>
                             {subheading && <h3 className="text-lg sm:text-xl mb-4">{subheading}</h3>}
-                            
+
                             {flyerDescription && (
                               <div className="prose max-w-full text-sm mb-4">
                                 <p>{flyerDescription}</p>
                               </div>
                             )}
                           </div>
-                          
+
                           {/* Contact Info & QR Code */}
                           <div className="mt-auto">
                             {contactInfo && (
@@ -551,7 +551,7 @@ const FlyerMakerDetailed = () => {
                                 {contactInfo}
                               </div>
                             )}
-                            
+
                             {includeQRCode && (
                               <div className="flex justify-center mb-2">
                                 <div className="w-16 h-16 bg-white border border-gray-300 flex items-center justify-center text-[8px]">
@@ -570,7 +570,7 @@ const FlyerMakerDetailed = () => {
                       </div>
                     )}
                   </div>
-                  
+
                   <div className="text-sm text-gray-500 text-center">
                     {flyerSize !== "custom" && (
                       <span>
@@ -585,7 +585,7 @@ const FlyerMakerDetailed = () => {
                   </div>
                 </CardContent>
               </Card>
-              
+
               {flyerGenerated && (
                 <Card className="mt-6">
                   <CardContent className="p-6">
@@ -618,7 +618,7 @@ const FlyerMakerDetailed = () => {
             </div>
           </div>
         </TabsContent>
-        
+
         <TabsContent value="templates" className="space-y-6 mt-6">
           <Card>
             <CardContent className="p-6">
@@ -634,7 +634,7 @@ const FlyerMakerDetailed = () => {
                   </div>
                   <h4 className="font-medium text-center">Classic</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-4 cursor-pointer hover:border-primary ${template === 'template2' ? 'border-primary bg-blue-50' : ''}`} onClick={() => setTemplate('template2')}>
                   <div className="aspect-[3/4] bg-gray-100 border shadow-sm mb-2 p-4">
                     <div className="flex justify-between mb-2">
@@ -649,7 +649,7 @@ const FlyerMakerDetailed = () => {
                   </div>
                   <h4 className="font-medium text-center">Modern</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-4 cursor-pointer hover:border-primary ${template === 'template3' ? 'border-primary bg-blue-50' : ''}`} onClick={() => setTemplate('template3')}>
                   <div className="aspect-[3/4] bg-gray-100 border shadow-sm mb-2 p-4">
                     <div className="w-full h-12 bg-gray-400"></div>
@@ -665,7 +665,7 @@ const FlyerMakerDetailed = () => {
                   </div>
                   <h4 className="font-medium text-center">Bold</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-4 cursor-pointer hover:border-primary ${template === 'template4' ? 'border-primary bg-blue-50' : ''}`} onClick={() => setTemplate('template4')}>
                   <div className="aspect-[3/4] bg-gray-100 border shadow-sm mb-2 p-4">
                     <div className="border-b border-gray-300 pb-2 mb-4">
@@ -687,7 +687,7 @@ const FlyerMakerDetailed = () => {
                   </div>
                   <h4 className="font-medium text-center">Elegant</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-4 cursor-pointer hover:border-primary ${template === 'template5' ? 'border-primary bg-blue-50' : ''}`} onClick={() => setTemplate('template5')}>
                   <div className="aspect-[3/4] bg-gray-100 border shadow-sm mb-2 p-4">
                     <div className="absolute top-3 left-3 right-3 bottom-3 border-2 border-gray-300 p-3">
@@ -704,7 +704,7 @@ const FlyerMakerDetailed = () => {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <h3 className="font-medium text-lg mb-4">Theme Previews</h3>
@@ -715,49 +715,49 @@ const FlyerMakerDetailed = () => {
                   </div>
                   <h4 className="text-sm font-medium text-center">Business</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-3 cursor-pointer hover:border-primary ${theme === 'event' ? 'border-primary' : ''}`} onClick={() => setTheme('event')}>
                   <div className="h-24 bg-purple-50 border flex items-center justify-center mb-2">
                     <div className="w-1/2 h-6 bg-purple-500 rounded"></div>
                   </div>
                   <h4 className="text-sm font-medium text-center">Event</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-3 cursor-pointer hover:border-primary ${theme === 'sale' ? 'border-primary' : ''}`} onClick={() => setTheme('sale')}>
                   <div className="h-24 bg-red-50 border flex items-center justify-center mb-2">
                     <div className="w-1/2 h-6 bg-red-500 rounded"></div>
                   </div>
                   <h4 className="text-sm font-medium text-center">Sale</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-3 cursor-pointer hover:border-primary ${theme === 'food' ? 'border-primary' : ''}`} onClick={() => setTheme('food')}>
                   <div className="h-24 bg-orange-50 border flex items-center justify-center mb-2">
                     <div className="w-1/2 h-6 bg-orange-500 rounded"></div>
                   </div>
                   <h4 className="text-sm font-medium text-center">Food</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-3 cursor-pointer hover:border-primary ${theme === 'education' ? 'border-primary' : ''}`} onClick={() => setTheme('education')}>
                   <div className="h-24 bg-green-50 border flex items-center justify-center mb-2">
                     <div className="w-1/2 h-6 bg-green-500 rounded"></div>
                   </div>
                   <h4 className="text-sm font-medium text-center">Education</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-3 cursor-pointer hover:border-primary ${theme === 'holiday' ? 'border-primary' : ''}`} onClick={() => setTheme('holiday')}>
                   <div className="h-24 bg-pink-50 border flex items-center justify-center mb-2">
                     <div className="w-1/2 h-6 bg-pink-500 rounded"></div>
                   </div>
                   <h4 className="text-sm font-medium text-center">Holiday</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-3 cursor-pointer hover:border-primary ${theme === 'minimal' ? 'border-primary' : ''}`} onClick={() => setTheme('minimal')}>
                   <div className="h-24 bg-gray-50 border flex items-center justify-center mb-2">
                     <div className="w-1/2 h-6 bg-gray-500 rounded"></div>
                   </div>
                   <h4 className="text-sm font-medium text-center">Minimal</h4>
                 </div>
-                
+
                 <div className={`border rounded-md p-3 cursor-pointer hover:border-primary ${theme === 'bold' ? 'border-primary' : ''}`} onClick={() => setTheme('bold')}>
                   <div className="h-24 bg-indigo-50 border flex items-center justify-center mb-2">
                     <div className="w-1/2 h-6 bg-indigo-500 rounded"></div>
@@ -768,7 +768,7 @@ const FlyerMakerDetailed = () => {
             </CardContent>
           </Card>
         </TabsContent>
-        
+
         <TabsContent value="tips" className="space-y-6 mt-6">
           <Card>
             <CardContent className="p-6">
@@ -780,42 +780,42 @@ const FlyerMakerDetailed = () => {
                     A cluttered flyer can be overwhelming and difficult to read. Focus on one main message and keep your design clean and straightforward. Use white space effectively to highlight important elements.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">2. Use Hierarchy</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Create a clear visual hierarchy to guide the reader's eye. Make your headline the largest and most prominent element, followed by the subheading, then details, and finally contact information.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">3. Choose Colors Wisely</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Select colors that match your brand and evoke the right mood for your event or promotion. Limit your palette to 2-3 colors for a cleaner look. Use contrasting colors for text and background to ensure readability.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">4. Include a Call to Action</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Clearly tell readers what you want them to do—whether it's attending an event, visiting a website, or making a purchase. Make your call to action stand out visually and place it prominently in your design.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">5. Consider Your Audience</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Tailor your design to appeal to your target audience. A flyer for a corporate event should look different from one for a music festival or a children's birthday party.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">6. Use High-Quality Images</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     If using images, make sure they're high resolution and relevant to your message. Low-quality, pixelated images can make your flyer look unprofessional.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">7. Choose Readable Fonts</h4>
                   <p className="text-sm text-gray-700 mt-1">
@@ -825,7 +825,7 @@ const FlyerMakerDetailed = () => {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <h3 className="font-medium text-lg mb-4">Flyer Printing Recommendations</h3>
@@ -839,21 +839,21 @@ const FlyerMakerDetailed = () => {
                     <p><strong>Cardstock (80-110 lb):</strong> Thicker and more durable, good for premium flyers or those that need to stand up.</p>
                   </div>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">Print Resolution</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     For professional printing, ensure your design has a resolution of at least 300 DPI (dots per inch). Lower resolutions may look fine on screen but will appear pixelated when printed.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">Color Mode</h4>
                   <p className="text-sm text-gray-700 mt-1">
                     Use CMYK color mode for designs that will be printed, not RGB. RGB is for digital displays and can produce unexpected color shifts when printed.
                   </p>
                 </div>
-                
+
                 <div>
                   <h4 className="font-medium text-base">Bleed and Margins</h4>
                   <p className="text-sm text-gray-700 mt-1">
@@ -865,7 +865,7 @@ const FlyerMakerDetailed = () => {
           </Card>
         </TabsContent>
       </Tabs>
-      
+
       <Card>
         <CardContent className="p-6">
           <h3 className="font-medium text-lg mb-4">Related Design Tools</h3>
@@ -904,14 +904,14 @@ const FlyerMakerDetailed = () => {
   );
 
   const introduction = "Design eye-catching, professional flyers for events, promotions, or announcements with our intuitive flyer maker.";
-  
+
   const description = `
     Our Flyer Maker is a powerful yet user-friendly design tool that enables you to create professional-quality flyers for any purpose within minutes—no design experience required. Whether you're promoting a business event, advertising a sale, announcing a concert, or distributing community information, this comprehensive tool provides everything you need to produce attractive, effective flyers that capture attention and communicate your message clearly.
-    
-    The intuitive interface guides you through the flyer creation process step by step, starting with selecting from a variety of professionally designed templates optimized for different purposes such as business promotions, special events, sales announcements, educational information, and more. Each template is fully customizable, allowing you to adjust colors, fonts, layouts, and graphic elements to match your brand identity or event theme. 
-    
+
+    The intuitive interface guides you through the flyer creation process step by step, starting with selecting from a variety of professionally designed templates optimized for different purposes such as business promotions, special events, sales announcements, educational information, and more. Each template is fully customizable, allowing you to adjust colors, fonts, layouts, and graphic elements to match your brand identity or event theme.
+
     Create flyers in multiple sizes and formats, including standard print dimensions like A4 and Letter, as well as digital-optimized sizes perfect for social media sharing, email distribution, or website display. The tool provides real-time preview functionality that shows exactly how your flyer will look as you make changes, ensuring you achieve the perfect design before finalizing.
-    
+
     Advanced features include the ability to incorporate your logo, add QR codes linking to websites or digital content, select from color themes scientifically proven to evoke specific emotional responses, and choose from layout options optimized for different messaging needs. Once complete, download your flyer in high-resolution formats suitable for both professional printing and digital distribution, allowing you to easily share your creation across multiple channels for maximum exposure.
   `;
 
@@ -927,13 +927,13 @@ const FlyerMakerDetailed = () => {
   ];
 
   const features = [
-    "✅ Professional templates designed by graphic experts for various purposes including events, promotions, announcements, and more",
-    "✅ Multiple size options including standard print formats (A4, A5, Letter) and digital formats optimized for social media",
-    "✅ Customizable color themes scientifically selected to evoke specific emotions and responses from viewers",
-    "✅ Advanced elements including logo placement, QR code generation, and optimized content layouts",
-    "✅ Real-time preview showing exactly how your flyer will appear as you make design changes",
-    "✅ High-resolution download options in multiple formats (PDF, JPG, PNG) for both print and digital usage",
-    "✅ Design tips and best practices integrated throughout the creation process to ensure professional results"
+    " Professional templates designed by graphic experts for various purposes including events, promotions, announcements, and more",
+    " Multiple size options including standard print formats (A4, A5, Letter) and digital formats optimized for social media",
+    " Customizable color themes scientifically selected to evoke specific emotions and responses from viewers",
+    " Advanced elements including logo placement, QR code generation, and optimized content layouts",
+    " Real-time preview showing exactly how your flyer will appear as you make design changes",
+    " High-resolution download options in multiple formats (PDF, JPG, PNG) for both print and digital usage",
+    " Design tips and best practices integrated throughout the creation process to ensure professional results"
   ];
 
   const faqs = [

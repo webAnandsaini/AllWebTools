@@ -37,14 +37,14 @@ const RomanNumeralsDateConverterDetailed: React.FC = () => {
     ];
 
     let result = "";
-    
+
     for (const [value, symbol] of romanNumerals) {
       while (num >= value) {
         result += symbol;
         num -= value;
       }
     }
-    
+
     return result;
   };
 
@@ -61,11 +61,11 @@ const RomanNumeralsDateConverterDetailed: React.FC = () => {
     };
 
     let result = 0;
-    
+
     for (let i = 0; i < roman.length; i++) {
       const current = romanNumerals[roman[i]];
       const next = i + 1 < roman.length ? romanNumerals[roman[i + 1]] : 0;
-      
+
       if (current < next) {
         result += next - current;
         i++;
@@ -73,7 +73,7 @@ const RomanNumeralsDateConverterDetailed: React.FC = () => {
         result += current;
       }
     }
-    
+
     return result;
   };
 
@@ -86,20 +86,20 @@ const RomanNumeralsDateConverterDetailed: React.FC = () => {
       }
 
       const dateObj = new Date(date);
-      
+
       if (isNaN(dateObj.getTime())) {
         setError("Invalid date format");
         return;
       }
-      
+
       const day = dateObj.getDate();
       const month = dateObj.getMonth() + 1;
       const year = dateObj.getFullYear();
-      
+
       const romanDay = convertToRoman(day);
       const romanMonth = convertToRoman(month);
       const romanYear = convertToRoman(year);
-      
+
       setResult(`Date: ${dateObj.toLocaleDateString()}\nRoman Numerals: ${romanDay}.${romanMonth}.${romanYear}`);
       setError("");
     } catch (error: any) {
@@ -114,35 +114,35 @@ const RomanNumeralsDateConverterDetailed: React.FC = () => {
         setError("Please enter Roman numerals");
         return;
       }
-      
+
       const parts = romanDate.split(".");
-      
+
       if (parts.length !== 3) {
         setError("Invalid format. Please use format like 'XX.IV.MMXXIII'");
         return;
       }
-      
+
       const day = convertFromRoman(parts[0]);
       const month = convertFromRoman(parts[1]);
       const year = convertFromRoman(parts[2]);
-      
+
       if (day < 1 || day > 31) {
         setError("Invalid day. Must be between 1 and 31");
         return;
       }
-      
+
       if (month < 1 || month > 12) {
         setError("Invalid month. Must be between 1 and 12");
         return;
       }
-      
+
       const dateObj = new Date(year, month - 1, day);
-      
+
       if (isNaN(dateObj.getTime())) {
         setError("Invalid date");
         return;
       }
-      
+
       setResult(`Roman Numerals: ${parts.join(".")}\nDate: ${dateObj.toLocaleDateString()}`);
       setError("");
     } catch (error: any) {
@@ -183,7 +183,7 @@ const RomanNumeralsDateConverterDetailed: React.FC = () => {
                 </SelectContent>
               </Select>
             </div>
-            
+
             {conversionType === "date-to-roman" ? (
               <div>
                 <Label htmlFor="date">Date</Label>
@@ -238,7 +238,7 @@ const RomanNumeralsDateConverterDetailed: React.FC = () => {
             <p>
               Our Roman Numerals Date Converter allows you to convert between standard dates and Roman numeral format.
             </p>
-            
+
             <div>
               <h4 className="font-medium mb-2">Common Uses:</h4>
               <ul className="list-disc pl-5 space-y-1">
@@ -255,9 +255,9 @@ const RomanNumeralsDateConverterDetailed: React.FC = () => {
   );
 
   const introduction = "Transform dates into elegant Roman numerals or decode Roman numeral dates with our powerful converter tool.";
-  
+
   const description = "Our Roman Numerals Date Converter allows you to effortlessly convert standard dates (like 04/30/2023) into Roman numeral format (IV.IV.MMXXIII) and vice versa. Perfect for creating unique date representations for special occasions, understanding historical dates, or adding a classical touch to your documents. This tool supports dates from year 1 to 3999 and follows standard Roman numeral notation rules.";
-  
+
   const howToUse = [
     "Select the conversion direction: Date to Roman Numerals or Roman Numerals to Date",
     "For Date to Roman conversion: Select a date from the calendar",
@@ -265,15 +265,15 @@ const RomanNumeralsDateConverterDetailed: React.FC = () => {
     "Click 'Convert' to see the results instantly",
     "Copy the converted format for your use"
   ];
-  
+
   const features = [
-    "✅ Bi-directional conversion between dates and Roman numerals",
-    "✅ Easy-to-use interface with clear instructions",
-    "✅ Support for the full range of convertible dates (1-3999 CE)",
-    "✅ Proper formatting with period separators for day, month, and year",
-    "✅ Instant results with clear display of both formats"
+    " Bi-directional conversion between dates and Roman numerals",
+    " Easy-to-use interface with clear instructions",
+    " Support for the full range of convertible dates (1-3999 CE)",
+    " Proper formatting with period separators for day, month, and year",
+    " Instant results with clear display of both formats"
   ];
-  
+
   const faqs = [
     {
       question: "What are Roman numerals?",

@@ -64,7 +64,7 @@ const Features = () => {
   };
 
   return (
-    <section className="py-24 bg-[#f5f7ff] relative overflow-hidden">
+    <section className="py-20 md:py-24 bg-[#f5f7ff] relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full -translate-y-1/2 translate-x-1/3 opacity-70"></div>

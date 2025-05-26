@@ -9,7 +9,7 @@ interface MobileMenuProps {
 const MobileMenu = ({ isOpen, onClose, isScroll = false }: MobileMenuProps) => {
   return (
     <div
-      className={`fixed left-0 right-0 bottom-0 md:hidden bg-white border-t border-gray-200 z-40 overflow-y-auto h-screen transition-all duration-300 ${
+      className={`fixed left-0 right-0 bottom-0 lg:hidden bg-white border-t border-gray-200 z-40 overflow-y-auto h-screen transition-all duration-300 ${
         isOpen ? "block" : "hidden"
       } ${isScroll ? 'top-[66px]': 'top-[72px]'} `}
     >
@@ -78,7 +78,7 @@ const MobileMenu = ({ isOpen, onClose, isScroll = false }: MobileMenuProps) => {
           </div>
 
           {/* CTA button */}
-          <div className="pt-2">
+          {/* <div className="pt-2">
             <Link
               href="#"
               className="btn-primary w-full flex items-center justify-center"
@@ -87,7 +87,7 @@ const MobileMenu = ({ isOpen, onClose, isScroll = false }: MobileMenuProps) => {
               <i className="fas fa-user mr-2"></i>
               Sign In
             </Link>
-          </div>
+          </div> */}
         </nav>
       </div>
     </div>

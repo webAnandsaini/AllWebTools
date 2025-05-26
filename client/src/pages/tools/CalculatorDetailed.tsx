@@ -29,22 +29,22 @@ const CalculatorDetailed = () => {
   // Margin Calculator state
   const [cost, setCost] = useState<string>("");
   const [revenue, setRevenue] = useState<string>("");
-  
+
   // BMI Calculator state
   const [weight, setWeight] = useState<string>("");
   const [height, setHeight] = useState<string>("");
   const [weightUnit, setWeightUnit] = useState<string>("kg");
   const [heightUnit, setHeightUnit] = useState<string>("cm");
-  
+
   // Loan Calculator state
   const [loanPrincipal, setLoanPrincipal] = useState<string>("");
   const [interestRate, setInterestRate] = useState<string>("");
   const [loanTerm, setLoanTerm] = useState<string>("");
   const [paymentFrequency, setPaymentFrequency] = useState<string>("monthly");
-  
+
   // Currency selection for various calculators
   const [currency, setCurrency] = useState<string>("USD");
-  
+
   // Confidence Interval Calculator state
   const [sampleMean, setSampleMean] = useState<string>("");
   const [standardDeviation, setStandardDeviation] = useState<string>("");
@@ -56,10 +56,10 @@ const CalculatorDetailed = () => {
     console.log("Current path:", currentPath);
     // Get the calculator type from the URL path
     let path = currentPath.replace("-detailed", "");
-    
+
     // Handle various calculator paths
     const calculatorPaths = [
-      "age-calculator", "percentage-calculator", "margin-calculator", 
+      "age-calculator", "percentage-calculator", "margin-calculator",
       "bmi-calculator", "loan-calculator", "chronological-age-calculator",
       "average-calculator", "confidence-interval-calculator", "sales-tax-calculator",
       "probability-calculator", "paypal-fee-calculator", "discount-calculator",
@@ -70,7 +70,7 @@ const CalculatorDetailed = () => {
       "calorie-calculator", "time-calculator", "salary-calculator",
       "investment-calculator", "tdee-calculator", "mean-median-mode-calculator"
     ];
-    
+
     // Log if we found the calculator type
     if (calculatorPaths.includes(path)) {
       console.log("Found calculator type:", path);
@@ -79,9 +79,9 @@ const CalculatorDetailed = () => {
       // Set a default calculator type if we don't recognize the path
       path = "margin-calculator"; // Default calculator as a fallback
     }
-    
+
     setCalculatorType(path);
-    
+
     // Set default values based on calculator type
     if (path === "age-calculator" || path === "chronological-age-calculator") {
       setBirthDate("");
@@ -106,36 +106,36 @@ const CalculatorDetailed = () => {
         setError("Please enter a birth date");
         return;
       }
-      
+
       const birth = new Date(birthDate);
       const current = currentDate ? new Date(currentDate) : new Date();
-      
+
       if (isNaN(birth.getTime())) {
         setError("Invalid birth date");
         return;
       }
-      
+
       if (birth > current) {
         setError("Birth date cannot be in the future");
         return;
       }
-      
+
       let years = current.getFullYear() - birth.getFullYear();
       let months = current.getMonth() - birth.getMonth();
       let days = current.getDate() - birth.getDate();
-      
+
       if (days < 0) {
         months -= 1;
         // Get the last day of the previous month
         const lastDayOfLastMonth = new Date(current.getFullYear(), current.getMonth(), 0).getDate();
         days += lastDayOfLastMonth;
       }
-      
+
       if (months < 0) {
         years -= 1;
         months += 12;
       }
-      
+
       setResult(`Age: ${years} years, ${months} months, ${days} days`);
       setError("");
     } catch (error) {
@@ -150,15 +150,15 @@ const CalculatorDetailed = () => {
         setError("Please fill in all fields");
         return;
       }
-      
+
       const percent = parseFloat(percentValue);
       const value = parseFloat(ofValue);
-      
+
       if (isNaN(percent) || isNaN(value)) {
         setError("Please enter valid numbers");
         return;
       }
-      
+
       const result = (percent / 100) * value;
       setResult(`${percent}% of ${value} = ${result.toFixed(2)}`);
       setError("");
@@ -174,19 +174,19 @@ const CalculatorDetailed = () => {
         setError("Please fill in all fields");
         return;
       }
-      
+
       const costValue = parseFloat(cost);
       const revenueValue = parseFloat(revenue);
-      
+
       if (isNaN(costValue) || isNaN(revenueValue)) {
         setError("Please enter valid numbers");
         return;
       }
-      
+
       const grossProfit = revenueValue - costValue;
       const margin = (grossProfit / revenueValue) * 100;
       const markup = (grossProfit / costValue) * 100;
-      
+
       // Format with the selected currency
       const formatter = new Intl.NumberFormat('en-US', {
         style: currency !== "none" ? 'currency' : 'decimal',
@@ -194,7 +194,7 @@ const CalculatorDetailed = () => {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
-      
+
       setResult(
         `Gross Profit: ${formatter.format(grossProfit)}\n` +
         `Profit Margin: ${margin.toFixed(2)}%\n` +
@@ -213,15 +213,15 @@ const CalculatorDetailed = () => {
         setError("Please fill in all fields");
         return;
       }
-      
+
       let weightInKg = parseFloat(weight);
       let heightInM = parseFloat(height);
-      
+
       // Convert units if needed
       if (weightUnit === "lb") {
         weightInKg = weightInKg * 0.45359237; // Convert lbs to kg
       }
-      
+
       if (heightUnit === "cm") {
         heightInM = heightInM / 100; // Convert cm to m
       } else if (heightUnit === "in") {
@@ -229,20 +229,20 @@ const CalculatorDetailed = () => {
       } else if (heightUnit === "ft") {
         heightInM = heightInM * 0.3048; // Convert feet to m
       }
-      
+
       if (isNaN(weightInKg) || isNaN(heightInM)) {
         setError("Please enter valid numbers");
         return;
       }
-      
+
       if (weightInKg <= 0 || heightInM <= 0) {
         setError("Values must be positive");
         return;
       }
-      
+
       const bmi = weightInKg / (heightInM * heightInM);
       let category = "";
-      
+
       if (bmi < 18.5) {
         category = "Underweight";
       } else if (bmi < 25) {
@@ -252,7 +252,7 @@ const CalculatorDetailed = () => {
       } else {
         category = "Obese";
       }
-      
+
       setResult(`BMI: ${bmi.toFixed(2)}\nCategory: ${category}`);
       setError("");
     } catch (error) {
@@ -267,36 +267,36 @@ const CalculatorDetailed = () => {
         setError("Please fill in all required fields");
         return;
       }
-      
+
       const principal = parseFloat(loanPrincipal);
       const annualRate = parseFloat(interestRate) / 100;
       const years = parseFloat(loanTerm);
-      
+
       if (isNaN(principal) || isNaN(annualRate) || isNaN(years)) {
         setError("Please enter valid numbers");
         return;
       }
-      
+
       if (principal <= 0 || annualRate <= 0 || years <= 0) {
         setError("Values must be positive");
         return;
       }
-      
+
       let periodsPerYear = 12; // Default for monthly
       if (paymentFrequency === "biweekly") {
         periodsPerYear = 26;
       } else if (paymentFrequency === "weekly") {
         periodsPerYear = 52;
       }
-      
+
       const totalPeriods = years * periodsPerYear;
       const periodicRate = annualRate / periodsPerYear;
-      
+
       // Calculate payment using the formula: P = (r * PV) / (1 - (1 + r)^-n)
       const payment = (periodicRate * principal) / (1 - Math.pow(1 + periodicRate, -totalPeriods));
       const totalPayment = payment * totalPeriods;
       const totalInterest = totalPayment - principal;
-      
+
       // Format with the selected currency
       const formatter = new Intl.NumberFormat('en-US', {
         style: currency !== "none" ? 'currency' : 'decimal',
@@ -304,7 +304,7 @@ const CalculatorDetailed = () => {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
-      
+
       setResult(
         `${paymentFrequency.charAt(0).toUpperCase() + paymentFrequency.slice(1)} Payment: ${formatter.format(payment)}\n` +
         `Total Payments: ${formatter.format(totalPayment)}\n` +
@@ -322,13 +322,13 @@ const CalculatorDetailed = () => {
       if (birthDate && currentDate) {
         calculateAge();
       }
-    } else if (calculatorType === "percentage-calculator" || 
-               calculatorType === "percentage-increase-calculator" || 
-               calculatorType === "percentage-decrease-calculator" || 
-               calculatorType === "percentage-change-calculator" || 
+    } else if (calculatorType === "percentage-calculator" ||
+               calculatorType === "percentage-increase-calculator" ||
+               calculatorType === "percentage-decrease-calculator" ||
+               calculatorType === "percentage-change-calculator" ||
                calculatorType === "percentage-difference-calculator" ||
-               calculatorType === "sales-tax-calculator" || 
-               calculatorType === "discount-calculator" || 
+               calculatorType === "sales-tax-calculator" ||
+               calculatorType === "discount-calculator" ||
                calculatorType === "gst-calculator") {
       if (percentValue && ofValue) {
         calculatePercentage();
@@ -372,22 +372,22 @@ const CalculatorDetailed = () => {
         setError("Please fill in all required fields");
         return;
       }
-      
+
       const mean = parseFloat(sampleMean);
       const stdDev = parseFloat(standardDeviation);
       const n = parseFloat(sampleSize);
       const level = parseFloat(confidenceLevel);
-      
+
       if (isNaN(mean) || isNaN(stdDev) || isNaN(n) || isNaN(level)) {
         setError("Please enter valid numbers");
         return;
       }
-      
+
       if (stdDev <= 0 || n <= 0 || level <= 0 || level >= 100) {
         setError("Invalid input values. Standard deviation and sample size must be positive, and confidence level must be between 0 and 100");
         return;
       }
-      
+
       // Z-score values for common confidence levels
       let zScore: number;
       if (level === 90) zScore = 1.645;
@@ -400,11 +400,11 @@ const CalculatorDetailed = () => {
         const alpha = 1 - (level / 100);
         zScore = Math.abs(alpha < 0.5 ? Math.sqrt(2) * Math.sqrt(-Math.log(2 * alpha)) : 0);
       }
-      
+
       const marginOfError = zScore * (stdDev / Math.sqrt(n));
       const lowerBound = mean - marginOfError;
       const upperBound = mean + marginOfError;
-      
+
       // Format with the selected currency if applicable
       const formatter = new Intl.NumberFormat('en-US', {
         style: currency !== "none" ? 'currency' : 'decimal',
@@ -412,7 +412,7 @@ const CalculatorDetailed = () => {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
-      
+
       setResult(
         `${level}% Confidence Interval:\n` +
         `Lower Bound: ${formatter.format(lowerBound)}\n` +
@@ -428,27 +428,27 @@ const CalculatorDetailed = () => {
   // Handle calculate button click
   const handleCalculate = () => {
     console.log("Calculate button clicked for calculator type:", calculatorType);
-    
+
     // Age Calculators
     if (calculatorType === "age-calculator" || calculatorType === "chronological-age-calculator") {
       calculateAge();
-    } 
+    }
     // Percentage Calculators
-    else if (calculatorType === "percentage-calculator" || 
-             calculatorType === "percentage-increase-calculator" || 
-             calculatorType === "percentage-decrease-calculator" || 
-             calculatorType === "percentage-change-calculator" || 
+    else if (calculatorType === "percentage-calculator" ||
+             calculatorType === "percentage-increase-calculator" ||
+             calculatorType === "percentage-decrease-calculator" ||
+             calculatorType === "percentage-change-calculator" ||
              calculatorType === "percentage-difference-calculator") {
       calculatePercentage();
-    } 
+    }
     // Margin Calculator
     else if (calculatorType === "margin-calculator") {
       calculateMargin();
-    } 
+    }
     // BMI Calculator
     else if (calculatorType === "bmi-calculator") {
       calculateBMI();
-    } 
+    }
     // Loan Calculators
     else if (calculatorType === "loan-calculator" || calculatorType === "loan-to-value-calculator") {
       calculateLoanPayment();
@@ -478,7 +478,7 @@ const CalculatorDetailed = () => {
     if (calculatorType === "chronological-age-calculator") return "Chronological Age Calculator";
     return "Calculator";
   };
-  
+
   const getDescription = (): string => {
     if (calculatorType === "age-calculator") {
       return "Calculate exact age from birth date to current date or between any two dates. Our Age Calculator provides precise results in years, months, and days, making it perfect for determining eligibility for age-restricted services, retirement planning, or simply satisfying curiosity about your exact age.";
@@ -541,51 +541,51 @@ const CalculatorDetailed = () => {
   const getFeatures = (): string[] => {
     if (calculatorType === "age-calculator" || calculatorType === "chronological-age-calculator") {
       return [
-        "✅ Precise calculation of years, months, and days",
-        "✅ Ability to calculate age between any two dates",
-        "✅ Automatic handling of leap years and varying month lengths",
-        "✅ Real-time results that update as you type",
-        "✅ Mobile-friendly design for on-the-go calculations"
+        " Precise calculation of years, months, and days",
+        " Ability to calculate age between any two dates",
+        " Automatic handling of leap years and varying month lengths",
+        " Real-time results that update as you type",
+        " Mobile-friendly design for on-the-go calculations"
       ];
     } else if (calculatorType === "percentage-calculator") {
       return [
-        "✅ Quick percentage of value calculations",
-        "✅ Decimal precision for accurate results",
-        "✅ Real-time calculation as you type",
-        "✅ Simple, user-friendly interface",
-        "✅ Works on all devices and screen sizes"
+        " Quick percentage of value calculations",
+        " Decimal precision for accurate results",
+        " Real-time calculation as you type",
+        " Simple, user-friendly interface",
+        " Works on all devices and screen sizes"
       ];
     } else if (calculatorType === "margin-calculator") {
       return [
-        "✅ Quick profit margin calculations for business decisions",
-        "✅ Accurate gross profit amount display",
-        "✅ Percentage margin calculated with precision",
-        "✅ Markup percentage calculations",
-        "✅ Real-time results that update instantly"
+        " Quick profit margin calculations for business decisions",
+        " Accurate gross profit amount display",
+        " Percentage margin calculated with precision",
+        " Markup percentage calculations",
+        " Real-time results that update instantly"
       ];
     } else if (calculatorType === "bmi-calculator") {
       return [
-        "✅ Support for multiple weight units (kg, lb)",
-        "✅ Support for multiple height units (cm, inches, feet)",
-        "✅ Instant calculation with weight category classification",
-        "✅ Clear indication of your BMI health status",
-        "✅ Mobile-friendly for on-the-go health tracking"
+        " Support for multiple weight units (kg, lb)",
+        " Support for multiple height units (cm, inches, feet)",
+        " Instant calculation with weight category classification",
+        " Clear indication of your BMI health status",
+        " Mobile-friendly for on-the-go health tracking"
       ];
     } else if (calculatorType === "loan-calculator") {
       return [
-        "✅ Calculate monthly, bi-weekly, or weekly payments",
-        "✅ View total interest paid over loan term",
-        "✅ See total cost of loan (principal + interest)",
-        "✅ Real-time calculation as you adjust values",
-        "✅ Support for various loan types (mortgage, auto, personal)"
+        " Calculate monthly, bi-weekly, or weekly payments",
+        " View total interest paid over loan term",
+        " See total cost of loan (principal + interest)",
+        " Real-time calculation as you adjust values",
+        " Support for various loan types (mortgage, auto, personal)"
       ];
     }
     return [
-      "✅ Fast and accurate calculations",
-      "✅ User-friendly interface",
-      "✅ Works on all devices",
-      "✅ No account or sign-up required",
-      "✅ Free to use with no limitations"
+      " Fast and accurate calculations",
+      " User-friendly interface",
+      " Works on all devices",
+      " No account or sign-up required",
+      " Free to use with no limitations"
     ];
   };
 
@@ -709,7 +709,7 @@ const CalculatorDetailed = () => {
   // Render appropriate calculator interface based on calculator type
   const renderCalculatorInterface = () => {
     console.log("Rendering interface for calculator type:", calculatorType);
-    
+
     // Age Calculator Interface
     if (calculatorType === "age-calculator" || calculatorType === "chronological-age-calculator") {
       return (
@@ -736,13 +736,13 @@ const CalculatorDetailed = () => {
           </div>
         </div>
       );
-    } 
-    
+    }
+
     // Percentage Calculator Interface
-    else if (calculatorType === "percentage-calculator" || 
-             calculatorType === "percentage-increase-calculator" || 
-             calculatorType === "percentage-decrease-calculator" || 
-             calculatorType === "percentage-change-calculator" || 
+    else if (calculatorType === "percentage-calculator" ||
+             calculatorType === "percentage-increase-calculator" ||
+             calculatorType === "percentage-decrease-calculator" ||
+             calculatorType === "percentage-change-calculator" ||
              calculatorType === "percentage-difference-calculator") {
       return (
         <div className="space-y-4">
@@ -770,8 +770,8 @@ const CalculatorDetailed = () => {
           </div>
         </div>
       );
-    } 
-    
+    }
+
     // Margin Calculator Interface
     else if (calculatorType === "margin-calculator") {
       return (
@@ -800,8 +800,8 @@ const CalculatorDetailed = () => {
           </div>
         </div>
       );
-    } 
-    
+    }
+
     // BMI Calculator Interface
     else if (calculatorType === "bmi-calculator") {
       return (
@@ -859,8 +859,8 @@ const CalculatorDetailed = () => {
           </div>
         </div>
       );
-    } 
-    
+    }
+
     // Loan Calculator Interface
     else if (calculatorType === "loan-calculator" || calculatorType === "loan-to-value-calculator") {
       return (
@@ -917,7 +917,7 @@ const CalculatorDetailed = () => {
         </div>
       );
     }
-    
+
     // Sales Tax Calculator Interface (simplified version similar to Percentage Calculator)
     else if (calculatorType === "sales-tax-calculator" || calculatorType === "discount-calculator" || calculatorType === "gst-calculator") {
       return (
@@ -947,7 +947,7 @@ const CalculatorDetailed = () => {
         </div>
       );
     }
-    
+
     // Confidence Interval Calculator Interface
     else if (calculatorType === "confidence-interval-calculator") {
       return (
@@ -1029,7 +1029,7 @@ const CalculatorDetailed = () => {
     }
     // Default calculator interface for other types we haven't specifically implemented yet
     else {
-      // Rather than showing not implemented message, let's show a simplified version 
+      // Rather than showing not implemented message, let's show a simplified version
       // of margin calculator for all unimplemented types, so users can still interact
       return (
         <div className="space-y-4">
@@ -1058,7 +1058,7 @@ const CalculatorDetailed = () => {
               className="mt-1.5"
             />
           </div>
-          
+
           {/* Currency dropdown for default calculator interface */}
           <div>
             <Label htmlFor="currency">Currency Format</Label>
@@ -1095,8 +1095,8 @@ const CalculatorDetailed = () => {
           <div className="space-y-6">
             {renderCalculatorInterface()}
 
-            <Button 
-              variant="default" 
+            <Button
+              variant="default"
               onClick={handleCalculate}
               className="w-full"
             >
@@ -1125,7 +1125,7 @@ const CalculatorDetailed = () => {
             <p>
               {getDescription().split(".")[0] + "."}
             </p>
-            
+
             <div>
               <h4 className="font-medium mb-2">Common Uses:</h4>
               <ul className="list-disc pl-5 space-y-1">

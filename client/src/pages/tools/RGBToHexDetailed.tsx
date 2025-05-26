@@ -29,29 +29,29 @@ const RGBToHexDetailed = () => {
   const [rgbInput, setRgbInput] = useState("");
   const [isValidRgb, setIsValidRgb] = useState(true);
   const [isValidHex, setIsValidHex] = useState(true);
-  
+
   // Convert RGB to Hex
   const rgbToHex = (r: number, g: number, b: number) => {
-    return "#" + 
+    return "#" +
       (r | 0).toString(16).padStart(2, '0') +
       (g | 0).toString(16).padStart(2, '0') +
       (b | 0).toString(16).padStart(2, '0');
   };
-  
+
   // Convert Hex to RGB
   const hexToRgb = (hex: string) => {
     // Remove # if present
     hex = hex.replace('#', '');
-    
+
     // Convert 3-digit hex to 6-digit
     if (hex.length === 3) {
       hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
     }
-    
+
     const r = parseInt(hex.substring(0, 2), 16);
     const g = parseInt(hex.substring(2, 4), 16);
     const b = parseInt(hex.substring(4, 6), 16);
-    
+
     return { r, g, b };
   };
 
@@ -63,17 +63,17 @@ const RGBToHexDetailed = () => {
   const handleRgbInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setRgbInput(value);
-    
+
     // Try to parse RGB input
     try {
       const rgbRegex = /^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i;
       const matches = value.match(rgbRegex);
-      
+
       if (matches) {
         const r = parseInt(matches[1]);
         const g = parseInt(matches[2]);
         const b = parseInt(matches[3]);
-        
+
         if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255) {
           setRedValue(r);
           setGreenValue(g);
@@ -82,7 +82,7 @@ const RGBToHexDetailed = () => {
           return;
         }
       }
-      
+
       setIsValidRgb(false);
     } catch (error) {
       setIsValidRgb(false);
@@ -92,12 +92,12 @@ const RGBToHexDetailed = () => {
   const handleHexInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setHexInput(value);
-    
+
     // Basic hex validation
     const hexRegex = /^#?([0-9A-F]{3}|[0-9A-F]{6})$/i;
     const isValid = hexRegex.test(value);
     setIsValidHex(isValid);
-    
+
     if (isValid) {
       try {
         const hex = value.startsWith('#') ? value : `#${value}`;
@@ -126,10 +126,10 @@ const RGBToHexDetailed = () => {
       hex: hexValue.toUpperCase(),
       timestamp: Date.now()
     };
-    
+
     // Add to history and limit to 10 items
     setColorHistory([newHistoryItem, ...colorHistory.slice(0, 9)]);
-    
+
     toast({
       title: "Color saved",
       description: `${newHistoryItem.rgb} / ${newHistoryItem.hex} added to history.`,
@@ -138,7 +138,7 @@ const RGBToHexDetailed = () => {
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    
+
     toast({
       title: "Copied to clipboard",
       description: `${text} has been copied to your clipboard.`,
@@ -169,12 +169,12 @@ const RGBToHexDetailed = () => {
   ];
 
   const features = [
-    "✅ Real-time conversion between RGB and hexadecimal formats",
-    "✅ Multiple input methods: sliders, direct text input, and color picker",
-    "✅ Visual color preview for immediate feedback",
-    "✅ One-click copying of color values to clipboard",
-    "✅ Color history to save and reuse your previous colors",
-    "✅ Format validation to ensure accurate conversions"
+    " Real-time conversion between RGB and hexadecimal formats",
+    " Multiple input methods: sliders, direct text input, and color picker",
+    " Visual color preview for immediate feedback",
+    " One-click copying of color values to clipboard",
+    " Color history to save and reuse your previous colors",
+    " Format validation to ensure accurate conversions"
   ];
 
   const faqs = [
@@ -195,7 +195,7 @@ const RGBToHexDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">RGB to Hex Converter</h3>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
           <Tabs value={inputMethod} onValueChange={(value) => setInputMethod(value as "sliders" | "text" | "picker")}>
@@ -212,14 +212,14 @@ const RGBToHexDetailed = () => {
                 Color Picker
               </TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="sliders" className="space-y-4">
               <div>
                 <div className="flex justify-between mb-1">
                   <Label htmlFor="red-slider" className="text-sm font-medium">Red (R)</Label>
                   <span className="text-sm">{redValue}</span>
                 </div>
-                <Slider 
+                <Slider
                   id="red-slider"
                   min={0}
                   max={255}
@@ -229,13 +229,13 @@ const RGBToHexDetailed = () => {
                   className="mb-3"
                 />
               </div>
-              
+
               <div>
                 <div className="flex justify-between mb-1">
                   <Label htmlFor="green-slider" className="text-sm font-medium">Green (G)</Label>
                   <span className="text-sm">{greenValue}</span>
                 </div>
-                <Slider 
+                <Slider
                   id="green-slider"
                   min={0}
                   max={255}
@@ -245,13 +245,13 @@ const RGBToHexDetailed = () => {
                   className="mb-3"
                 />
               </div>
-              
+
               <div>
                 <div className="flex justify-between mb-1">
                   <Label htmlFor="blue-slider" className="text-sm font-medium">Blue (B)</Label>
                   <span className="text-sm">{blueValue}</span>
                 </div>
-                <Slider 
+                <Slider
                   id="blue-slider"
                   min={0}
                   max={255}
@@ -261,7 +261,7 @@ const RGBToHexDetailed = () => {
                 />
               </div>
             </TabsContent>
-            
+
             <TabsContent value="text" className="space-y-4">
               <div>
                 <Label htmlFor="rgb-input" className="text-sm font-medium">RGB Value</Label>
@@ -273,8 +273,8 @@ const RGBToHexDetailed = () => {
                     onChange={handleRgbInputChange}
                     className={`pr-10 ${!isValidRgb ? 'border-red-300' : ''}`}
                   />
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     size="sm"
                     className="absolute right-1 top-1 h-7 w-7 p-0"
                     onClick={() => copyToClipboard(`rgb(${redValue}, ${greenValue}, ${blueValue})`)}
@@ -288,7 +288,7 @@ const RGBToHexDetailed = () => {
                   </p>
                 )}
               </div>
-              
+
               <div>
                 <Label htmlFor="hex-input" className="text-sm font-medium">Hex Value</Label>
                 <div className="relative mt-1">
@@ -299,8 +299,8 @@ const RGBToHexDetailed = () => {
                     onChange={handleHexInputChange}
                     className={`pr-10 ${!isValidHex ? 'border-red-300' : ''}`}
                   />
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     size="sm"
                     className="absolute right-1 top-1 h-7 w-7 p-0"
                     onClick={() => copyToClipboard(hexValue)}
@@ -315,7 +315,7 @@ const RGBToHexDetailed = () => {
                 )}
               </div>
             </TabsContent>
-            
+
             <TabsContent value="picker" className="space-y-4">
               <div className="flex flex-col items-center">
                 <Label htmlFor="color-picker" className="text-sm font-medium mb-2">Choose a Color</Label>
@@ -332,14 +332,14 @@ const RGBToHexDetailed = () => {
               </div>
             </TabsContent>
           </Tabs>
-          
+
           <Separator />
-          
+
           <div className="pt-2">
             <h4 className="font-medium mb-3">Current Color</h4>
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <div 
+                <div
                   className="w-10 h-10 rounded-md border mr-3 flex-shrink-0"
                   style={{ backgroundColor: hexValue }}
                 />
@@ -349,8 +349,8 @@ const RGBToHexDetailed = () => {
                     <code className="bg-gray-100 px-2 py-0.5 rounded text-xs">
                       rgb({redValue}, {greenValue}, {blueValue})
                     </code>
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       size="sm"
                       className="ml-1 h-6 w-6 p-0"
                       onClick={() => copyToClipboard(`rgb(${redValue}, ${greenValue}, ${blueValue})`)}
@@ -363,8 +363,8 @@ const RGBToHexDetailed = () => {
                     <code className="bg-gray-100 px-2 py-0.5 rounded text-xs">
                       {hexValue.toUpperCase()}
                     </code>
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       size="sm"
                       className="ml-1 h-6 w-6 p-0"
                       onClick={() => copyToClipboard(hexValue.toUpperCase())}
@@ -374,8 +374,8 @@ const RGBToHexDetailed = () => {
                   </div>
                 </div>
               </div>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="sm"
                 onClick={saveToHistory}
               >
@@ -384,13 +384,13 @@ const RGBToHexDetailed = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="space-y-4">
           <div className="flex items-center justify-between mb-2">
             <h4 className="font-medium">Color History</h4>
             <FaHistory className="text-gray-400" />
           </div>
-          
+
           <div className="space-y-2 max-h-96 overflow-y-auto pr-2">
             {colorHistory.length === 0 ? (
               <div className="text-center py-10 text-gray-500 bg-gray-50 rounded-lg border border-dashed">
@@ -399,13 +399,13 @@ const RGBToHexDetailed = () => {
               </div>
             ) : (
               colorHistory.map((item, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="flex items-center justify-between bg-gray-50 rounded-lg p-3 border cursor-pointer hover:bg-gray-100 transition-colors"
                   onClick={() => loadFromHistory(item)}
                 >
                   <div className="flex items-center">
-                    <div 
+                    <div
                       className="w-8 h-8 rounded border mr-3 flex-shrink-0"
                       style={{ backgroundColor: item.hex }}
                     />
@@ -414,8 +414,8 @@ const RGBToHexDetailed = () => {
                         <code className="text-xs bg-white px-1.5 py-0.5 rounded border">
                           {item.hex}
                         </code>
-                        <Button 
-                          variant="ghost" 
+                        <Button
+                          variant="ghost"
                           size="sm"
                           className="ml-1 h-5 w-5 p-0"
                           onClick={(e) => {
@@ -438,7 +438,7 @@ const RGBToHexDetailed = () => {
               ))
             )}
           </div>
-          
+
           <div className="pt-2">
             <h4 className="font-medium mb-3">Color Palette</h4>
             <div className="grid grid-cols-5 gap-2">
@@ -448,7 +448,7 @@ const RGBToHexDetailed = () => {
                 "#FF00FF", "#FF0080", "#FFFFFF", "#C0C0C0", "#808080",
                 "#404040", "#000000", "#FF8080", "#80FF80", "#8080FF"
               ].map((color, index) => (
-                <div 
+                <div
                   key={index}
                   className="w-full pt-[100%] rounded border relative cursor-pointer hover:opacity-80 transition-opacity"
                   style={{ backgroundColor: color }}

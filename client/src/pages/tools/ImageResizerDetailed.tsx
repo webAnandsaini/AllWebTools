@@ -9,9 +9,9 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { imageEditingTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
-import { 
-  FaUpload, 
-  FaDownload, 
+import {
+  FaUpload,
+  FaDownload,
   FaCrop,
   FaCheck,
   FaRuler,
@@ -39,7 +39,7 @@ const ImageResizerDetailed = () => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
       const fileType = selectedFile.type;
-      
+
       // Check if file is an image
       if (!fileType.startsWith('image/')) {
         toast({
@@ -49,12 +49,12 @@ const ImageResizerDetailed = () => {
         });
         return;
       }
-      
+
       setFile(selectedFile);
       const objectUrl = URL.createObjectURL(selectedFile);
       setPreviewUrl(objectUrl);
       setResultUrl(null);
-      
+
       // Get image dimensions
       const img = new Image();
       img.onload = () => {
@@ -63,7 +63,7 @@ const ImageResizerDetailed = () => {
         setTargetHeight(img.height);
       };
       img.src = objectUrl;
-      
+
       return () => {
         if (previewUrl) {
           URL.revokeObjectURL(previewUrl);
@@ -78,7 +78,7 @@ const ImageResizerDetailed = () => {
   const handleWidthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newWidth = parseInt(e.target.value) || 0;
     setTargetWidth(newWidth);
-    
+
     if (maintainAspectRatio && originalDimensions.width > 0) {
       const ratio = originalDimensions.height / originalDimensions.width;
       setTargetHeight(Math.round(newWidth * ratio));
@@ -88,7 +88,7 @@ const ImageResizerDetailed = () => {
   const handleHeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newHeight = parseInt(e.target.value) || 0;
     setTargetHeight(newHeight);
-    
+
     if (maintainAspectRatio && originalDimensions.height > 0) {
       const ratio = originalDimensions.width / originalDimensions.height;
       setTargetWidth(Math.round(newHeight * ratio));
@@ -98,7 +98,7 @@ const ImageResizerDetailed = () => {
   const handlePercentageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPercentage = parseInt(e.target.value) || 0;
     setPercentage(newPercentage);
-    
+
     // Calculate new dimensions based on percentage
     if (originalDimensions.width > 0) {
       const newWidth = Math.round(originalDimensions.width * (newPercentage / 100));
@@ -133,7 +133,7 @@ const ImageResizerDetailed = () => {
 
     setIsResizing(true);
     setResizeProgress(0);
-    
+
     // Simulate resizing process
     let progress = 0;
     const interval = setInterval(() => {
@@ -141,12 +141,12 @@ const ImageResizerDetailed = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         // In a real implementation, this would be the actual resized image
         // For demo purposes, we'll just use the original image
         setResultUrl(previewUrl);
         setIsResizing(false);
-        
+
         toast({
           title: "Resize complete",
           description: `Image resized to ${targetWidth}×${targetHeight} pixels.`,
@@ -158,7 +158,7 @@ const ImageResizerDetailed = () => {
 
   const handleDownload = () => {
     if (!resultUrl) return;
-    
+
     // Create a download link
     const a = document.createElement('a');
     a.href = resultUrl;
@@ -170,7 +170,7 @@ const ImageResizerDetailed = () => {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    
+
     toast({
       title: "Download started",
       description: "Your resized image is being downloaded.",
@@ -207,14 +207,14 @@ const ImageResizerDetailed = () => {
   ];
 
   const features = [
-    "✅ Resize images by exact dimensions or percentage",
-    "✅ Maintain aspect ratio option to prevent distortion",
-    "✅ Multiple output formats (JPEG, PNG, WebP)",
-    "✅ Adjustable compression levels for file size optimization",
-    "✅ Real-time preview of resized images",
-    "✅ Batch processing for multiple files",
-    "✅ Support for common image formats (JPEG, PNG, GIF, WebP)",
-    "✅ No watermarks on processed images"
+    " Resize images by exact dimensions or percentage",
+    " Maintain aspect ratio option to prevent distortion",
+    " Multiple output formats (JPEG, PNG, WebP)",
+    " Adjustable compression levels for file size optimization",
+    " Real-time preview of resized images",
+    " Batch processing for multiple files",
+    " Support for common image formats (JPEG, PNG, GIF, WebP)",
+    " No watermarks on processed images"
   ];
 
   const faqs = [
@@ -235,7 +235,7 @@ const ImageResizerDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Image Resizer</h3>
-      
+
       <div className="space-y-6">
         {!previewUrl ? (
           <div className="border-2 border-dashed rounded-lg p-4 text-center">
@@ -264,9 +264,9 @@ const ImageResizerDetailed = () => {
               <div>
                 <h4 className="font-medium mb-2">Original Image</h4>
                 <div className="relative rounded-lg overflow-hidden bg-slate-100 border mb-1">
-                  <img 
-                    src={previewUrl} 
-                    alt="Original" 
+                  <img
+                    src={previewUrl}
+                    alt="Original"
                     className="w-full object-contain"
                   />
                   <Button
@@ -283,14 +283,14 @@ const ImageResizerDetailed = () => {
                   {file && ` • ${(file.size / 1024 / 1024).toFixed(2)} MB`}
                 </p>
               </div>
-              
+
               {resultUrl && (
                 <div>
                   <h4 className="font-medium mb-2">Resized Image</h4>
                   <div className="rounded-lg overflow-hidden bg-slate-100 border mb-1">
-                    <img 
-                      src={resultUrl} 
-                      alt="Resized" 
+                    <img
+                      src={resultUrl}
+                      alt="Resized"
                       className="w-full object-contain"
                     />
                   </div>
@@ -300,12 +300,12 @@ const ImageResizerDetailed = () => {
                 </div>
               )}
             </div>
-            
+
             <div className="space-y-4 border rounded-lg p-4 bg-gray-50">
               <div>
                 <Label className="font-medium mb-2 block">Resize Method</Label>
-                <RadioGroup 
-                  defaultValue="dimensions" 
+                <RadioGroup
+                  defaultValue="dimensions"
                   className="flex space-x-4"
                   value={resizeMode}
                   onValueChange={setResizeMode}
@@ -320,7 +320,7 @@ const ImageResizerDetailed = () => {
                   </div>
                 </RadioGroup>
               </div>
-              
+
               {resizeMode === "dimensions" ? (
                 <div className="space-y-3">
                   <div className="grid grid-cols-2 gap-3">
@@ -345,7 +345,7 @@ const ImageResizerDetailed = () => {
                         </Button>
                       </div>
                     </div>
-                    
+
                     <div>
                       <Label htmlFor="height" className="text-sm">Height (px)</Label>
                       <Input
@@ -358,7 +358,7 @@ const ImageResizerDetailed = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     <Checkbox
                       id="maintain-ratio"
@@ -377,7 +377,7 @@ const ImageResizerDetailed = () => {
                     <span>{targetWidth}×{targetHeight} px</span>
                   </Label>
                   <Input
-                    id="percentage-slider" 
+                    id="percentage-slider"
                     type="range"
                     min={1}
                     max={200}
@@ -392,11 +392,11 @@ const ImageResizerDetailed = () => {
                   </div>
                 </div>
               )}
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div>
                   <Label className="text-sm block mb-1">Output Format</Label>
-                  <select 
+                  <select
                     className="w-full p-2 border rounded-md"
                     value={fileFormat}
                     onChange={(e) => setFileFormat(e.target.value)}
@@ -406,10 +406,10 @@ const ImageResizerDetailed = () => {
                     <option value="webp">WebP</option>
                   </select>
                 </div>
-                
+
                 <div>
                   <Label className="text-sm block mb-1">Compression Level</Label>
-                  <select 
+                  <select
                     className="w-full p-2 border rounded-md"
                     value={compressionLevel}
                     onChange={(e) => setCompressionLevel(e.target.value)}
@@ -421,9 +421,9 @@ const ImageResizerDetailed = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button 
+              <Button
                 onClick={handleResize}
                 className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
                 disabled={isResizing}
@@ -432,24 +432,24 @@ const ImageResizerDetailed = () => {
                   <>Resizing...</>
                 ) : (
                   <>
-                    <FaRuler className="mr-2" /> 
+                    <FaRuler className="mr-2" />
                     Resize Image
                   </>
                 )}
               </Button>
-              
+
               {resultUrl && (
-                <Button 
+                <Button
                   onClick={handleDownload}
                   variant="outline"
                   className="flex-shrink-0"
                 >
-                  <FaDownload className="mr-2" /> 
+                  <FaDownload className="mr-2" />
                   Download
                 </Button>
               )}
             </div>
-            
+
             {isResizing && (
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
@@ -459,7 +459,7 @@ const ImageResizerDetailed = () => {
                 <Progress value={resizeProgress} />
               </div>
             )}
-            
+
             {resultUrl && (
               <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-800 flex items-center">
                 <FaCheck className="mr-2 flex-shrink-0" />

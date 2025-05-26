@@ -26,7 +26,7 @@ const JSONViewerDetailed = () => {
   // Extract the actual tool slug without the "-detailed" suffix
   const pathSegments = window.location.pathname.split('/');
   let toolSlug = pathSegments[pathSegments.length - 1].replace('-detailed', '');
-  
+
   // Handle direct routes without /tools/ prefix
   if (pathSegments.length === 2) {
     toolSlug = pathSegments[1].replace('-detailed', '');
@@ -51,7 +51,7 @@ const JSONViewerDetailed = () => {
       const parsedJSON = JSON.parse(jsonInput);
       setJsonResult(parsedJSON);
       setError(null);
-      
+
       toast({
         title: "Success",
         description: "JSON parsed successfully",
@@ -187,14 +187,14 @@ const JSONViewerDetailed = () => {
 
     if (typeof obj === "object") {
       const keys = Object.keys(obj);
-      
+
       if (keys.length === 0) {
         return <span className="text-gray-700">{ }</span>;
       }
 
       // Apply filter if provided
-      const filteredKeys = filter 
-        ? keys.filter(key => key.toLowerCase().includes(filter.toLowerCase()) || 
+      const filteredKeys = filter
+        ? keys.filter(key => key.toLowerCase().includes(filter.toLowerCase()) ||
                              JSON.stringify(obj[key]).toLowerCase().includes(filter.toLowerCase()))
         : keys;
 
@@ -233,7 +233,7 @@ const JSONViewerDetailed = () => {
           introduction: "View and explore JSON data with syntax highlighting and tree view.",
           description: "Our JSON Viewer provides a clean, interactive interface for exploring and analyzing JSON data. Easily navigate through complex JSON structures, expand/collapse nested objects, search for specific keys or values, and visualize your data in a structured tree format. Perfect for developers, data analysts, or anyone working with JSON data who needs to quickly understand and explore JSON structure.",
           howToUse: [
-            "Enter or paste your JSON data in the input field",
+            " Enter or paste your JSON data in the input field",
             "Click 'Process JSON' to validate and view it",
             "Use the tree view to explore nested objects and arrays",
             "Adjust display settings to customize the view",
@@ -324,7 +324,7 @@ const JSONViewerDetailed = () => {
                 <TabsTrigger value="input">Input</TabsTrigger>
                 <TabsTrigger value="output" disabled={!jsonResult && !error}>Output</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="input" className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="jsonInput">Enter JSON</Label>
@@ -337,7 +337,7 @@ const JSONViewerDetailed = () => {
                     className="font-mono"
                   />
                 </div>
-                
+
                 <div className="flex flex-wrap gap-2">
                   <Button onClick={handleProcessJSON} disabled={loading}>
                     {loading ? "Processing..." : "Process JSON"}
@@ -356,7 +356,7 @@ const JSONViewerDetailed = () => {
                   </Button>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="output" className="space-y-4">
                 {error ? (
                   <Alert variant="destructive">
@@ -371,15 +371,15 @@ const JSONViewerDetailed = () => {
                         <div className="space-y-1">
                           <Label htmlFor="displayMode">Display Mode</Label>
                           <div className="flex items-center space-x-2">
-                            <Button 
-                              variant={displayMode === "tree" ? "default" : "outline"} 
+                            <Button
+                              variant={displayMode === "tree" ? "default" : "outline"}
                               size="sm"
                               onClick={() => setDisplayMode("tree")}
                             >
                               Tree View
                             </Button>
-                            <Button 
-                              variant={displayMode === "raw" ? "default" : "outline"} 
+                            <Button
+                              variant={displayMode === "raw" ? "default" : "outline"}
                               size="sm"
                               onClick={() => setDisplayMode("raw")}
                             >
@@ -387,7 +387,7 @@ const JSONViewerDetailed = () => {
                             </Button>
                           </div>
                         </div>
-                        
+
                         <div className="space-x-3 flex items-center">
                           <div className="flex items-center space-x-2">
                             <Checkbox
@@ -397,7 +397,7 @@ const JSONViewerDetailed = () => {
                             />
                             <Label htmlFor="showLineNumbers" className="text-sm">Line Numbers</Label>
                           </div>
-                          
+
                           <div className="flex items-center space-x-2">
                             <Checkbox
                               id="showDataTypes"
@@ -408,7 +408,7 @@ const JSONViewerDetailed = () => {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="space-y-2">
                         <Label htmlFor="jsonFilter">Filter</Label>
                         <Input
@@ -418,7 +418,7 @@ const JSONViewerDetailed = () => {
                           onChange={(e) => setFilter(e.target.value)}
                         />
                       </div>
-                      
+
                       <div className="space-y-2">
                         <Label htmlFor="expandLevel">Expansion Level: {expandLevel === 0 ? 'All' : expandLevel}</Label>
                         <div className="flex items-center space-x-2">
@@ -434,7 +434,7 @@ const JSONViewerDetailed = () => {
                           <span className="text-xs text-gray-500 w-16">{expandLevel === 0 ? 'All' : expandLevel}</span>
                         </div>
                       </div>
-                      
+
                       <div className="border rounded-md p-4 font-mono text-sm overflow-x-auto bg-gray-50">
                         {displayMode === "tree" ? (
                           <div className="json-tree">{renderJSONTree(jsonResult)}</div>
@@ -449,7 +449,7 @@ const JSONViewerDetailed = () => {
             </Tabs>
           </CardContent>
         </Card>
-        
+
         <div className="text-sm text-gray-500 px-1">
           <p>Enter valid JSON to visualize its structure. The tool supports tree view with collapsible nodes and syntax highlighting.</p>
         </div>

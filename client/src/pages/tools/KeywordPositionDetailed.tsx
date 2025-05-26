@@ -9,8 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { keywordsTools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
-import { 
-  FaSearch, 
+import {
+  FaSearch,
   FaChartBar,
   FaGlobe,
   FaCheck,
@@ -62,7 +62,7 @@ const KeywordPositionDetailed = () => {
     setIsChecking(true);
     setCheckProgress(0);
     setResults([]);
-    
+
     // Simulate the checking process
     let progress = 0;
     const interval = setInterval(() => {
@@ -70,7 +70,7 @@ const KeywordPositionDetailed = () => {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        
+
         // Create simulated results
         const keywordList = keywords.split(',').map(k => k.trim());
         const simulatedResults = keywordList.map(keyword => {
@@ -84,10 +84,10 @@ const KeywordPositionDetailed = () => {
             lastChecked: new Date().toLocaleDateString()
           };
         });
-        
+
         setResults(simulatedResults);
         setIsChecking(false);
-        
+
         toast({
           title: "Check complete",
           description: `Checked positions for ${keywordList.length} keywords.`,
@@ -117,13 +117,13 @@ const KeywordPositionDetailed = () => {
   ];
 
   const features = [
-    "✅ Track rankings for multiple keywords simultaneously",
-    "✅ Check positions across major search engines",
-    "✅ Monitor desktop and mobile search results",
-    "✅ Get accurate, real-time ranking data",
-    "✅ Analyze performance for any domain",
-    "✅ Compare historical position changes",
-    "✅ Export results for reporting and analysis"
+    " Track rankings for multiple keywords simultaneously",
+    " Check positions across major search engines",
+    " Monitor desktop and mobile search results",
+    " Get accurate, real-time ranking data",
+    " Analyze performance for any domain",
+    " Compare historical position changes",
+    " Export results for reporting and analysis"
   ];
 
   const faqs = [
@@ -144,35 +144,35 @@ const KeywordPositionDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Keyword Position Checker</h3>
-      
+
       <div className="space-y-5">
         <div>
           <Label htmlFor="url" className="block mb-2">Website URL</Label>
-          <Input 
-            id="url" 
-            placeholder="https://example.com" 
+          <Input
+            id="url"
+            placeholder="https://example.com"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />
           <p className="text-xs text-gray-500 mt-1">Enter the full URL including http:// or https://</p>
         </div>
-        
+
         <div>
           <Label htmlFor="keywords" className="block mb-2">Keywords</Label>
-          <Textarea 
-            id="keywords" 
-            placeholder="Enter keywords separated by commas" 
+          <Textarea
+            id="keywords"
+            placeholder="Enter keywords separated by commas"
             value={keywords}
             onChange={(e) => setKeywords(e.target.value)}
             rows={3}
           />
           <p className="text-xs text-gray-500 mt-1">Example: seo tools, keyword research, rank tracker</p>
         </div>
-        
+
         <div>
           <Label className="block mb-2">Search Engine</Label>
-          <RadioGroup 
-            defaultValue="google" 
+          <RadioGroup
+            defaultValue="google"
             value={searchEngine}
             onValueChange={setSearchEngine}
             className="flex space-x-4"
@@ -191,8 +191,8 @@ const KeywordPositionDetailed = () => {
             </div>
           </RadioGroup>
         </div>
-        
-        <Button 
+
+        <Button
           onClick={handleCheck}
           className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
           disabled={isChecking}
@@ -201,12 +201,12 @@ const KeywordPositionDetailed = () => {
             <>Checking Positions...</>
           ) : (
             <>
-              <FaSearch className="mr-2" /> 
+              <FaSearch className="mr-2" />
               Check Positions
             </>
           )}
         </Button>
-        
+
         {isChecking && (
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
@@ -216,14 +216,14 @@ const KeywordPositionDetailed = () => {
             <Progress value={checkProgress} />
           </div>
         )}
-        
+
         {results.length > 0 && (
           <div className="space-y-4 mt-4">
             <h4 className="font-medium text-lg flex items-center">
               <FaListOl className="mr-2 text-blue-600" />
               Keyword Positions
             </h4>
-            
+
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
@@ -250,7 +250,7 @@ const KeywordPositionDetailed = () => {
                 </TableBody>
               </Table>
             </div>
-            
+
             <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg text-sm">
               <h5 className="font-medium text-blue-700 mb-2">Ranking Analysis</h5>
               <ul className="space-y-1 text-blue-700">

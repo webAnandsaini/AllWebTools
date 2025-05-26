@@ -10,12 +10,12 @@ const Footer = () => {
 
       <div className="container mx-auto px-4 relative">
         {/* Top Section with Logo and Newsletter */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-10 md:mb-5 pb-10 md:pb-16 border-b border-slate-700/50">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-5 pb-8 sm:pb-10 md:pb-16 border-b border-slate-700/50">
           <div className="lg:col-span-4">
             <Link href="/" className="inline-block mb-6">
               <h3 className="text-gradient-bright text-3xl font-bold tracking-tight">AllTooly</h3>
             </Link>
-            <p className="mb-8 text-slate-400 max-w-md text-base leading-relaxed">
+            <p className="md:mb-8 text-slate-400 max-w-md text-base leading-relaxed">
               All-in-one platform with 300+ free online tools to help you solve everyday digital tasks and challenges.
             </p>
             {/* <div className="flex space-x-4 mb-6">

@@ -53,12 +53,12 @@ const InvitationMakerDetailed = () => {
   ];
 
   const features = [
-    "✅ Hundreds of professionally designed templates for all types of events",
-    "✅ Customizable color schemes, fonts, and decorative elements",
-    "✅ Easy text editing for all invitation details",
-    "✅ High-resolution downloads in multiple formats (JPG, PNG, PDF)",
-    "✅ Digital sharing options for email and social media",
-    "✅ Real-time preview to visualize your design changes instantly"
+    " Hundreds of professionally designed templates for all types of events",
+    " Customizable color schemes, fonts, and decorative elements",
+    " Easy text editing for all invitation details",
+    " High-resolution downloads in multiple formats (JPG, PNG, PDF)",
+    " Digital sharing options for email and social media",
+    " Real-time preview to visualize your design changes instantly"
   ];
 
   const faqs = [
@@ -96,7 +96,7 @@ const InvitationMakerDetailed = () => {
 
     const selectedStyle = templateStyles[template as keyof typeof templateStyles] || templateStyles.elegant;
     const selectedIcon = themeIcons[theme as keyof typeof themeIcons] || themeIcons.birthday;
-    
+
     const colorAccents = {
       blue: "text-blue-700",
       purple: "text-purple-700",
@@ -104,7 +104,7 @@ const InvitationMakerDetailed = () => {
       red: "text-red-700",
       gold: "text-amber-700",
     };
-    
+
     const selectedColor = colorAccents[color as keyof typeof colorAccents] || colorAccents.blue;
 
     return (
@@ -131,7 +131,7 @@ const InvitationMakerDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Invitation Designer</h3>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
           <div>
@@ -150,7 +150,7 @@ const InvitationMakerDetailed = () => {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div className="space-y-4">
             <div>
               <Label htmlFor="event-title" className="font-medium">Event Title</Label>
@@ -161,7 +161,7 @@ const InvitationMakerDetailed = () => {
                 placeholder="e.g. John's 30th Birthday"
               />
             </div>
-            
+
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <Label htmlFor="event-date" className="font-medium">Date</Label>
@@ -172,7 +172,7 @@ const InvitationMakerDetailed = () => {
                   placeholder="e.g. June 15, 2025"
                 />
               </div>
-              
+
               <div>
                 <Label htmlFor="event-time" className="font-medium">Time</Label>
                 <Input
@@ -183,7 +183,7 @@ const InvitationMakerDetailed = () => {
                 />
               </div>
             </div>
-            
+
             <div>
               <Label htmlFor="event-location" className="font-medium">Location</Label>
               <Input
@@ -193,7 +193,7 @@ const InvitationMakerDetailed = () => {
                 placeholder="e.g. Crystal Garden Venue"
               />
             </div>
-            
+
             <div>
               <Label htmlFor="host-name" className="font-medium">Host Name</Label>
               <Input
@@ -203,7 +203,7 @@ const InvitationMakerDetailed = () => {
                 placeholder="e.g. John & Jane Smith"
               />
             </div>
-            
+
             <div>
               <Label htmlFor="message" className="font-medium">Message</Label>
               <Textarea
@@ -214,7 +214,7 @@ const InvitationMakerDetailed = () => {
                 rows={3}
               />
             </div>
-            
+
             <div>
               <Label htmlFor="rsvp-info" className="font-medium">RSVP Information</Label>
               <Input
@@ -225,7 +225,7 @@ const InvitationMakerDetailed = () => {
               />
             </div>
           </div>
-          
+
           <div className="space-y-4">
             <Tabs defaultValue="design" className="w-full">
               <TabsList className="grid w-full grid-cols-3">
@@ -242,7 +242,7 @@ const InvitationMakerDetailed = () => {
                   Images
                 </TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="design" className="space-y-4 pt-4">
                 <div>
                   <Label htmlFor="template" className="font-medium">Template Style</Label>
@@ -258,7 +258,7 @@ const InvitationMakerDetailed = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                
+
                 <div>
                   <Label htmlFor="color" className="font-medium">Color Scheme</Label>
                   <Select value={color} onValueChange={setColor}>
@@ -275,13 +275,13 @@ const InvitationMakerDetailed = () => {
                   </Select>
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="text" className="pt-4">
                 <p className="text-sm text-gray-500">
                   Font and text style options would be available here in the full version.
                 </p>
               </TabsContent>
-              
+
               <TabsContent value="images" className="pt-4">
                 <p className="text-sm text-gray-500">
                   Image upload and decorative element options would be available here in the full version.
@@ -290,22 +290,22 @@ const InvitationMakerDetailed = () => {
             </Tabs>
           </div>
         </div>
-        
+
         <div className="flex flex-col">
           <div className="bg-gray-50 rounded-lg p-4 mb-4 flex-grow flex items-center justify-center">
             {renderPreview()}
           </div>
-          
+
           <div className="flex space-x-3">
-            <Button 
-              className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700" 
+            <Button
+              className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
               onClick={handleDownload}
             >
               <FaDownload className="mr-2" /> Download
             </Button>
-            <Button 
-              variant="outline" 
-              className="flex-1" 
+            <Button
+              variant="outline"
+              className="flex-1"
               onClick={handleShare}
             >
               <FaShareAlt className="mr-2" /> Share

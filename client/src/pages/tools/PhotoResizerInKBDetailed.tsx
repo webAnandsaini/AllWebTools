@@ -40,7 +40,7 @@ const PhotoResizerInKBDetailed = () => {
       setResultUrl("");
       setResultSize(0);
       setOriginalSize(selectedFile.size);
-      
+
       // Load image to get original dimensions
       const img = new Image();
       img.onload = () => {
@@ -55,13 +55,13 @@ const PhotoResizerInKBDetailed = () => {
 
   const formatBytes = (bytes: number, decimals = 2) => {
     if (bytes === 0) return '0 Bytes';
-    
+
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    
+
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    
+
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   };
 
@@ -85,12 +85,12 @@ const PhotoResizerInKBDetailed = () => {
 
     setIsProcessing(true);
     setResultUrl("");
-    
+
     // Simulate processing
     setTimeout(() => {
       // Calculate what the result size would be - this is just a simulation
       let resultSizeBytes;
-      
+
       if (compressMethod === "auto") {
         // In auto mode, we simulate hitting the target exactly
         resultSizeBytes = getTargetSizeInBytes();
@@ -99,18 +99,18 @@ const PhotoResizerInKBDetailed = () => {
         // Higher quality = larger file
         const compressionRatio = quality / 100;
         resultSizeBytes = Math.round(originalSize * compressionRatio);
-        
+
         // Ensure it's not larger than original
         if (resultSizeBytes > originalSize) {
           resultSizeBytes = originalSize;
         }
       }
-      
+
       setResultSize(resultSizeBytes);
       setResultUrl(previewUrl); // In a real implementation, this would be the processed image URL
-      
+
       setIsProcessing(false);
-      
+
       toast({
         title: "Processing complete",
         description: `Image resized to ${formatBytes(resultSizeBytes)}.`,
@@ -120,7 +120,7 @@ const PhotoResizerInKBDetailed = () => {
 
   const handleDownload = () => {
     if (!resultUrl) return;
-    
+
     // Create a download link
     const a = document.createElement('a');
     a.href = resultUrl;
@@ -128,7 +128,7 @@ const PhotoResizerInKBDetailed = () => {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    
+
     toast({
       title: "Download started",
       description: "Your resized image is being downloaded.",
@@ -150,12 +150,12 @@ const PhotoResizerInKBDetailed = () => {
   ];
 
   const features = [
-    "✅ Resize images to exact file sizes in KB or MB",
-    "✅ Automatic mode for optimal quality at target size",
-    "✅ Manual quality control for fine-tuning results",
-    "✅ Maintains image dimensions when possible",
-    "✅ Multiple output format options (JPEG, PNG, WebP)",
-    "✅ Preview before downloading to ensure satisfaction"
+    " Resize images to exact file sizes in KB or MB",
+    " Automatic mode for optimal quality at target size",
+    " Manual quality control for fine-tuning results",
+    " Maintains image dimensions when possible",
+    " Multiple output format options (JPEG, PNG, WebP)",
+    " Preview before downloading to ensure satisfaction"
   ];
 
   const faqs = [
@@ -176,7 +176,7 @@ const PhotoResizerInKBDetailed = () => {
   const toolInterface = (
     <Card className="p-6 shadow-lg border-0">
       <h3 className="text-xl font-semibold mb-4 text-center">Photo Resizer in KB</h3>
-      
+
       <div className="border-2 border-dashed rounded-lg p-4 text-center">
         <Label htmlFor="photo-upload" className="cursor-pointer block">
           <div className="py-8 flex flex-col items-center">
@@ -197,15 +197,15 @@ const PhotoResizerInKBDetailed = () => {
           />
         </Label>
       </div>
-      
+
       {previewUrl && (
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h4 className="font-medium mb-2">Original Photo</h4>
             <div className="border rounded-lg overflow-hidden bg-gray-50 flex justify-center p-2">
-              <img 
-                src={previewUrl} 
-                alt="Original" 
+              <img
+                src={previewUrl}
+                alt="Original"
                 className="max-h-48 object-contain"
               />
             </div>
@@ -213,14 +213,14 @@ const PhotoResizerInKBDetailed = () => {
               {formatBytes(originalSize)} • {originalWidth} × {originalHeight} px
             </div>
           </div>
-          
+
           {resultUrl && (
             <div>
               <h4 className="font-medium mb-2">Resized Photo</h4>
               <div className="border rounded-lg overflow-hidden bg-gray-50 flex justify-center p-2">
-                <img 
-                  src={resultUrl} 
-                  alt="Resized" 
+                <img
+                  src={resultUrl}
+                  alt="Resized"
                   className="max-h-48 object-contain"
                 />
               </div>
@@ -231,7 +231,7 @@ const PhotoResizerInKBDetailed = () => {
           )}
         </div>
       )}
-      
+
       {previewUrl && (
         <div className="mt-6 space-y-4">
           <div className="space-y-3">
@@ -263,26 +263,26 @@ const PhotoResizerInKBDetailed = () => {
                 </p>
               )}
             </div>
-            
+
             <Tabs value={compressMethod} onValueChange={(value) => setCompressMethod(value as "auto" | "manual")}>
               <TabsList className="grid w-full grid-cols-2 mb-2">
                 <TabsTrigger value="auto">Automatic</TabsTrigger>
                 <TabsTrigger value="manual">Manual Control</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="auto" className="pt-2">
                 <p className="text-sm text-gray-600">
                   Our algorithm will optimize quality and dimensions to achieve the exact target size.
                 </p>
               </TabsContent>
-              
+
               <TabsContent value="manual" className="space-y-4 pt-2">
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <Label htmlFor="quality" className="text-sm">Quality</Label>
                     <span className="text-sm">{quality}%</span>
                   </div>
-                  <Slider 
+                  <Slider
                     id="quality"
                     min={10}
                     max={100}
@@ -295,21 +295,21 @@ const PhotoResizerInKBDetailed = () => {
                     <span>Better quality</span>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center justify-between">
                   <div>
                     <Label htmlFor="maintain-dims" className="text-sm">Maintain dimensions</Label>
                     <p className="text-xs text-gray-500">Keep original image size if possible</p>
                   </div>
-                  <Switch 
-                    id="maintain-dims" 
+                  <Switch
+                    id="maintain-dims"
                     checked={maintainDimensions}
                     onCheckedChange={setMaintainDimensions}
                   />
                 </div>
               </TabsContent>
             </Tabs>
-            
+
             <div>
               <Label htmlFor="output-format" className="font-medium">Output Format</Label>
               <Select value={outputFormat} onValueChange={setOutputFormat}>
@@ -330,9 +330,9 @@ const PhotoResizerInKBDetailed = () => {
               )}
             </div>
           </div>
-          
+
           <div className="mt-6 flex space-x-3">
-            <Button 
+            <Button
               onClick={handleProcess}
               className="flex-1 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700"
               disabled={isProcessing || !file}
@@ -341,29 +341,29 @@ const PhotoResizerInKBDetailed = () => {
                 <>Processing...</>
               ) : (
                 <>
-                  <FaFileImage className="mr-2" /> 
+                  <FaFileImage className="mr-2" />
                   Process Image
                 </>
               )}
             </Button>
-            
+
             {resultUrl && (
-              <Button 
+              <Button
                 onClick={handleDownload}
                 variant="outline"
                 className="flex-1"
               >
-                <FaDownload className="mr-2" /> 
+                <FaDownload className="mr-2" />
                 Download
               </Button>
             )}
           </div>
-          
+
           {resultUrl && (
             <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-800 flex items-center">
               <FaInfoCircle className="mr-2 flex-shrink-0" />
               <div>
-                Successfully resized photo to {formatBytes(resultSize)}. 
+                Successfully resized photo to {formatBytes(resultSize)}.
                 {originalSize > resultSize && (
                   <span> Reduced by {Math.round((originalSize - resultSize) / originalSize * 100)}%.</span>
                 )}
